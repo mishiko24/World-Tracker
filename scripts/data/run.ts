@@ -26,6 +26,16 @@ const STEPS: Record<string, () => Promise<void>> = {
   eia: fetchEia,
   usgs: fetchUsgs,
   faostat: fetchFaostat,
+  // TEMPORARY: lists data download links on OPEC's Annual Statistical Bulletin site.
+  "opec-probe": async () => {
+    for (const url of ["https://asb.opec.org/", "https://www.opec.org/annual-statistical-bulletin.html", "https://publications.opec.org/asb"]) {
+      const response = await fetch(url, { headers: { "User-Agent": "WorldTracker/1.0" } });
+      const html = await response.text();
+      const links = [...html.matchAll(/(?:href|src)="([^"]+)"/g)].map((m) => m[1]);
+      const interesting = links.filter((l) => /xls|csv|download|data|table|api|json/i.test(l));
+      console.log(`  ${url} -> HTTP ${response.status}, ${html.length} chars; links:\n    ${[...new Set(interesting)].slice(0, 60).join("\n    ")}`);
+    }
+  },
   build: async () => {
     await import("./build.ts");
   },

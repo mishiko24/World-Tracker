@@ -1,5 +1,6 @@
 // U.S. EIA International Energy Data (public domain, free API key in env EIA_API_KEY).
-// Oil, natural gas and coal: production and reserves, converted to canonical units.
+// Oil, natural gas and coal production, and coal reserves, converted to canonical units.
+// (EIA's API no longer carries oil or gas reserves: activity 6 only has coal, 2008 onwards.)
 //
 // SECURITY: the key is only ever placed in request URLs; errors use labels, never URLs.
 
@@ -33,9 +34,7 @@ interface Series {
 
 const SERIES: Series[] = [
   { resource: "oil", kind: "production", productId: "57", activityId: "1", preferredUnits: ["TBPD"], unit: "bbl/day" },
-  { resource: "oil", kind: "reserves", productId: "57", activityId: "6", preferredUnits: ["BB"], unit: "bbl" },
   { resource: "gas", kind: "production", productId: "26", activityId: "1", preferredUnits: ["BCM", "BCF"], unit: "m³/year" },
-  { resource: "gas", kind: "reserves", productId: "26", activityId: "6", preferredUnits: ["TCF", "BCM", "BCF"], unit: "m³" },
   { resource: "coal", kind: "production", productId: "7", activityId: "1", preferredUnits: ["MT", "TST"], unit: "t/year" },
   { resource: "coal", kind: "reserves", productId: "7", activityId: "6", preferredUnits: ["MST", "MT"], unit: "t" },
 ];
