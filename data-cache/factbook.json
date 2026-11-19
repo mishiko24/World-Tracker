@@ -1,0 +1,716 @@
+{
+ "fetchedAt": "2026-11-19T14:27:56.931Z",
+ "byCountry": {
+  "ZWE": {
+   "governmentType": "presidential republic"
+  },
+  "ZMB": {
+   "governmentType": "presidential republic"
+  },
+  "YEM": {
+   "governmentType": "in transition"
+  },
+  "VNM": {
+   "governmentType": "communist party-led state"
+  },
+  "VEN": {
+   "governmentType": "federal presidential republic"
+  },
+  "VAT": {
+   "governmentType": "ecclesiastical elective monarchy; self-described as an \"absolute monarchy\""
+  },
+  "VUT": {
+   "governmentType": "parliamentary republic"
+  },
+  "UZB": {
+   "governmentType": "presidential republic; highly authoritarian"
+  },
+  "URY": {
+   "governmentType": "presidential republic"
+  },
+  "FSM": {
+   "governmentType": "federal republic in free association with the US"
+  },
+  "MHL": {
+   "governmentType": "mixed presidential-parliamentary system in free association with the US"
+  },
+  "MNP": {
+   "governmentType": "a commonwealth in political union with and under the sovereignty of the US; republican form of government with separate executive, legislative, and judicial branches"
+  },
+  "VIR": {
+   "governmentType": "unincorporated organized territory of the US with local self-government; republican form of territorial government with separate executive, legislative, and judicial branches"
+  },
+  "GUM": {
+   "governmentType": "unincorporated organized territory of the US with local self-government; republican form of territorial government with separate executive, legislative, and judicial branches"
+  },
+  "ASM": {
+   "governmentType": "unincorporated, unorganized Territory of the US with local self-government; republican form of territorial government with separate executive, legislative, and judicial branches"
+  },
+  "PRI": {
+   "governmentType": "unincorporated organized territory of the US with local self-government; republican form of territorial government with separate executive, legislative, and judicial branches; note - reference Puerto Rican Federal Relations Act, 2 March 1917, as amended by Public Law 600, 3 July 1950"
+  },
+  "USA": {
+   "governmentType": "constitutional federal republic"
+  },
+  "SGS": {
+   "governmentType": null
+  },
+  "IOT": {
+   "governmentType": null
+  },
+  "SHN": {
+   "governmentType": "parliamentary democracy"
+  },
+  "PCN": {
+   "governmentType": "parliamentary democracy"
+  },
+  "AIA": {
+   "governmentType": "parliamentary democracy (House of Assembly); self-governing overseas territory of the UK"
+  },
+  "FLK": {
+   "governmentType": "parliamentary democracy (Legislative Assembly); self-governing overseas territory of the UK"
+  },
+  "CYM": {
+   "governmentType": "parliamentary democracy; self-governing overseas territory of the UK"
+  },
+  "BMU": {
+   "governmentType": "Overseas Territory of the UK with limited self-government; parliamentary democracy"
+  },
+  "VGB": {
+   "governmentType": "Overseas Territory of the UK with limited self-government; parliamentary democracy"
+  },
+  "TCA": {
+   "governmentType": "parliamentary democracy"
+  },
+  "MSR": {
+   "governmentType": "parliamentary democracy; self-governing overseas territory of the UK"
+  },
+  "JEY": {
+   "governmentType": "parliamentary democracy (Assembly of the States of Jersey)"
+  },
+  "GGY": {
+   "governmentType": "parliamentary democracy (States of Deliberation)"
+  },
+  "IMN": {
+   "governmentType": "parliamentary democracy (Tynwald)"
+  },
+  "GBR": {
+   "governmentType": "parliamentary constitutional monarchy; a Commonwealth realm"
+  },
+  "ARE": {
+   "governmentType": "federation of monarchies"
+  },
+  "UKR": {
+   "governmentType": "semi-presidential republic"
+  },
+  "UGA": {
+   "governmentType": "presidential republic"
+  },
+  "TKM": {
+   "governmentType": "presidential republic; authoritarian"
+  },
+  "TUR": {
+   "governmentType": "presidential republic"
+  },
+  "TUN": {
+   "governmentType": "parliamentary republic"
+  },
+  "TTO": {
+   "governmentType": "parliamentary republic"
+  },
+  "TON": {
+   "governmentType": "constitutional monarchy"
+  },
+  "TGO": {
+   "governmentType": "presidential republic"
+  },
+  "TLS": {
+   "governmentType": "semi-presidential republic"
+  },
+  "THA": {
+   "governmentType": "constitutional monarchy"
+  },
+  "TZA": {
+   "governmentType": "presidential republic"
+  },
+  "TJK": {
+   "governmentType": "presidential republic"
+  },
+  "TWN": {
+   "governmentType": "semi-presidential republic"
+  },
+  "SYR": {
+   "governmentType": "transitional presidential republic"
+  },
+  "CHE": {
+   "governmentType": "federal republic (formally a confederation)"
+  },
+  "SWE": {
+   "governmentType": "parliamentary constitutional monarchy"
+  },
+  "SWZ": {
+   "governmentType": "absolute monarchy"
+  },
+  "SUR": {
+   "governmentType": "presidential republic"
+  },
+  "SDS": {
+   "governmentType": "presidential republic"
+  },
+  "SDN": {
+   "governmentType": "presidential republic"
+  },
+  "LKA": {
+   "governmentType": "presidential republic"
+  },
+  "ESP": {
+   "governmentType": "parliamentary constitutional monarchy"
+  },
+  "KOR": {
+   "governmentType": "presidential republic"
+  },
+  "ZAF": {
+   "governmentType": "parliamentary republic"
+  },
+  "SOM": {
+   "governmentType": "federal parliamentary republic"
+  },
+  "SLB": {
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+  },
+  "SVK": {
+   "governmentType": "parliamentary republic"
+  },
+  "SVN": {
+   "governmentType": "parliamentary republic"
+  },
+  "SGP": {
+   "governmentType": "parliamentary republic"
+  },
+  "SLE": {
+   "governmentType": "presidential republic"
+  },
+  "SYC": {
+   "governmentType": "presidential republic"
+  },
+  "SRB": {
+   "governmentType": "parliamentary republic"
+  },
+  "SEN": {
+   "governmentType": "presidential republic"
+  },
+  "SAU": {
+   "governmentType": "absolute monarchy"
+  },
+  "STP": {
+   "governmentType": "semi-presidential republic"
+  },
+  "SMR": {
+   "governmentType": "parliamentary republic"
+  },
+  "WSM": {
+   "governmentType": "parliamentary republic"
+  },
+  "VCT": {
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+  },
+  "LCA": {
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+  },
+  "KNA": {
+   "governmentType": "federal parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+  },
+  "RWA": {
+   "governmentType": "presidential republic"
+  },
+  "RUS": {
+   "governmentType": "semi-presidential federation"
+  },
+  "ROU": {
+   "governmentType": "semi-presidential republic"
+  },
+  "QAT": {
+   "governmentType": "absolute monarchy"
+  },
+  "PRT": {
+   "governmentType": "semi-presidential republic"
+  },
+  "POL": {
+   "governmentType": "parliamentary republic"
+  },
+  "PHL": {
+   "governmentType": "presidential republic"
+  },
+  "PER": {
+   "governmentType": "presidential republic"
+  },
+  "PRY": {
+   "governmentType": "presidential republic"
+  },
+  "PNG": {
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+  },
+  "PAN": {
+   "governmentType": "presidential republic"
+  },
+  "PLW": {
+   "governmentType": "presidential republic in free association with the US"
+  },
+  "PAK": {
+   "governmentType": "federal parliamentary republic"
+  },
+  "OMN": {
+   "governmentType": "absolute monarchy"
+  },
+  "NOR": {
+   "governmentType": "parliamentary constitutional monarchy"
+  },
+  "PRK": {
+   "governmentType": "dictatorship, single-party communist state"
+  },
+  "NGA": {
+   "governmentType": "federal presidential republic"
+  },
+  "NER": {
+   "governmentType": "formerly, semi-presidential republic"
+  },
+  "NIC": {
+   "governmentType": "presidential republic"
+  },
+  "NZL": {
+   "governmentType": "parliamentary democracy&nbsp;under a constitutional monarchy; a Commonwealth realm"
+  },
+  "NIU": {
+   "governmentType": "parliamentary democracy"
+  },
+  "COK": {
+   "governmentType": "parliamentary democracy"
+  },
+  "NLD": {
+   "governmentType": "parliamentary constitutional monarchy; part of the Kingdom of the Netherlands"
+  },
+  "ABW": {
+   "governmentType": "parliamentary democracy; part of the Kingdom of the Netherlands"
+  },
+  "CUW": {
+   "governmentType": "parliamentary democracy"
+  },
+  "NPL": {
+   "governmentType": "federal parliamentary republic"
+  },
+  "NRU": {
+   "governmentType": "parliamentary republic"
+  },
+  "NAM": {
+   "governmentType": "presidential republic"
+  },
+  "MOZ": {
+   "governmentType": "presidential republic"
+  },
+  "MAR": {
+   "governmentType": "parliamentary constitutional monarchy"
+  },
+  "SAH": {
+   "governmentType": "legal status of territory and issue of sovereignty unresolved; territory contested by Morocco and Polisario Front (Popular Front for the Liberation of the Saguia el Hamra and Rio de Oro), which in February 1976 formally proclaimed a government-in-exile of the Sahrawi Arab Democratic Republic (SADR), near Tindouf, Algeria, led by President Mohamed ABDELAZIZ until his death in May 2016; current President Brahim GHALI elected in July 2016; territory partitioned between Morocco and Mauritania in April 1976 when Spain withdrew, with Morocco acquiring northern two-thirds; Mauritania, under pressure from Polisario guerrillas, abandoned all claims to its portion in August 1979; Morocco moved to occupy that sector shortly thereafter and has since asserted administrative control; the Polisario's government-in-exile was seated as an Organization of African Unity (OAU) member in 1984; Morocco between 1980 and 1987 built a fortified sand berm delineating the roughly 75% of Western Sahara west of the barrier that currently is controlled by Morocco; guerrilla activities continued sporadically until a UN-monitored cease-fire was implemented on 6 September 1991 (Security Council Resolution 690) by the United Nations Mission for the Referendum in Western Sahara (MINURSO)"
+  },
+  "MNE": {
+   "governmentType": "parliamentary republic"
+  },
+  "MNG": {
+   "governmentType": "semi-presidential republic"
+  },
+  "MDA": {
+   "governmentType": "parliamentary republic"
+  },
+  "MCO": {
+   "governmentType": "constitutional monarchy"
+  },
+  "MEX": {
+   "governmentType": "federal presidential republic"
+  },
+  "MUS": {
+   "governmentType": "parliamentary republic"
+  },
+  "MRT": {
+   "governmentType": "presidential republic"
+  },
+  "MLT": {
+   "governmentType": "parliamentary republic"
+  },
+  "MLI": {
+   "governmentType": "semi-presidential republic"
+  },
+  "MDV": {
+   "governmentType": "presidential republic"
+  },
+  "MYS": {
+   "governmentType": "federal parliamentary constitutional monarchy"
+  },
+  "MWI": {
+   "governmentType": "presidential republic"
+  },
+  "MDG": {
+   "governmentType": "semi-presidential republic"
+  },
+  "MKD": {
+   "governmentType": "parliamentary republic"
+  },
+  "LUX": {
+   "governmentType": "constitutional monarchy"
+  },
+  "LTU": {
+   "governmentType": "semi-presidential republic"
+  },
+  "LIE": {
+   "governmentType": "constitutional monarchy"
+  },
+  "LBY": {
+   "governmentType": "in transition"
+  },
+  "LBR": {
+   "governmentType": "presidential republic"
+  },
+  "LSO": {
+   "governmentType": "parliamentary constitutional monarchy"
+  },
+  "LBN": {
+   "governmentType": "parliamentary democratic republic"
+  },
+  "LVA": {
+   "governmentType": "parliamentary republic"
+  },
+  "LAO": {
+   "governmentType": "communist party-led state"
+  },
+  "KGZ": {
+   "governmentType": "parliamentary republic"
+  },
+  "KWT": {
+   "governmentType": "constitutional monarchy (emirate)"
+  },
+  "KOS": {
+   "governmentType": "parliamentary republic"
+  },
+  "KIR": {
+   "governmentType": "presidential republic"
+  },
+  "KEN": {
+   "governmentType": "presidential republic"
+  },
+  "KAZ": {
+   "governmentType": "presidential republic"
+  },
+  "JOR": {
+   "governmentType": "parliamentary constitutional monarchy"
+  },
+  "JPN": {
+   "governmentType": "parliamentary constitutional monarchy"
+  },
+  "JAM": {
+   "governmentType": "parliamentary democracy (Parliament) under a constitutional monarchy; a Commonwealth realm"
+  },
+  "ITA": {
+   "governmentType": "parliamentary republic"
+  },
+  "ISR": {
+   "governmentType": "parliamentary democracy"
+  },
+  "PSX": {
+   "governmentType": null
+  },
+  "IRL": {
+   "governmentType": "parliamentary republic"
+  },
+  "IRQ": {
+   "governmentType": "federal parliamentary republic"
+  },
+  "IRN": {
+   "governmentType": "theocratic republic"
+  },
+  "IDN": {
+   "governmentType": "presidential republic"
+  },
+  "IND": {
+   "governmentType": "federal parliamentary republic"
+  },
+  "ISL": {
+   "governmentType": "unitary parliamentary republic"
+  },
+  "HUN": {
+   "governmentType": "parliamentary republic"
+  },
+  "HND": {
+   "governmentType": "presidential republic"
+  },
+  "HTI": {
+   "governmentType": "semi-presidential republic"
+  },
+  "GUY": {
+   "governmentType": "parliamentary republic"
+  },
+  "GNB": {
+   "governmentType": "semi-presidential republic"
+  },
+  "GIN": {
+   "governmentType": "presidential republic"
+  },
+  "GTM": {
+   "governmentType": "presidential republic"
+  },
+  "GRD": {
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+  },
+  "GRC": {
+   "governmentType": "parliamentary republic"
+  },
+  "GHA": {
+   "governmentType": "presidential republic"
+  },
+  "DEU": {
+   "governmentType": "federal parliamentary republic"
+  },
+  "GEO": {
+   "governmentType": "semi-presidential republic"
+  },
+  "GMB": {
+   "governmentType": "presidential republic"
+  },
+  "GAB": {
+   "governmentType": "presidential republic"
+  },
+  "FRA": {
+   "governmentType": "semi-presidential republic"
+  },
+  "SPM": {
+   "governmentType": "parliamentary democracy (Territorial Council); overseas collectivity of France"
+  },
+  "WLF": {
+   "governmentType": "parliamentary democracy (Territorial Assembly); overseas collectivity of France"
+  },
+  "MAF": {
+   "governmentType": "parliamentary democracy (Territorial Council); overseas collectivity of France"
+  },
+  "BLM": {
+   "governmentType": "parliamentary democracy (Territorial Council); overseas collectivity of France"
+  },
+  "PYF": {
+   "governmentType": "parliamentary democracy (Assembly of French Polynesia); an overseas collectivity of France"
+  },
+  "NCL": {
+   "governmentType": "parliamentary democracy (Territorial Congress); an overseas collectivity of France"
+  },
+  "ATF": {
+   "governmentType": null
+  },
+  "FIN": {
+   "governmentType": "parliamentary republic"
+  },
+  "FJI": {
+   "governmentType": "parliamentary republic"
+  },
+  "ETH": {
+   "governmentType": "federal parliamentary republic"
+  },
+  "EST": {
+   "governmentType": "parliamentary republic"
+  },
+  "ERI": {
+   "governmentType": "authoritarian"
+  },
+  "GNQ": {
+   "governmentType": "presidential republic"
+  },
+  "SLV": {
+   "governmentType": "presidential republic"
+  },
+  "EGY": {
+   "governmentType": "presidential republic"
+  },
+  "ECU": {
+   "governmentType": "presidential republic"
+  },
+  "DOM": {
+   "governmentType": "presidential republic"
+  },
+  "DMA": {
+   "governmentType": "parliamentary republic"
+  },
+  "DJI": {
+   "governmentType": "presidential republic"
+  },
+  "GRL": {
+   "governmentType": "parliamentary democracy (Parliament of Greenland or Inatsisartut)"
+  },
+  "FRO": {
+   "governmentType": "parliamentary democracy (Faroese Parliament); part of the Kingdom of Denmark"
+  },
+  "DNK": {
+   "governmentType": "parliamentary constitutional monarchy"
+  },
+  "CZE": {
+   "governmentType": "parliamentary republic"
+  },
+  "CYP": {
+   "governmentType": "Republic of Cyprus - presidential republic; self-declared \"Turkish Republic of Northern Cyprus\" (TRNC) - parliamentary republic with enhanced presidency"
+  },
+  "CUB": {
+   "governmentType": "communist state"
+  },
+  "HRV": {
+   "governmentType": "parliamentary republic"
+  },
+  "CIV": {
+   "governmentType": "presidential republic"
+  },
+  "CRI": {
+   "governmentType": "presidential republic"
+  },
+  "COD": {
+   "governmentType": "semi-presidential republic"
+  },
+  "COG": {
+   "governmentType": "presidential republic"
+  },
+  "COM": {
+   "governmentType": "federal presidential republic"
+  },
+  "COL": {
+   "governmentType": "presidential republic"
+  },
+  "CHN": {
+   "governmentType": "communist party-led state"
+  },
+  "MAC": {
+   "governmentType": "executive-led limited democracy; a special administrative region of the People's Republic of China"
+  },
+  "HKG": {
+   "governmentType": "presidential limited democracy; a special administrative region of the People's Republic of China"
+  },
+  "CHL": {
+   "governmentType": "presidential republic"
+  },
+  "TCD": {
+   "governmentType": "presidential republic"
+  },
+  "CAF": {
+   "governmentType": "presidential republic"
+  },
+  "CPV": {
+   "governmentType": "parliamentary republic"
+  },
+  "CAN": {
+   "governmentType": "federal parliamentary democracy (Parliament of Canada) under a constitutional monarchy; a Commonwealth realm; federal and state authorities and responsibilities regulated in constitution"
+  },
+  "CMR": {
+   "governmentType": "presidential republic"
+  },
+  "KHM": {
+   "governmentType": "parliamentary constitutional monarchy"
+  },
+  "MMR": {
+   "governmentType": "military regime"
+  },
+  "BDI": {
+   "governmentType": "presidential republic"
+  },
+  "BFA": {
+   "governmentType": "presidential republic"
+  },
+  "BGR": {
+   "governmentType": "parliamentary republic"
+  },
+  "BRN": {
+   "governmentType": "absolute monarchy or sultanate"
+  },
+  "BRA": {
+   "governmentType": "federal presidential republic"
+  },
+  "BWA": {
+   "governmentType": "parliamentary republic"
+  },
+  "BIH": {
+   "governmentType": "parliamentary republic"
+  },
+  "BOL": {
+   "governmentType": "presidential republic"
+  },
+  "BTN": {
+   "governmentType": "constitutional monarchy"
+  },
+  "BEN": {
+   "governmentType": "presidential republic"
+  },
+  "BLZ": {
+   "governmentType": "parliamentary democracy (National Assembly) under a constitutional monarchy; a Commonwealth realm"
+  },
+  "BEL": {
+   "governmentType": "federal parliamentary democracy under a constitutional monarchy"
+  },
+  "BLR": {
+   "governmentType": "presidential republic in name, although in fact a dictatorship"
+  },
+  "BRB": {
+   "governmentType": "parliamentary republic; a Commonwealth realm"
+  },
+  "BGD": {
+   "governmentType": "parliamentary republic"
+  },
+  "BHR": {
+   "governmentType": "constitutional monarchy"
+  },
+  "BHS": {
+   "governmentType": "parliamentary democracy&nbsp;under a constitutional monarchy; a Commonwealth realm"
+  },
+  "AZE": {
+   "governmentType": "presidential republic"
+  },
+  "AUT": {
+   "governmentType": "federal parliamentary republic"
+  },
+  "AUS": {
+   "governmentType": "federal parliamentary democracy&nbsp;under a constitutional monarchy; a Commonwealth realm"
+  },
+  "IOA": {
+   "governmentType": "federal parliamentary democracy&nbsp;under a constitutional monarchy; a Commonwealth realm"
+  },
+  "HMD": {
+   "governmentType": null
+  },
+  "NFK": {
+   "governmentType": "administered as an overseas territory of Australia"
+  },
+  "ATC": {
+   "governmentType": null
+  },
+  "ARM": {
+   "governmentType": "parliamentary democracy; note - constitutional changes adopted in December 2015 transformed the government to a parliamentary system"
+  },
+  "ARG": {
+   "governmentType": "presidential republic"
+  },
+  "ATG": {
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+  },
+  "AGO": {
+   "governmentType": "presidential republic"
+  },
+  "AND": {
+   "governmentType": "parliamentary democracy (since March 1993) that retains its chiefs of state in the form of a co-principality; the two princes are the President of France and Bishop of Seu d'Urgell, Spain"
+  },
+  "DZA": {
+   "governmentType": "presidential republic"
+  },
+  "ALB": {
+   "governmentType": "parliamentary republic"
+  },
+  "AFG": {
+   "governmentType": "theocratic; the United States does not recognize the Taliban Government"
+  },
+  "SXM": {
+   "governmentType": "parliamentary democracy under a constitutional monarchy"
+  },
+  "TUV": {
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+  }
+ }
+}

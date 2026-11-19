@@ -1,0 +1,1692 @@
+{
+ "fetchedAt": "2026-11-19T14:27:50.102Z",
+ "byCountry": {
+  "ZWE": {
+   "headOfState": "Emmerson Mnangagwa",
+   "headOfStateParty": "Zimbabwe African National Union – Patriotic Front",
+   "headOfGovernment": "Emmerson Mnangagwa",
+   "headOfGovernmentParty": "Zimbabwe African National Union – Patriotic Front",
+   "factbookCode": "zimbabwe"
+  },
+  "ZMB": {
+   "headOfState": "Hakainde Hichilema",
+   "headOfStateParty": "United Party for National Development",
+   "headOfGovernment": "Edgar Lungu",
+   "headOfGovernmentParty": "Patriotic Front",
+   "factbookCode": "zambia"
+  },
+  "YEM": {
+   "headOfState": "Rashad al-Alimi",
+   "headOfStateParty": "General People's Congress",
+   "headOfGovernment": "Salem Saleh bin Braik",
+   "headOfGovernmentParty": null,
+   "factbookCode": "yemen"
+  },
+  "VNM": {
+   "headOfState": "Tô Lâm",
+   "headOfStateParty": "Communist Party of Vietnam",
+   "headOfGovernment": "Phạm Minh Chính",
+   "headOfGovernmentParty": "Communist Party of Vietnam",
+   "factbookCode": "vietnam"
+  },
+  "VEN": {
+   "headOfState": "Delcy Rodriguez",
+   "headOfStateParty": "United Socialist Party of Venezuela",
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": "venezuela"
+  },
+  "VAT": {
+   "headOfState": "Leo XIV",
+   "headOfStateParty": null,
+   "headOfGovernment": "Raffaella Petrini",
+   "headOfGovernmentParty": null,
+   "factbookCode": "holy-see-vatican-city"
+  },
+  "VUT": {
+   "headOfState": "Nikenike Vurobaravu",
+   "headOfStateParty": "Vanua'aku Pati",
+   "headOfGovernment": "Bob Loughman",
+   "headOfGovernmentParty": "Vanua'aku Pati",
+   "factbookCode": "vanuatu"
+  },
+  "UZB": {
+   "headOfState": "Shavkat Mirziyoyev",
+   "headOfStateParty": "Uzbekistan Liberal Democratic Party",
+   "headOfGovernment": "Shavkat Mirziyoyev",
+   "headOfGovernmentParty": "Uzbekistan Liberal Democratic Party",
+   "factbookCode": "uzbekistan"
+  },
+  "URY": {
+   "headOfState": "Yamandú Orsi",
+   "headOfStateParty": "Broad Front",
+   "headOfGovernment": "Yamandú Orsi",
+   "headOfGovernmentParty": "Broad Front",
+   "factbookCode": "uruguay"
+  },
+  "FSM": {
+   "headOfState": "Wesley Simina",
+   "headOfStateParty": null,
+   "headOfGovernment": "Wesley Simina",
+   "headOfGovernmentParty": null,
+   "factbookCode": "micronesia-federated-states-of"
+  },
+  "MHL": {
+   "headOfState": "Hilda Heine",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Hilda Heine",
+   "headOfGovernmentParty": "independent politician",
+   "factbookCode": "marshall-islands"
+  },
+  "MNP": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": "David M. Apatang",
+   "headOfGovernmentParty": null,
+   "factbookCode": "northern-mariana-islands"
+  },
+  "VIR": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": "Albert Bryan Jr.",
+   "headOfGovernmentParty": "Democratic Party of the Virgin Islands",
+   "factbookCode": "virgin-islands"
+  },
+  "GUM": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": "Lou Leon Guerrero",
+   "headOfGovernmentParty": "Democratic Party of Guam",
+   "factbookCode": "guam"
+  },
+  "ASM": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": "Pula Nikolao Pula",
+   "headOfGovernmentParty": "Republican Party",
+   "factbookCode": "american-samoa"
+  },
+  "PRI": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": "Jenniffer González",
+   "headOfGovernmentParty": "New Progressive Party",
+   "factbookCode": "puerto-rico"
+  },
+  "USA": {
+   "headOfState": "Donald Trump",
+   "headOfStateParty": "Republican Party",
+   "headOfGovernment": "Donald Trump",
+   "headOfGovernmentParty": "Republican Party",
+   "factbookCode": "united-states"
+  },
+  "SGS": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": "Nigel Haywood",
+   "headOfGovernmentParty": null,
+   "factbookCode": "south-georgia-and-south-sandwich-islands"
+  },
+  "IOT": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": "british-indian-ocean-territory"
+  },
+  "SHN": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": null
+  },
+  "PCN": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Shawn Christian",
+   "headOfGovernmentParty": "independent politician",
+   "factbookCode": "pitcairn-islands"
+  },
+  "AIA": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": "Ellis Webster",
+   "headOfGovernmentParty": "Anguilla Progressive Movement",
+   "factbookCode": "anguilla"
+  },
+  "FLK": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": "falkland-islands-islas-malvinas"
+  },
+  "CYM": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Andre M. Ebanks",
+   "headOfGovernmentParty": null,
+   "factbookCode": "cayman-islands"
+  },
+  "BMU": {
+   "headOfState": "John Rankin",
+   "headOfStateParty": null,
+   "headOfGovernment": "E. David Burt",
+   "headOfGovernmentParty": "Progressive Labour Party",
+   "factbookCode": "bermuda"
+  },
+  "VGB": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": "Andrew Fahie",
+   "headOfGovernmentParty": "Virgin Islands Party",
+   "factbookCode": "british-virgin-islands"
+  },
+  "TCA": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Washington Misick",
+   "headOfGovernmentParty": "Progressive Republican Party",
+   "factbookCode": "turks-and-caicos-islands"
+  },
+  "MSR": {
+   "headOfState": "Harriet Cross",
+   "headOfStateParty": null,
+   "headOfGovernment": "Reuben Meade",
+   "headOfGovernmentParty": "Movement for Change and Prosperity",
+   "factbookCode": "montserrat"
+  },
+  "JEY": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "John Le Fondré",
+   "headOfGovernmentParty": "Jersey Alliance",
+   "factbookCode": "jersey"
+  },
+  "GGY": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Lindsay de Sausmarez",
+   "headOfGovernmentParty": null,
+   "factbookCode": "guernsey"
+  },
+  "IMN": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Alfred Cannan",
+   "headOfGovernmentParty": "independent politician",
+   "factbookCode": "isle-of-man"
+  },
+  "GBR": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Andy Burnham",
+   "headOfGovernmentParty": "Labour Party",
+   "factbookCode": "united-kingdom"
+  },
+  "ARE": {
+   "headOfState": "Mohammed Bin Zayed Al Nahyan",
+   "headOfStateParty": null,
+   "headOfGovernment": "Mohammed bin Rashid Al Maktoum",
+   "headOfGovernmentParty": null,
+   "factbookCode": "united-arab-emirates"
+  },
+  "UKR": {
+   "headOfState": "Volodymyr Zelenskyy",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Serhii Koretskyi",
+   "headOfGovernmentParty": null,
+   "factbookCode": "ukraine"
+  },
+  "UGA": {
+   "headOfState": "Yoweri Museveni",
+   "headOfStateParty": "National Resistance Movement",
+   "headOfGovernment": "Nabbanja Robinah",
+   "headOfGovernmentParty": "National Resistance Movement",
+   "factbookCode": "uganda"
+  },
+  "TKM": {
+   "headOfState": "Serdar Berdimuhamedow",
+   "headOfStateParty": "Democratic Party of Turkmenistan",
+   "headOfGovernment": "Serdar Berdimuhamedow",
+   "headOfGovernmentParty": "Democratic Party of Turkmenistan",
+   "factbookCode": "turkmenistan"
+  },
+  "TUR": {
+   "headOfState": "Recep Tayyip Erdoğan",
+   "headOfStateParty": "Justice and Development Party",
+   "headOfGovernment": "Recep Tayyip Erdoğan",
+   "headOfGovernmentParty": "Justice and Development Party",
+   "factbookCode": "turkey"
+  },
+  "TUN": {
+   "headOfState": "Kais Saied",
+   "headOfStateParty": null,
+   "headOfGovernment": "Sarra Zaafrani",
+   "headOfGovernmentParty": null,
+   "factbookCode": "tunisia"
+  },
+  "TTO": {
+   "headOfState": "Christine Kangaloo",
+   "headOfStateParty": "People's National Movement",
+   "headOfGovernment": "Kamla Persad-Bissessar",
+   "headOfGovernmentParty": "United National Congress",
+   "factbookCode": "trinidad-and-tobago"
+  },
+  "TON": {
+   "headOfState": "Tupou VI of Tonga",
+   "headOfStateParty": null,
+   "headOfGovernment": "Fatafehi Fakafānua, 8th Lord Fakafānua",
+   "headOfGovernmentParty": "independent politician",
+   "factbookCode": "tonga"
+  },
+  "TGO": {
+   "headOfState": "Jean-Lucien Savi de Tové",
+   "headOfStateParty": "Patriotic Pan-African Convergence",
+   "headOfGovernment": "Faure Essozimna Gnassingbé",
+   "headOfGovernmentParty": "Rally of the Togolese People",
+   "factbookCode": "togo"
+  },
+  "TLS": {
+   "headOfState": "José Ramos-Horta",
+   "headOfStateParty": "Revolutionary Front for an Independent East Timor",
+   "headOfGovernment": "Xanana Gusmão",
+   "headOfGovernmentParty": "National Congress for Timorese Reconstruction",
+   "factbookCode": "timor-leste"
+  },
+  "THA": {
+   "headOfState": "Rama X of Thailand",
+   "headOfStateParty": null,
+   "headOfGovernment": "Paetongtarn Shinawatra",
+   "headOfGovernmentParty": "Pheu Thai Party",
+   "factbookCode": "thailand"
+  },
+  "TZA": {
+   "headOfState": "Samia Suluhu Hassan",
+   "headOfStateParty": "Party of the Revolution",
+   "headOfGovernment": "Samia Suluhu Hassan",
+   "headOfGovernmentParty": "Party of the Revolution",
+   "factbookCode": "tanzania"
+  },
+  "TJK": {
+   "headOfState": "Emomali Rahmon",
+   "headOfStateParty": "People's Democratic Party of Tajikistan",
+   "headOfGovernment": "Kokhir Rasulzoda",
+   "headOfGovernmentParty": "People's Democratic Party of Tajikistan",
+   "factbookCode": "tajikistan"
+  },
+  "TWN": {
+   "headOfState": "Lai Ching-te",
+   "headOfStateParty": "Democratic Progressive Party",
+   "headOfGovernment": "Cho Jung-tai",
+   "headOfGovernmentParty": "Democratic Progressive Party",
+   "factbookCode": "taiwan"
+  },
+  "SYR": {
+   "headOfState": "Ahmed al-Sharaa",
+   "headOfStateParty": null,
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": "syria"
+  },
+  "CHE": {
+   "headOfState": "Swiss Federal Council",
+   "headOfStateParty": null,
+   "headOfGovernment": "Swiss Federal Council",
+   "headOfGovernmentParty": null,
+   "factbookCode": "switzerland"
+  },
+  "SWE": {
+   "headOfState": "Carl XVI Gustaf of Sweden",
+   "headOfStateParty": null,
+   "headOfGovernment": "Ulf Kristersson",
+   "headOfGovernmentParty": "Moderate Party",
+   "factbookCode": "sweden"
+  },
+  "SWZ": {
+   "headOfState": "Mswati III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Edeupa Yerimin",
+   "headOfGovernmentParty": null,
+   "factbookCode": "eswatini"
+  },
+  "SUR": {
+   "headOfState": "Jennifer Geerlings-Simons",
+   "headOfStateParty": "National Democratic Party",
+   "headOfGovernment": "Jennifer Geerlings-Simons",
+   "headOfGovernmentParty": "National Democratic Party",
+   "factbookCode": "suriname"
+  },
+  "SDS": {
+   "headOfState": "Salva Kiir Mayardit",
+   "headOfStateParty": "Sudan People's Liberation Movement",
+   "headOfGovernment": "Salva Kiir Mayardit",
+   "headOfGovernmentParty": "Sudan People's Liberation Movement",
+   "factbookCode": "south-sudan"
+  },
+  "SDN": {
+   "headOfState": "Abdel Fattah al-Burhan",
+   "headOfStateParty": null,
+   "headOfGovernment": "Abdalla Hamdok",
+   "headOfGovernmentParty": null,
+   "factbookCode": "sudan"
+  },
+  "LKA": {
+   "headOfState": "Anura Kurankan Dissanayake",
+   "headOfStateParty": "Janatha Vimukthi Peramuna",
+   "headOfGovernment": "Harini Amarasuriya",
+   "headOfGovernmentParty": null,
+   "factbookCode": "sri-lanka"
+  },
+  "ESP": {
+   "headOfState": "Felipe VI of Spain",
+   "headOfStateParty": null,
+   "headOfGovernment": "Pedro Sánchez",
+   "headOfGovernmentParty": "Spanish Socialist Workers' Party",
+   "factbookCode": "spain"
+  },
+  "KOR": {
+   "headOfState": "Lee Jae Myung",
+   "headOfStateParty": "Democratic Party of Korea",
+   "headOfGovernment": "Han Seong-sook",
+   "headOfGovernmentParty": "independent politician",
+   "factbookCode": "korea-south"
+  },
+  "ZAF": {
+   "headOfState": "Cyril Ramaphosa",
+   "headOfStateParty": "African National Congress",
+   "headOfGovernment": "Cyril Ramaphosa",
+   "headOfGovernmentParty": "African National Congress",
+   "factbookCode": "south-africa"
+  },
+  "SOM": {
+   "headOfState": "Hassan Sheikh Mohamud",
+   "headOfStateParty": "Union for Peace and Development Party",
+   "headOfGovernment": "Hamza Abdi Barre",
+   "headOfGovernmentParty": "Union for Peace and Development Party",
+   "factbookCode": "somalia"
+  },
+  "SOL": {
+   "headOfState": "Abdirahman Mohamed Abdullahi",
+   "headOfStateParty": "Waddani",
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": null
+  },
+  "SLB": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Jeremiah Manele",
+   "headOfGovernmentParty": null,
+   "factbookCode": "solomon-islands"
+  },
+  "SVK": {
+   "headOfState": "Peter Pellegrini",
+   "headOfStateParty": "Voice – Social Democracy",
+   "headOfGovernment": "Robert Fico",
+   "headOfGovernmentParty": "Direction – Social Democracy",
+   "factbookCode": "slovakia"
+  },
+  "SVN": {
+   "headOfState": "Nataša Pirc Musar",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Janez Janša",
+   "headOfGovernmentParty": "Slovenian Democratic Party",
+   "factbookCode": "slovenia"
+  },
+  "SGP": {
+   "headOfState": "Tharman Shanmugaratnam",
+   "headOfStateParty": "People's Action Party",
+   "headOfGovernment": "Lawrence Wong",
+   "headOfGovernmentParty": "People's Action Party",
+   "factbookCode": "singapore"
+  },
+  "SLE": {
+   "headOfState": "Julius Maada Bio",
+   "headOfStateParty": "Sierra Leone People's Party",
+   "headOfGovernment": "David Sengeh",
+   "headOfGovernmentParty": null,
+   "factbookCode": "sierra-leone"
+  },
+  "SYC": {
+   "headOfState": "Patrick Herminie",
+   "headOfStateParty": "United Seychelles Party",
+   "headOfGovernment": "Patrick Herminie",
+   "headOfGovernmentParty": "United Seychelles Party",
+   "factbookCode": "seychelles"
+  },
+  "SRB": {
+   "headOfState": "Ana Brnabić",
+   "headOfStateParty": "Serbian Progressive Party",
+   "headOfGovernment": "Đuro Macut",
+   "headOfGovernmentParty": "independent politician",
+   "factbookCode": "serbia"
+  },
+  "SEN": {
+   "headOfState": "Bassirou Diomaye Faye",
+   "headOfStateParty": "African Patriots of Senegal for Work, Ethics and Fraternity",
+   "headOfGovernment": "Bassirou Diomaye Faye",
+   "headOfGovernmentParty": "African Patriots of Senegal for Work, Ethics and Fraternity",
+   "factbookCode": "senegal"
+  },
+  "SAU": {
+   "headOfState": "Salman bin Abdulaziz Al Saud",
+   "headOfStateParty": null,
+   "headOfGovernment": "Salman bin Abdulaziz Al Saud",
+   "headOfGovernmentParty": null,
+   "factbookCode": "saudi-arabia"
+  },
+  "STP": {
+   "headOfState": "Carlos Vila Nova",
+   "headOfStateParty": "Independent Democratic Action",
+   "headOfGovernment": "Américo Ramos",
+   "headOfGovernmentParty": null,
+   "factbookCode": "sao-tome-and-principe"
+  },
+  "SMR": {
+   "headOfState": "Italo Righi",
+   "headOfStateParty": "Sammarinese Christian Democratic Party",
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": "san-marino"
+  },
+  "WSM": {
+   "headOfState": "Va'aletoa Sualauvi II",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Fiamē Naomi Mataʻafa",
+   "headOfGovernmentParty": "Faʻatuatua i le Atua Samoa ua Tasi",
+   "factbookCode": "samoa"
+  },
+  "VCT": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Godwin Friday",
+   "headOfGovernmentParty": "New Democratic Party",
+   "factbookCode": "saint-vincent-and-the-grenadines"
+  },
+  "LCA": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Philip J. Pierre",
+   "headOfGovernmentParty": "Saint Lucia Labour Party",
+   "factbookCode": "saint-lucia"
+  },
+  "KNA": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Terrance Drew",
+   "headOfGovernmentParty": "Saint Kitts and Nevis Labour Party",
+   "factbookCode": "saint-kitts-and-nevis"
+  },
+  "RWA": {
+   "headOfState": "Paul Kagame",
+   "headOfStateParty": "Rwandan Patriotic Front",
+   "headOfGovernment": "Justin Nsengiyumva",
+   "headOfGovernmentParty": null,
+   "factbookCode": "rwanda"
+  },
+  "RUS": {
+   "headOfState": "Vladimir Putin",
+   "headOfStateParty": null,
+   "headOfGovernment": "Mikhail Mishustin",
+   "headOfGovernmentParty": null,
+   "factbookCode": "russia"
+  },
+  "ROU": {
+   "headOfState": "Nicușor Dan",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Luca Niculescu",
+   "headOfGovernmentParty": "independent politician",
+   "factbookCode": "romania"
+  },
+  "QAT": {
+   "headOfState": "Tamim bin Hamad Al Thani",
+   "headOfStateParty": null,
+   "headOfGovernment": "Mohammed bin Abdulrahman Al Thani",
+   "headOfGovernmentParty": "independent politician",
+   "factbookCode": "qatar"
+  },
+  "PRT": {
+   "headOfState": "António José Seguro",
+   "headOfStateParty": "Socialist Party",
+   "headOfGovernment": "Luís Montenegro",
+   "headOfGovernmentParty": "Social Democratic Party",
+   "factbookCode": "portugal"
+  },
+  "POL": {
+   "headOfState": "Karol Nawrocki",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Donald Tusk",
+   "headOfGovernmentParty": "Civic Coalition",
+   "factbookCode": "poland"
+  },
+  "PHL": {
+   "headOfState": "Bongbong Marcos",
+   "headOfStateParty": "Partido Federal ng Pilipinas",
+   "headOfGovernment": "Bongbong Marcos",
+   "headOfGovernmentParty": "Partido Federal ng Pilipinas",
+   "factbookCode": "philippines"
+  },
+  "PER": {
+   "headOfState": "Keiko Fujimori",
+   "headOfStateParty": "People's Force",
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": "peru"
+  },
+  "PRY": {
+   "headOfState": "Pedro Alliana",
+   "headOfStateParty": null,
+   "headOfGovernment": "Pedro Alliana",
+   "headOfGovernmentParty": null,
+   "factbookCode": "paraguay"
+  },
+  "PNG": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "James Marape",
+   "headOfGovernmentParty": "Pangu Party",
+   "factbookCode": "papua-new-guinea"
+  },
+  "PAN": {
+   "headOfState": "José Raúl Mulino",
+   "headOfStateParty": "Realizing Goals",
+   "headOfGovernment": "José Raúl Mulino",
+   "headOfGovernmentParty": "Realizing Goals",
+   "factbookCode": "panama"
+  },
+  "PLW": {
+   "headOfState": "Surangel Whipps Jr.",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Surangel Whipps Jr.",
+   "headOfGovernmentParty": "independent politician",
+   "factbookCode": "palau"
+  },
+  "PAK": {
+   "headOfState": "Asif Ali Zardari",
+   "headOfStateParty": "Pakistan Peoples Party",
+   "headOfGovernment": "Shehbaz Sharif",
+   "headOfGovernmentParty": "Pakistan Muslim League (N)",
+   "factbookCode": "pakistan"
+  },
+  "OMN": {
+   "headOfState": "Haitham bin Tarik Al Said",
+   "headOfStateParty": null,
+   "headOfGovernment": "Haitham bin Tarik Al Said",
+   "headOfGovernmentParty": null,
+   "factbookCode": "oman"
+  },
+  "NOR": {
+   "headOfState": "Haakon VIII of Norway",
+   "headOfStateParty": null,
+   "headOfGovernment": "Jonas Gahr Støre",
+   "headOfGovernmentParty": "Norwegian Labour Party",
+   "factbookCode": "norway"
+  },
+  "PRK": {
+   "headOfState": "Kim Jong-un",
+   "headOfStateParty": "Workers’ Party of Korea",
+   "headOfGovernment": "Pak Thae-song",
+   "headOfGovernmentParty": "Workers’ Party of Korea",
+   "factbookCode": "korea-north"
+  },
+  "NGA": {
+   "headOfState": "Bola Tinubu",
+   "headOfStateParty": "All Progressives Congress",
+   "headOfGovernment": "Bola Tinubu",
+   "headOfGovernmentParty": "All Progressives Congress",
+   "factbookCode": "nigeria"
+  },
+  "NER": {
+   "headOfState": "Abdourahamane Tiani",
+   "headOfStateParty": null,
+   "headOfGovernment": "Ali Lamine Zeine",
+   "headOfGovernmentParty": "National Movement for the Development of Society",
+   "factbookCode": "niger"
+  },
+  "NIC": {
+   "headOfState": "Daniel Ortega",
+   "headOfStateParty": "Sandinista National Liberation Front",
+   "headOfGovernment": "Daniel Ortega",
+   "headOfGovernmentParty": "Sandinista National Liberation Front",
+   "factbookCode": "nicaragua"
+  },
+  "NZL": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Christopher Luxon",
+   "headOfGovernmentParty": "New Zealand National Party",
+   "factbookCode": "new-zealand"
+  },
+  "NIU": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Dalton Tagelagi",
+   "headOfGovernmentParty": "independent politician",
+   "factbookCode": "niue"
+  },
+  "COK": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Mark Brown",
+   "headOfGovernmentParty": "Cook Islands Party",
+   "factbookCode": "cook-islands"
+  },
+  "NLD": {
+   "headOfState": "William Alexander of the Netherlands",
+   "headOfStateParty": null,
+   "headOfGovernment": "Rob Jetten",
+   "headOfGovernmentParty": "Democrats 66",
+   "factbookCode": "netherlands"
+  },
+  "ABW": {
+   "headOfState": "William Alexander of the Netherlands",
+   "headOfStateParty": null,
+   "headOfGovernment": "Evelyn Wever-Croes",
+   "headOfGovernmentParty": "People's Electoral Movement",
+   "factbookCode": "aruba"
+  },
+  "CUW": {
+   "headOfState": "William Alexander of the Netherlands",
+   "headOfStateParty": null,
+   "headOfGovernment": "Gilmar Pisas",
+   "headOfGovernmentParty": "Movement for the Future of Curaçao",
+   "factbookCode": "curacao"
+  },
+  "NPL": {
+   "headOfState": "Ram Chandra Poudel",
+   "headOfStateParty": "Nepali Congress",
+   "headOfGovernment": "Pushpa Kamal Dahal",
+   "headOfGovernmentParty": "Communist Party of Nepal (Maoist Centre)",
+   "factbookCode": "nepal"
+  },
+  "NRU": {
+   "headOfState": "David Adeang",
+   "headOfStateParty": "Nauru First",
+   "headOfGovernment": "David Adeang",
+   "headOfGovernmentParty": "Nauru First",
+   "factbookCode": "nauru"
+  },
+  "NAM": {
+   "headOfState": "Netumbo Nandi-Ndaitwah",
+   "headOfStateParty": "SWAPO Party",
+   "headOfGovernment": "Elijah Ngurare",
+   "headOfGovernmentParty": "SWAPO Party",
+   "factbookCode": "namibia"
+  },
+  "MOZ": {
+   "headOfState": "Daniel Chapo",
+   "headOfStateParty": "FRELIMO",
+   "headOfGovernment": "Maria Benvinda Levy",
+   "headOfGovernmentParty": null,
+   "factbookCode": "mozambique"
+  },
+  "MAR": {
+   "headOfState": "Mohammed VI of Morocco",
+   "headOfStateParty": null,
+   "headOfGovernment": "Fatima Ezzahra El Mansouri",
+   "headOfGovernmentParty": "Authenticity and Modernity Party",
+   "factbookCode": "morocco"
+  },
+  "SAH": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": null
+  },
+  "MNE": {
+   "headOfState": "Jakov Milatović",
+   "headOfStateParty": null,
+   "headOfGovernment": "Milojko Spajić",
+   "headOfGovernmentParty": "Europe Now",
+   "factbookCode": "montenegro"
+  },
+  "MNG": {
+   "headOfState": "Khurelsukh Ukhnaa",
+   "headOfStateParty": "Mongolian People's Party",
+   "headOfGovernment": "Uchral Nyam-Osor",
+   "headOfGovernmentParty": null,
+   "factbookCode": "mongolia"
+  },
+  "MDA": {
+   "headOfState": "Maia Sandu",
+   "headOfStateParty": "Liberal Democratic Party of Moldova",
+   "headOfGovernment": "Vasile Tofan",
+   "headOfGovernmentParty": null,
+   "factbookCode": "moldova"
+  },
+  "MCO": {
+   "headOfState": "Albert II, Prince of Monaco",
+   "headOfStateParty": null,
+   "headOfGovernment": "Christophe Mirmand",
+   "headOfGovernmentParty": null,
+   "factbookCode": "monaco"
+  },
+  "MEX": {
+   "headOfState": "Q5771800",
+   "headOfStateParty": "Morena",
+   "headOfGovernment": "Q5771800",
+   "headOfGovernmentParty": "Morena",
+   "factbookCode": "mexico"
+  },
+  "MUS": {
+   "headOfState": "Dharam Gokhool",
+   "headOfStateParty": "Labour Party",
+   "headOfGovernment": "Pravind Jugnauth",
+   "headOfGovernmentParty": "Militant Socialist Movement",
+   "factbookCode": "mauritius"
+  },
+  "MRT": {
+   "headOfState": "Mohamed Ould Ghazouani",
+   "headOfStateParty": "Union for the Republic",
+   "headOfGovernment": "Moctar Ould Djay",
+   "headOfGovernmentParty": "Equity Party",
+   "factbookCode": "mauritania"
+  },
+  "MLT": {
+   "headOfState": "Myriam Spiteri Debono",
+   "headOfStateParty": "Labour Party",
+   "headOfGovernment": "Robert Abela",
+   "headOfGovernmentParty": "Labour Party",
+   "factbookCode": "malta"
+  },
+  "MLI": {
+   "headOfState": "Assimi Goïta",
+   "headOfStateParty": null,
+   "headOfGovernment": "Abdoulaye Maïga",
+   "headOfGovernmentParty": null,
+   "factbookCode": "mali"
+  },
+  "MDV": {
+   "headOfState": "Mohamed Muizzu",
+   "headOfStateParty": "People's National Congress",
+   "headOfGovernment": "Mohamed Muizzu",
+   "headOfGovernmentParty": "People's National Congress",
+   "factbookCode": "maldives"
+  },
+  "MYS": {
+   "headOfState": "Ibrahim Iskandar of Johor",
+   "headOfStateParty": null,
+   "headOfGovernment": "Anwar Ibrahim",
+   "headOfGovernmentParty": "People's Justice Party",
+   "factbookCode": "malaysia"
+  },
+  "MWI": {
+   "headOfState": "Peter Mutharika",
+   "headOfStateParty": "Democratic Progressive Party",
+   "headOfGovernment": "Lazarus Chakwera",
+   "headOfGovernmentParty": "Malawi Congress Party",
+   "factbookCode": "malawi"
+  },
+  "MDG": {
+   "headOfState": "Michael Randrianirina",
+   "headOfStateParty": null,
+   "headOfGovernment": "Mamitiana Rajaonarison",
+   "headOfGovernmentParty": null,
+   "factbookCode": "madagascar"
+  },
+  "MKD": {
+   "headOfState": "Gordana Siljanovska-Davkova",
+   "headOfStateParty": "Internal Macedonian Revolutionary Organization – Democratic Party for Macedonian National Unity",
+   "headOfGovernment": "Hristijan Mickoski",
+   "headOfGovernmentParty": "Internal Macedonian Revolutionary Organization – Democratic Party for Macedonian National Unity",
+   "factbookCode": "north-macedonia"
+  },
+  "LUX": {
+   "headOfState": "Guillaume V, Grand Duke of Luxembourg",
+   "headOfStateParty": null,
+   "headOfGovernment": "Luc Frieden",
+   "headOfGovernmentParty": "Christian Social People's Party",
+   "factbookCode": "luxembourg"
+  },
+  "LTU": {
+   "headOfState": "Gitanas Nausėda",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Mindaugas Sinkevičius",
+   "headOfGovernmentParty": "Social Democratic Party of Lithuania",
+   "factbookCode": "lithuania"
+  },
+  "LIE": {
+   "headOfState": "Hans-Adam II, Prince of Liechtenstein",
+   "headOfStateParty": null,
+   "headOfGovernment": "Brigitte Haas",
+   "headOfGovernmentParty": "Fatherland Union",
+   "factbookCode": "liechtenstein"
+  },
+  "LBY": {
+   "headOfState": "Mohamed al-Menfi",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Abd al-Hamid Al-Dabiba",
+   "headOfGovernmentParty": "independent politician",
+   "factbookCode": "libya"
+  },
+  "LBR": {
+   "headOfState": "Joseph Boakai",
+   "headOfStateParty": "Unity Party",
+   "headOfGovernment": "Joseph Boakai",
+   "headOfGovernmentParty": "Unity Party",
+   "factbookCode": "liberia"
+  },
+  "LSO": {
+   "headOfState": "Letsie III of Lesotho",
+   "headOfStateParty": null,
+   "headOfGovernment": "Sam Matekane",
+   "headOfGovernmentParty": "Revolution for Prosperity",
+   "factbookCode": "lesotho"
+  },
+  "LBN": {
+   "headOfState": "Joseph Aoun",
+   "headOfStateParty": null,
+   "headOfGovernment": "Nawaf Salam",
+   "headOfGovernmentParty": null,
+   "factbookCode": "lebanon"
+  },
+  "LVA": {
+   "headOfState": "Edgars Rinkēvičs",
+   "headOfStateParty": null,
+   "headOfGovernment": "Andris Kulbergs",
+   "headOfGovernmentParty": "United List",
+   "factbookCode": "latvia"
+  },
+  "LAO": {
+   "headOfState": "Thongloun Sisoulith",
+   "headOfStateParty": "Lao People's Revolutionary Party",
+   "headOfGovernment": "Sonexay Siphandone",
+   "headOfGovernmentParty": null,
+   "factbookCode": "laos"
+  },
+  "KGZ": {
+   "headOfState": "Sadyr Japarov",
+   "headOfStateParty": "Mekenchil",
+   "headOfGovernment": "Adylbek Kasymaliev",
+   "headOfGovernmentParty": null,
+   "factbookCode": "kyrgyzstan"
+  },
+  "KWT": {
+   "headOfState": "Mishal Al-Ahmad Al-Jaber Al-Sabah",
+   "headOfStateParty": null,
+   "headOfGovernment": "Sabah Al-Khalid Al-Sabah",
+   "headOfGovernmentParty": "independent politician",
+   "factbookCode": "kuwait"
+  },
+  "KOS": {
+   "headOfState": "Albulena Haxhiu",
+   "headOfStateParty": "Vetëvendosje!",
+   "headOfGovernment": "Albin Kurti",
+   "headOfGovernmentParty": "Vetëvendosje!",
+   "factbookCode": "kosovo"
+  },
+  "KIR": {
+   "headOfState": "Taneti Maamau",
+   "headOfStateParty": "Tobwaan Kiribati Party",
+   "headOfGovernment": "Taneti Maamau",
+   "headOfGovernmentParty": "Tobwaan Kiribati Party",
+   "factbookCode": "kiribati"
+  },
+  "KEN": {
+   "headOfState": "William Ruto",
+   "headOfStateParty": "United Democratic Alliance",
+   "headOfGovernment": "William Ruto",
+   "headOfGovernmentParty": "United Democratic Alliance",
+   "factbookCode": "kenya"
+  },
+  "KAZ": {
+   "headOfState": "Kassym-Jomart Tokayev",
+   "headOfStateParty": "Nur Otan",
+   "headOfGovernment": "Olzhas Bektenov",
+   "headOfGovernmentParty": "Amanat",
+   "factbookCode": "kazakhstan"
+  },
+  "JOR": {
+   "headOfState": "Abdullah II of Jordan",
+   "headOfStateParty": null,
+   "headOfGovernment": "Jafar Hassan",
+   "headOfGovernmentParty": null,
+   "factbookCode": "jordan"
+  },
+  "JPN": {
+   "headOfState": "Naruhito",
+   "headOfStateParty": null,
+   "headOfGovernment": "Sanae Takaichi",
+   "headOfGovernmentParty": "Liberal Democratic Party",
+   "factbookCode": "japan"
+  },
+  "JAM": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Andrew Holness",
+   "headOfGovernmentParty": "Jamaica Labour Party",
+   "factbookCode": "jamaica"
+  },
+  "ITA": {
+   "headOfState": "Sergio Mattarella",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Giorgia Meloni",
+   "headOfGovernmentParty": "Brothers of Italy",
+   "factbookCode": "italy"
+  },
+  "ISR": {
+   "headOfState": "Isaac Herzog",
+   "headOfStateParty": "Israeli Labor Party",
+   "headOfGovernment": "Benjamin Netanyahu",
+   "headOfGovernmentParty": "Likud",
+   "factbookCode": "israel"
+  },
+  "PSX": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": null
+  },
+  "IRL": {
+   "headOfState": "Catherine Connolly",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Micheál Martin",
+   "headOfGovernmentParty": "Fianna Fáil",
+   "factbookCode": "ireland"
+  },
+  "IRQ": {
+   "headOfState": "Nizar Amidi",
+   "headOfStateParty": "Patriotic Union of Kurdistan",
+   "headOfGovernment": "Muhammad Shia' al-Sudani",
+   "headOfGovernmentParty": "Islamic Dawa Party",
+   "factbookCode": "iraq"
+  },
+  "IRN": {
+   "headOfState": "Mojtaba Khamenei",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Masoud Pezeshkian",
+   "headOfGovernmentParty": "independent politician",
+   "factbookCode": "iran"
+  },
+  "IDN": {
+   "headOfState": "Prabowo Subianto",
+   "headOfStateParty": "Great Indonesia Movement Party",
+   "headOfGovernment": "Prabowo Subianto",
+   "headOfGovernmentParty": "Great Indonesia Movement Party",
+   "factbookCode": "indonesia"
+  },
+  "IND": {
+   "headOfState": "Droupadi Murmu",
+   "headOfStateParty": "Bharatiya Janata Party",
+   "headOfGovernment": "Narendra Modi",
+   "headOfGovernmentParty": "Bharatiya Janata Party",
+   "factbookCode": "india"
+  },
+  "ISL": {
+   "headOfState": "Halla Tómasdóttir",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Kristrún Mjöll Frostadóttir",
+   "headOfGovernmentParty": "Social Democratic Alliance",
+   "factbookCode": "iceland"
+  },
+  "HUN": {
+   "headOfState": "András Baka",
+   "headOfStateParty": "Hungarian Democratic Forum",
+   "headOfGovernment": "Péter Magyar",
+   "headOfGovernmentParty": "Respect and Freedom Party",
+   "factbookCode": "hungary"
+  },
+  "HND": {
+   "headOfState": "Nasry Asfura",
+   "headOfStateParty": "National Party of Honduras",
+   "headOfGovernment": "Nasry Asfura",
+   "headOfGovernmentParty": "National Party of Honduras",
+   "factbookCode": "honduras"
+  },
+  "HTI": {
+   "headOfState": "Transitional Presidential Council",
+   "headOfStateParty": null,
+   "headOfGovernment": "Alix Didier Fils-Aimé",
+   "headOfGovernmentParty": null,
+   "factbookCode": "haiti"
+  },
+  "GUY": {
+   "headOfState": "Irfaan Ali",
+   "headOfStateParty": "People's Progressive Party",
+   "headOfGovernment": "Hugo Chávez",
+   "headOfGovernmentParty": "People's Progressive Party",
+   "factbookCode": "guyana"
+  },
+  "GNB": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": "Rui Duarte de Barros",
+   "headOfGovernmentParty": null,
+   "factbookCode": "guinea-bissau"
+  },
+  "GIN": {
+   "headOfState": "Mamadi Doumbouya",
+   "headOfStateParty": null,
+   "headOfGovernment": "Bah Oury",
+   "headOfGovernmentParty": "Q124254489",
+   "factbookCode": "guinea"
+  },
+  "GTM": {
+   "headOfState": "Bernardo Arévalo de León",
+   "headOfStateParty": "Semilla Movement",
+   "headOfGovernment": "Bernardo Arévalo de León",
+   "headOfGovernmentParty": "Semilla Movement",
+   "factbookCode": "guatemala"
+  },
+  "GRD": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Dickon Mitchell",
+   "headOfGovernmentParty": "National Democratic Congress",
+   "factbookCode": "grenada"
+  },
+  "GRC": {
+   "headOfState": "Konstantinos Tasoulas",
+   "headOfStateParty": "New Democracy",
+   "headOfGovernment": "Kyriakos Mitsotakis",
+   "headOfGovernmentParty": "New Democracy",
+   "factbookCode": "greece"
+  },
+  "GHA": {
+   "headOfState": "John Mahama",
+   "headOfStateParty": "National Democratic Congress",
+   "headOfGovernment": "Nana Akufo-Addo",
+   "headOfGovernmentParty": "New Patriotic Party",
+   "factbookCode": "ghana"
+  },
+  "DEU": {
+   "headOfState": "Frank-Walter Steinmeier",
+   "headOfStateParty": "Social Democratic Party of Germany",
+   "headOfGovernment": "Friedrich Merz",
+   "headOfGovernmentParty": "Christian Democratic Union",
+   "factbookCode": "germany"
+  },
+  "GEO": {
+   "headOfState": "Mikheil Kavelashvili",
+   "headOfStateParty": "People's Power",
+   "headOfGovernment": "Irakli Kobakhidze",
+   "headOfGovernmentParty": "Georgian Dream",
+   "factbookCode": "georgia"
+  },
+  "GMB": {
+   "headOfState": "Adama Barrow",
+   "headOfStateParty": "National People's Party",
+   "headOfGovernment": "Adama Barrow",
+   "headOfGovernmentParty": "National People's Party",
+   "factbookCode": "gambia-the"
+  },
+  "GAB": {
+   "headOfState": "Brice Clotaire Oligui Nguema",
+   "headOfStateParty": "Democratic Union of Builders",
+   "headOfGovernment": "Raymond Ndong Sima",
+   "headOfGovernmentParty": null,
+   "factbookCode": "gabon"
+  },
+  "FRA": {
+   "headOfState": "Emmanuel Macron",
+   "headOfStateParty": "Renaissance",
+   "headOfGovernment": "Sébastien Lecornu",
+   "headOfGovernmentParty": "Renaissance",
+   "factbookCode": "france"
+  },
+  "SPM": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": "Stéphane Artano",
+   "headOfGovernmentParty": "Union for a Popular Movement",
+   "factbookCode": "saint-pierre-and-miquelon"
+  },
+  "WLF": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": "wallis-and-futuna"
+  },
+  "MAF": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": "saint-martin"
+  },
+  "BLM": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": "saint-barthelemy"
+  },
+  "PYF": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": "Édouard Fritch",
+   "headOfGovernmentParty": "Tapura Huiraatira",
+   "factbookCode": "french-polynesia"
+  },
+  "NCL": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": "Milakulo Tukumuli",
+   "headOfGovernmentParty": null,
+   "factbookCode": "new-caledonia"
+  },
+  "ATF": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": "french-southern-and-antarctic-lands"
+  },
+  "ALD": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": "Katrin Sjögren",
+   "headOfGovernmentParty": "Liberals for Åland",
+   "factbookCode": null
+  },
+  "FIN": {
+   "headOfState": "Alexander Stubb",
+   "headOfStateParty": "National Coalition Party",
+   "headOfGovernment": "Petteri Orpo",
+   "headOfGovernmentParty": "National Coalition Party",
+   "factbookCode": "finland"
+  },
+  "FJI": {
+   "headOfState": "Wiliame Katonivere",
+   "headOfStateParty": "People's Alliance",
+   "headOfGovernment": "Sitiveni Rabuka",
+   "headOfGovernmentParty": "People's Alliance",
+   "factbookCode": "fiji"
+  },
+  "ETH": {
+   "headOfState": "Taye Atske Selassie",
+   "headOfStateParty": null,
+   "headOfGovernment": "Abiy Ahmed",
+   "headOfGovernmentParty": "Prosperity Party",
+   "factbookCode": "ethiopia"
+  },
+  "EST": {
+   "headOfState": "Ülle Madise",
+   "headOfStateParty": null,
+   "headOfGovernment": "Kristen Michal",
+   "headOfGovernmentParty": "Estonian Reform Party",
+   "factbookCode": "estonia"
+  },
+  "ERI": {
+   "headOfState": "Isaias Afwerki",
+   "headOfStateParty": "People's Front for Democracy and Justice",
+   "headOfGovernment": "Isaias Afwerki",
+   "headOfGovernmentParty": "People's Front for Democracy and Justice",
+   "factbookCode": "eritrea"
+  },
+  "GNQ": {
+   "headOfState": "Teodoro Obiang",
+   "headOfStateParty": "Democratic Party of Equatorial Guinea",
+   "headOfGovernment": "Manuel Osa Nsue Nsua",
+   "headOfGovernmentParty": null,
+   "factbookCode": "equatorial-guinea"
+  },
+  "SLV": {
+   "headOfState": "Nayib Bukele",
+   "headOfStateParty": "Nuevas Ideas",
+   "headOfGovernment": "Nayib Bukele",
+   "headOfGovernmentParty": "Nuevas Ideas",
+   "factbookCode": "el-salvador"
+  },
+  "EGY": {
+   "headOfState": "Abdel Fattah el-Sisi",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Mostafa Madbouly",
+   "headOfGovernmentParty": "independent politician",
+   "factbookCode": "egypt"
+  },
+  "ECU": {
+   "headOfState": "Daniel Noboa",
+   "headOfStateParty": "National Democratic Action",
+   "headOfGovernment": "Daniel Noboa",
+   "headOfGovernmentParty": "National Democratic Action",
+   "factbookCode": "ecuador"
+  },
+  "DOM": {
+   "headOfState": "Luis Abinader",
+   "headOfStateParty": "Modern Revolutionary Party",
+   "headOfGovernment": "Luis Abinader",
+   "headOfGovernmentParty": "Modern Revolutionary Party",
+   "factbookCode": "dominican-republic"
+  },
+  "DMA": {
+   "headOfState": "Sylvanie Burton",
+   "headOfStateParty": "Dominica Labour Party",
+   "headOfGovernment": "Roosevelt Skerrit",
+   "headOfGovernmentParty": "Dominica Labour Party",
+   "factbookCode": "dominica"
+  },
+  "DJI": {
+   "headOfState": "Ismail Omar Guelleh",
+   "headOfStateParty": "People's Rally for Progress",
+   "headOfGovernment": "Abdoulkader Kamil Mohamed",
+   "headOfGovernmentParty": "People's Rally for Progress",
+   "factbookCode": "djibouti"
+  },
+  "GRL": {
+   "headOfState": "Frederik X of Denmark",
+   "headOfStateParty": null,
+   "headOfGovernment": "Jens-Frederik Nielsen",
+   "headOfGovernmentParty": "Democrats",
+   "factbookCode": "greenland"
+  },
+  "FRO": {
+   "headOfState": "Frederik X of Denmark",
+   "headOfStateParty": null,
+   "headOfGovernment": "Aksel V. Johannesen",
+   "headOfGovernmentParty": "Social Democratic Party of the Faroe Islands",
+   "factbookCode": "faroe-islands"
+  },
+  "DNK": {
+   "headOfState": "Frederik X of Denmark",
+   "headOfStateParty": null,
+   "headOfGovernment": "Mette Frederiksen",
+   "headOfGovernmentParty": "Social Democrats",
+   "factbookCode": "denmark"
+  },
+  "CZE": {
+   "headOfState": "Petr Pavel",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Andrej Babiš",
+   "headOfGovernmentParty": "ANO 2011",
+   "factbookCode": "czechia"
+  },
+  "CYN": {
+   "headOfState": "Tufan Erhürman",
+   "headOfStateParty": "Republican Turkish Party",
+   "headOfGovernment": "Ünal Üstel",
+   "headOfGovernmentParty": null,
+   "factbookCode": null
+  },
+  "CYP": {
+   "headOfState": "Nicos Christodoulides",
+   "headOfStateParty": null,
+   "headOfGovernment": "Nicos Christodoulides",
+   "headOfGovernmentParty": null,
+   "factbookCode": "cyprus"
+  },
+  "CUB": {
+   "headOfState": "Miguel Díaz-Canel",
+   "headOfStateParty": "Communist Party of Cuba",
+   "headOfGovernment": "Manuel Marrero Cruz",
+   "headOfGovernmentParty": "Communist Party of Cuba",
+   "factbookCode": "cuba"
+  },
+  "HRV": {
+   "headOfState": "Zoran Milanović",
+   "headOfStateParty": "Social Democratic Party of Croatia",
+   "headOfGovernment": "Andrej Plenković",
+   "headOfGovernmentParty": "Croatian Democratic Union",
+   "factbookCode": "croatia"
+  },
+  "CIV": {
+   "headOfState": "Alassane Ouattara",
+   "headOfStateParty": "Democratic Party of Côte d'Ivoire – African Democratic Rally",
+   "headOfGovernment": "Robert Beugré Mambé",
+   "headOfGovernmentParty": null,
+   "factbookCode": "cote-divoire"
+  },
+  "CRI": {
+   "headOfState": "Laura Fernández Delgado",
+   "headOfStateParty": "Sovereign People's Party",
+   "headOfGovernment": "Laura Fernández Delgado",
+   "headOfGovernmentParty": "Sovereign People's Party",
+   "factbookCode": "costa-rica"
+  },
+  "COD": {
+   "headOfState": "Félix Tshisekedi",
+   "headOfStateParty": "Union for Democracy and Social Progress",
+   "headOfGovernment": "Ilunga Ilunkamba Sylvestre",
+   "headOfGovernmentParty": "People's Party for Reconstruction and Democracy",
+   "factbookCode": "congo-democratic-republic-of-the"
+  },
+  "COG": {
+   "headOfState": "Denis Sassou-Nguesso",
+   "headOfStateParty": "Congolese Party of Labour",
+   "headOfGovernment": "Anatole Collinet Makosso",
+   "headOfGovernmentParty": "Congolese Party of Labour",
+   "factbookCode": "congo-republic-of-the"
+  },
+  "COM": {
+   "headOfState": "Azali Assoumani",
+   "headOfStateParty": "Convention for the Renewal of the Comoros",
+   "headOfGovernment": "Azali Assoumani",
+   "headOfGovernmentParty": "Convention for the Renewal of the Comoros",
+   "factbookCode": "comoros"
+  },
+  "COL": {
+   "headOfState": "Abelardo de la Espriella",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Abelardo de la Espriella",
+   "headOfGovernmentParty": "independent politician",
+   "factbookCode": "colombia"
+  },
+  "CHN": {
+   "headOfState": "Xi Jinping",
+   "headOfStateParty": "Chinese Communist Party",
+   "headOfGovernment": "Li Qiang",
+   "headOfGovernmentParty": "Chinese Communist Party",
+   "factbookCode": "china"
+  },
+  "MAC": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": "Sam Hou Fai",
+   "headOfGovernmentParty": null,
+   "factbookCode": "macau"
+  },
+  "HKG": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": "John Lee",
+   "headOfGovernmentParty": null,
+   "factbookCode": "hong-kong"
+  },
+  "CHL": {
+   "headOfState": "José Antonio Kast",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "José Antonio Kast",
+   "headOfGovernmentParty": "independent politician",
+   "factbookCode": "chile"
+  },
+  "TCD": {
+   "headOfState": "Mahamat Déby",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": "chad"
+  },
+  "CAF": {
+   "headOfState": "Faustin-Archange Touadéra",
+   "headOfStateParty": "United Hearts Movement",
+   "headOfGovernment": "Félix Moloua",
+   "headOfGovernmentParty": null,
+   "factbookCode": "central-african-republic"
+  },
+  "CPV": {
+   "headOfState": "José Maria Neves",
+   "headOfStateParty": "African Party for the Independence of Cape Verde",
+   "headOfGovernment": "Francisco Carvalho",
+   "headOfGovernmentParty": "African Party for the Independence of Cape Verde",
+   "factbookCode": "cabo-verde"
+  },
+  "CAN": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Mark Carney",
+   "headOfGovernmentParty": "Liberal Party of Canada",
+   "factbookCode": "canada"
+  },
+  "CMR": {
+   "headOfState": "Paul Biya",
+   "headOfStateParty": "Cameroon People's Democratic Movement",
+   "headOfGovernment": "Joseph Ngute",
+   "headOfGovernmentParty": "Cameroon People's Democratic Movement",
+   "factbookCode": "cameroon"
+  },
+  "KHM": {
+   "headOfState": "Norodom Sihamoni",
+   "headOfStateParty": null,
+   "headOfGovernment": "Hun Manet",
+   "headOfGovernmentParty": "Cambodian People's Party",
+   "factbookCode": "cambodia"
+  },
+  "MMR": {
+   "headOfState": "Myint Swe",
+   "headOfStateParty": "Union Solidarity and Development Party",
+   "headOfGovernment": "Min Aung Hlaing",
+   "headOfGovernmentParty": "Union Solidarity and Development Party",
+   "factbookCode": "burma"
+  },
+  "BDI": {
+   "headOfState": "Évariste Ndayishimiye",
+   "headOfStateParty": "National Council for the Defense of Democracy–Forces for the Defense of Democracy",
+   "headOfGovernment": "Gervais Ndirakobuca",
+   "headOfGovernmentParty": null,
+   "factbookCode": "burundi"
+  },
+  "BFA": {
+   "headOfState": "Ibrahim Traoré",
+   "headOfStateParty": null,
+   "headOfGovernment": "Apollinaire Joachim Kyélem de Tambèla",
+   "headOfGovernmentParty": null,
+   "factbookCode": "burkina-faso"
+  },
+  "BGR": {
+   "headOfState": "Iliana Iotova",
+   "headOfStateParty": "Bulgarian Socialist Party",
+   "headOfGovernment": "Rumen Radev",
+   "headOfGovernmentParty": "Progressive Bulgaria",
+   "factbookCode": "bulgaria"
+  },
+  "BRN": {
+   "headOfState": "Hassanal Bolkiah I of Brunei",
+   "headOfStateParty": null,
+   "headOfGovernment": "Hassanal Bolkiah I of Brunei",
+   "headOfGovernmentParty": null,
+   "factbookCode": "brunei"
+  },
+  "BRA": {
+   "headOfState": "Luiz Inácio Lula da Silva",
+   "headOfStateParty": "Workers' Party",
+   "headOfGovernment": "Luiz Inácio Lula da Silva",
+   "headOfGovernmentParty": "Workers' Party",
+   "factbookCode": "brazil"
+  },
+  "BWA": {
+   "headOfState": "Duma Boko",
+   "headOfStateParty": "Umbrella for Democratic Change",
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": "botswana"
+  },
+  "BIH": {
+   "headOfState": "Denis Bećirović",
+   "headOfStateParty": "Social Democratic Party of Bosnia and Herzegovina",
+   "headOfGovernment": "Borjana Krišto",
+   "headOfGovernmentParty": "Croatian Democratic Union of Bosnia and Herzegovina",
+   "factbookCode": "bosnia-and-herzegovina"
+  },
+  "BOL": {
+   "headOfState": "Rodrigo Paz",
+   "headOfStateParty": null,
+   "headOfGovernment": "Rodrigo Paz",
+   "headOfGovernmentParty": null,
+   "factbookCode": "bolivia"
+  },
+  "BTN": {
+   "headOfState": "Jigme Khesar Namgyel Wangchuck",
+   "headOfStateParty": null,
+   "headOfGovernment": "Tshering Tobgay",
+   "headOfGovernmentParty": "People's Democratic Party",
+   "factbookCode": "bhutan"
+  },
+  "BEN": {
+   "headOfState": "Romuald Wadagni",
+   "headOfStateParty": null,
+   "headOfGovernment": "Patrice Talon",
+   "headOfGovernmentParty": "independent politician",
+   "factbookCode": "benin"
+  },
+  "BLZ": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Johnny Briceño",
+   "headOfGovernmentParty": "People's United Party",
+   "factbookCode": "belize"
+  },
+  "BEL": {
+   "headOfState": "Philippe of Belgium",
+   "headOfStateParty": null,
+   "headOfGovernment": "Bart De Wever",
+   "headOfGovernmentParty": "New Flemish Alliance",
+   "factbookCode": "belgium"
+  },
+  "BLR": {
+   "headOfState": "Alexander Lukashenka",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Alexander Turchyn",
+   "headOfGovernmentParty": null,
+   "factbookCode": "belarus"
+  },
+  "BRB": {
+   "headOfState": "Sandra Mason",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Mia Mottley",
+   "headOfGovernmentParty": "Barbados Labour Party",
+   "factbookCode": "barbados"
+  },
+  "BGD": {
+   "headOfState": "Mohammad Shahabuddin",
+   "headOfStateParty": null,
+   "headOfGovernment": "Tarique Rahman",
+   "headOfGovernmentParty": "Bangladesh Nationalist Party",
+   "factbookCode": "bangladesh"
+  },
+  "BHR": {
+   "headOfState": "Hamad II of Bahrain",
+   "headOfStateParty": null,
+   "headOfGovernment": "Salman bin Hamad, Crown Prince of Bahrain",
+   "headOfGovernmentParty": null,
+   "factbookCode": "bahrain"
+  },
+  "BHS": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Philip \"Brave\" Davis",
+   "headOfGovernmentParty": "Progressive Liberal Party",
+   "factbookCode": "bahamas-the"
+  },
+  "AZE": {
+   "headOfState": "Ilham Aliyev",
+   "headOfStateParty": "New Azerbaijan Party",
+   "headOfGovernment": "Ali Asadov",
+   "headOfGovernmentParty": "New Azerbaijan Party",
+   "factbookCode": "azerbaijan"
+  },
+  "AUT": {
+   "headOfState": "Alexander Van der Bellen",
+   "headOfStateParty": "The Greens – The Green Alternative",
+   "headOfGovernment": "Christian Stocker",
+   "headOfGovernmentParty": "Austrian People's Party",
+   "factbookCode": "austria"
+  },
+  "AUS": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Anthony Albanese",
+   "headOfGovernmentParty": "Australian Labor Party",
+   "factbookCode": "australia"
+  },
+  "IOA": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": null
+  },
+  "HMD": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": "heard-island-and-mcdonald-islands"
+  },
+  "NFK": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": "norfolk-island"
+  },
+  "ATC": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": "ashmore-and-cartier-islands"
+  },
+  "ARM": {
+   "headOfState": "Vahagn Khachatryan",
+   "headOfStateParty": "nonpartisanism",
+   "headOfGovernment": "Nikol Pashinyan",
+   "headOfGovernmentParty": "Civil Contract",
+   "factbookCode": "armenia"
+  },
+  "ARG": {
+   "headOfState": "Javier Milei",
+   "headOfStateParty": "Freedom Advances",
+   "headOfGovernment": "Javier Milei",
+   "headOfGovernmentParty": "Freedom Advances",
+   "factbookCode": "argentina"
+  },
+  "ATG": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Gaston Browne",
+   "headOfGovernmentParty": "Antigua and Barbuda Labour Party",
+   "factbookCode": "antigua-and-barbuda"
+  },
+  "AGO": {
+   "headOfState": "João Lourenço",
+   "headOfStateParty": "People's Movement for the Liberation of Angola",
+   "headOfGovernment": "João Lourenço",
+   "headOfGovernmentParty": "People's Movement for the Liberation of Angola",
+   "factbookCode": "angola"
+  },
+  "AND": {
+   "headOfState": "Josep-Lluís Serrano Pentinat",
+   "headOfStateParty": null,
+   "headOfGovernment": "Xavier Espot Zamora",
+   "headOfGovernmentParty": "Democrats for Andorra",
+   "factbookCode": "andorra"
+  },
+  "DZA": {
+   "headOfState": "Abdelmadjid Tebboune",
+   "headOfStateParty": "National Liberation Front",
+   "headOfGovernment": "Sifi Ghrieb",
+   "headOfGovernmentParty": null,
+   "factbookCode": "algeria"
+  },
+  "ALB": {
+   "headOfState": "Bajram Begaj",
+   "headOfStateParty": "independent politician",
+   "headOfGovernment": "Edi Rama",
+   "headOfGovernmentParty": "Socialist Party of Albania",
+   "factbookCode": "albania"
+  },
+  "AFG": {
+   "headOfState": "Hibatullah Akhundzada",
+   "headOfStateParty": "Taliban",
+   "headOfGovernment": "Mohammad Hasan Akhund",
+   "headOfGovernmentParty": "Taliban",
+   "factbookCode": "afghanistan"
+  },
+  "KAS": {
+   "headOfState": null,
+   "headOfStateParty": null,
+   "headOfGovernment": null,
+   "headOfGovernmentParty": null,
+   "factbookCode": null
+  },
+  "SXM": {
+   "headOfState": "Eugene Holiday",
+   "headOfStateParty": null,
+   "headOfGovernment": "Leona Marlin-Romeo",
+   "headOfGovernmentParty": "United Democrats",
+   "factbookCode": "sint-maarten"
+  },
+  "TUV": {
+   "headOfState": "Charles III",
+   "headOfStateParty": null,
+   "headOfGovernment": "Ben Do",
+   "headOfGovernmentParty": null,
+   "factbookCode": "tuvalu"
+  }
+ }
+}
