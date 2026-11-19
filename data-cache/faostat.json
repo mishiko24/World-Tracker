@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-11-19T14:36:35.749Z",
+ "fetchedAt": "2026-11-19T14:39:13.528Z",
  "byCountry": {
   "AFG": {
    "year": 2024,
@@ -35,12 +35,6 @@
      "worldShare": 0.0023262057454585894
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 723238.43,
-     "worldRank": 27,
-     "worldShare": 0.0025693215425392738
-    },
-    {
      "name": "Cantaloupes and other melons",
      "tonnes": 701220.44,
      "worldRank": 8,
@@ -51,15 +45,15 @@
      "tonnes": 654000,
      "worldRank": 44,
      "worldShare": 0.0007973438667607625
+    },
+    {
+     "name": "Onions and shallots (excluding dehydrated)",
+     "tonnes": 614770.81,
+     "worldRank": 34,
+     "worldShare": 0.005678650894956876
     }
    ],
    "worldLeading": [
-    {
-     "name": "Other stone fruits",
-     "tonnes": 50341.84,
-     "worldRank": 4,
-     "worldShare": 0.08141454822860207
-    },
     {
      "name": "Figs",
      "tonnes": 59915.72,
@@ -79,19 +73,13 @@
      "worldShare": 0.024822166625918365
     },
     {
-     "name": "Other berries and fruits of the genus vaccinium n.e.c.",
-     "tonnes": 32975.81,
-     "worldRank": 9,
-     "worldShare": 0.030541215198017148
-    },
-    {
-     "name": "Pistachios, in shell",
+     "name": "Pistachios",
      "tonnes": 2825.38,
      "worldRank": 9,
      "worldShare": 0.0020469009812791347
     },
     {
-     "name": "Almonds, in shell",
+     "name": "Almonds",
      "tonnes": 69315.64,
      "worldRank": 10,
      "worldShare": 0.01754126419350124
@@ -132,7 +120,7 @@
      "worldShare": 0.0030363595934576994
     },
     {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 1830194.5,
      "worldRank": 11,
      "worldShare": 0.016905545068690155
@@ -144,16 +132,16 @@
      "worldShare": 0.009352438430247478
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 1706681.44,
-     "worldRank": 16,
-     "worldShare": 0.006063025978920877
-    },
-    {
      "name": "Dates",
      "tonnes": 1337300.8,
      "worldRank": 3,
      "worldShare": 0.13444805898680914
+    },
+    {
+     "name": "Oranges",
+     "tonnes": 1294262.43,
+     "worldRank": 14,
+     "worldShare": 0.019247097771644427
     }
    ],
    "worldLeading": [
@@ -253,7 +241,7 @@
      "worldShare": 0.07459586253009615
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 3178044,
      "worldRank": 4,
      "worldShare": 0.045563997392326236
@@ -344,7 +332,7 @@
      "worldShare": 0.07280538602289141
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 2589767,
      "worldRank": 5,
      "worldShare": 0.037129799598348084
@@ -376,13 +364,7 @@
      "worldShare": 0.16568647198435452
     },
     {
-     "name": "Sheep fat, unrendered",
-     "tonnes": 103849.76,
-     "worldRank": 2,
-     "worldShare": 0.1618602831587376
-    },
-    {
-     "name": "Chick peas, dry",
+     "name": "Chick peas",
      "tonnes": 2267000,
      "worldRank": 2,
      "worldShare": 0.1342988121342933
@@ -394,13 +376,7 @@
      "worldShare": 0.13131645843888806
     },
     {
-     "name": "Raw hides and skins of sheep or lambs",
-     "tonnes": 203990.6,
-     "worldRank": 2,
-     "worldShare": 0.09370169116470937
-    },
-    {
-     "name": "Almonds, in shell",
+     "name": "Almonds",
      "tonnes": 370000,
      "worldRank": 2,
      "worldShare": 0.09363352558809901
@@ -410,6 +386,18 @@
      "tonnes": 13265000,
      "worldRank": 2,
      "worldShare": 0.09341755782786694
+    },
+    {
+     "name": "Lentils",
+     "tonnes": 1265050,
+     "worldRank": 3,
+     "worldShare": 0.16038912652525442
+    },
+    {
+     "name": "Broad beans and horse beans",
+     "tonnes": 640400,
+     "worldRank": 3,
+     "worldShare": 0.10231688648870828
     }
    ]
   },
@@ -453,7 +441,7 @@
      "worldShare": 0.003236577339025349
     },
     {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 327528.67,
      "worldRank": 42,
      "worldShare": 0.0030253892097113965
@@ -479,7 +467,7 @@
      "worldShare": 0.0046460984883804094
     },
     {
-     "name": "Hazelnuts, in shell",
+     "name": "Hazelnuts",
      "tonnes": 75697.94,
      "worldRank": 4,
      "worldShare": 0.06245057545935133
@@ -489,12 +477,6 @@
      "tonnes": 43204.35,
      "worldRank": 6,
      "worldShare": 0.062122150765776124
-    },
-    {
-     "name": "Other berries and fruits of the genus vaccinium n.e.c.",
-     "tonnes": 37743.06,
-     "worldRank": 8,
-     "worldShare": 0.03495650046781787
     },
     {
      "name": "Sour cherries",
@@ -518,12 +500,6 @@
      "tonnes": 600487,
      "worldRank": 82,
      "worldShare": 0.0007531624847625958
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 543022.75,
-     "worldRank": 34,
-     "worldShare": 0.0019291010983250965
     },
     {
      "name": "Potatoes",
@@ -554,6 +530,12 @@
      "tonnes": 84830,
      "worldRank": 22,
      "worldShare": 0.0030692188302926422
+    },
+    {
+     "name": "Barley",
+     "tonnes": 77697,
+     "worldRank": 63,
+     "worldShare": 0.0005471740663815889
     }
    ],
    "worldLeading": [
@@ -660,18 +642,6 @@
      "worldShare": 0.0015186271018271936
     },
     {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 1467836.35,
-     "worldRank": 5,
-     "worldShare": 0.03742730349610386
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 1072766.69,
-     "worldRank": 19,
-     "worldShare": 0.0038110289116350614
-    },
-    {
      "name": "Millet",
      "tonnes": 931108.86,
      "worldRank": 8,
@@ -684,7 +654,7 @@
      "worldShare": 0.01056719242289559
     },
     {
-     "name": "Cow peas, dry",
+     "name": "Cow peas",
      "tonnes": 736407.85,
      "worldRank": 3,
      "worldShare": 0.07289580063321127
@@ -694,11 +664,23 @@
      "tonnes": 611270.54,
      "worldRank": 15,
      "worldShare": 0.010619086901850894
+    },
+    {
+     "name": "Sugar cane",
+     "tonnes": 516137.74,
+     "worldRank": 60,
+     "worldShare": 0.00026608027827136973
+    },
+    {
+     "name": "Rice",
+     "tonnes": 513234.03,
+     "worldRank": 48,
+     "worldShare": 0.0006257247798675982
     }
    ],
    "worldLeading": [
     {
-     "name": "Bambara beans, dry",
+     "name": "Bambara beans",
      "tonnes": 61247.74,
      "worldRank": 1,
      "worldShare": 0.2573358009911218
@@ -710,22 +692,16 @@
      "worldShare": 0.12747104453054403
     },
     {
-     "name": "Cow peas, dry",
+     "name": "Cow peas",
      "tonnes": 736407.85,
      "worldRank": 3,
      "worldShare": 0.07289580063321127
     },
     {
-     "name": "Pepper (Piper spp.), raw",
+     "name": "Pepper (Piper spp.)",
      "tonnes": 77932.35,
      "worldRank": 4,
      "worldShare": 0.08349158187468164
-    },
-    {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 1467836.35,
-     "worldRank": 5,
-     "worldShare": 0.03742730349610386
     },
     {
      "name": "Fonio",
@@ -740,10 +716,16 @@
      "worldShare": 0.02454017595221636
     },
     {
-     "name": "Cashew nuts, in shell",
+     "name": "Cashew nuts",
      "tonnes": 147616.86,
      "worldRank": 8,
      "worldShare": 0.034806236302018144
+    },
+    {
+     "name": "Walnuts",
+     "tonnes": 143829.4,
+     "worldRank": 8,
+     "worldShare": 0.033070590385917344
     }
    ]
   },
@@ -825,13 +807,13 @@
      "worldShare": 0.057671635170778876
     },
     {
-     "name": "Hazelnuts, in shell",
+     "name": "Hazelnuts",
      "tonnes": 73273.93,
      "worldRank": 5,
      "worldShare": 0.06045077441563439
     },
     {
-     "name": "Kenaf, and other textile bast fibres, raw or retted",
+     "name": "Kenaf, and other textile bast fibres",
      "tonnes": 9035.28,
      "worldRank": 5,
      "worldShare": 0.039260571879534134
@@ -843,7 +825,7 @@
      "worldShare": 0.04406622920575094
     },
     {
-     "name": "Walnuts, in shell",
+     "name": "Walnuts",
      "tonnes": 175000,
      "worldRank": 6,
      "worldShare": 0.04023762400132056
@@ -864,12 +846,6 @@
      "tonnes": 207530000,
      "worldRank": 2,
      "worldShare": 0.2530164719707355
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 168809804.01,
-     "worldRank": 1,
-     "worldShare": 0.5997008013453125
     },
     {
      "name": "Wheat",
@@ -900,6 +876,12 @@
      "tonnes": 63510421.99,
      "worldRank": 1,
      "worldShare": 0.605094981517348
+    },
+    {
+     "name": "Tomatoes",
+     "tonnes": 61614749.06,
+     "worldRank": 1,
+     "worldShare": 0.3268714976337001
     }
    ],
    "worldLeading": [
@@ -916,7 +898,7 @@
      "worldShare": 0.9779201752030503
     },
     {
-     "name": "Ramie, raw or retted",
+     "name": "Ramie",
      "tonnes": 55418.26,
      "worldRank": 1,
      "worldShare": 0.9538586100318714
@@ -957,7 +939,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 8485694,
      "worldRank": 12,
      "worldShare": 0.024818797068044372
@@ -1013,7 +995,7 @@
      "worldShare": 0.36123702994829787
     },
     {
-     "name": "Cashew nuts, in shell",
+     "name": "Cashew nuts",
      "tonnes": 944673,
      "worldRank": 1,
      "worldShare": 0.22274225089286134
@@ -1037,7 +1019,7 @@
      "worldShare": 0.08287157199815613
     },
     {
-     "name": "Game meat, fresh, chilled or frozen",
+     "name": "Game meat",
      "tonnes": 161064.99,
      "worldRank": 4,
      "worldShare": 0.07845438352113465
@@ -1049,7 +1031,7 @@
      "worldShare": 0.02839594870322649
     },
     {
-     "name": "Snails, fresh, chilled, frozen, dried, salted or in brine, except sea snails",
+     "name": "Snails, chilled, frozen, dried, salted or in brine, except sea snails",
      "tonnes": 316.83,
      "worldRank": 4,
      "worldShare": 0.016080879979372947
@@ -1145,7 +1127,7 @@
      "worldShare": 0.0017451848170639672
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 35340,
      "worldRank": 75,
      "worldShare": 0.000281914402351074
@@ -1193,7 +1175,7 @@
      "worldShare": 0.002338010282538966
     },
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 66514.16,
      "worldRank": 14,
      "worldShare": 0.006794094415000818
@@ -1279,13 +1261,13 @@
    ],
    "worldLeading": [
     {
-     "name": "Flax, raw or retted",
+     "name": "Flax",
      "tonnes": 1059080,
      "worldRank": 1,
      "worldShare": 0.8189189230985737
     },
     {
-     "name": "True hemp, raw or retted",
+     "name": "True hemp",
      "tonnes": 135530,
      "worldRank": 1,
      "worldShare": 0.3677863948287491
@@ -1321,7 +1303,7 @@
      "worldShare": 0.08770001119174428
     },
     {
-     "name": "Cereals n.e.c.",
+     "name": "Cereals",
      "tonnes": 297400,
      "worldRank": 3,
      "worldShare": 0.03708665809694675
@@ -1382,7 +1364,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Hazelnuts, in shell",
+     "name": "Hazelnuts",
      "tonnes": 43600,
      "worldRank": 6,
      "worldShare": 0.03596987038257207
@@ -1467,7 +1449,7 @@
      "worldShare": 0.03993364786595613
     },
     {
-     "name": "Chestnuts, in shell",
+     "name": "Chestnuts",
      "tonnes": 33140,
      "worldRank": 7,
      "worldShare": 0.01579558224923162
@@ -1485,7 +1467,7 @@
      "worldShare": 0.02662198841229945
     },
     {
-     "name": "Walnuts, in shell",
+     "name": "Walnuts",
      "tonnes": 96910,
      "worldRank": 10,
      "worldShare": 0.02228244652553129
@@ -1532,7 +1514,7 @@
      "worldShare": 0.0029163428598518943
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 462920,
      "worldRank": 27,
      "worldShare": 0.0036928074458505706
@@ -1550,12 +1532,6 @@
      "tonnes": 76280,
      "worldRank": 4,
      "worldShare": 0.010400119894240051
-    },
-    {
-     "name": "Other pome fruits",
-     "tonnes": 3040,
-     "worldRank": 5,
-     "worldShare": 0.018781334788227785
     },
     {
      "name": "Sunflower seed",
@@ -1631,13 +1607,13 @@
      "worldShare": 0.8746688190605202
     },
     {
-     "name": "Anise, badian, coriander, cumin, caraway, fennel and juniper berries, raw",
+     "name": "Anise, badian, coriander, cumin, caraway, fennel and juniper berries",
      "tonnes": 2107138,
      "worldRank": 1,
      "worldShare": 0.7885020800011137
     },
     {
-     "name": "Pigeon peas, dry",
+     "name": "Pigeon peas",
      "tonnes": 3510869.73,
      "worldRank": 1,
      "worldShare": 0.7537356236957794
@@ -1649,28 +1625,28 @@
      "worldShare": 0.6893620738657235
     },
     {
-     "name": "Raw hides and skins of buffaloes",
-     "tonnes": 1006375,
-     "worldRank": 1,
-     "worldShare": 0.6715312520685598
-    },
-    {
-     "name": "Chick peas, dry",
+     "name": "Chick peas",
      "tonnes": 11038755.76,
      "worldRank": 1,
      "worldShare": 0.6539443255441498
-    },
-    {
-     "name": "Buffalo fat, unrendered",
-     "tonnes": 280125,
-     "worldRank": 1,
-     "worldShare": 0.6301607380604534
     },
     {
      "name": "Meat of buffalo",
      "tonnes": 4565000,
      "worldRank": 1,
      "worldShare": 0.6254857148345679
+    },
+    {
+     "name": "Edible offal of buffalo",
+     "tonnes": 767750,
+     "worldRank": 1,
+     "worldShare": 0.6143883370583952
+    },
+    {
+     "name": "Areca nuts",
+     "tonnes": 1410966,
+     "worldRank": 1,
+     "worldShare": 0.6050501947971951
     }
    ]
   },
@@ -1728,13 +1704,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Other stone fruits",
-     "tonnes": 155729.23,
-     "worldRank": 2,
-     "worldShare": 0.2518506456346861
-    },
-    {
-     "name": "Pistachios, in shell",
+     "name": "Pistachios",
      "tonnes": 316141.98,
      "worldRank": 3,
      "worldShare": 0.2290351489305964
@@ -1752,7 +1722,7 @@
      "worldShare": 0.11884910551789023
     },
     {
-     "name": "Walnuts, in shell",
+     "name": "Walnuts",
      "tonnes": 411331.26,
      "worldRank": 4,
      "worldShare": 0.09457710045639674
@@ -1764,16 +1734,22 @@
      "worldShare": 0.06614029783978603
     },
     {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 2339410.58,
-     "worldRank": 4,
-     "worldShare": 0.05965094799543312
+     "name": "Sour cherries",
+     "tonnes": 136060.16,
+     "worldRank": 5,
+     "worldShare": 0.09165677688332848
     },
     {
-     "name": "Other citrus fruit, n.e.c.",
-     "tonnes": 635389.23,
-     "worldRank": 4,
-     "worldShare": 0.047428254940106905
+     "name": "Kiwi fruit",
+     "tonnes": 294658.93,
+     "worldRank": 5,
+     "worldShare": 0.06670207779786816
+    },
+    {
+     "name": "Figs",
+     "tonnes": 75432.09,
+     "worldRank": 5,
+     "worldShare": 0.0564383033271018
     }
    ]
   },
@@ -1831,7 +1807,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Pepper (Piper spp.), raw",
+     "name": "Pepper (Piper spp.)",
      "tonnes": 60256.57,
      "worldRank": 6,
      "worldShare": 0.06455491650954302
@@ -1855,7 +1831,7 @@
      "worldShare": 0.027168000991568
     },
     {
-     "name": "Pistachios, in shell",
+     "name": "Pistachios",
      "tonnes": 1686.94,
      "worldRank": 10,
      "worldShare": 0.001222136187471782
@@ -1902,7 +1878,7 @@
      "worldShare": 0.0014130678823666453
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 173726.53,
      "worldRank": 43,
      "worldShare": 0.0018541989984866562
@@ -2007,7 +1983,7 @@
      "worldShare": 0.10062105673002265
     },
     {
-     "name": "Hazelnuts, in shell",
+     "name": "Hazelnuts",
      "tonnes": 120520,
      "worldRank": 2,
      "worldShare": 0.0994286417088896
@@ -2084,7 +2060,7 @@
      "worldShare": 0.0017007675621386446
     },
     {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 133239.32,
      "worldRank": 65,
      "worldShare": 0.0012307343996398358
@@ -2170,19 +2146,13 @@
      "worldShare": 0.22874226415155954
     },
     {
-     "name": "Edible offals of horses and other equines, fresh, chilled or frozen",
-     "tonnes": 17724.8,
-     "worldRank": 2,
-     "worldShare": 0.1864542925681268
-    },
-    {
      "name": "Cantaloupes and other melons",
      "tonnes": 1498583.85,
      "worldRank": 3,
      "worldShare": 0.053047652215628883
     },
     {
-     "name": "Lentils, dry",
+     "name": "Lentils",
      "tonnes": 455960.19,
      "worldRank": 4,
      "worldShare": 0.05780882700635472
@@ -2198,6 +2168,12 @@
      "tonnes": 2770.72,
      "worldRank": 5,
      "worldShare": 0.1131266742582023
+    },
+    {
+     "name": "Sunflower seed",
+     "tonnes": 1834397.44,
+     "worldRank": 6,
+     "worldShare": 0.03513041820656228
     }
    ]
   },
@@ -2265,12 +2241,6 @@
      "tonnes": 19604,
      "worldRank": 9,
      "worldShare": 0.026236394086270737
-    },
-    {
-     "name": "Edible offals of horses and other equines, fresh, chilled or frozen",
-     "tonnes": 2287.13,
-     "worldRank": 9,
-     "worldShare": 0.02405923937992755
     },
     {
      "name": "Safflower seed",
@@ -2363,7 +2333,7 @@
      "worldShare": 0.0012007098695978348
     },
     {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 187497.97,
      "worldRank": 60,
      "worldShare": 0.0017319226902511808
@@ -2455,12 +2425,6 @@
      "worldShare": 1
     },
     {
-     "name": "Other berries and fruits of the genus vaccinium n.e.c.",
-     "tonnes": 270833.48,
-     "worldRank": 1,
-     "worldShare": 0.25083792014533907
-    },
-    {
      "name": "Avocados",
      "tonnes": 2761327.85,
      "worldRank": 1,
@@ -2473,7 +2437,7 @@
      "worldShare": 0.19072772061072807
     },
     {
-     "name": "Agave fibres, raw, n.e.c.",
+     "name": "Agave fibres,",
      "tonnes": 6122.42,
      "worldRank": 2,
      "worldShare": 0.1526998991880674
@@ -2491,10 +2455,16 @@
      "worldShare": 0.1131176500873662
     },
     {
-     "name": "Anise, badian, coriander, cumin, caraway, fennel and juniper berries, raw",
+     "name": "Anise, badian, coriander, cumin, caraway, fennel and juniper berries",
      "tonnes": 108064,
      "worldRank": 2,
      "worldShare": 0.04043811500397238
+    },
+    {
+     "name": "Safflower seed",
+     "tonnes": 70633.52,
+     "worldRank": 3,
+     "worldShare": 0.10199557546384555
     }
    ]
   },
@@ -2538,7 +2508,7 @@
      "worldShare": 0.04226197689148025
     },
     {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 912469,
      "worldRank": 23,
      "worldShare": 0.008428495333847106
@@ -2552,7 +2522,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Snails, fresh, chilled, frozen, dried, salted or in brine, except sea snails",
+     "name": "Snails, chilled, frozen, dried, salted or in brine, except sea snails",
      "tonnes": 17881.93,
      "worldRank": 1,
      "worldShare": 0.9076071398843181
@@ -2594,7 +2564,7 @@
      "worldShare": 0.06282735310866694
     },
     {
-     "name": "Almonds, in shell",
+     "name": "Almonds",
      "tonnes": 163616.1,
      "worldRank": 5,
      "worldShare": 0.041405276448581
@@ -2609,12 +2579,6 @@
      "tonnes": 5955500,
      "worldRank": 16,
      "worldShare": 0.007260827826442998
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 4440116,
-     "worldRank": 6,
-     "worldShare": 0.015773616579214837
     },
     {
      "name": "Potatoes",
@@ -2651,6 +2615,12 @@
      "tonnes": 1281718,
      "worldRank": 65,
      "worldShare": 0.0016075983554097667
+    },
+    {
+     "name": "Mangoes, guavas and mangosteens",
+     "tonnes": 544096,
+     "worldRank": 17,
+     "worldShare": 0.008745860082296721
     }
    ],
    "worldLeading": [
@@ -2661,16 +2631,10 @@
      "worldShare": 0.24398867966027846
     },
     {
-     "name": "Ginger, raw",
+     "name": "Ginger",
      "tonnes": 289330,
      "worldRank": 4,
      "worldShare": 0.05919945033250007
-    },
-    {
-     "name": "Raw hides and skins of buffaloes",
-     "tonnes": 23229.53,
-     "worldRank": 4,
-     "worldShare": 0.015500539427016938
     },
     {
      "name": "Raw milk of buffalo",
@@ -2679,13 +2643,13 @@
      "worldShare": 0.00916202055017315
     },
     {
-     "name": "Nutmeg, mace, cardamoms, raw",
+     "name": "Nutmeg, mace, cardamoms",
      "tonnes": 8808,
      "worldRank": 5,
      "worldShare": 0.044665622440398164
     },
     {
-     "name": "Edible offal of buffalo, fresh, chilled or frozen",
+     "name": "Edible offal of buffalo",
      "tonnes": 27654.2,
      "worldRank": 5,
      "worldShare": 0.022130143862820285
@@ -2697,10 +2661,16 @@
      "worldShare": 0.018945571801947544
     },
     {
-     "name": "Buffalo fat, unrendered",
-     "tonnes": 2765.42,
+     "name": "Jute",
+     "tonnes": 10220,
      "worldRank": 5,
-     "worldShare": 0.006221005294947395
+     "worldShare": 0.0027605325004527665
+    },
+    {
+     "name": "Edible offal of goat",
+     "tonnes": 31060.8,
+     "worldRank": 8,
+     "worldShare": 0.02101875128162189
     }
    ]
   },
@@ -2825,22 +2795,10 @@
    ],
    "worldLeading": [
     {
-     "name": "Other oil seeds, n.e.c.",
-     "tonnes": 644201.59,
-     "worldRank": 1,
-     "worldShare": 0.2658535099190001
-    },
-    {
      "name": "Raw milk of buffalo",
      "tonnes": 39792650,
      "worldRank": 2,
      "worldShare": 0.26001463249870027
-    },
-    {
-     "name": "Buffalo fat, unrendered",
-     "tonnes": 88882.64,
-     "worldRank": 2,
-     "worldShare": 0.19994770200146925
     },
     {
      "name": "Meat of buffalo",
@@ -2855,22 +2813,34 @@
      "worldShare": 0.2311548396209396
     },
     {
-     "name": "Goat fat, unrendered",
-     "tonnes": 36594,
-     "worldRank": 3,
-     "worldShare": 0.11671553416015287
-    },
-    {
-     "name": "Raw hides and skins of buffaloes",
-     "tonnes": 165067.76,
-     "worldRank": 3,
-     "worldShare": 0.11014597893325305
-    },
-    {
-     "name": "Edible offal of goat, fresh, chilled or frozen",
+     "name": "Edible offal of goat",
      "tonnes": 158574,
      "worldRank": 3,
      "worldShare": 0.107306555714338
+    },
+    {
+     "name": "Edible offal of buffalo",
+     "tonnes": 124435.7,
+     "worldRank": 3,
+     "worldShare": 0.099579085371146
+    },
+    {
+     "name": "Meat of goat",
+     "tonnes": 561108,
+     "worldRank": 3,
+     "worldShare": 0.07248376691311309
+    },
+    {
+     "name": "Edible roots and tubers with high starch or inulin content,",
+     "tonnes": 643180,
+     "worldRank": 3,
+     "worldShare": 0.06569767468822016
+    },
+    {
+     "name": "Raw milk of goats",
+     "tonnes": 1074000,
+     "worldRank": 3,
+     "worldShare": 0.052561090676576015
     }
    ]
   },
@@ -2908,7 +2878,7 @@
      "worldShare": 0.0005069177265899173
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 376090,
      "worldRank": 31,
      "worldShare": 0.0030001467906116412
@@ -2928,19 +2898,13 @@
    ],
    "worldLeading": [
     {
-     "name": "Other pome fruits",
-     "tonnes": 15490,
-     "worldRank": 4,
-     "worldShare": 0.0956983144308054
-    },
-    {
      "name": "Olives",
      "tonnes": 1340820,
      "worldRank": 4,
      "worldShare": 0.05247437798251024
     },
     {
-     "name": "Almonds, in shell",
+     "name": "Almonds",
      "tonnes": 90760,
      "worldRank": 7,
      "worldShare": 0.022968050763178018
@@ -2952,7 +2916,7 @@
      "worldShare": 0.036311831405144664
     },
     {
-     "name": "Chestnuts, in shell",
+     "name": "Chestnuts",
      "tonnes": 27160,
      "worldRank": 8,
      "worldShare": 0.012945323291766167
@@ -3011,16 +2975,16 @@
      "worldShare": 0.00040978701581936237
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 14097,
      "worldRank": 107,
      "worldShare": 0.00015045855852682024
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 13815.21,
-     "worldRank": 124,
-     "worldShare": 0.00004907885863822805
+     "name": "Raw milk of sheep",
+     "tonnes": 10981.43,
+     "worldRank": 53,
+     "worldShare": 0.001118908774233376
     }
    ],
    "worldLeading": [
@@ -3139,7 +3103,7 @@
      "worldShare": 0.005797272076147267
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 377065.42,
      "worldRank": 32,
      "worldShare": 0.004024453398844439
@@ -3153,25 +3117,13 @@
      "worldShare": 0.19379049120597622
     },
     {
-     "name": "Fat of camels",
-     "tonnes": 5266.08,
-     "worldRank": 1,
-     "worldShare": 0.17854108450703268
-    },
-    {
-     "name": "Edible offals of camels and other camelids, fresh, chilled or frozen",
-     "tonnes": 13502.78,
-     "worldRank": 2,
-     "worldShare": 0.14239563494323276
-    },
-    {
      "name": "Meat of camels",
      "tonnes": 66163.62,
      "worldRank": 3,
      "worldShare": 0.10006721347825567
     },
     {
-     "name": "Meat of pigeons and other birds n.e.c., fresh, chilled or frozen",
+     "name": "Meat of pigeons and other birds",
      "tonnes": 451.74,
      "worldRank": 3,
      "worldShare": 0.02597883576584198
@@ -3183,7 +3135,7 @@
      "worldShare": 0.03252511930150815
     },
     {
-     "name": "Cereals n.e.c.",
+     "name": "Cereals",
      "tonnes": 92663.62,
      "worldRank": 6,
      "worldShare": 0.011555427010643566
@@ -3193,6 +3145,12 @@
      "tonnes": 28214.64,
      "worldRank": 9,
      "worldShare": 0.02111019873087143
+    },
+    {
+     "name": "Olives",
+     "tonnes": 351277.72,
+     "worldRank": 10,
+     "worldShare": 0.013747617022504434
     }
    ]
   },
@@ -3291,7 +3249,7 @@
      "worldShare": 0.07097386107357104
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 4956040,
      "worldRank": 4,
      "worldShare": 0.03953534393401292
@@ -3317,13 +3275,7 @@
      "worldShare": 0.32523023196935885
     },
     {
-     "name": "Other pome fruits",
-     "tonnes": 31870,
-     "worldRank": 2,
-     "worldShare": 0.19689511174369065
-    },
-    {
-     "name": "Chestnuts, in shell",
+     "name": "Chestnuts",
      "tonnes": 181810,
      "worldRank": 2,
      "worldShare": 0.0866564516817381
@@ -3341,7 +3293,7 @@
      "worldShare": 0.10079289409519417
     },
     {
-     "name": "Almonds, in shell",
+     "name": "Almonds",
      "tonnes": 369700,
      "worldRank": 3,
      "worldShare": 0.09355760651329785
@@ -3357,6 +3309,12 @@
      "tonnes": 120690,
      "worldRank": 4,
      "worldShare": 0.07433984352599378
+    },
+    {
+     "name": "Meat of rabbits and hares",
+     "tonnes": 33927,
+     "worldRank": 4,
+     "worldShare": 0.04004502908720681
     }
    ]
   },
@@ -3414,7 +3372,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Anise, badian, coriander, cumin, caraway, fennel and juniper berries, raw",
+     "name": "Anise, badian, coriander, cumin, caraway, fennel and juniper berries",
      "tonnes": 94743,
      "worldRank": 3,
      "worldShare": 0.03545332700826691
@@ -3426,7 +3384,7 @@
      "worldShare": 0.07281558087022258
     },
     {
-     "name": "Pistachios, in shell",
+     "name": "Pistachios",
      "tonnes": 83796,
      "worldRank": 4,
      "worldShare": 0.06070762680675391
@@ -3438,16 +3396,10 @@
      "worldShare": 0.04371457736590506
     },
     {
-     "name": "Meat of pigeons and other birds n.e.c., fresh, chilled or frozen",
+     "name": "Meat of pigeons and other birds",
      "tonnes": 142,
      "worldRank": 4,
      "worldShare": 0.008166190018040378
-    },
-    {
-     "name": "Sheep fat, unrendered",
-     "tonnes": 26889.99,
-     "worldRank": 7,
-     "worldShare": 0.041910750641461506
     },
     {
      "name": "Broad beans and horse beans, green",
@@ -3460,6 +3412,12 @@
      "tonnes": 98449,
      "worldRank": 8,
      "worldShare": 0.03170250543307407
+    },
+    {
+     "name": "Figs",
+     "tonnes": 33938,
+     "worldRank": 8,
+     "worldShare": 0.025392417713935553
     }
    ]
   },
@@ -3485,7 +3443,7 @@
      "worldShare": 0.0011030108614758106
     },
     {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 725903.58,
      "worldRank": 29,
      "worldShare": 0.006705186627548891
@@ -3509,10 +3467,10 @@
      "worldShare": 0.007907224934337554
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 341768.72,
-     "worldRank": 49,
-     "worldShare": 0.0012141414206405944
+     "name": "Maize (corn)",
+     "tonnes": 340000,
+     "worldRank": 84,
+     "worldShare": 0.0002790990349304032
     }
    ],
    "worldLeading": [
@@ -3523,7 +3481,7 @@
      "worldShare": 0.06808321800871797
     },
     {
-     "name": "Pepper (Piper spp.), raw",
+     "name": "Pepper (Piper spp.)",
      "tonnes": 35759.79,
      "worldRank": 8,
      "worldShare": 0.03831068143853511
@@ -3590,7 +3548,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Snails, fresh, chilled, frozen, dried, salted or in brine, except sea snails",
+     "name": "Snails, chilled, frozen, dried, salted or in brine, except sea snails",
      "tonnes": 995.19,
      "worldRank": 2,
      "worldShare": 0.050511412892315005
@@ -3632,10 +3590,10 @@
      "worldShare": 0.020021877938648555
     },
     {
-     "name": "Other citrus fruit, n.e.c.",
-     "tonnes": 144053.95,
-     "worldRank": 7,
-     "worldShare": 0.010752822275142142
+     "name": "Pistachios",
+     "tonnes": 3135.33,
+     "worldRank": 8,
+     "worldShare": 0.0022714502309897815
     }
    ]
   },
@@ -3699,7 +3657,7 @@
      "worldShare": 0.7969214530575405
     },
     {
-     "name": "Hazelnuts, in shell",
+     "name": "Hazelnuts",
      "tonnes": 717000,
      "worldRank": 1,
      "worldShare": 0.5915228684473435
@@ -3735,7 +3693,7 @@
      "worldShare": 0.23394722340631505
     },
     {
-     "name": "Pistachios, in shell",
+     "name": "Pistachios",
      "tonnes": 383000,
      "worldRank": 2,
      "worldShare": 0.2774717297602122
@@ -3802,22 +3760,10 @@
      "worldShare": 0.029104975062977222
     },
     {
-     "name": "Fat of camels",
-     "tonnes": 1086.94,
-     "worldRank": 10,
-     "worldShare": 0.03685159480943589
-    },
-    {
      "name": "Meat of camels",
      "tonnes": 18840.31,
      "worldRank": 10,
      "worldShare": 0.028494470568063163
-    },
-    {
-     "name": "Edible offals of camels and other camelids, fresh, chilled or frozen",
-     "tonnes": 2697.22,
-     "worldRank": 10,
-     "worldShare": 0.028443946689614006
     }
    ]
   },
@@ -3867,25 +3813,13 @@
      "worldShare": 0.00046041778198021736
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 58604.81,
      "worldRank": 77,
      "worldShare": 0.0006254944481335164
     }
    ],
    "worldLeading": [
-    {
-     "name": "Fat of camels",
-     "tonnes": 2754.81,
-     "worldRank": 3,
-     "worldShare": 0.0933990302104827
-    },
-    {
-     "name": "Edible offals of camels and other camelids, fresh, chilled or frozen",
-     "tonnes": 7772.5,
-     "worldRank": 5,
-     "worldShare": 0.0819660893976112
-    },
     {
      "name": "Meat of camels",
      "tonnes": 46241.45,
@@ -3966,7 +3900,7 @@
      "worldShare": 0.6529088337142827
     },
     {
-     "name": "Almonds, in shell",
+     "name": "Almonds",
      "tonnes": 2000340,
      "worldRank": 1,
      "worldShare": 0.5062132069591837
@@ -3984,7 +3918,7 @@
      "worldShare": 0.4050304329634102
     },
     {
-     "name": "Pistachios, in shell",
+     "name": "Pistachios",
      "tonnes": 498950,
      "worldRank": 1,
      "worldShare": 0.3614739414199945
@@ -3996,16 +3930,16 @@
      "worldShare": 0.3099909392269768
     },
     {
-     "name": "Fat of pigs",
-     "tonnes": 3374860.01,
-     "worldRank": 1,
-     "worldShare": 0.29679912835898986
-    },
-    {
      "name": "Blueberries",
      "tonnes": 401970,
      "worldRank": 1,
      "worldShare": 0.2886608963068403
+    },
+    {
+     "name": "Green corn (maize)",
+     "tonnes": 2388323,
+     "worldRank": 1,
+     "worldShare": 0.2525588932761208
     }
    ]
   },
@@ -4049,25 +3983,19 @@
      "worldShare": 0.012222735770155802
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 1838941.43,
-     "worldRank": 14,
-     "worldShare": 0.00653288270586918
-    },
-    {
      "name": "Grapes",
      "tonnes": 1832994.91,
      "worldRank": 11,
      "worldShare": 0.024148543899025453
+    },
+    {
+     "name": "Watermelons",
+     "tonnes": 1730816.51,
+     "worldRank": 7,
+     "worldShare": 0.016490338928833982
     }
    ],
    "worldLeading": [
-    {
-     "name": "Other pome fruits",
-     "tonnes": 49362.83,
-     "worldRank": 1,
-     "worldShare": 0.30496705142249153
-    },
     {
      "name": "Apricots",
      "tonnes": 526693.41,
@@ -4079,12 +4007,6 @@
      "tonnes": 3566930.86,
      "worldRank": 2,
      "worldShare": 0.07900326156968442
-    },
-    {
-     "name": "Other stone fruits",
-     "tonnes": 71612.73,
-     "worldRank": 3,
-     "worldShare": 0.11581456022201132
     },
     {
      "name": "Silk-worm cocoons suitable for reeling",
@@ -4105,10 +4027,22 @@
      "worldShare": 0.06731012618739689
     },
     {
-     "name": "Jute, raw or retted",
+     "name": "Jute",
      "tonnes": 19140.2,
      "worldRank": 4,
      "worldShare": 0.005169974967237382
+    },
+    {
+     "name": "Cucumbers and gherkins",
+     "tonnes": 1021485.22,
+     "worldRank": 5,
+     "worldShare": 0.011628396349641097
+    },
+    {
+     "name": "Seed cotton, unginned",
+     "tonnes": 2938089.18,
+     "worldRank": 6,
+     "worldShare": 0.04035058709999074
     }
    ]
   },
@@ -4128,19 +4062,13 @@
      "worldShare": 0.0008010539475616331
     },
     {
-     "name": "Other stimulant, spice and aromatic crops, n.e.c.",
-     "tonnes": 300334.65,
-     "worldRank": 4,
-     "worldShare": 0.0906636965249146
-    },
-    {
      "name": "Raw milk of cattle",
      "tonnes": 256736.59,
      "worldRank": 103,
      "worldShare": 0.0003220125798791244
     },
     {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 233099.91,
      "worldRank": 53,
      "worldShare": 0.002153148768621378
@@ -4162,22 +4090,15 @@
      "tonnes": 177426.18,
      "worldRank": 42,
      "worldShare": 0.001690426354350124
-    }
-   ],
-   "worldLeading": [
-    {
-     "name": "Other stimulant, spice and aromatic crops, n.e.c.",
-     "tonnes": 300334.65,
-     "worldRank": 4,
-     "worldShare": 0.0906636965249146
     },
     {
-     "name": "Goat fat, unrendered",
-     "tonnes": 4478.37,
-     "worldRank": 7,
-     "worldShare": 0.014283635205684096
+     "name": "Tomatoes",
+     "tonnes": 161973.8,
+     "worldRank": 75,
+     "worldShare": 0.0008592848204553153
     }
-   ]
+   ],
+   "worldLeading": []
   },
   "BTN": {
    "year": 2024,
@@ -4201,7 +4122,7 @@
      "worldShare": 0.00009675980170595789
     },
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 35874.87,
      "worldRank": 26,
      "worldShare": 0.0036644415851584144
@@ -4239,7 +4160,7 @@
      "worldShare": 0.00024184307085242445
     },
     {
-     "name": "Nutmeg, mace, cardamoms, raw",
+     "name": "Nutmeg, mace, cardamoms",
      "tonnes": 1121.52,
      "worldRank": 7,
      "worldShare": 0.005687260317819636
@@ -4318,7 +4239,7 @@
      "worldShare": 0.6257448861341772
     },
     {
-     "name": "Lentils, dry",
+     "name": "Lentils",
      "tonnes": 2431284,
      "worldRank": 1,
      "worldShare": 0.308249885059742
@@ -4348,7 +4269,7 @@
      "worldShare": 0.2230762591650623
     },
     {
-     "name": "Peas, dry",
+     "name": "Peas",
      "tonnes": 2997354,
      "worldRank": 2,
      "worldShare": 0.21170816126374978
@@ -4409,13 +4330,13 @@
    ],
    "worldLeading": [
     {
-     "name": "Abaca, manila hemp, raw",
+     "name": "Abaca, manila hemp",
      "tonnes": 37925.02,
      "worldRank": 2,
      "worldShare": 0.3493437545337518
     },
     {
-     "name": "Agave fibres, raw, n.e.c.",
+     "name": "Agave fibres,",
      "tonnes": 4523.17,
      "worldRank": 3,
      "worldShare": 0.11281284247250119
@@ -4506,7 +4427,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Meat of pigeons and other birds n.e.c., fresh, chilled or frozen",
+     "name": "Meat of pigeons and other birds",
      "tonnes": 11848.58,
      "worldRank": 1,
      "worldShare": 0.68139264594333
@@ -4571,7 +4492,7 @@
      "worldShare": 0.0077463781878126855
     },
     {
-     "name": "Cereals n.e.c.",
+     "name": "Cereals",
      "tonnes": 5798195.34,
      "worldRank": 1,
      "worldShare": 0.7230520785268658
@@ -4609,7 +4530,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Cereals n.e.c.",
+     "name": "Cereals",
      "tonnes": 5798195.34,
      "worldRank": 1,
      "worldShare": 0.7230520785268658
@@ -4627,7 +4548,7 @@
      "worldShare": 0.2629938684497216
     },
     {
-     "name": "Broad beans and horse beans, dry",
+     "name": "Broad beans and horse beans",
      "tonnes": 1156009.14,
      "worldRank": 2,
      "worldShare": 0.18469590249420562
@@ -4639,22 +4560,22 @@
      "worldShare": 0.09194744390549871
     },
     {
-     "name": "Other oil seeds, n.e.c.",
-     "tonnes": 270050.47,
-     "worldRank": 3,
-     "worldShare": 0.11144627150761244
-    },
-    {
-     "name": "Edible offals of camels and other camelids, fresh, chilled or frozen",
-     "tonnes": 9319.28,
-     "worldRank": 3,
-     "worldShare": 0.09827789483452816
-    },
-    {
      "name": "Taro",
      "tonnes": 1791635.47,
      "worldRank": 4,
      "worldShare": 0.09839729851534075
+    },
+    {
+     "name": "Natural honey",
+     "tonnes": 85959.95,
+     "worldRank": 4,
+     "worldShare": 0.043249863664234826
+    },
+    {
+     "name": "Chick peas",
+     "tonnes": 443953.71,
+     "worldRank": 4,
+     "worldShare": 0.02630015698968351
     }
    ]
   },
@@ -4712,7 +4633,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Nutmeg, mace, cardamoms, raw",
+     "name": "Nutmeg, mace, cardamoms",
      "tonnes": 76338.52,
      "worldRank": 1,
      "worldShare": 0.38711484014291375
@@ -4730,16 +4651,10 @@
      "worldShare": 0.027151346490047558
     },
     {
-     "name": "Agave fibres, raw, n.e.c.",
+     "name": "Agave fibres,",
      "tonnes": 121.14,
      "worldRank": 7,
      "worldShare": 0.0030213650464428255
-    },
-    {
-     "name": "Other nuts (excluding wild edible nuts and groundnuts), in shell, n.e.c.",
-     "tonnes": 34644.78,
-     "worldRank": 9,
-     "worldShare": 0.03178092023617194
     },
     {
      "name": "Bananas",
@@ -4789,7 +4704,7 @@
      "worldShare": 0.01478538499755905
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 1207537.34,
      "worldRank": 34,
      "worldShare": 0.0035317823378436817
@@ -4821,7 +4736,7 @@
      "worldShare": 0.10812301526006546
     },
     {
-     "name": "Sisal, raw",
+     "name": "Sisal",
      "tonnes": 20939.93,
      "worldRank": 3,
      "worldShare": 0.08950183556312187
@@ -4845,7 +4760,7 @@
      "worldShare": 0.06261473945698565
     },
     {
-     "name": "Pigeon peas, dry",
+     "name": "Pigeon peas",
      "tonnes": 96799.9,
      "worldRank": 5,
      "worldShare": 0.020781612139220293
@@ -4868,7 +4783,7 @@
      "worldShare": 0.0016302168106302113
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 2573530.6,
      "worldRank": 24,
      "worldShare": 0.007527013548898002
@@ -4892,27 +4807,27 @@
      "worldShare": 0.002868726849096106
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 374746.15,
-     "worldRank": 45,
-     "worldShare": 0.0013312945167731948
-    },
-    {
      "name": "Mangoes, guavas and mangosteens",
      "tonnes": 308343.23,
      "worldRank": 24,
      "worldShare": 0.004956343635872046
+    },
+    {
+     "name": "Maize (corn)",
+     "tonnes": 265000,
+     "worldRank": 88,
+     "worldShare": 0.00021753307134281423
     }
    ],
    "worldLeading": [
     {
-     "name": "Vanilla, raw",
+     "name": "Vanilla",
      "tonnes": 3089.54,
      "worldRank": 1,
      "worldShare": 0.43425716912126433
     },
     {
-     "name": "Cloves (whole stems), raw",
+     "name": "Cloves (whole stems)",
      "tonnes": 25114.45,
      "worldRank": 2,
      "worldShare": 0.12624068813162254
@@ -4930,13 +4845,13 @@
      "worldShare": 0.0023544711304768137
     },
     {
-     "name": "Sisal, raw",
+     "name": "Sisal",
      "tonnes": 17592.36,
      "worldRank": 4,
      "worldShare": 0.07519359004004515
     },
     {
-     "name": "Cinnamon and cinnamon-tree flowers, raw",
+     "name": "Cinnamon and cinnamon-tree flowers",
      "tonnes": 3247.77,
      "worldRank": 5,
      "worldShare": 0.013266200298927285
@@ -4948,7 +4863,7 @@
      "worldShare": 0.006577523919761532
     },
     {
-     "name": "Pistachios, in shell",
+     "name": "Pistachios",
      "tonnes": 5034.29,
      "worldRank": 6,
      "worldShare": 0.0036471883927272557
@@ -4965,7 +4880,7 @@
      "worldShare": 0.0877646885566399
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 6278880.49,
      "worldRank": 16,
      "worldShare": 0.0183643507173147
@@ -5009,7 +4924,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Pigeon peas, dry",
+     "name": "Pigeon peas",
      "tonnes": 473662.07,
      "worldRank": 2,
      "worldShare": 0.10168875612268415
@@ -5118,7 +5033,7 @@
      "worldShare": 0.03738096561552977
     },
     {
-     "name": "Brazil nuts, in shell",
+     "name": "Brazil nuts",
      "tonnes": 10846.45,
      "worldRank": 3,
      "worldShare": 0.13602964184402191
@@ -5227,7 +5142,7 @@
      "worldShare": 0.23231980514432388
     },
     {
-     "name": "Peas, dry",
+     "name": "Peas",
      "tonnes": 3251857.7,
      "worldRank": 1,
      "worldShare": 0.2296841862383844
@@ -5450,7 +5365,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 10532000,
      "worldRank": 10,
      "worldShare": 0.030803794093994356
@@ -5492,10 +5407,10 @@
      "worldShare": 0.024496940439883548
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 1952868.45,
-     "worldRank": 12,
-     "worldShare": 0.006937611125462844
+     "name": "Beans",
+     "tonnes": 1463819.48,
+     "worldRank": 4,
+     "worldShare": 0.04834704653340808
     }
    ],
    "worldLeading": [
@@ -5506,31 +5421,31 @@
      "worldShare": 0.39287075292459783
     },
     {
-     "name": "Sisal, raw",
+     "name": "Sisal",
      "tonnes": 61216,
      "worldRank": 2,
      "worldShare": 0.2616505578496236
     },
     {
-     "name": "Cashew nuts, in shell",
+     "name": "Cashew nuts",
      "tonnes": 528262,
      "worldRank": 3,
      "worldShare": 0.12455766909942882
     },
     {
-     "name": "Cloves (whole stems), raw",
+     "name": "Cloves (whole stems)",
      "tonnes": 8575.3,
      "worldRank": 3,
      "worldShare": 0.04310473742945207
     },
     {
-     "name": "Beans, dry",
+     "name": "Beans",
      "tonnes": 1463819.48,
      "worldRank": 4,
      "worldShare": 0.04834704653340808
     },
     {
-     "name": "Pigeon peas, dry",
+     "name": "Pigeon peas",
      "tonnes": 224587.2,
      "worldRank": 4,
      "worldShare": 0.048215794456745266
@@ -5542,7 +5457,7 @@
      "worldShare": 0.024496940439883548
     },
     {
-     "name": "Edible offal of goat, fresh, chilled or frozen",
+     "name": "Edible offal of goat",
      "tonnes": 33046,
      "worldRank": 7,
      "worldShare": 0.02236213023658364
@@ -5559,19 +5474,13 @@
      "worldShare": 0.05297392816231086
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 16497308,
-     "worldRank": 3,
-     "worldShare": 0.05860707490101916
-    },
-    {
      "name": "Sugar cane",
      "tonnes": 11843772.9,
      "worldRank": 18,
      "worldShare": 0.006105723617526801
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 10533957,
      "worldRank": 9,
      "worldShare": 0.030809517890523216
@@ -5583,39 +5492,45 @@
      "worldShare": 0.0036136536349902285
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 3785000,
      "worldRank": 7,
      "worldShare": 0.030193718531375636
-    },
-    {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 2802329.39,
-     "worldRank": 2,
-     "worldShare": 0.07145458182418062
     },
     {
      "name": "Bananas",
      "tonnes": 2640250,
      "worldRank": 12,
      "worldShare": 0.018938241310544286
+    },
+    {
+     "name": "Coconuts",
+     "tonnes": 2280323,
+     "worldRank": 5,
+     "worldShare": 0.03479086883089839
+    },
+    {
+     "name": "Coffee, green",
+     "tonnes": 2015289,
+     "worldRank": 2,
+     "worldShare": 0.1785831539662246
     }
    ],
    "worldLeading": [
     {
-     "name": "Pepper (Piper spp.), raw",
+     "name": "Pepper (Piper spp.)",
      "tonnes": 262230,
      "worldRank": 1,
      "worldShare": 0.28093593372967407
     },
     {
-     "name": "Cinnamon and cinnamon-tree flowers, raw",
+     "name": "Cinnamon and cinnamon-tree flowers",
      "tonnes": 71306.63,
      "worldRank": 2,
      "worldShare": 0.2912669420006643
     },
     {
-     "name": "Coir, raw",
+     "name": "Coir",
      "tonnes": 421745.09,
      "worldRank": 2,
      "worldShare": 0.23784039177017888
@@ -5633,22 +5548,22 @@
      "worldShare": 0.12408374715392956
     },
     {
-     "name": "Other berries and fruits of the genus vaccinium n.e.c.",
-     "tonnes": 121755.87,
-     "worldRank": 2,
-     "worldShare": 0.11276666827264592
-    },
-    {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 2802329.39,
-     "worldRank": 2,
-     "worldShare": 0.07145458182418062
-    },
-    {
-     "name": "Other fibre crops, raw, n.e.c.",
-     "tonnes": 96417.34,
+     "name": "Edible offal of pigs",
+     "tonnes": 435848.48,
      "worldRank": 3,
-     "worldShare": 0.14609422112926493
+     "worldShare": 0.053083622490380025
+    },
+    {
+     "name": "Meat of ducks",
+     "tonnes": 164682.29,
+     "worldRank": 3,
+     "worldShare": 0.022453009444913602
+    },
+    {
+     "name": "Natural rubber in primary forms",
+     "tonnes": 1327473,
+     "worldRank": 4,
+     "worldShare": 0.08951819840162359
     }
    ]
   },
@@ -5662,7 +5577,7 @@
      "worldShare": 0.003411426607478152
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 755211.44,
      "worldRank": 16,
      "worldShare": 0.010827556850318918
@@ -5712,19 +5627,13 @@
      "worldShare": 0.0391544310812472
     },
     {
-     "name": "Bambara beans, dry",
+     "name": "Bambara beans",
      "tonnes": 19029,
      "worldRank": 6,
      "worldShare": 0.07995140648553002
     },
     {
-     "name": "Other nuts (excluding wild edible nuts and groundnuts), in shell, n.e.c.",
-     "tonnes": 50016,
-     "worldRank": 8,
-     "worldShare": 0.045881500951438454
-    },
-    {
-     "name": "Jute, raw or retted",
+     "name": "Jute",
      "tonnes": 2769.9,
      "worldRank": 8,
      "worldShare": 0.0007481799386501094
@@ -5808,12 +5717,6 @@
      "worldShare": 0.0008649025134443395
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 195984.1,
-     "worldRank": 58,
-     "worldShare": 0.0006962381273422809
-    },
-    {
      "name": "Grapes",
      "tonnes": 195844.8,
      "worldRank": 38,
@@ -5842,6 +5745,12 @@
      "tonnes": 98695.6,
      "worldRank": 11,
      "worldShare": 0.02146453001833953
+    },
+    {
+     "name": "Apples",
+     "tonnes": 95485,
+     "worldRank": 53,
+     "worldShare": 0.0009755305021200663
     }
    ],
    "worldLeading": []
@@ -5886,7 +5795,7 @@
      "worldShare": 0.0017766099549741375
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 457840,
      "worldRank": 28,
      "worldShare": 0.0036522832476631496
@@ -5910,12 +5819,6 @@
      "tonnes": 258650,
      "worldRank": 10,
      "worldShare": 0.020852354153025922
-    },
-    {
-     "name": "Other pome fruits",
-     "tonnes": 630,
-     "worldRank": 10,
-     "worldShare": 0.003892184512034048
     }
    ]
   },
@@ -5973,7 +5876,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Flax, raw or retted",
+     "name": "Flax",
      "tonnes": 37225,
      "worldRank": 3,
      "worldShare": 0.028783715028462824
@@ -6038,7 +5941,7 @@
      "worldShare": 0.001365140847796375
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 945240,
      "worldRank": 19,
      "worldShare": 0.0075403726564326305
@@ -6064,7 +5967,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Flax, raw or retted",
+     "name": "Flax",
      "tonnes": 91990,
      "worldRank": 2,
      "worldShare": 0.07112999181916171
@@ -6155,7 +6058,7 @@
      "worldShare": 0.5085428008803429
     },
     {
-     "name": "Brazil nuts, in shell",
+     "name": "Brazil nuts",
      "tonnes": 33980.48,
      "worldRank": 2,
      "worldShare": 0.4261627098348261
@@ -6173,7 +6076,7 @@
      "worldShare": 0.28684880103457067
     },
     {
-     "name": "Chestnuts, in shell",
+     "name": "Chestnuts",
      "tonnes": 84089.65,
      "worldRank": 3,
      "worldShare": 0.0400798123984339
@@ -6214,7 +6117,7 @@
      "worldShare": 0.04617679316371422
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 19066096,
      "worldRank": 5,
      "worldShare": 0.05576415641476732
@@ -6246,13 +6149,13 @@
      "worldShare": 0.818663632818999
     },
     {
-     "name": "Brazil nuts, in shell",
+     "name": "Brazil nuts",
      "tonnes": 34909,
      "worldRank": 1,
      "worldShare": 0.4378076483211521
     },
     {
-     "name": "Sisal, raw",
+     "name": "Sisal",
      "tonnes": 93261,
      "worldRank": 1,
      "worldShare": 0.39861788871559306
@@ -6299,13 +6202,7 @@
      "worldShare": 0.002003113108697145
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 903764.26,
-     "worldRank": 22,
-     "worldShare": 0.0032106438019272082
-    },
-    {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 780000,
      "worldRank": 22,
      "worldShare": 0.006222219406729986
@@ -6335,10 +6232,16 @@
      "worldShare": 0.0005894988032021009
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 409541.8,
      "worldRank": 30,
      "worldShare": 0.004371076745724573
+    },
+    {
+     "name": "Pineapples",
+     "tonnes": 375814.08,
+     "worldRank": 23,
+     "worldShare": 0.012794679055354013
     }
    ],
    "worldLeading": [
@@ -6373,7 +6276,7 @@
      "worldShare": 0.012848800234775002
     },
     {
-     "name": "Eggs from other birds in shell, fresh, n.e.c.",
+     "name": "Eggs from other birds in shell,",
      "tonnes": 23900,
      "worldRank": 10,
      "worldShare": 0.003793094996859611
@@ -6434,7 +6337,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Agave fibres, raw, n.e.c.",
+     "name": "Agave fibres,",
      "tonnes": 14868.27,
      "worldRank": 1,
      "worldShare": 0.3708310325167118
@@ -6529,7 +6432,7 @@
      "worldShare": 0.0016789481454141874
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 219160,
      "worldRank": 41,
      "worldShare": 0.001748284109203774
@@ -6560,12 +6463,6 @@
      "worldShare": 0.00274315550491088
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 2050027.12,
-     "worldRank": 11,
-     "worldShare": 0.00728276958707206
-    },
-    {
      "name": "Apples",
      "tonnes": 801601.68,
      "worldRank": 19,
@@ -6584,16 +6481,22 @@
      "worldShare": 0.006338239291241837
     },
     {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 574446.11,
-     "worldRank": 14,
-     "worldShare": 0.014647388246738993
-    },
-    {
      "name": "Potatoes",
      "tonnes": 413318.61,
      "worldRank": 72,
      "worldShare": 0.0010586268916182359
+    },
+    {
+     "name": "Beans",
+     "tonnes": 328078.68,
+     "worldRank": 19,
+     "worldShare": 0.010835786396679935
+    },
+    {
+     "name": "Soya beans",
+     "tonnes": 180000,
+     "worldRank": 32,
+     "worldShare": 0.0004526346862956072
     }
    ],
    "worldLeading": [
@@ -6604,7 +6507,7 @@
      "worldShare": 0.18492495100984602
     },
     {
-     "name": "True hemp, raw or retted",
+     "name": "True hemp",
      "tonnes": 15523.25,
      "worldRank": 5,
      "worldShare": 0.04212528704733549
@@ -6622,7 +6525,7 @@
      "worldShare": 0.012765924673348977
     },
     {
-     "name": "Chestnuts, in shell",
+     "name": "Chestnuts",
      "tonnes": 12947.68,
      "worldRank": 10,
      "worldShare": 0.006171277742206737
@@ -6663,7 +6566,7 @@
      "worldShare": 0.008810569745111994
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 1323200,
      "worldRank": 15,
      "worldShare": 0.010555436819211688
@@ -6724,7 +6627,7 @@
      "worldShare": 0.0013044586084853336
     },
     {
-     "name": "Beans, dry",
+     "name": "Beans",
      "tonnes": 100356.44,
      "worldRank": 38,
      "worldShare": 0.003314573648526098
@@ -6736,13 +6639,13 @@
      "worldShare": 0.0015404966098921309
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 75498.28,
      "worldRank": 31,
      "worldShare": 0.0011518766229338733
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 65595.6,
      "worldRank": 74,
      "worldShare": 0.0007001077833370143
@@ -6756,7 +6659,7 @@
      "worldShare": 0.12437708251202409
     },
     {
-     "name": "Agave fibres, raw, n.e.c.",
+     "name": "Agave fibres,",
      "tonnes": 1619.18,
      "worldRank": 6,
      "worldShare": 0.04038413287022696
@@ -6791,7 +6694,7 @@
      "worldShare": 0.006013654731929149
     },
     {
-     "name": "Peas, dry",
+     "name": "Peas",
      "tonnes": 117640,
      "worldRank": 16,
      "worldShare": 0.008309111333218407
@@ -6857,7 +6760,7 @@
      "worldShare": 0.0014166469149648167
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 160910,
      "worldRank": 47,
      "worldShare": 0.0012836119547909256
@@ -6924,7 +6827,7 @@
      "worldShare": 0.004113016807408191
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 4289110,
      "worldRank": 6,
      "worldShare": 0.034215107025127756
@@ -6997,13 +6900,13 @@
      "worldShare": 0.0000026992723628946252
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 3817.04,
      "worldRank": 67,
      "worldShare": 0.00005823654717436625
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 3000,
      "worldRank": 133,
      "worldShare": 0.000032019271872062196
@@ -7013,18 +6916,6 @@
      "tonnes": 1502,
      "worldRank": 103,
      "worldShare": 0.000010773691297580728
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 1170.18,
-     "worldRank": 164,
-     "worldShare": 0.000004157091987836718
-    },
-    {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 1117.75,
-     "worldRank": 121,
-     "worldShare": 0.00002850070342158381
     },
     {
      "name": "Watermelons",
@@ -7037,23 +6928,35 @@
      "tonnes": 707.83,
      "worldRank": 63,
      "worldShare": 0.00007173870503718918
+    },
+    {
+     "name": "Avocados",
+     "tonnes": 704.94,
+     "worldRank": 61,
+     "worldShare": 0.00006279481714130365
+    },
+    {
+     "name": "Mangoes, guavas and mangosteens",
+     "tonnes": 656.42,
+     "worldRank": 87,
+     "worldShare": 0.000010551368646748393
     }
    ],
    "worldLeading": [
     {
-     "name": "Cinnamon and cinnamon-tree flowers, raw",
+     "name": "Cinnamon and cinnamon-tree flowers",
      "tonnes": 37.39,
      "worldRank": 8,
      "worldShare": 0.0001527273264969167
     },
     {
-     "name": "Cloves (whole stems), raw",
+     "name": "Cloves (whole stems)",
      "tonnes": 18.95,
      "worldRank": 9,
      "worldShare": 0.00009525436711113509
     },
     {
-     "name": "Nutmeg, mace, cardamoms, raw",
+     "name": "Nutmeg, mace, cardamoms",
      "tonnes": 439,
      "worldRank": 10,
      "worldShare": 0.00222618168157752
@@ -7114,7 +7017,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Nutmeg, mace, cardamoms, raw",
+     "name": "Nutmeg, mace, cardamoms",
      "tonnes": 593.03,
      "worldRank": 9,
      "worldShare": 0.0030072722611068714
@@ -7137,7 +7040,7 @@
      "worldShare": 0.009028720694550834
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 602600,
      "worldRank": 23,
      "worldShare": 0.008639548360128365
@@ -7155,7 +7058,7 @@
      "worldShare": 0.000943423837747497
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 311530,
      "worldRank": 37,
      "worldShare": 0.002485138476639221
@@ -7173,7 +7076,7 @@
      "worldShare": 0.001264153241268187
     },
     {
-     "name": "Broad beans and horse beans, dry",
+     "name": "Broad beans and horse beans",
      "tonnes": 82350,
      "worldRank": 14,
      "worldShare": 0.013157082452131678
@@ -7203,13 +7106,7 @@
      "worldShare": 0.011868896622232429
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 2744683.54,
-     "worldRank": 10,
-     "worldShare": 0.009750552866466117
-    },
-    {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 2480663,
      "worldRank": 8,
      "worldShare": 0.02647634100665514
@@ -7231,6 +7128,12 @@
      "tonnes": 1413266.32,
      "worldRank": 7,
      "worldShare": 0.018722771884647355
+    },
+    {
+     "name": "Meat of pig",
+     "tonnes": 1262826.77,
+     "worldRank": 16,
+     "worldShare": 0.010073827225169415
     }
    ],
    "worldLeading": [
@@ -7277,7 +7180,7 @@
      "worldShare": 0.018722771884647355
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 2480663,
      "worldRank": 8,
      "worldShare": 0.02647634100665514
@@ -7330,20 +7233,13 @@
      "worldShare": 0.010052937943524456
     },
     {
-     "name": "Peas, dry",
+     "name": "Peas",
      "tonnes": 95200,
      "worldRank": 19,
      "worldShare": 0.006724136339020676
     }
    ],
-   "worldLeading": [
-    {
-     "name": "Other pome fruits",
-     "tonnes": 700,
-     "worldRank": 9,
-     "worldShare": 0.004324649457815609
-    }
-   ]
+   "worldLeading": []
   },
   "LTU": {
    "year": 2024,
@@ -7399,7 +7295,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Broad beans and horse beans, dry",
+     "name": "Broad beans and horse beans",
      "tonnes": 234080,
      "worldRank": 6,
      "worldShare": 0.03739902684146914
@@ -7411,7 +7307,7 @@
      "worldShare": 0.022688876973849158
     },
     {
-     "name": "True hemp, raw or retted",
+     "name": "True hemp",
      "tonnes": 2800,
      "worldRank": 10,
      "worldShare": 0.00759833177540395
@@ -7452,7 +7348,7 @@
      "worldShare": 0.00004541158886697921
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 10290,
      "worldRank": 100,
      "worldShare": 0.00008208543294263019
@@ -7464,7 +7360,7 @@
      "worldShare": 0.00013108493126983274
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 9430,
      "worldRank": 131,
      "worldShare": 0.0001351990392233828
@@ -7506,7 +7402,7 @@
      "worldShare": 0.0012946810231431547
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 11236.8,
      "worldRank": 112,
      "worldShare": 0.00011993138472399614
@@ -7548,13 +7444,13 @@
      "worldShare": 0.02163888871094531
     },
     {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 1803300,
      "worldRank": 12,
      "worldShare": 0.016657120006845695
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 1386780,
      "worldRank": 14,
      "worldShare": 0.011062627472903859
@@ -7580,7 +7476,7 @@
    ],
    "worldLeading": [
     {
-     "name": "True hemp, raw or retted",
+     "name": "True hemp",
      "tonnes": 24570,
      "worldRank": 4,
      "worldShare": 0.06667536132916967
@@ -7592,7 +7488,7 @@
      "worldShare": 0.060168793302882134
     },
     {
-     "name": "Flax, raw or retted",
+     "name": "Flax",
      "tonnes": 19470,
      "worldRank": 6,
      "worldShare": 0.01505490749776148
@@ -7633,7 +7529,7 @@
      "worldShare": 0.027005316450520074
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 741844,
      "worldRank": 17,
      "worldShare": 0.010635906262315078
@@ -7695,18 +7591,6 @@
      "worldShare": 0.038957817696468985
     },
     {
-     "name": "Raw hides and skins of sheep or lambs",
-     "tonnes": 81828.29,
-     "worldRank": 5,
-     "worldShare": 0.03758726705111057
-    },
-    {
-     "name": "Sheep fat, unrendered",
-     "tonnes": 27875.57,
-     "worldRank": 6,
-     "worldShare": 0.043446876077626095
-    },
-    {
      "name": "Gooseberries",
      "tonnes": 3.32,
      "worldRank": 7,
@@ -7719,10 +7603,22 @@
      "worldShare": 0.04795948158155068
     },
     {
-     "name": "Edible offal of sheep, fresh, chilled or frozen",
+     "name": "Edible offal of sheep",
      "tonnes": 55751.14,
      "worldRank": 8,
      "worldShare": 0.028129746308833404
+    },
+    {
+     "name": "Currants",
+     "tonnes": 5057.17,
+     "worldRank": 8,
+     "worldShare": 0.00715988524068086
+    },
+    {
+     "name": "Raw milk of cattle",
+     "tonnes": 21531000,
+     "worldRank": 9,
+     "worldShare": 0.027005316450520074
     }
    ]
   },
@@ -7760,7 +7656,7 @@
      "worldShare": 0.0002880466725929014
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 128159,
      "worldRank": 52,
      "worldShare": 0.0010223505345475746
@@ -7772,7 +7668,7 @@
      "worldShare": 0.000863809470958551
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 86090,
      "worldRank": 74,
      "worldShare": 0.0012342826391029719
@@ -7802,7 +7698,7 @@
      "worldShare": 0.003236317485920925
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 3050651,
      "worldRank": 21,
      "worldShare": 0.008922486256801934
@@ -7826,7 +7722,7 @@
      "worldShare": 0.000701127299978669
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 427139.78,
      "worldRank": 31,
      "worldShare": 0.006123954174982726
@@ -7919,12 +7815,6 @@
      "worldShare": 0.3997307206072865
     },
     {
-     "name": "Other pulses n.e.c.",
-     "tonnes": 575960,
-     "worldRank": 1,
-     "worldShare": 0.1294515664232898
-    },
-    {
      "name": "Lupins",
      "tonnes": 375720,
      "worldRank": 2,
@@ -7953,6 +7843,12 @@
      "tonnes": 349160,
      "worldRank": 3,
      "worldShare": 0.06866532139457962
+    },
+    {
+     "name": "Apples",
+     "tonnes": 3384500,
+     "worldRank": 4,
+     "worldShare": 0.03457802779939639
     }
    ]
   },
@@ -7964,12 +7860,6 @@
      "tonnes": 4783114,
      "worldRank": 18,
      "worldShare": 0.005831477999873911
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 3246882.11,
-     "worldRank": 8,
-     "worldShare": 0.011534625104626106
     },
     {
      "name": "Cabbages",
@@ -7984,13 +7874,13 @@
      "worldShare": 0.0022155130008836795
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 1455000,
      "worldRank": 12,
      "worldShare": 0.011606832354861703
     },
     {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 1175276,
      "worldRank": 20,
      "worldShare": 0.010856049117265891
@@ -8002,10 +7892,16 @@
      "worldShare": 0.007287196551083569
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 807141.66,
      "worldRank": 18,
      "worldShare": 0.00861469608360253
+    },
+    {
+     "name": "Tangerines, mandarins, clementines",
+     "tonnes": 640229.34,
+     "worldRank": 13,
+     "worldShare": 0.012331573917891586
     }
    ],
    "worldLeading": [
@@ -8046,13 +7942,13 @@
      "worldShare": 0.009596789089024452
     },
     {
-     "name": "Chestnuts, in shell",
+     "name": "Chestnuts",
      "tonnes": 52240.73,
      "worldRank": 6,
      "worldShare": 0.024899600104855212
     },
     {
-     "name": "Edible offal of pigs, fresh, chilled or frozen",
+     "name": "Edible offal of pigs",
      "tonnes": 194655.41,
      "worldRank": 7,
      "worldShare": 0.02370781309171973
@@ -8119,12 +8015,6 @@
      "worldShare": 0.047476338636897944
     },
     {
-     "name": "Other pome fruits",
-     "tonnes": 25750,
-     "worldRank": 3,
-     "worldShare": 0.15908531934107417
-    },
-    {
      "name": "Raw milk of sheep",
      "tonnes": 434400,
      "worldRank": 8,
@@ -8148,7 +8038,7 @@
      "worldShare": 0.0004268923828539613
     },
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 9121.3,
      "worldRank": 36,
      "worldShare": 0.0009316959484649127
@@ -8160,7 +8050,7 @@
      "worldShare": 0.000051786744927806365
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 1994,
      "worldRank": 77,
      "worldShare": 0.000030422441228199418
@@ -8172,22 +8062,22 @@
      "worldShare": 0.00001715793512981601
     },
     {
-     "name": "Other stimulant, spice and aromatic crops, n.e.c.",
-     "tonnes": 1621,
-     "worldRank": 32,
-     "worldShare": 0.0004893403144355357
+     "name": "Mangoes, guavas and mangosteens",
+     "tonnes": 919,
+     "worldRank": 84,
+     "worldShare": 0.000014772108994792623
     },
     {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 1353,
-     "worldRank": 116,
-     "worldShare": 0.00003449917399186124
+     "name": "Raw milk of cattle",
+     "tonnes": 824.43,
+     "worldRank": 172,
+     "worldShare": 0.0000010340436134551236
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 1283,
-     "worldRank": 163,
-     "worldShare": 0.000004557887692828889
+     "name": "Yams",
+     "tonnes": 671,
+     "worldRank": 49,
+     "worldShare": 0.0000072585522023951285
     }
    ],
    "worldLeading": []
@@ -8318,19 +8208,13 @@
      "worldShare": 0.016839404609565727
     },
     {
-     "name": "Other nuts (excluding wild edible nuts and groundnuts), in shell, n.e.c.",
-     "tonnes": 52920.5,
-     "worldRank": 7,
-     "worldShare": 0.04854590473249757
-    },
-    {
-     "name": "Edible offal of cattle, fresh, chilled or frozen",
+     "name": "Edible offal of cattle",
      "tonnes": 320573.09,
      "worldRank": 7,
      "worldShare": 0.033066955752095825
     },
     {
-     "name": "Edible offal of sheep, fresh, chilled or frozen",
+     "name": "Edible offal of sheep",
      "tonnes": 58285.71,
      "worldRank": 7,
      "worldShare": 0.02940858672540569
@@ -8346,6 +8230,12 @@
      "tonnes": 19200,
      "worldRank": 8,
      "worldShare": 0.01272220524161217
+    },
+    {
+     "name": "Lemons and limes",
+     "tonnes": 748643.86,
+     "worldRank": 9,
+     "worldShare": 0.032267734216862416
     }
    ]
   },
@@ -8395,7 +8285,7 @@
      "worldShare": 0.0032282062970750472
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 246920,
      "worldRank": 39,
      "worldShare": 0.0019697313024484206
@@ -8444,7 +8334,7 @@
      "worldShare": 0.0021855929014665894
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 212694.09,
      "worldRank": 42,
      "worldShare": 0.001696704223711249
@@ -8456,7 +8346,7 @@
      "worldShare": 0.00012867286389806087
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 144057,
      "worldRank": 55,
      "worldShare": 0.002065362459533707
@@ -8517,7 +8407,7 @@
      "worldShare": 0.04395451123559778
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 960800,
      "worldRank": 18,
      "worldShare": 0.007664497956392526
@@ -8531,7 +8421,7 @@
      "worldShare": 0.024010967624368277
     },
     {
-     "name": "Broad beans and horse beans, dry",
+     "name": "Broad beans and horse beans",
      "tonnes": 460316,
      "worldRank": 4,
      "worldShare": 0.07354481561670244
@@ -8541,12 +8431,6 @@
      "tonnes": 14714.45,
      "worldRank": 4,
      "worldShare": 0.020832555239340675
-    },
-    {
-     "name": "Other pulses n.e.c.",
-     "tonnes": 267971.79,
-     "worldRank": 5,
-     "worldShare": 0.060228779729066026
     },
     {
      "name": "Shorn wool, greasy, including fleece-washed shorn wool",
@@ -8561,16 +8445,22 @@
      "worldShare": 0.028923490201757312
     },
     {
-     "name": "Raw hides and skins of sheep or lambs",
-     "tonnes": 57264.71,
-     "worldRank": 6,
-     "worldShare": 0.02630415406914164
-    },
-    {
      "name": "Carrots and turnips",
      "tonnes": 862712.54,
      "worldRank": 7,
      "worldShare": 0.019108053150507894
+    },
+    {
+     "name": "Flax",
+     "tonnes": 14500,
+     "worldRank": 7,
+     "worldShare": 0.011211923919750462
+    },
+    {
+     "name": "Barley",
+     "tonnes": 7091000,
+     "worldRank": 8,
+     "worldShare": 0.049937723524870296
     }
    ]
   },
@@ -8614,7 +8504,7 @@
      "worldShare": 0.00047747116948091133
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 577892.98,
      "worldRank": 26,
      "worldShare": 0.008285320855772807
@@ -8639,7 +8529,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 6658482.77,
      "worldRank": 14,
      "worldShare": 0.019474604275112908
@@ -8695,7 +8585,7 @@
      "worldShare": 0.1069283236878036
     },
     {
-     "name": "Bambara beans, dry",
+     "name": "Bambara beans",
      "tonnes": 37964.87,
      "worldRank": 3,
      "worldShare": 0.15951152207369304
@@ -8719,7 +8609,7 @@
      "worldShare": 0.047210959323960154
     },
     {
-     "name": "Cow peas, dry",
+     "name": "Cow peas",
      "tonnes": 250311.75,
      "worldRank": 5,
      "worldShare": 0.024777948013658766
@@ -8731,7 +8621,7 @@
      "worldShare": 0.06114752506739446
     },
     {
-     "name": "Game meat, fresh, chilled or frozen",
+     "name": "Game meat",
      "tonnes": 81812.9,
      "worldRank": 7,
      "worldShare": 0.03985087407000266
@@ -8772,7 +8662,7 @@
      "worldShare": 0.0015123833337260858
     },
     {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 2917354,
      "worldRank": 5,
      "worldShare": 0.02694766022317491
@@ -8792,16 +8682,10 @@
    ],
    "worldLeading": [
     {
-     "name": "Jute, raw or retted",
+     "name": "Jute",
      "tonnes": 2086101,
      "worldRank": 1,
      "worldShare": 0.563478435394033
-    },
-    {
-     "name": "Other sugar crops n.e.c.",
-     "tonnes": 219281,
-     "worldRank": 2,
-     "worldShare": 0.24606220354116998
     },
     {
      "name": "Areca nuts",
@@ -8810,34 +8694,40 @@
      "worldShare": 0.15267229387770548
     },
     {
-     "name": "Other pulses n.e.c.",
-     "tonnes": 429231,
-     "worldRank": 2,
-     "worldShare": 0.09647306289922063
-    },
-    {
-     "name": "Other stimulant, spice and aromatic crops, n.e.c.",
-     "tonnes": 301705,
-     "worldRank": 3,
-     "worldShare": 0.09107737172533824
-    },
-    {
      "name": "Rice",
      "tonnes": 60570453.05,
      "worldRank": 3,
      "worldShare": 0.07384629854180155
     },
     {
-     "name": "Eggs from other birds in shell, fresh, n.e.c.",
+     "name": "Eggs from other birds in shell,",
      "tonnes": 327700,
      "worldRank": 3,
      "worldShare": 0.05200825232095793
     },
     {
-     "name": "Goat fat, unrendered",
-     "tonnes": 17913.7,
+     "name": "Chillies and peppers (Capsicum spp., Pimenta spp.)",
+     "tonnes": 301311.46,
      "worldRank": 4,
-     "worldShare": 0.057135242506551095
+     "worldShare": 0.05521719061093134
+    },
+    {
+     "name": "Raw milk of goats",
+     "tonnes": 1053080,
+     "worldRank": 4,
+     "worldShare": 0.05153727501833209
+    },
+    {
+     "name": "Edible offal of goat",
+     "tonnes": 69664.4,
+     "worldRank": 4,
+     "worldShare": 0.04714169296294429
+    },
+    {
+     "name": "Green garlic",
+     "tonnes": 527665,
+     "worldRank": 4,
+     "worldShare": 0.017772024997403234
     }
    ]
   },
@@ -8845,7 +8735,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 46558022,
      "worldRank": 2,
      "worldShare": 0.13617202080437327
@@ -8881,7 +8771,7 @@
      "worldShare": 0.0023659313900382286
     },
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 922483.36,
      "worldRank": 2,
      "worldShare": 0.09422713966630848
@@ -8895,7 +8785,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 46558022,
      "worldRank": 2,
      "worldShare": 0.13617202080437327
@@ -8907,7 +8797,7 @@
      "worldShare": 0.11008471422415805
     },
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 922483.36,
      "worldRank": 2,
      "worldShare": 0.09422713966630848
@@ -8919,28 +8809,28 @@
      "worldShare": 0.06526991474808194
     },
     {
-     "name": "Other meat of mammals",
-     "tonnes": 78858.28,
-     "worldRank": 4,
-     "worldShare": 0.05027357267896735
-    },
-    {
-     "name": "Game meat, fresh, chilled or frozen",
+     "name": "Game meat",
      "tonnes": 90695.34,
      "worldRank": 6,
      "worldShare": 0.0441774900177854
     },
     {
-     "name": "Kenaf, and other textile bast fibres, raw or retted",
+     "name": "Kenaf, and other textile bast fibres",
      "tonnes": 7835.32,
      "worldRank": 6,
      "worldShare": 0.0340464428395303
     },
     {
-     "name": "Other oil seeds, n.e.c.",
-     "tonnes": 59901.84,
-     "worldRank": 6,
-     "worldShare": 0.024720700261864233
+     "name": "Bambara beans",
+     "tonnes": 15889,
+     "worldRank": 7,
+     "worldShare": 0.06675852108090738
+    },
+    {
+     "name": "Papayas",
+     "tonnes": 207573.18,
+     "worldRank": 8,
+     "worldShare": 0.014164159846555087
     }
    ]
   },
@@ -8966,34 +8856,34 @@
      "worldShare": 0.0004577565969703242
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 57881.5,
-     "worldRank": 91,
-     "worldShare": 0.00020562539087488335
-    },
-    {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 52386.44,
      "worldRank": 19,
      "worldShare": 0.005351017278512958
     },
     {
-     "name": "Cereals n.e.c.",
+     "name": "Cereals",
      "tonnes": 30209.72,
      "worldRank": 13,
      "worldShare": 0.0037672412805800073
     },
     {
-     "name": "Other pulses n.e.c.",
-     "tonnes": 28107.34,
-     "worldRank": 32,
-     "worldShare": 0.006317347022348758
-    },
-    {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 25584.96,
      "worldRank": 115,
      "worldShare": 0.00036681463526709227
+    },
+    {
+     "name": "Millet",
+     "tonnes": 25000,
+     "worldRank": 37,
+     "worldShare": 0.000810304052438045
+    },
+    {
+     "name": "Wheat",
+     "tonnes": 25000,
+     "worldRank": 92,
+     "worldShare": 0.000031309420934011024
     }
    ],
    "worldLeading": []
@@ -9020,7 +8910,7 @@
      "worldShare": 0.000690244293381476
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 6756,
      "worldRank": 108,
      "worldShare": 0.0000538939927075228
@@ -9032,7 +8922,7 @@
      "worldShare": 0.000014122927299070692
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 5000,
      "worldRank": 124,
      "worldShare": 0.000053365453120103655
@@ -9044,7 +8934,7 @@
      "worldShare": 0.00003511345219221595
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 4860,
      "worldRank": 143,
      "worldShare": 0.00006967840197514744
@@ -9068,7 +8958,7 @@
      "worldShare": 0.0004331866315946305
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 77604.44,
      "worldRank": 66,
      "worldShare": 0.0008282792209463794
@@ -9098,10 +8988,10 @@
      "worldShare": 0.004353740575409964
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 31892.65,
-     "worldRank": 107,
-     "worldShare": 0.00011329938965448113
+     "name": "Maize (corn)",
+     "tonnes": 30030,
+     "worldRank": 118,
+     "worldShare": 0.00002465101182047061
     }
    ],
    "worldLeading": []
@@ -9128,18 +9018,6 @@
      "worldShare": 0.00004633290243699043
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 32625.43,
-     "worldRank": 104,
-     "worldShare": 0.00011590260784898708
-    },
-    {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 14984.08,
-     "worldRank": 84,
-     "worldShare": 0.0003820682801389269
-    },
-    {
      "name": "Shorn wool, greasy, including fleece-washed shorn wool",
      "tonnes": 8165.41,
      "worldRank": 31,
@@ -9152,10 +9030,22 @@
      "worldShare": 0.00009742474014681446
     },
     {
-     "name": "Game meat, fresh, chilled or frozen",
+     "name": "Game meat",
      "tonnes": 5733.21,
      "worldRank": 37,
      "worldShare": 0.0027926333099899886
+    },
+    {
+     "name": "Wheat",
+     "tonnes": 4183,
+     "worldRank": 105,
+     "worldShare": 0.000005238692310678724
+    },
+    {
+     "name": "Beans",
+     "tonnes": 1531,
+     "worldRank": 92,
+     "worldShare": 0.000050565885516599196
     }
    ],
    "worldLeading": [
@@ -9207,7 +9097,7 @@
      "worldShare": 0.003961853208083912
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 31134.44,
      "worldRank": 111,
      "worldShare": 0.00044637819456607195
@@ -9225,12 +9115,6 @@
      "tonnes": 3988.24,
      "worldRank": 3,
      "worldShare": 0.053337463127080355
-    },
-    {
-     "name": "Edible offals of camels and other camelids, fresh, chilled or frozen",
-     "tonnes": 4764.54,
-     "worldRank": 8,
-     "worldShare": 0.050245186436602696
     },
     {
      "name": "Meat of camels",
@@ -9274,7 +9158,7 @@
      "worldShare": 0.011549237529084449
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 107748.7,
      "worldRank": 69,
      "worldShare": 0.0015448060145883888
@@ -9294,12 +9178,6 @@
    ],
    "worldLeading": [
     {
-     "name": "Edible offals of horses and other equines, fresh, chilled or frozen",
-     "tonnes": 8781.67,
-     "worldRank": 4,
-     "worldShare": 0.09237791497882865
-    },
-    {
      "name": "Horse meat",
      "tonnes": 61158.08,
      "worldRank": 4,
@@ -9310,12 +9188,6 @@
   "OMN": {
    "year": 2024,
    "largest": [
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 480707,
-     "worldRank": 37,
-     "worldShare": 0.0017077229299740427
-    },
     {
      "name": "Dates",
      "tonnes": 400655,
@@ -9357,15 +9229,15 @@
      "tonnes": 118281.08,
      "worldRank": 32,
      "worldShare": 0.005788624367973317
+    },
+    {
+     "name": "Watermelons",
+     "tonnes": 102323,
+     "worldRank": 62,
+     "worldShare": 0.0009748814738398118
     }
    ],
    "worldLeading": [
-    {
-     "name": "Fat of camels",
-     "tonnes": 1291.82,
-     "worldRank": 7,
-     "worldShare": 0.043797842757397336
-    },
     {
      "name": "Dates",
      "tonnes": 400655,
@@ -9390,7 +9262,7 @@
      "worldShare": 0.04090512614602918
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 28624312,
      "worldRank": 3,
      "worldShare": 0.08371984551179755
@@ -9414,16 +9286,16 @@
      "worldShare": 0.003741726435963189
     },
     {
-     "name": "Other tropical fruits, n.e.c.",
-     "tonnes": 3272184,
-     "worldRank": 2,
-     "worldShare": 0.13683784670419752
-    },
-    {
      "name": "Meat of chickens",
      "tonnes": 1917976.66,
      "worldRank": 15,
      "worldShare": 0.014948313263968751
+    },
+    {
+     "name": "Mangoes, guavas and mangosteens",
+     "tonnes": 1486723,
+     "worldRank": 10,
+     "worldShare": 0.023897752123030545
     }
    ],
    "worldLeading": [
@@ -9440,13 +9312,7 @@
      "worldShare": 0.3028913033497478
     },
     {
-     "name": "Other tropical fruits, n.e.c.",
-     "tonnes": 3272184,
-     "worldRank": 2,
-     "worldShare": 0.13683784670419752
-    },
-    {
-     "name": "Eggs from other birds in shell, fresh, n.e.c.",
+     "name": "Eggs from other birds in shell,",
      "tonnes": 400000,
      "worldRank": 2,
      "worldShare": 0.06348276145371734
@@ -9458,13 +9324,13 @@
      "worldShare": 0.12526885483210445
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 28624312,
      "worldRank": 3,
      "worldShare": 0.08371984551179755
     },
     {
-     "name": "Chillies and peppers, dry (Capsicum spp., Pimenta spp.), raw",
+     "name": "Chillies and peppers (Capsicum spp., Pimenta spp.)",
      "tonnes": 324004.51,
      "worldRank": 3,
      "worldShare": 0.05937583252715117
@@ -9474,6 +9340,12 @@
      "tonnes": 18606769,
      "worldRank": 3,
      "worldShare": 0.04443970895217445
+    },
+    {
+     "name": "Coir",
+     "tonnes": 61676.69,
+     "worldRank": 4,
+     "worldShare": 0.034782166907237434
     }
    ]
   },
@@ -9487,7 +9359,7 @@
      "worldShare": 0.0025228182426634085
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 3127778.1,
      "worldRank": 19,
      "worldShare": 0.009148066137875511
@@ -9505,13 +9377,7 @@
      "worldShare": 0.0006589763795958369
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 366119.8,
-     "worldRank": 46,
-     "worldShare": 0.001300649205394368
-    },
-    {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 221926.9,
      "worldRank": 49,
      "worldShare": 0.003181792540596368
@@ -9527,11 +9393,17 @@
      "tonnes": 169699.71,
      "worldRank": 34,
      "worldShare": 0.0004267331944461417
+    },
+    {
+     "name": "Groundnuts, excluding shelled",
+     "tonnes": 87655.18,
+     "worldRank": 35,
+     "worldShare": 0.0015227594214132787
     }
    ],
    "worldLeading": [
     {
-     "name": "Bambara beans, dry",
+     "name": "Bambara beans",
      "tonnes": 2154.26,
      "worldRank": 9,
      "worldShare": 0.00905124372986063
@@ -9542,7 +9414,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 11930569,
      "worldRank": 8,
      "worldShare": 0.0348943022123236
@@ -9598,12 +9470,6 @@
      "worldShare": 0.1098108904948093
     },
     {
-     "name": "Other citrus fruit, n.e.c.",
-     "tonnes": 517555,
-     "worldRank": 5,
-     "worldShare": 0.038632588225530715
-    },
-    {
      "name": "Sweet potatoes",
      "tonnes": 2123503,
      "worldRank": 5,
@@ -9622,7 +9488,7 @@
      "worldShare": 0.03739307240050991
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 11930569,
      "worldRank": 8,
      "worldShare": 0.0348943022123236
@@ -9645,31 +9511,25 @@
      "worldShare": 0.00010032973242566343
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 5131.84,
-     "worldRank": 144,
-     "worldShare": 0.00001823098236755028
-    },
-    {
      "name": "Raw milk of cattle",
      "tonnes": 4166.44,
      "worldRank": 162,
      "worldShare": 0.00000522576892258162
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 2921.33,
      "worldRank": 134,
      "worldShare": 0.00003117961983267048
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 2819.97,
      "worldRank": 120,
      "worldShare": 0.00002249547700050815
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 2516.52,
      "worldRank": 72,
      "worldShare": 0.00003839452447321384
@@ -9679,6 +9539,12 @@
      "tonnes": 1993.02,
      "worldRank": 87,
      "worldShare": 0.000021918097387101722
+    },
+    {
+     "name": "Bananas",
+     "tonnes": 981.37,
+     "worldRank": 105,
+     "worldShare": 0.00000703926593122956
     }
    ],
    "worldLeading": []
@@ -9741,7 +9607,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 2675784.15,
      "worldRank": 23,
      "worldShare": 0.00782608279496522
@@ -9765,13 +9631,7 @@
      "worldShare": 0.00048431891355569964
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 506419.26,
-     "worldRank": 35,
-     "worldShare": 0.0017990663387104546
-    },
-    {
-     "name": "Beans, dry",
+     "name": "Beans",
      "tonnes": 504702.22,
      "worldRank": 13,
      "worldShare": 0.016669310696599254
@@ -9787,6 +9647,12 @@
      "tonnes": 139351.61,
      "worldRank": 74,
      "worldShare": 0.00007183879862449776
+    },
+    {
+     "name": "Rice",
+     "tonnes": 136000,
+     "worldRank": 72,
+     "worldShare": 0.00016580851051905765
     }
    ],
    "worldLeading": []
@@ -9795,7 +9661,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 14261306.01,
      "worldRank": 7,
      "worldShare": 0.04171119766839007
@@ -9811,12 +9677,6 @@
      "tonnes": 1380000,
      "worldRank": 55,
      "worldShare": 0.0011328137300116363
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 656732.98,
-     "worldRank": 32,
-     "worldShare": 0.002333059366342043
     },
     {
      "name": "Sugar cane",
@@ -9841,17 +9701,23 @@
      "tonnes": 374922.78,
      "worldRank": 41,
      "worldShare": 0.002689282484787466
+    },
+    {
+     "name": "Fibre Crops, Fibre Equivalent",
+     "tonnes": 157373.88,
+     "worldRank": 20,
+     "worldShare": 0.004876324644774287
     }
    ],
    "worldLeading": [
     {
-     "name": "Jute, raw or retted",
+     "name": "Jute",
      "tonnes": 153317.54,
      "worldRank": 3,
      "worldShare": 0.04141272525043709
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 14261306.01,
      "worldRank": 7,
      "worldShare": 0.04171119766839007
@@ -9867,12 +9733,6 @@
      "tonnes": 14200000,
      "worldRank": 10,
      "worldShare": 0.017312359186548665
-    },
-    {
-     "name": "Other fibre crops, raw, n.e.c.",
-     "tonnes": 3974.99,
-     "worldRank": 10,
-     "worldShare": 0.006023014823335894
     }
    ]
   },
@@ -9892,7 +9752,7 @@
      "worldShare": 0.012038208907477524
     },
     {
-     "name": "Cereals n.e.c.",
+     "name": "Cereals",
      "tonnes": 627560,
      "worldRank": 2,
      "worldShare": 0.07825858492037627
@@ -9904,7 +9764,7 @@
      "worldShare": 0.02006069742620868
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 578029.26,
      "worldRank": 25,
      "worldShare": 0.00828727471845206
@@ -9930,7 +9790,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Cereals n.e.c.",
+     "name": "Cereals",
      "tonnes": 627560,
      "worldRank": 2,
      "worldShare": 0.07825858492037627
@@ -9940,12 +9800,6 @@
      "tonnes": 165731.91,
      "worldRank": 6,
      "worldShare": 0.02140919953824404
-    },
-    {
-     "name": "Raw hides and skins of goats or kids",
-     "tonnes": 30494.67,
-     "worldRank": 8,
-     "worldShare": 0.019995556407507855
     },
     {
      "name": "Sesame seed",
@@ -9960,13 +9814,7 @@
      "worldShare": 0.02529549409922902
     },
     {
-     "name": "Raw hides and skins of sheep or lambs",
-     "tonnes": 43153.66,
-     "worldRank": 9,
-     "worldShare": 0.019822339470283792
-    },
-    {
-     "name": "Edible offal of goat, fresh, chilled or frozen",
+     "name": "Edible offal of goat",
      "tonnes": 28174.42,
      "worldRank": 9,
      "worldShare": 0.019065546492168697
@@ -9976,6 +9824,18 @@
      "tonnes": 143586,
      "worldRank": 9,
      "worldShare": 0.00788579749686677
+    },
+    {
+     "name": "Meat of sheep",
+     "tonnes": 258921.94,
+     "worldRank": 10,
+     "worldShare": 0.02243527385340961
+    },
+    {
+     "name": "Millet",
+     "tonnes": 618925,
+     "worldRank": 10,
+     "worldShare": 0.02006069742620868
     }
    ]
   },
@@ -9983,7 +9843,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 1710690.24,
      "worldRank": 26,
      "worldShare": 0.0050033944086180955
@@ -10013,22 +9873,22 @@
      "worldShare": 0.001896757602608823
     },
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 63340.01,
      "worldRank": 15,
      "worldShare": 0.006469870598788227
     },
     {
-     "name": "Game meat, fresh, chilled or frozen",
+     "name": "Game meat",
      "tonnes": 47120.88,
      "worldRank": 12,
      "worldShare": 0.02295247149224275
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 39441.6,
-     "worldRank": 99,
-     "worldShare": 0.00014011721217886198
+     "name": "Mangoes, guavas and mangosteens",
+     "tonnes": 38209.86,
+     "worldRank": 48,
+     "worldShare": 0.0006141895719214002
     }
    ],
    "worldLeading": []
@@ -10067,12 +9927,6 @@
      "worldShare": 0.002927591818420578
     },
     {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 369111.77,
-     "worldRank": 18,
-     "worldShare": 0.009411715576994727
-    },
-    {
      "name": "Oranges",
      "tonnes": 185028.37,
      "worldRank": 34,
@@ -10083,6 +9937,12 @@
      "tonnes": 143676.57,
      "worldRank": 73,
      "worldShare": 0.0011197854602946705
+    },
+    {
+     "name": "Meat of cattle",
+     "tonnes": 94191.44,
+     "worldRank": 72,
+     "worldShare": 0.001350433954513988
     }
    ],
    "worldLeading": [
@@ -10093,7 +9953,7 @@
      "worldShare": 0.10615622200797502
     },
     {
-     "name": "Abaca, manila hemp, raw",
+     "name": "Abaca, manila hemp",
      "tonnes": 1264.15,
      "worldRank": 3,
      "worldShare": 0.011644632152965045
@@ -10116,7 +9976,7 @@
      "worldShare": 0.004665781722302887
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 766836.19,
      "worldRank": 37,
      "worldShare": 0.0022428279624556713
@@ -10126,12 +9986,6 @@
      "tonnes": 501124.73,
      "worldRank": 15,
      "worldShare": 0.011239332425086977
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 375668.94,
-     "worldRank": 44,
-     "worldShare": 0.0013345727499642045
     },
     {
      "name": "Pumpkins, squash and gourds",
@@ -10156,6 +10010,12 @@
      "tonnes": 220000,
      "worldRank": 93,
      "worldShare": 0.00018059349319026087
+    },
+    {
+     "name": "Tomatoes",
+     "tonnes": 175410.28,
+     "worldRank": 74,
+     "worldShare": 0.0009305664925797665
     }
    ],
    "worldLeading": [
@@ -10166,13 +10026,13 @@
      "worldShare": 0.2232708439144048
     },
     {
-     "name": "Kenaf, and other textile bast fibres, raw or retted",
+     "name": "Kenaf, and other textile bast fibres",
      "tonnes": 11935.86,
      "worldRank": 4,
      "worldShare": 0.05186432401365052
     },
     {
-     "name": "Agave fibres, raw, n.e.c.",
+     "name": "Agave fibres,",
      "tonnes": 3574.6,
      "worldRank": 5,
      "worldShare": 0.08915446173860428
@@ -10183,19 +10043,13 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 34693.98,
-     "worldRank": 103,
-     "worldShare": 0.00012325118040315794
-    },
-    {
      "name": "Raw milk of cattle",
      "tonnes": 9195.44,
      "worldRank": 154,
      "worldShare": 0.0000115334061168441
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 6471.79,
      "worldRank": 138,
      "worldShare": 0.00009278682821373241
@@ -10207,7 +10061,7 @@
      "worldShare": 0.0014664697045947892
     },
     {
-     "name": "Beans, dry",
+     "name": "Beans",
      "tonnes": 5009.36,
      "worldRank": 78,
      "worldShare": 0.00016544919939348877
@@ -10229,6 +10083,12 @@
      "tonnes": 2256.36,
      "worldRank": 102,
      "worldShare": 0.00019551087293675966
+    },
+    {
+     "name": "Tomatoes",
+     "tonnes": 1526.63,
+     "worldRank": 142,
+     "worldShare": 0.000008098902325263086
     }
    ],
    "worldLeading": []
@@ -10261,7 +10121,7 @@
      "worldShare": 0.00008274044285704949
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 9310.9,
      "worldRank": 58,
      "worldShare": 0.00014205632298477531
@@ -10293,7 +10153,7 @@
      "worldShare": 0.01411614895907914
     },
     {
-     "name": "Cinnamon and cinnamon-tree flowers, raw",
+     "name": "Cinnamon and cinnamon-tree flowers",
      "tonnes": 33.8,
      "worldRank": 9,
      "worldShare": 0.00013806321571531918
@@ -10378,7 +10238,7 @@
      "worldShare": 0.0630801385775834
     },
     {
-     "name": "Pigeon peas, dry",
+     "name": "Pigeon peas",
      "tonnes": 27825.48,
      "worldRank": 6,
      "worldShare": 0.0059737492801917305
@@ -10395,7 +10255,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 27917780.52,
      "worldRank": 4,
      "worldShare": 0.08165339562280731
@@ -10463,7 +10323,7 @@
      "worldShare": 0.0992212346977155
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 27917780.52,
      "worldRank": 4,
      "worldShare": 0.08165339562280731
@@ -10475,7 +10335,7 @@
      "worldShare": 0.07889372747288659
     },
     {
-     "name": "Cow peas, dry",
+     "name": "Cow peas",
      "tonnes": 324088.49,
      "worldRank": 4,
      "worldShare": 0.03208098603859055
@@ -10487,7 +10347,7 @@
      "worldShare": 0.09696373438733566
     },
     {
-     "name": "Cashew nuts, in shell",
+     "name": "Cashew nuts",
      "tonnes": 218575.53,
      "worldRank": 5,
      "worldShare": 0.05153741616654667
@@ -10504,7 +10364,7 @@
      "worldShare": 0.0007937050777529471
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 674209.86,
      "worldRank": 38,
      "worldShare": 0.0019719162270775505
@@ -10540,15 +10400,15 @@
      "worldShare": 0.0001436539150377075
     },
     {
-     "name": "Other tropical fruits, n.e.c.",
-     "tonnes": 153476.49,
-     "worldRank": 18,
-     "worldShare": 0.006418157539832204
+     "name": "Rice",
+     "tonnes": 135000,
+     "worldRank": 73,
+     "worldShare": 0.0001645893302946528
     }
    ],
    "worldLeading": [
     {
-     "name": "Sisal, raw",
+     "name": "Sisal",
      "tonnes": 12117.95,
      "worldRank": 6,
      "worldShare": 0.05179476570657747
@@ -10589,13 +10449,13 @@
      "worldShare": 0.01649669893289305
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 17985386.2,
      "worldRank": 1,
      "worldShare": 0.27440288597591217
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 15624038,
      "worldRank": 6,
      "worldShare": 0.04569689037872611
@@ -10613,7 +10473,7 @@
      "worldShare": 0.06642379971443053
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 6579353.28,
      "worldRank": 3,
      "worldShare": 0.07022203380488805
@@ -10621,7 +10481,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Cloves (whole stems), raw",
+     "name": "Cloves (whole stems)",
      "tonnes": 147953,
      "worldRank": 1,
      "worldShare": 0.7437028695089062
@@ -10645,13 +10505,13 @@
      "worldShare": 0.2936789851024925
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 17985386.2,
      "worldRank": 1,
      "worldShare": 0.27440288597591217
     },
     {
-     "name": "Vanilla, raw",
+     "name": "Vanilla",
      "tonnes": 1526,
      "worldRank": 2,
      "worldShare": 0.21449032544619892
@@ -10698,7 +10558,7 @@
      "worldShare": 0.001109477623350749
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 141034.44,
      "worldRank": 22,
      "worldShare": 0.00215176126482047
@@ -10728,13 +10588,13 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 7402000,
      "worldRank": 13,
      "worldShare": 0.021649229385087943
     },
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 4953443.22,
      "worldRank": 1,
      "worldShare": 0.5059698704159485
@@ -10750,12 +10610,6 @@
      "tonnes": 1643600,
      "worldRank": 46,
      "worldShare": 0.0008473116989407193
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 1543317.95,
-     "worldRank": 17,
-     "worldShare": 0.005482673336264155
     },
     {
      "name": "Bananas",
@@ -10774,32 +10628,32 @@
      "tonnes": 350300,
      "worldRank": 10,
      "worldShare": 0.023622495448185194
+    },
+    {
+     "name": "Coffee, green",
+     "tonnes": 174900,
+     "worldRank": 13,
+     "worldShare": 0.015498617631859592
     }
    ],
    "worldLeading": [
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 4953443.22,
      "worldRank": 1,
      "worldShare": 0.5059698704159485
     },
     {
-     "name": "Ramie, raw or retted",
+     "name": "Ramie",
      "tonnes": 2680.78,
      "worldRank": 2,
      "worldShare": 0.04614156208804175
     },
     {
-     "name": "Nutmeg, mace, cardamoms, raw",
+     "name": "Nutmeg, mace, cardamoms",
      "tonnes": 9600,
      "worldRank": 4,
      "worldShare": 0.04868187731923506
-    },
-    {
-     "name": "Other stone fruits",
-     "tonnes": 12432.98,
-     "worldRank": 8,
-     "worldShare": 0.020107041177582007
     },
     {
      "name": "Natural rubber in primary forms",
@@ -10893,7 +10747,7 @@
      "worldShare": 0.09359053614451338
     },
     {
-     "name": "Bambara beans, dry",
+     "name": "Bambara beans",
      "tonnes": 27629.07,
      "worldRank": 4,
      "worldShare": 0.11608508100200553
@@ -10922,7 +10776,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 8522790,
      "worldRank": 11,
      "worldShare": 0.024927294746140728
@@ -10946,7 +10800,7 @@
      "worldShare": 0.005371016869419215
     },
     {
-     "name": "Beans, dry",
+     "name": "Beans",
      "tonnes": 628707,
      "worldRank": 11,
      "worldShare": 0.020764941989212627
@@ -10978,19 +10832,13 @@
      "worldShare": 0.040549791557735824
     },
     {
-     "name": "Other pulses n.e.c.",
-     "tonnes": 321692.74,
-     "worldRank": 3,
-     "worldShare": 0.07230298822834937
-    },
-    {
-     "name": "Cashew nuts, in shell",
+     "name": "Cashew nuts",
      "tonnes": 142250,
      "worldRank": 9,
      "worldShare": 0.03354079685722946
     },
     {
-     "name": "Kenaf, and other textile bast fibres, raw or retted",
+     "name": "Kenaf, and other textile bast fibres",
      "tonnes": 3680.78,
      "worldRank": 9,
      "worldShare": 0.015993918037155646
@@ -11013,13 +10861,7 @@
      "worldShare": 0.006185169920416386
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 3759736.25,
-     "worldRank": 7,
-     "worldShare": 0.013356551505968543
-    },
-    {
-     "name": "Beans, dry",
+     "name": "Beans",
      "tonnes": 2392683.08,
      "worldRank": 3,
      "worldShare": 0.07902556414159631
@@ -11047,15 +10889,15 @@
      "tonnes": 1476388.21,
      "worldRank": 9,
      "worldShare": 0.03311274995482486
+    },
+    {
+     "name": "Coconuts",
+     "tonnes": 1329373.91,
+     "worldRank": 7,
+     "worldShare": 0.020282246563328315
     }
    ],
    "worldLeading": [
-    {
-     "name": "Other sugar crops n.e.c.",
-     "tonnes": 471145.42,
-     "worldRank": 1,
-     "worldShare": 0.5286873018343131
-    },
     {
      "name": "Sesame seed",
      "tonnes": 720000,
@@ -11069,13 +10911,13 @@
      "worldShare": 0.11270879039005165
     },
     {
-     "name": "Beans, dry",
+     "name": "Beans",
      "tonnes": 2392683.08,
      "worldRank": 3,
      "worldShare": 0.07902556414159631
     },
     {
-     "name": "Pigeon peas, dry",
+     "name": "Pigeon peas",
      "tonnes": 251614.75,
      "worldRank": 3,
      "worldShare": 0.054018239099491626
@@ -11087,16 +10929,22 @@
      "worldShare": 0.029908358834153537
     },
     {
-     "name": "Chick peas, dry",
+     "name": "Chick peas",
      "tonnes": 419221.11,
      "worldRank": 5,
      "worldShare": 0.024834978868381073
     },
     {
-     "name": "Meat of pigeons and other birds n.e.c., fresh, chilled or frozen",
+     "name": "Meat of pigeons and other birds",
      "tonnes": 33.02,
      "worldRank": 5,
      "worldShare": 0.001898926721096432
+    },
+    {
+     "name": "Meat of geese",
+     "tonnes": 7900,
+     "worldRank": 5,
+     "worldShare": 0.0014611005927383637
     }
    ]
   },
@@ -11104,7 +10952,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 379321.94,
      "worldRank": 5,
      "worldShare": 0.03874587116549732
@@ -11122,7 +10970,7 @@
      "worldShare": 0.0005312462541616321
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 35742.73,
      "worldRank": 106,
      "worldShare": 0.0005124478001294572
@@ -11134,33 +10982,33 @@
      "worldShare": 0.000024672354687847642
     },
     {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 26765.7,
      "worldRank": 102,
      "worldShare": 0.0002472353335369766
     },
     {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 23010.53,
-     "worldRank": 76,
-     "worldShare": 0.0005867289564781542
+     "name": "Wheat",
+     "tonnes": 18328,
+     "worldRank": 95,
+     "worldShare": 0.000022953562675142162
     },
     {
-     "name": "Other pulses n.e.c.",
-     "tonnes": 22872.6,
-     "worldRank": 38,
-     "worldShare": 0.005140797795286719
+     "name": "Potatoes",
+     "tonnes": 14555.56,
+     "worldRank": 125,
+     "worldShare": 0.0000372809422700873
     }
    ],
    "worldLeading": [
     {
-     "name": "Meat of pigeons and other birds n.e.c., fresh, chilled or frozen",
+     "name": "Meat of pigeons and other birds",
      "tonnes": 4904.78,
      "worldRank": 2,
      "worldShare": 0.28206595406115553
     },
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 379321.94,
      "worldRank": 5,
      "worldShare": 0.03874587116549732
@@ -11177,13 +11025,13 @@
      "worldShare": 0.12433354420210614
     },
     {
-     "name": "Cow peas, dry",
+     "name": "Cow peas",
      "tonnes": 2767637.4,
      "worldRank": 2,
      "worldShare": 0.2739638695261318
     },
     {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 2373171.21,
      "worldRank": 7,
      "worldShare": 0.021921032352776138
@@ -11195,7 +11043,7 @@
      "worldShare": 0.02968542257856554
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 1124741.78,
      "worldRank": 35,
      "worldShare": 0.0032896234523388432
@@ -11221,13 +11069,13 @@
    ],
    "worldLeading": [
     {
-     "name": "Cow peas, dry",
+     "name": "Cow peas",
      "tonnes": 2767637.4,
      "worldRank": 2,
      "worldShare": 0.2739638695261318
     },
     {
-     "name": "Bambara beans, dry",
+     "name": "Bambara beans",
      "tonnes": 50570.63,
      "worldRank": 2,
      "worldShare": 0.2124753268883987
@@ -11257,7 +11105,7 @@
      "worldShare": 0.026547039643310507
     },
     {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 2373171.21,
      "worldRank": 7,
      "worldShare": 0.021921032352776138
@@ -11347,7 +11195,7 @@
      "worldShare": 0.009637501969398152
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 14500416.25,
      "worldRank": 3,
      "worldShare": 0.22123272876131034
@@ -11365,27 +11213,27 @@
      "worldShare": 0.040463242889020964
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 5477115.43,
-     "worldRank": 5,
-     "worldShare": 0.01945758145798925
-    },
-    {
-     "name": "Other tropical fruits, n.e.c.",
-     "tonnes": 3228730.96,
-     "worldRank": 3,
-     "worldShare": 0.1350207054840365
-    },
-    {
      "name": "Plantains and cooking bananas",
      "tonnes": 3049366.33,
      "worldRank": 5,
      "worldShare": 0.06839183903124772
+    },
+    {
+     "name": "Pineapples",
+     "tonnes": 2919939.73,
+     "worldRank": 2,
+     "worldShare": 0.0994100372884567
+    },
+    {
+     "name": "Cassava",
+     "tonnes": 2372794.2,
+     "worldRank": 25,
+     "worldShare": 0.00693990352869579
     }
    ],
    "worldLeading": [
     {
-     "name": "Abaca, manila hemp, raw",
+     "name": "Abaca, manila hemp",
      "tonnes": 68527.35,
      "worldRank": 1,
      "worldShare": 0.6312350458153615
@@ -11403,16 +11251,10 @@
      "worldShare": 0.0994100372884567
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 14500416.25,
      "worldRank": 3,
      "worldShare": 0.22123272876131034
-    },
-    {
-     "name": "Other tropical fruits, n.e.c.",
-     "tonnes": 3228730.96,
-     "worldRank": 3,
-     "worldShare": 0.1350207054840365
     },
     {
      "name": "String beans",
@@ -11421,7 +11263,7 @@
      "worldShare": 0.08490434718721436
     },
     {
-     "name": "Agave fibres, raw, n.e.c.",
+     "name": "Agave fibres,",
      "tonnes": 3998.53,
      "worldRank": 4,
      "worldShare": 0.09972774293505887
@@ -11431,6 +11273,12 @@
      "tonnes": 3049366.33,
      "worldRank": 5,
      "worldShare": 0.06839183903124772
+    },
+    {
+     "name": "Eggs from other birds in shell,",
+     "tonnes": 52881.15,
+     "worldRank": 5,
+     "worldShare": 0.008392603577120612
     }
    ]
   },
@@ -11517,7 +11365,7 @@
      "worldShare": 0.015377355054087124
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 1301324.78,
      "worldRank": 31,
      "worldShare": 0.00380609006575508
@@ -11535,7 +11383,7 @@
      "worldShare": 0.0005147621743624178
     },
     {
-     "name": "Beans, dry",
+     "name": "Beans",
      "tonnes": 478344.26,
      "worldRank": 14,
      "worldShare": 0.015798759692150464
@@ -11608,22 +11456,22 @@
      "worldShare": 0.00011094025392674002
     },
     {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 147773.84,
-     "worldRank": 33,
-     "worldShare": 0.003767978874800786
-    },
-    {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 98460.07,
      "worldRank": 53,
      "worldShare": 0.00028797414762250957
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 80687.92,
-     "worldRank": 81,
-     "worldShare": 0.00028664573462818546
+     "name": "Maize (corn)",
+     "tonnes": 69000,
+     "worldRank": 109,
+     "worldShare": 0.00005664068650058182
+    },
+    {
+     "name": "Sorghum",
+     "tonnes": 56000,
+     "worldRank": 46,
+     "worldShare": 0.000871392021757165
     }
    ],
    "worldLeading": [
@@ -11632,18 +11480,6 @@
      "tonnes": 999966.74,
      "worldRank": 2,
      "worldShare": 0.2387883795567911
-    },
-    {
-     "name": "Edible offals of camels and other camelids, fresh, chilled or frozen",
-     "tonnes": 8940.37,
-     "worldRank": 4,
-     "worldShare": 0.09428204138536138
-    },
-    {
-     "name": "Fat of camels",
-     "tonnes": 2692.88,
-     "worldRank": 4,
-     "worldShare": 0.09129935657021887
     },
     {
      "name": "Meat of camels",
@@ -11663,7 +11499,7 @@
      "worldShare": 0.003636406863159243
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 1709494.49,
      "worldRank": 27,
      "worldShare": 0.004999897101668998
@@ -11681,18 +11517,6 @@
      "worldShare": 0.024487998769722026
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 435734.78,
-     "worldRank": 40,
-     "worldShare": 0.0015479580600931439
-    },
-    {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 399656.9,
-     "worldRank": 17,
-     "worldShare": 0.010190563880375378
-    },
-    {
      "name": "Groundnuts, excluding shelled",
      "tonnes": 198419.52,
      "worldRank": 29,
@@ -11703,6 +11527,18 @@
      "tonnes": 175612.33,
      "worldRank": 13,
      "worldShare": 0.02628275141929614
+    },
+    {
+     "name": "Maize (corn)",
+     "tonnes": 157000,
+     "worldRank": 97,
+     "worldShare": 0.00012887808377668616
+    },
+    {
+     "name": "Raw milk of sheep",
+     "tonnes": 134878.27,
+     "worldRank": 17,
+     "worldShare": 0.013742880458776164
     }
    ],
    "worldLeading": [
@@ -11713,16 +11549,10 @@
      "worldShare": 0.024487998769722026
     },
     {
-     "name": "Jute, raw or retted",
+     "name": "Jute",
      "tonnes": 3732.37,
      "worldRank": 7,
      "worldShare": 0.0010081534920464669
-    },
-    {
-     "name": "Other oil seeds, n.e.c.",
-     "tonnes": 51203.16,
-     "worldRank": 8,
-     "worldShare": 0.021130869616363644
     },
     {
      "name": "Melonseed",
@@ -11742,7 +11572,7 @@
      "worldShare": 0.005728260982895573
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 1814800,
      "worldRank": 6,
      "worldShare": 0.027688388335474576
@@ -11778,27 +11608,21 @@
      "worldShare": 0.011467301178947927
     },
     {
-     "name": "Other fibre crops, raw, n.e.c.",
-     "tonnes": 370084.81,
-     "worldRank": 1,
-     "worldShare": 0.5607627431821082
+     "name": "Cassava",
+     "tonnes": 312237,
+     "worldRank": 41,
+     "worldShare": 0.0009132248629440292
     }
    ],
    "worldLeading": [
     {
-     "name": "Other fibre crops, raw, n.e.c.",
-     "tonnes": 370084.81,
-     "worldRank": 1,
-     "worldShare": 0.5607627431821082
-    },
-    {
-     "name": "Coir, raw",
+     "name": "Coir",
      "tonnes": 164502.64,
      "worldRank": 3,
      "worldShare": 0.09277019050732445
     },
     {
-     "name": "Cinnamon and cinnamon-tree flowers, raw",
+     "name": "Cinnamon and cinnamon-tree flowers",
      "tonnes": 20587,
      "worldRank": 4,
      "worldShare": 0.08409193556009693
@@ -11810,7 +11634,7 @@
      "worldShare": 0.046259494109867884
     },
     {
-     "name": "Cloves (whole stems), raw",
+     "name": "Cloves (whole stems)",
      "tonnes": 5813,
      "worldRank": 5,
      "worldShare": 0.029219716940212578
@@ -11822,16 +11646,22 @@
      "worldShare": 0.030388745798621674
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 1814800,
      "worldRank": 6,
      "worldShare": 0.027688388335474576
     },
     {
-     "name": "Nutmeg, mace, cardamoms, raw",
+     "name": "Nutmeg, mace, cardamoms",
      "tonnes": 4058,
      "worldRank": 6,
      "worldShare": 0.02057823522515165
+    },
+    {
+     "name": "Pepper (Piper spp.)",
+     "tonnes": 44467,
+     "worldRank": 7,
+     "worldShare": 0.047639012184560944
     }
    ]
   },
@@ -11863,7 +11693,7 @@
      "worldShare": 0.029251235509135668
     },
     {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 1630176.58,
      "worldRank": 17,
      "worldShare": 0.015057975337109352
@@ -11895,18 +11725,6 @@
      "worldShare": 0.21964543752123722
     },
     {
-     "name": "Edible offals of camels and other camelids, fresh, chilled or frozen",
-     "tonnes": 16459.15,
-     "worldRank": 1,
-     "worldShare": 0.17357248765631295
-    },
-    {
-     "name": "Fat of camels",
-     "tonnes": 3872.74,
-     "worldRank": 2,
-     "worldShare": 0.13130130943961463
-    },
-    {
      "name": "Melonseed",
      "tonnes": 90486.13,
      "worldRank": 2,
@@ -11935,6 +11753,18 @@
      "tonnes": 310644.48,
      "worldRank": 6,
      "worldShare": 0.03148387709217045
+    },
+    {
+     "name": "Edible offal of sheep",
+     "tonnes": 59932.52,
+     "worldRank": 6,
+     "worldShare": 0.030239499734876885
+    },
+    {
+     "name": "Groundnuts, excluding shelled",
+     "tonnes": 1683800,
+     "worldRank": 6,
+     "worldShare": 0.029251235509135668
     }
    ]
   },
@@ -11954,45 +11784,45 @@
      "worldShare": 0.00007558917391309981
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 33023.1,
      "worldRank": 42,
      "worldShare": 0.000503833158938291
     },
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 27292.79,
      "worldRank": 29,
      "worldShare": 0.002787824308520023
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 27081.34,
-     "worldRank": 109,
-     "worldShare": 0.0000962070976549608
-    },
-    {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 17373.21,
      "worldRank": 65,
      "worldShare": 0.000050812835510038326
     },
     {
-     "name": "Other meat of mammals",
-     "tonnes": 17080.04,
-     "worldRank": 12,
-     "worldShare": 0.010888832882224538
-    },
-    {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 10802.77,
      "worldRank": 99,
      "worldShare": 0.00008617590402620576
+    },
+    {
+     "name": "Beans",
+     "tonnes": 10779.49,
+     "worldRank": 68,
+     "worldShare": 0.00035602511905115993
+    },
+    {
+     "name": "Coffee, green",
+     "tonnes": 9522.52,
+     "worldRank": 34,
+     "worldShare": 0.0008438301679344517
     }
    ],
    "worldLeading": [
     {
-     "name": "Cinnamon and cinnamon-tree flowers, raw",
+     "name": "Cinnamon and cinnamon-tree flowers",
      "tonnes": 125.44,
      "worldRank": 6,
      "worldShare": 0.0005123860881458474
@@ -12003,7 +11833,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 1267066.17,
      "worldRank": 32,
      "worldShare": 0.0037058911321824956
@@ -12033,7 +11863,7 @@
      "worldShare": 0.0007150163518796713
     },
     {
-     "name": "Beans, dry",
+     "name": "Beans",
      "tonnes": 238135.07,
      "worldRank": 24,
      "worldShare": 0.007865127816529939
@@ -12045,15 +11875,15 @@
      "worldShare": 0.00021969627643775137
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 144794.67,
-     "worldRank": 70,
-     "worldShare": 0.0005143864726268281
+     "name": "Oil palm fruit",
+     "tonnes": 143129.71,
+     "worldRank": 33,
+     "worldShare": 0.00034184562912610637
     }
    ],
    "worldLeading": [
     {
-     "name": "Bambara beans, dry",
+     "name": "Bambara beans",
      "tonnes": 20279.19,
      "worldRank": 5,
      "worldShare": 0.08520414960782467
@@ -12106,7 +11936,7 @@
      "worldShare": 0.004828873175166146
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 1628999.06,
      "worldRank": 28,
      "worldShare": 0.004764465592817162
@@ -12118,16 +11948,16 @@
      "worldShare": 0.011291906249371075
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 1024855.24,
-     "worldRank": 21,
-     "worldShare": 0.0036408223580102865
-    },
-    {
-     "name": "Beans, dry",
+     "name": "Beans",
      "tonnes": 793122.97,
      "worldRank": 9,
      "worldShare": 0.026195274527501724
+    },
+    {
+     "name": "Potatoes",
+     "tonnes": 461361.34,
+     "worldRank": 69,
+     "worldShare": 0.001181678031088472
     }
    ],
    "worldLeading": [
@@ -12144,25 +11974,19 @@
      "worldShare": 0.03562289472845944
     },
     {
-     "name": "Other meat of mammals",
-     "tonnes": 30556.38,
-     "worldRank": 7,
-     "worldShare": 0.019480242160190973
-    },
-    {
-     "name": "Pigeon peas, dry",
+     "name": "Pigeon peas",
      "tonnes": 13513.61,
      "worldRank": 7,
      "worldShare": 0.0029011868981340763
     },
     {
-     "name": "Beans, dry",
+     "name": "Beans",
      "tonnes": 793122.97,
      "worldRank": 9,
      "worldShare": 0.026195274527501724
     },
     {
-     "name": "Vanilla, raw",
+     "name": "Vanilla",
      "tonnes": 183.11,
      "worldRank": 9,
      "worldShare": 0.025737433481293242
@@ -12172,12 +11996,6 @@
      "tonnes": 414945.47,
      "worldRank": 9,
      "worldShare": 0.012678247135698113
-    },
-    {
-     "name": "Other oil seeds, n.e.c.",
-     "tonnes": 48779.99,
-     "worldRank": 10,
-     "worldShare": 0.020130859278558632
     }
    ]
   },
@@ -12253,22 +12071,10 @@
      "worldShare": 0.005415101813420105
     },
     {
-     "name": "Edible offal of buffalo, fresh, chilled or frozen",
+     "name": "Edible offal of buffalo",
      "tonnes": 6586.86,
      "worldRank": 8,
      "worldShare": 0.005271103825251007
-    },
-    {
-     "name": "Raw hides and skins of buffaloes",
-     "tonnes": 6666.22,
-     "worldRank": 8,
-     "worldShare": 0.004448217675483269
-    },
-    {
-     "name": "Buffalo fat, unrendered",
-     "tonnes": 1428.48,
-     "worldRank": 8,
-     "worldShare": 0.003213465456866029
     },
     {
      "name": "Papayas",
@@ -12277,7 +12083,7 @@
      "worldShare": 0.011418795086244153
     },
     {
-     "name": "Sisal, raw",
+     "name": "Sisal",
      "tonnes": 1183.49,
      "worldRank": 10,
      "worldShare": 0.005058494816868973
@@ -12287,12 +12093,6 @@
   "ATG": {
    "year": 2024,
    "largest": [
-    {
-     "name": "Other tropical fruits, n.e.c.",
-     "tonnes": 6335.77,
-     "worldRank": 48,
-     "worldShare": 0.00026495243666403034
-    },
     {
      "name": "Raw milk of cattle",
      "tonnes": 3102.05,
@@ -12306,7 +12106,7 @@
      "worldShare": 0.000022747922664135552
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 600.06,
      "worldRank": 157,
      "worldShare": 0.000006404494759849879
@@ -12316,12 +12116,6 @@
      "tonnes": 442.12,
      "worldRank": 91,
      "worldShare": 0.000019056071136360103
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 199.6,
-     "worldRank": 174,
-     "worldShare": 7.09083697185227e-7
     },
     {
      "name": "Pumpkins, squash and gourds",
@@ -12334,6 +12128,18 @@
      "tonnes": 151.05,
      "worldRank": 106,
      "worldShare": 0.0000016611617597022186
+    },
+    {
+     "name": "Yams",
+     "tonnes": 146.45,
+     "worldRank": 54,
+     "worldShare": 0.00000158422499260919
+    },
+    {
+     "name": "Cucumbers and gherkins",
+     "tonnes": 143.53,
+     "worldRank": 128,
+     "worldShare": 0.0000016339186269028803
     }
    ],
    "worldLeading": []
@@ -12372,22 +12178,22 @@
      "worldShare": 0.00006758153875268004
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 5597.65,
      "worldRank": 122,
      "worldShare": 0.00005974422573154964
     },
     {
-     "name": "Edible offal of sheep, fresh, chilled or frozen",
+     "name": "Edible offal of sheep",
      "tonnes": 4723,
      "worldRank": 49,
      "worldShare": 0.0023830327382833817
     },
     {
-     "name": "Raw hides and skins of sheep or lambs",
-     "tonnes": 4438.48,
-     "worldRank": 50,
-     "worldShare": 0.002038785523454214
+     "name": "Eggplants (aubergines)",
+     "tonnes": 2600,
+     "worldRank": 67,
+     "worldShare": 0.00004518587288494772
     }
    ],
    "worldLeading": []
@@ -12402,7 +12208,7 @@
      "worldShare": 0.0006866750930816732
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 120250,
      "worldRank": 51,
      "worldShare": 0.00035170492212332143
@@ -12414,25 +12220,19 @@
      "worldShare": 0.0037413958789614013
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 52807.55,
-     "worldRank": 93,
-     "worldShare": 0.000187600064094658
-    },
-    {
      "name": "Meat of chickens",
      "tonnes": 45553,
      "worldRank": 110,
      "worldShare": 0.00035503065721017094
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 25000,
      "worldRank": 43,
      "worldShare": 0.0003814247897216577
     },
     {
-     "name": "Ginger, raw",
+     "name": "Ginger",
      "tonnes": 19537.5,
      "worldRank": 17,
      "worldShare": 0.003997543500056061
@@ -12442,6 +12242,12 @@
      "tonnes": 13388.3,
      "worldRank": 84,
      "worldShare": 0.00009603289693701735
+    },
+    {
+     "name": "Sweet potatoes",
+     "tonnes": 12731,
+     "worldRank": 66,
+     "worldShare": 0.00014000827780714296
     }
    ],
    "worldLeading": []
@@ -12450,19 +12256,13 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 91411.21,
      "worldRank": 29,
      "worldShare": 0.001394660062098092
     },
     {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 7389.7,
-     "worldRank": 91,
-     "worldShare": 0.00018842464600713746
-    },
-    {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 3690.31,
      "worldRank": 73,
      "worldShare": 0.000010793348783042946
@@ -12474,7 +12274,7 @@
      "worldShare": 0.0000018413460692342728
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 3071,
      "worldRank": 132,
      "worldShare": 0.000032777061306367665
@@ -12486,21 +12286,27 @@
      "worldShare": 0.0000847733186085327
     },
     {
-     "name": "Other tropical fruits, n.e.c.",
-     "tonnes": 1430.31,
-     "worldRank": 62,
-     "worldShare": 0.00005981342752103205
-    },
-    {
      "name": "Watermelons",
      "tonnes": 1203.93,
      "worldRank": 105,
      "worldShare": 0.000011470432383725699
+    },
+    {
+     "name": "Meat of pig",
+     "tonnes": 875.93,
+     "worldRank": 143,
+     "worldShare": 0.000006987472621714097
+    },
+    {
+     "name": "Cucumbers and gherkins",
+     "tonnes": 678.05,
+     "worldRank": 121,
+     "worldShare": 0.000007718794154333574
     }
    ],
    "worldLeading": [
     {
-     "name": "Vanilla, raw",
+     "name": "Vanilla",
      "tonnes": 24.41,
      "worldRank": 10,
      "worldShare": 0.0034310018637888043
@@ -12517,7 +12323,7 @@
      "worldShare": 0.004486583225809795
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 3080966.24,
      "worldRank": 20,
      "worldShare": 0.009011151696497152
@@ -12553,7 +12359,7 @@
      "worldShare": 0.0021302013701304423
     },
     {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 779442.73,
      "worldRank": 26,
      "worldShare": 0.007199728881535755
@@ -12626,7 +12432,7 @@
      "worldShare": 0.000017698481617079885
     },
     {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 6130,
      "worldRank": 119,
      "worldShare": 0.000056622938857629967
@@ -12674,7 +12480,7 @@
      "worldShare": 0.0019263047545596402
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 1433575.36,
      "worldRank": 29,
      "worldShare": 0.0041928940569373185
@@ -12736,7 +12542,7 @@
      "worldShare": 0.029219156260425122
     },
     {
-     "name": "Cow peas, dry",
+     "name": "Cow peas",
      "tonnes": 212909.14,
      "worldRank": 8,
      "worldShare": 0.021075525230249068
@@ -12759,7 +12565,7 @@
      "worldShare": 0.0005190409403611166
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 121119.02,
      "worldRank": 24,
      "worldShare": 0.0018479118693917303
@@ -12783,22 +12589,22 @@
      "worldShare": 0.000487419785351533
     },
     {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 27259.36,
-     "worldRank": 71,
-     "worldShare": 0.0006950668171077476
+     "name": "Cocoa beans",
+     "tonnes": 4200,
+     "worldRank": 27,
+     "worldShare": 0.0008025612665095523
     },
     {
-     "name": "Other pulses n.e.c.",
-     "tonnes": 6644.88,
-     "worldRank": 55,
-     "worldShare": 0.0014934893476887111
+     "name": "Cassava",
+     "tonnes": 3215.67,
+     "worldRank": 74,
+     "worldShare": 0.00000940513070207319
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 5973.05,
-     "worldRank": 140,
-     "worldShare": 0.00002121940068873858
+     "name": "Raw milk of cattle",
+     "tonnes": 3071.51,
+     "worldRank": 165,
+     "worldShare": 0.000003852449934092096
     }
    ],
    "worldLeading": []
@@ -12819,12 +12625,6 @@
      "worldShare": 0.002187432030761907
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 20893.35,
-     "worldRank": 118,
-     "worldShare": 0.0000742241175580409
-    },
-    {
      "name": "Bananas",
      "tonnes": 10540.86,
      "worldRank": 87,
@@ -12843,16 +12643,22 @@
      "worldShare": 0.000046736181782098625
     },
     {
-     "name": "Other tropical fruits, n.e.c.",
-     "tonnes": 4990.87,
-     "worldRank": 49,
-     "worldShare": 0.0002087107277526503
-    },
-    {
      "name": "Oranges",
      "tonnes": 3697.05,
      "worldRank": 93,
      "worldShare": 0.00005497917668571901
+    },
+    {
+     "name": "Coconuts",
+     "tonnes": 2904.61,
+     "worldRank": 69,
+     "worldShare": 0.00004431561033893697
+    },
+    {
+     "name": "Mangoes, guavas and mangosteens",
+     "tonnes": 2666.45,
+     "worldRank": 73,
+     "worldShare": 0.00004286081613619672
     }
    ],
    "worldLeading": []
@@ -12861,7 +12667,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 4448391.32,
      "worldRank": 18,
      "worldShare": 0.013010570667564732
@@ -12923,7 +12729,7 @@
      "worldShare": 0.03627624558812473
     },
     {
-     "name": "Cashew nuts, in shell",
+     "name": "Cashew nuts",
      "tonnes": 212623.56,
      "worldRank": 6,
      "worldShare": 0.05013401499487479
@@ -12941,19 +12747,19 @@
      "worldShare": 0.01752845531756368
     },
     {
-     "name": "Bambara beans, dry",
+     "name": "Bambara beans",
      "tonnes": 3243.3,
      "worldRank": 8,
      "worldShare": 0.013626906125099562
     },
     {
-     "name": "Pigeon peas, dry",
+     "name": "Pigeon peas",
      "tonnes": 12696.71,
      "worldRank": 8,
      "worldShare": 0.002725809661623201
     },
     {
-     "name": "Cow peas, dry",
+     "name": "Cow peas",
      "tonnes": 184466,
      "worldRank": 9,
      "worldShare": 0.01825998563106837
@@ -12964,22 +12770,16 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 106245.48,
      "worldRank": 12,
      "worldShare": 0.010852453406719427
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 64888.95,
      "worldRank": 87,
      "worldShare": 0.0009303206464702148
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 44857.96,
-     "worldRank": 97,
-     "worldShare": 0.00015935895854201916
     },
     {
      "name": "Sorghum",
@@ -12988,7 +12788,7 @@
      "worldShare": 0.00046681715451276696
     },
     {
-     "name": "Game meat, fresh, chilled or frozen",
+     "name": "Game meat",
      "tonnes": 27967.39,
      "worldRank": 18,
      "worldShare": 0.013622850882399373
@@ -13010,6 +12810,12 @@
      "tonnes": 18000,
      "worldRank": 126,
      "worldShare": 0.000014775831261021344
+    },
+    {
+     "name": "Raw milk of goats",
+     "tonnes": 11000,
+     "worldRank": 75,
+     "worldShare": 0.0005383351931492888
     }
    ],
    "worldLeading": []
@@ -13024,22 +12830,10 @@
      "worldShare": 0.0002259794722559977
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 10040.4,
-     "worldRank": 132,
-     "worldShare": 0.000035668757280654076
-    },
-    {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 9541.46,
      "worldRank": 115,
      "worldShare": 0.00010183686726546884
-    },
-    {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 8633.97,
-     "worldRank": 89,
-     "worldShare": 0.00022015139192203262
     },
     {
      "name": "Rice",
@@ -13064,6 +12858,18 @@
      "tonnes": 1716.11,
      "worldRank": 109,
      "worldShare": 0.000019535874693891883
+    },
+    {
+     "name": "Pineapples",
+     "tonnes": 1239.79,
+     "worldRank": 73,
+     "worldShare": 0.00004220894317221257
+    },
+    {
+     "name": "Meat of cattle",
+     "tonnes": 986.11,
+     "worldRank": 164,
+     "worldShare": 0.000014137977154673384
     }
    ],
    "worldLeading": []
@@ -13084,7 +12890,7 @@
      "worldShare": 0.0000553850902155379
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 6696.78,
      "worldRank": 61,
      "worldShare": 0.0001021727161324881
@@ -13096,13 +12902,7 @@
      "worldShare": 0.0002851218941170688
     },
     {
-     "name": "Other pulses n.e.c.",
-     "tonnes": 4947.74,
-     "worldRank": 60,
-     "worldShare": 0.0011120437066031808
-    },
-    {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 4947,
      "worldRank": 122,
      "worldShare": 0.00004569554298999925
@@ -13114,10 +12914,16 @@
      "worldShare": 0.000005784613788017212
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 4385,
-     "worldRank": 148,
-     "worldShare": 0.000015577815692170445
+     "name": "Bananas",
+     "tonnes": 3903,
+     "worldRank": 92,
+     "worldShare": 0.00002799581700030465
+    },
+    {
+     "name": "Meat of pig",
+     "tonnes": 2564.01,
+     "worldRank": 125,
+     "worldShare": 0.000020453631770576604
     }
    ],
    "worldLeading": []
@@ -13126,7 +12932,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 1212522.05,
      "worldRank": 33,
      "worldShare": 0.0035463615232271106
@@ -13168,7 +12974,7 @@
      "worldShare": 0.00006424868291112893
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 103630.23,
      "worldRank": 70,
      "worldShare": 0.0014857590170199557
@@ -13193,7 +12999,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 102594.84,
      "worldRank": 57,
      "worldShare": 0.0008184200057414844
@@ -13211,34 +13017,34 @@
      "worldShare": 0.0004169185515331766
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 10313.51,
-     "worldRank": 130,
-     "worldShare": 0.000036638986982749554
-    },
-    {
-     "name": "Game meat, fresh, chilled or frozen",
+     "name": "Game meat",
      "tonnes": 8156.7,
      "worldRank": 28,
      "worldShare": 0.003973109674963125
     },
     {
-     "name": "Edible offal of pigs, fresh, chilled or frozen",
+     "name": "Edible offal of pigs",
      "tonnes": 8147.24,
      "worldRank": 36,
      "worldShare": 0.0009922829431423593
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 5802.01,
      "worldRank": 140,
      "worldShare": 0.00008318411214893523
     },
     {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 5222.27,
-     "worldRank": 100,
-     "worldShare": 0.00013315890714152046
+     "name": "Onions and shallots, green",
+     "tonnes": 4754.59,
+     "worldRank": 31,
+     "worldShare": 0.0008525692928826768
+    },
+    {
+     "name": "Lettuce and chicory",
+     "tonnes": 4245.9,
+     "worldRank": 65,
+     "worldShare": 0.0001504178789459151
     }
    ],
    "worldLeading": []
@@ -13247,7 +13053,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 4970.53,
      "worldRank": 113,
      "worldShare": 0.00003965093362529948
@@ -13259,45 +13065,45 @@
      "worldShare": 0.000023609113942752264
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 760.51,
      "worldRank": 169,
      "worldShare": 0.000010903522939530737
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 425,
      "worldRank": 160,
      "worldShare": 0.000004536063515208811
     },
     {
-     "name": "Edible offal of pigs, fresh, chilled or frozen",
+     "name": "Edible offal of pigs",
      "tonnes": 364.87,
      "worldRank": 84,
      "worldShare": 0.00004443888696839085
     },
     {
-     "name": "Fat of pigs",
-     "tonnes": 357.99,
-     "worldRank": 85,
-     "worldShare": 0.0000314831191949899
-    },
-    {
-     "name": "Pepper (Piper spp.), raw",
+     "name": "Pepper (Piper spp.)",
      "tonnes": 226.12,
      "worldRank": 35,
      "worldShare": 0.00024225006038574497
     },
     {
-     "name": "Edible offal of cattle, fresh, chilled or frozen",
+     "name": "Edible offal of cattle",
      "tonnes": 119.85,
      "worldRank": 141,
      "worldShare": 0.000012362468249873015
+    },
+    {
+     "name": "Meat of geese",
+     "tonnes": 60.58,
+     "worldRank": 24,
+     "worldShare": 0.000011204237203555705
     }
    ],
    "worldLeading": [
     {
-     "name": "Meat of pigeons and other birds n.e.c., fresh, chilled or frozen",
+     "name": "Meat of pigeons and other birds",
      "tonnes": 8.64,
      "worldRank": 6,
      "worldShare": 0.000496872406731471
@@ -13308,7 +13114,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 106671.28,
      "worldRank": 26,
      "worldShare": 0.0016274828217336028
@@ -13320,7 +13126,7 @@
      "worldShare": 0.0005740373354188062
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 58917.32,
      "worldRank": 57,
      "worldShare": 0.0001723202614745514
@@ -13358,13 +13164,13 @@
    ],
    "worldLeading": [
     {
-     "name": "Cloves (whole stems), raw",
+     "name": "Cloves (whole stems)",
      "tonnes": 7767.46,
      "worldRank": 4,
      "worldShare": 0.039044036219580865
     },
     {
-     "name": "Vanilla, raw",
+     "name": "Vanilla",
      "tonnes": 203,
      "worldRank": 7,
      "worldShare": 0.0285331166877971
@@ -13375,16 +13181,10 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 1767.92,
      "worldRank": 79,
      "worldShare": 0.000026973140569788524
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 1655.33,
-     "worldRank": 159,
-     "worldShare": 0.0000058805987798678445
     },
     {
      "name": "Papayas",
@@ -13393,7 +13193,7 @@
      "worldShare": 0.00003962041787722904
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 311.57,
      "worldRank": 157,
      "worldShare": 0.000002485457564813925
@@ -13411,16 +13211,22 @@
      "worldShare": 0.0000014883947232635357
     },
     {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 263.2,
-     "worldRank": 133,
-     "worldShare": 0.0000067111475200723404
-    },
-    {
      "name": "Mangoes, guavas and mangosteens",
      "tonnes": 254.18,
      "worldRank": 94,
      "worldShare": 0.0000040857178066337205
+    },
+    {
+     "name": "Watermelons",
+     "tonnes": 64.04,
+     "worldRank": 123,
+     "worldShare": 6.10140531304805e-7
+    },
+    {
+     "name": "Meat of chickens",
+     "tonnes": 49.01,
+     "worldRank": 185,
+     "worldShare": 3.819737999664232e-7
     }
    ],
    "worldLeading": []
@@ -13435,7 +13241,7 @@
      "worldShare": 0.0011261110696788445
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 77190.03,
      "worldRank": 56,
      "worldShare": 0.0002257639375455039
@@ -13453,7 +13259,7 @@
      "worldShare": 0.0000964011404063416
     },
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 39779.13,
      "worldRank": 24,
      "worldShare": 0.0040632425481520245
@@ -13471,7 +13277,7 @@
      "worldShare": 0.000357500560566568
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 2193.36,
      "worldRank": 76,
      "worldShare": 0.000033464075071355806
@@ -13479,7 +13285,7 @@
    ],
    "worldLeading": [
     {
-     "name": "Abaca, manila hemp, raw",
+     "name": "Abaca, manila hemp",
      "tonnes": 232.45,
      "worldRank": 5,
      "worldShare": 0.002141197440142961
@@ -13508,31 +13314,19 @@
      "worldShare": 0.0000547152474891623
     },
     {
-     "name": "Raw hides and skins of sheep or lambs",
-     "tonnes": 123.97,
-     "worldRank": 110,
-     "worldShare": 0.00005694477418905097
-    },
-    {
-     "name": "Edible offal of sheep, fresh, chilled or frozen",
+     "name": "Edible offal of sheep",
      "tonnes": 114.93,
      "worldRank": 107,
      "worldShare": 0.000057988980015013566
     },
     {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 77,
      "worldRank": 181,
      "worldShare": 0.0000011039582205939
     },
     {
-     "name": "Sheep fat, unrendered",
-     "tonnes": 30.99,
-     "worldRank": 105,
-     "worldShare": 0.000048301028091824945
-    },
-    {
-     "name": "Edible offal of cattle, fresh, chilled or frozen",
+     "name": "Edible offal of cattle",
      "tonnes": 12.13,
      "worldRank": 154,
      "worldShare": 0.0000012512035033037937
@@ -13556,7 +13350,7 @@
      "worldShare": 0.00794775032059763
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 306211.73,
      "worldRank": 42,
      "worldShare": 0.0008956022673837631
@@ -13580,16 +13374,16 @@
      "worldShare": 0.0048791786185928
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 51227.22,
-     "worldRank": 94,
-     "worldShare": 0.00018198590457976457
-    },
-    {
      "name": "Maize (corn)",
      "tonnes": 45975.52,
      "worldRank": 114,
      "worldShare": 0.000037740362536539554
+    },
+    {
+     "name": "Groundnuts, excluding shelled",
+     "tonnes": 32474.79,
+     "worldRank": 44,
+     "worldShare": 0.0005641571032187456
     }
    ],
    "worldLeading": []
@@ -13622,7 +13416,7 @@
      "worldShare": 0.001307182497393054
     },
     {
-     "name": "Cashew nuts, in shell",
+     "name": "Cashew nuts",
      "tonnes": 36016.99,
      "worldRank": 17,
      "worldShare": 0.008492362355000806
@@ -13640,10 +13434,10 @@
      "worldShare": 0.000021192950151297477
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 13609.31,
-     "worldRank": 126,
-     "worldShare": 0.00004834739404278498
+     "name": "Cassava",
+     "tonnes": 12212.4,
+     "worldRank": 67,
+     "worldShare": 0.00003571859618244366
     }
    ],
    "worldLeading": [
@@ -13671,13 +13465,13 @@
      "worldShare": 0.002673947023894132
     },
     {
-     "name": "Cashew nuts, in shell",
+     "name": "Cashew nuts",
      "tonnes": 90229.3,
      "worldRank": 12,
      "worldShare": 0.0212749569200001
     },
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 87573.79,
      "worldRank": 13,
      "worldShare": 0.008945232075988848
@@ -13695,13 +13489,13 @@
      "worldShare": 0.0012829617686044414
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 56558.64,
      "worldRank": 58,
      "worldShare": 0.00016542163889065258
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 51175.35,
      "worldRank": 36,
      "worldShare": 0.0007807818845072894
@@ -13731,7 +13525,7 @@
      "worldShare": 0.003153047964023703
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 99453,
      "worldRank": 52,
      "worldShare": 0.00029087825047759407
@@ -13774,7 +13568,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 606958.45,
      "worldRank": 39,
      "worldShare": 0.001775220577042344
@@ -13810,16 +13604,16 @@
      "worldShare": 0.008759812043160882
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 97464.31,
-     "worldRank": 79,
-     "worldShare": 0.0003462442549018391
-    },
-    {
      "name": "Plantains and cooking bananas",
      "tonnes": 50561.18,
      "worldRank": 30,
      "worldShare": 0.0011339969388951513
+    },
+    {
+     "name": "Cocoa beans",
+     "tonnes": 30000,
+     "worldRank": 16,
+     "worldShare": 0.0057325804750682306
     }
    ],
    "worldLeading": []
@@ -13846,19 +13640,13 @@
      "worldShare": 0.012490490884612388
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 842150.86,
      "worldRank": 16,
      "worldShare": 0.008988352447876996
     },
     {
-     "name": "Other tropical fruits, n.e.c.",
-     "tonnes": 704526.63,
-     "worldRank": 9,
-     "worldShare": 0.02946225120438364
-    },
-    {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 673553.37,
      "worldRank": 11,
      "worldShare": 0.010276398100742556
@@ -13870,10 +13658,16 @@
      "worldShare": 0.017596970336779753
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 440908.34,
-     "worldRank": 39,
-     "worldShare": 0.0015663372537424907
+     "name": "Natural rubber in primary forms",
+     "tonnes": 386512,
+     "worldRank": 8,
+     "worldShare": 0.026064453213442636
+    },
+    {
+     "name": "Bananas",
+     "tonnes": 335443.98,
+     "worldRank": 44,
+     "worldShare": 0.0024061051186097496
     }
    ],
    "worldLeading": [
@@ -13890,25 +13684,19 @@
      "worldShare": 0.18258276223527986
     },
     {
-     "name": "Other oil seeds, n.e.c.",
-     "tonnes": 106432.11,
-     "worldRank": 4,
-     "worldShare": 0.04392312973270542
-    },
-    {
      "name": "String beans",
      "tonnes": 77774.69,
      "worldRank": 5,
      "worldShare": 0.06517031889767798
     },
     {
-     "name": "Coir, raw",
+     "name": "Coir",
      "tonnes": 21670.98,
      "worldRank": 6,
      "worldShare": 0.01222120777563459
     },
     {
-     "name": "Kenaf, and other textile bast fibres, raw or retted",
+     "name": "Kenaf, and other textile bast fibres",
      "tonnes": 5620,
      "worldRank": 7,
      "worldShare": 0.024420318347962856
@@ -13924,6 +13712,12 @@
      "tonnes": 386512,
      "worldRank": 8,
      "worldShare": 0.026064453213442636
+    },
+    {
+     "name": "Cloves (whole stems)",
+     "tonnes": 225.96,
+     "worldRank": 8,
+     "worldShare": 0.0011358140787563107
     }
    ]
   },
@@ -13955,7 +13749,7 @@
      "worldShare": 0.00009754035878552901
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 14330,
      "worldRank": 106,
      "worldShare": 0.00015294538864221708
@@ -13973,7 +13767,7 @@
      "worldShare": 0.00003500713560722495
     },
     {
-     "name": "Onions and shallots, dry (excluding dehydrated)",
+     "name": "Onions and shallots (excluding dehydrated)",
      "tonnes": 13270.1,
      "worldRank": 112,
      "worldShare": 0.00012257619264839076
@@ -13985,22 +13779,16 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 95144.15,
      "worldRank": 28,
      "worldShare": 0.0014516134962798343
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 8668.01,
      "worldRank": 69,
      "worldShare": 0.0000253520314512613
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 3617.64,
-     "worldRank": 152,
-     "worldShare": 0.00001285175123389361
     },
     {
      "name": "Sweet potatoes",
@@ -14015,7 +13803,7 @@
      "worldShare": 0.000014643182314486787
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 1054.57,
      "worldRank": 140,
      "worldShare": 0.000008412520409942616
@@ -14027,10 +13815,16 @@
      "worldShare": 0.000006939064968910355
     },
     {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 279.38,
-     "worldRank": 132,
-     "worldShare": 0.0000071237097042470004
+     "name": "Meat of cattle",
+     "tonnes": 252.21,
+     "worldRank": 176,
+     "worldShare": 0.0000036159649716362012
+    },
+    {
+     "name": "Hen eggs in shell",
+     "tonnes": 240,
+     "worldRank": 165,
+     "worldShare": 0.0000025615417497649755
     }
    ],
    "worldLeading": []
@@ -14039,16 +13833,10 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 18261.79,
      "worldRank": 47,
      "worldShare": 0.00027861997642764287
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 8023.85,
-     "worldRank": 135,
-     "worldShare": 0.00002850491595019882
     },
     {
      "name": "Maize (corn)",
@@ -14057,25 +13845,19 @@
      "worldShare": 0.000006014132719017213
     },
     {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 5363.91,
-     "worldRank": 98,
-     "worldShare": 0.00013677048364130407
-    },
-    {
-     "name": "Meat of cattle with the bone",
+     "name": "Meat of cattle",
      "tonnes": 2983.69,
      "worldRank": 148,
      "worldShare": 0.000042777520820828746
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 2976.08,
      "worldRank": 119,
      "worldShare": 0.000023740798374334582
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 2730,
      "worldRank": 136,
      "worldShare": 0.000029137537403576594
@@ -14085,6 +13867,18 @@
      "tonnes": 2211.17,
      "worldRank": 98,
      "worldShare": 0.000015860494664761373
+    },
+    {
+     "name": "Potatoes",
+     "tonnes": 2104.93,
+     "worldRank": 138,
+     "worldShare": 0.000005391326325649777
+    },
+    {
+     "name": "Yams",
+     "tonnes": 1976.85,
+     "worldRank": 46,
+     "worldShare": 0.000021384603459470654
     }
    ],
    "worldLeading": []
@@ -14099,7 +13893,7 @@
      "worldShare": 0.7066220210392662
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 62624946.19,
      "worldRank": 1,
      "worldShare": 0.18316425632208852
@@ -14129,16 +13923,16 @@
      "worldShare": 0.4726221135027681
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 7062625.73,
-     "worldRank": 4,
-     "worldShare": 0.025090144110540648
-    },
-    {
      "name": "Bananas",
      "tonnes": 6907142.4,
      "worldRank": 6,
      "worldShare": 0.04954422101599925
+    },
+    {
+     "name": "Sorghum",
+     "tonnes": 6500000,
+     "worldRank": 2,
+     "worldShare": 0.1011437168110995
     }
    ],
    "worldLeading": [
@@ -14173,22 +13967,22 @@
      "worldShare": 0.4318458436584982
     },
     {
-     "name": "Cow peas, dry",
+     "name": "Cow peas",
      "tonnes": 4287630.86,
      "worldRank": 1,
      "worldShare": 0.42442551958043934
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 62624946.19,
      "worldRank": 1,
      "worldShare": 0.18316425632208852
     },
     {
-     "name": "Other citrus fruit, n.e.c.",
-     "tonnes": 4196845.49,
+     "name": "Ginger",
+     "tonnes": 768922.05,
      "worldRank": 2,
-     "worldShare": 0.31327106039231717
+     "worldShare": 0.15732818134496643
     }
    ]
   },
@@ -14196,7 +13990,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 4759.35,
      "worldRank": 65,
      "worldShare": 0.00007261336291847087
@@ -14208,22 +14002,10 @@
      "worldShare": 0.00016322336551396403
     },
     {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 500.29,
-     "worldRank": 127,
-     "worldShare": 0.00001275653492711623
-    },
-    {
      "name": "Sweet potatoes",
      "tonnes": 251.87,
      "worldRank": 103,
      "worldShare": 0.000002769922624403825
-    },
-    {
-     "name": "Other tropical fruits, n.e.c.",
-     "tonnes": 226.69,
-     "worldRank": 77,
-     "worldShare": 0.000009479837157499253
     },
     {
      "name": "Yams",
@@ -14232,16 +14014,28 @@
      "worldShare": 0.000001779156603171277
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 148.08,
-     "worldRank": 175,
-     "worldShare": 5.26057684765473e-7
-    },
-    {
      "name": "Lemons and limes",
      "tonnes": 109.1,
      "worldRank": 100,
      "worldShare": 0.0000047023825227921986
+    },
+    {
+     "name": "Bananas",
+     "tonnes": 82.28,
+     "worldRank": 115,
+     "worldShare": 5.901859653561534e-7
+    },
+    {
+     "name": "Meat of pig",
+     "tonnes": 69.17,
+     "worldRank": 167,
+     "worldShare": 5.517832261070681e-7
+    },
+    {
+     "name": "Raw milk of cattle",
+     "tonnes": 58.94,
+     "worldRank": 182,
+     "worldShare": 7.3925658427089e-8
     }
    ],
    "worldLeading": []
@@ -14262,16 +14056,10 @@
      "worldShare": 0.009129514251834612
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 1250137.89,
      "worldRank": 8,
      "worldShare": 0.019073343272653073
-    },
-    {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 1130830.09,
-     "worldRank": 9,
-     "worldShare": 0.0288342232299646
     },
     {
      "name": "Sweet potatoes",
@@ -14280,7 +14068,7 @@
      "worldShare": 0.008054759692736535
     },
     {
-     "name": "Game meat, fresh, chilled or frozen",
+     "name": "Game meat",
      "tonnes": 443985.26,
      "worldRank": 1,
      "worldShare": 0.21626419165189584
@@ -14292,15 +14080,21 @@
      "worldShare": 0.004165184205187688
     },
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 369648.5,
      "worldRank": 6,
      "worldShare": 0.03775777683072942
+    },
+    {
+     "name": "Sugar cane",
+     "tonnes": 306329.68,
+     "worldRank": 68,
+     "worldShare": 0.0001579196407865459
     }
    ],
    "worldLeading": [
     {
-     "name": "Game meat, fresh, chilled or frozen",
+     "name": "Game meat",
      "tonnes": 443985.26,
      "worldRank": 1,
      "worldShare": 0.21626419165189584
@@ -14312,19 +14106,13 @@
      "worldShare": 0.1632140830319862
     },
     {
-     "name": "Other berries and fruits of the genus vaccinium n.e.c.",
-     "tonnes": 109229.54,
-     "worldRank": 3,
-     "worldShare": 0.1011651537026815
-    },
-    {
-     "name": "Vanilla, raw",
+     "name": "Vanilla",
      "tonnes": 492.92,
      "worldRank": 4,
      "worldShare": 0.06928346737807364
     },
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 369648.5,
      "worldRank": 6,
      "worldShare": 0.03775777683072942
@@ -14342,10 +14130,16 @@
      "worldShare": 0.008390489162995288
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 1250137.89,
      "worldRank": 8,
      "worldShare": 0.019073343272653073
+    },
+    {
+     "name": "Yams",
+     "tonnes": 385040.78,
+     "worldRank": 9,
+     "worldShare": 0.004165184205187688
     }
    ]
   },
@@ -14353,40 +14147,22 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 3385.51,
      "worldRank": 68,
      "worldShare": 0.000051652697594022776
     },
     {
-     "name": "Other tropical fruits, n.e.c.",
-     "tonnes": 1900.28,
-     "worldRank": 57,
-     "worldShare": 0.00007946687085293873
-    },
-    {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 480.88,
      "worldRank": 52,
      "worldShare": 0.00004911952766577212
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 305.97,
-     "worldRank": 173,
-     "worldShare": 0.0000010869656253895988
-    },
-    {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 300,
      "worldRank": 162,
      "worldShare": 0.0000032019271872062193
-    },
-    {
-     "name": "Other pulses n.e.c.",
-     "tonnes": 241.04,
-     "worldRank": 92,
-     "worldShare": 0.00005417564686900093
     },
     {
      "name": "Sweet potatoes",
@@ -14399,6 +14175,24 @@
      "tonnes": 151.35,
      "worldRank": 120,
      "worldShare": 0.000001441985780964744
+    },
+    {
+     "name": "Tomatoes",
+     "tonnes": 114.89,
+     "worldRank": 163,
+     "worldShare": 6.095012466344012e-7
+    },
+    {
+     "name": "Cucumbers and gherkins",
+     "tonnes": 98.22,
+     "worldRank": 130,
+     "worldShare": 0.0000011181180766000202
+    },
+    {
+     "name": "Carrots and turnips",
+     "tonnes": 73.2,
+     "worldRank": 125,
+     "worldShare": 0.0000016212926389329844
     }
    ],
    "worldLeading": []
@@ -14407,22 +14201,10 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 11125.76,
      "worldRank": 55,
      "worldShare": 0.0001697456267397452
-    },
-    {
-     "name": "Other tropical fruits, n.e.c.",
-     "tonnes": 3719.49,
-     "worldRank": 50,
-     "worldShare": 0.00015554351541288496
-    },
-    {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 3460.28,
-     "worldRank": 107,
-     "worldShare": 0.00008823119126427021
     },
     {
      "name": "Bananas",
@@ -14437,7 +14219,7 @@
      "worldShare": 0.000043650237641141314
     },
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 1621.62,
      "worldRank": 49,
      "worldShare": 0.00016564051000950213
@@ -14449,10 +14231,22 @@
      "worldShare": 0.000011080513592129434
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 1364.97,
-     "worldRank": 161,
-     "worldShare": 0.000004849088046828253
+     "name": "Cassava",
+     "tonnes": 1305.24,
+     "worldRank": 80,
+     "worldShare": 0.000003817541227045689
+    },
+    {
+     "name": "Hen eggs in shell",
+     "tonnes": 1080.78,
+     "worldRank": 152,
+     "worldShare": 0.000011535262884629125
+    },
+    {
+     "name": "Raw milk of cattle",
+     "tonnes": 1031.42,
+     "worldRank": 171,
+     "worldShare": 0.0000012936613948908745
     }
    ],
    "worldLeading": []
@@ -14461,7 +14255,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 64660.58,
      "worldRank": 35,
      "worldShare": 0.000986525925191217
@@ -14477,12 +14271,6 @@
      "tonnes": 18737.41,
      "worldRank": 27,
      "worldShare": 0.001029065653167902
-    },
-    {
-     "name": "Other tropical fruits, n.e.c.",
-     "tonnes": 8579.44,
-     "worldRank": 44,
-     "worldShare": 0.0003587793643413269
     },
     {
      "name": "Pineapples",
@@ -14503,10 +14291,16 @@
      "worldShare": 0.00022478205284965513
     },
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 3014.06,
      "worldRank": 45,
      "worldShare": 0.0003078714098242745
+    },
+    {
+     "name": "Raw milk of cattle",
+     "tonnes": 1579.04,
+     "worldRank": 170,
+     "worldShare": 0.0000019805152983154157
     }
    ],
    "worldLeading": []
@@ -14539,12 +14333,6 @@
      "worldShare": 0.00003854793750948174
     },
     {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 5015.84,
-     "worldRank": 101,
-     "worldShare": 0.00012789529702537863
-    },
-    {
      "name": "Cocoa beans",
      "tonnes": 4000,
      "worldRank": 28,
@@ -14557,15 +14345,21 @@
      "worldShare": 0.000024593943649346346
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 1924.06,
      "worldRank": 78,
      "worldShare": 0.00002935536723647411
+    },
+    {
+     "name": "Cassava",
+     "tonnes": 1434.11,
+     "worldRank": 79,
+     "worldShare": 0.000004194457761881717
     }
    ],
    "worldLeading": [
     {
-     "name": "Cinnamon and cinnamon-tree flowers, raw",
+     "name": "Cinnamon and cinnamon-tree flowers",
      "tonnes": 57.61,
      "worldRank": 7,
      "worldShare": 0.00023532017329466092
@@ -14576,16 +14370,10 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 5938.37,
      "worldRank": 63,
      "worldShare": 0.00009060166114157601
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 2560.43,
-     "worldRank": 154,
-     "worldShare": 0.000009095987829579012
     },
     {
      "name": "Bananas",
@@ -14594,7 +14382,7 @@
      "worldShare": 0.000014463357786637022
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 1905.71,
      "worldRank": 145,
      "worldShare": 0.00002033981553310255
@@ -14606,22 +14394,28 @@
      "worldShare": 0.000005801387833972797
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 671.37,
      "worldRank": 150,
      "worldShare": 0.000005355655696277322
-    },
-    {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 491.84,
-     "worldRank": 128,
-     "worldShare": 0.000012541074453922417
     },
     {
      "name": "Tomatoes",
      "tonnes": 451.08,
      "worldRank": 153,
      "worldShare": 0.0000023930178634506545
+    },
+    {
+     "name": "Cassava",
+     "tonnes": 241.36,
+     "worldRank": 89,
+     "worldShare": 7.059251559557993e-7
+    },
+    {
+     "name": "Raw milk of cattle",
+     "tonnes": 161.87,
+     "worldRank": 180,
+     "worldShare": 2.0302589632834912e-7
     }
    ],
    "worldLeading": []
@@ -14630,7 +14424,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 2855435.8,
      "worldRank": 22,
      "worldShare": 0.008351524537772506
@@ -14666,16 +14460,16 @@
      "worldShare": 0.00019225754677531178
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 150000,
-     "worldRank": 69,
-     "worldShare": 0.0005328785299488179
+     "name": "Groundnuts, excluding shelled",
+     "tonnes": 101388.6,
+     "worldRank": 34,
+     "worldShare": 0.0017613385298381951
     },
     {
-     "name": "Other citrus fruit, n.e.c.",
-     "tonnes": 113690.15,
-     "worldRank": 8,
-     "worldShare": 0.008486334303115265
+     "name": "Cocoa beans",
+     "tonnes": 93749.6,
+     "worldRank": 9,
+     "worldShare": 0.01791423755018189
     }
    ],
    "worldLeading": [
@@ -14684,18 +14478,6 @@
      "tonnes": 4790.3,
      "worldRank": 5,
      "worldShare": 0.015104550842281378
-    },
-    {
-     "name": "Other fibre crops, raw, n.e.c.",
-     "tonnes": 9504.56,
-     "worldRank": 6,
-     "worldShare": 0.014401572272958022
-    },
-    {
-     "name": "Other citrus fruit, n.e.c.",
-     "tonnes": 113690.15,
-     "worldRank": 8,
-     "worldShare": 0.008486334303115265
     },
     {
      "name": "Cocoa beans",
@@ -14708,12 +14490,6 @@
      "tonnes": 7981.49,
      "worldRank": 10,
      "worldShare": 0.009420785781508834
-    },
-    {
-     "name": "Other stimulant, spice and aromatic crops, n.e.c.",
-     "tonnes": 30634,
-     "worldRank": 10,
-     "worldShare": 0.009247656503650956
     }
    ]
   },
@@ -14721,7 +14497,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 46409.5,
      "worldRank": 88,
      "worldShare": 0.0004953327993154901
@@ -14733,13 +14509,7 @@
      "worldShare": 0.0003509718056381139
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 15159.69,
-     "worldRank": 123,
-     "worldShare": 0.0000538551554778653
-    },
-    {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 7418.76,
      "worldRank": 105,
      "worldShare": 0.000059180964674195064
@@ -14757,7 +14527,7 @@
      "worldShare": 0.00007150639935167332
     },
     {
-     "name": "Eggs from other birds in shell, fresh, n.e.c.",
+     "name": "Eggs from other birds in shell,",
      "tonnes": 1200,
      "worldRank": 23,
      "worldShare": 0.00019044828436115202
@@ -14767,6 +14537,12 @@
      "tonnes": 1029.11,
      "worldRank": 79,
      "worldShare": 0.00003645788723286716
+    },
+    {
+     "name": "Cabbages",
+     "tonnes": 666.33,
+     "worldRank": 132,
+     "worldShare": 0.000008827454821039726
     }
    ],
    "worldLeading": []
@@ -14799,28 +14575,28 @@
      "worldShare": 0.000208937199711285
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 8463.65,
-     "worldRank": 134,
-     "worldShare": 0.000030067315800008748
-    },
-    {
      "name": "Meat of chickens",
      "tonnes": 8221.39,
      "worldRank": 143,
      "worldShare": 0.00006407581267712614
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 4628.65,
      "worldRank": 126,
      "worldShare": 0.00004940200091687355
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 3914.86,
      "worldRank": 72,
      "worldShare": 0.00001145010836942791
+    },
+    {
+     "name": "Bananas",
+     "tonnes": 3586.26,
+     "worldRank": 93,
+     "worldShare": 0.000025723873603769553
     }
    ],
    "worldLeading": []
@@ -14829,7 +14605,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 69069.62,
      "worldRank": 33,
      "worldShare": 0.0010537946113861921
@@ -14841,7 +14617,7 @@
      "worldShare": 0.0006074983847828098
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 7093.55,
      "worldRank": 70,
      "worldShare": 0.000020747080668007376
@@ -14851,12 +14627,6 @@
      "tonnes": 6639.76,
      "worldRank": 73,
      "worldShare": 0.00007302029397947965
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 6299.41,
-     "worldRank": 139,
-     "worldShare": 0.000022378802268965885
     },
     {
      "name": "Yams",
@@ -14871,15 +14641,21 @@
      "worldShare": 0.00019368550276698397
     },
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 2462.41,
      "worldRank": 46,
      "worldShare": 0.0002515230746121151
+    },
+    {
+     "name": "Plantains and cooking bananas",
+     "tonnes": 2371.75,
+     "worldRank": 42,
+     "worldShare": 0.000053194115323743935
     }
    ],
    "worldLeading": [
     {
-     "name": "Vanilla, raw",
+     "name": "Vanilla",
      "tonnes": 194.87,
      "worldRank": 8,
      "worldShare": 0.027390386448034588
@@ -14896,22 +14672,10 @@
      "worldShare": 0.00036543537100235975
     },
     {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 45754.27,
-     "worldRank": 65,
-     "worldShare": 0.0011666552266079797
-    },
-    {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 19590.37,
      "worldRank": 46,
      "worldShare": 0.00029889011031277883
-    },
-    {
-     "name": "Other citrus fruit, n.e.c.",
-     "tonnes": 6641.93,
-     "worldRank": 31,
-     "worldShare": 0.0004957829539136889
     },
     {
      "name": "Oranges",
@@ -14926,7 +14690,7 @@
      "worldShare": 0.00012162304321877892
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 4180,
      "worldRank": 127,
      "worldShare": 0.00004461351880840666
@@ -14936,6 +14700,18 @@
      "tonnes": 3713,
      "worldRank": 34,
      "worldShare": 0.0002039193661350432
+    },
+    {
+     "name": "Bananas",
+     "tonnes": 3245.59,
+     "worldRank": 95,
+     "worldShare": 0.000023280282781967402
+    },
+    {
+     "name": "Mangoes, guavas and mangosteens",
+     "tonnes": 2530.76,
+     "worldRank": 74,
+     "worldShare": 0.00004067971986905482
     }
    ],
    "worldLeading": [
@@ -14951,7 +14727,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 365332.03,
      "worldRank": 17,
      "worldShare": 0.005573867708853454
@@ -14993,7 +14769,7 @@
      "worldShare": 0.00013009959362646307
     },
     {
-     "name": "Cassava, fresh",
+     "name": "Cassava",
      "tonnes": 10050,
      "worldRank": 68,
      "worldShare": 0.00002939404962444391
@@ -15005,7 +14781,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 176541.84,
      "worldRank": 20,
      "worldShare": 0.0026934973679629817
@@ -15017,22 +14793,10 @@
      "worldShare": 0.000053162786880809105
     },
     {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 5721.35,
-     "worldRank": 141,
-     "worldShare": 0.000020325230515484464
-    },
-    {
      "name": "Taro",
      "tonnes": 1926.72,
      "worldRank": 40,
      "worldShare": 0.00010581619206025059
-    },
-    {
-     "name": "Other tropical fruits, n.e.c.",
-     "tonnes": 1718.03,
-     "worldRank": 61,
-     "worldShare": 0.00007184544810842313
     },
     {
      "name": "Meat of chickens",
@@ -15041,16 +14805,22 @@
      "worldShare": 0.000009008066068173677
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 1086.39,
      "worldRank": 139,
      "worldShare": 0.000008666355052919731
     },
     {
-     "name": "Other nuts (excluding wild edible nuts and groundnuts), in shell, n.e.c.",
-     "tonnes": 293.61,
-     "worldRank": 60,
-     "worldShare": 0.00026933916135540316
+     "name": "Hen eggs in shell",
+     "tonnes": 251.72,
+     "worldRank": 163,
+     "worldShare": 0.0000026866303718784985
+    },
+    {
+     "name": "Edible offal of pigs",
+     "tonnes": 67.9,
+     "worldRank": 112,
+     "worldShare": 0.000008269795886627399
     }
    ],
    "worldLeading": []
@@ -15059,40 +14829,28 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 2408.85,
      "worldRank": 74,
      "worldShare": 0.0000367518041888406
     },
     {
-     "name": "Other tropical fruits, n.e.c.",
-     "tonnes": 467.88,
-     "worldRank": 74,
-     "worldShare": 0.000019566042654068332
-    },
-    {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 74.51,
      "worldRank": 166,
      "worldShare": 5.943814974300657e-7
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 9,
      "worldRank": 172,
      "worldShare": 9.605781561618657e-8
     },
     {
-     "name": "Edible offal of pigs, fresh, chilled or frozen",
+     "name": "Edible offal of pigs",
      "tonnes": 6.32,
      "worldRank": 137,
      "worldShare": 7.697365243517697e-7
-    },
-    {
-     "name": "Fat of pigs",
-     "tonnes": 4.97,
-     "worldRank": 139,
-     "worldShare": 4.370823274367993e-7
     },
     {
      "name": "Meat of chickens",
@@ -15105,6 +14863,18 @@
      "tonnes": 2.31,
      "worldRank": 72,
      "worldShare": 1.5762734494669425e-7
+    },
+    {
+     "name": "Cabbages",
+     "tonnes": 1.1,
+     "worldRank": 146,
+     "worldShare": 1.4572659647837706e-8
+    },
+    {
+     "name": "Cucumbers and gherkins",
+     "tonnes": 1.1,
+     "worldRank": 134,
+     "worldShare": 1.2522193893911855e-8
     }
    ],
    "worldLeading": []
@@ -15113,22 +14883,10 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 2400,
      "worldRank": 75,
      "worldShare": 0.00003661677981327914
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 622.72,
-     "worldRank": 170,
-     "worldShare": 0.0000022122274544648526
-    },
-    {
-     "name": "Other tropical fruits, n.e.c.",
-     "tonnes": 618.07,
-     "worldRank": 70,
-     "worldShare": 0.000025846764091647463
     },
     {
      "name": "Bananas",
@@ -15137,13 +14895,13 @@
      "worldShare": 0.000002105388728139744
     },
     {
-     "name": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+     "name": "Edible roots and tubers with high starch or inulin content,",
      "tonnes": 147.39,
      "worldRank": 57,
      "worldShare": 0.000015055163830182482
     },
     {
-     "name": "Meat of pig with the bone",
+     "name": "Meat of pig",
      "tonnes": 128.06,
      "worldRank": 161,
      "worldShare": 0.000001021560791315182
@@ -15155,10 +14913,22 @@
      "worldShare": 4.953734896116274e-7
     },
     {
-     "name": "Hen eggs in shell, fresh",
+     "name": "Hen eggs in shell",
      "tonnes": 19.5,
      "worldRank": 170,
      "worldShare": 2.0812526716840427e-7
+    },
+    {
+     "name": "Edible offal of pigs",
+     "tonnes": 7.59,
+     "worldRank": 136,
+     "worldShare": 9.244145917452422e-7
+    },
+    {
+     "name": "Natural honey",
+     "tonnes": 4.94,
+     "worldRank": 119,
+     "worldShare": 0.0000024855101300235758
     }
    ],
    "worldLeading": []
@@ -15167,34 +14937,10 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Other fruits, n.e.c.",
-     "tonnes": 2385.63,
-     "worldRank": 110,
-     "worldShare": 0.0000608294637473791
-    },
-    {
-     "name": "Other vegetables, fresh n.e.c.",
-     "tonnes": 2271.04,
-     "worldRank": 158,
-     "worldShare": 0.000008067923044366423
-    },
-    {
-     "name": "Other nuts (excluding wild edible nuts and groundnuts), in shell, n.e.c.",
-     "tonnes": 2199.86,
-     "worldRank": 42,
-     "worldShare": 0.002018011809881466
-    },
-    {
      "name": "Papayas",
      "tonnes": 1281.27,
      "worldRank": 56,
      "worldShare": 0.0000874299516276411
-    },
-    {
-     "name": "Other meat of mammals",
-     "tonnes": 865.7,
-     "worldRank": 30,
-     "worldShare": 0.0005518993296351638
     },
     {
      "name": "Bananas",
@@ -15203,7 +14949,7 @@
      "worldShare": 0.000004924337250076645
     },
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 390.54,
      "worldRank": 81,
      "worldShare": 0.000005958465495115848
@@ -15213,6 +14959,30 @@
      "tonnes": 232.82,
      "worldRank": 159,
      "worldShare": 0.0000012351299524886525
+    },
+    {
+     "name": "Maize (corn)",
+     "tonnes": 147.36,
+     "worldRank": 156,
+     "worldShare": 1.2096480525689475e-7
+    },
+    {
+     "name": "Sorghum",
+     "tonnes": 52.54,
+     "worldRank": 104,
+     "worldShare": 8.175524432700258e-7
+    },
+    {
+     "name": "Chillies and peppers, green (Capsicum spp. and Pimenta spp.)",
+     "tonnes": 51.16,
+     "worldRank": 122,
+     "worldShare": 0.0000011426766282838638
+    },
+    {
+     "name": "Onions and shallots (excluding dehydrated)",
+     "tonnes": 38.76,
+     "worldRank": 138,
+     "worldShare": 3.5802693476700446e-7
     }
    ],
    "worldLeading": []
@@ -15221,7 +14991,7 @@
    "year": 2024,
    "largest": [
     {
-     "name": "Coconuts, in shell",
+     "name": "Coconuts",
      "tonnes": 40830.73,
      "worldRank": 39,
      "worldShare": 0.0006229541041772713

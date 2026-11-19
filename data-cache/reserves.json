@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-11-19T14:36:28.338Z",
+ "fetchedAt": "2026-11-19T14:39:04.559Z",
  "byCountry": {
   "ALB": {
    "oil": {
@@ -1440,6 +1440,22 @@
     "worldShare": 0.0009347086506722394
    }
   },
+  "USA": {
+   "oil": {
+    "value": 47107002963.621704,
+    "unit": "bbl",
+    "year": 2020,
+    "worldRank": 1,
+    "worldShare": 0.028345167955785046
+   },
+   "gas": {
+    "value": 13178803443908,
+    "unit": "m³",
+    "year": 2020,
+    "worldRank": 1,
+    "worldShare": 0.06413044943124112
+   }
+  },
   "UZB": {
    "oil": {
     "value": 594000039.371816,
@@ -1511,6 +1527,15 @@
     "year": 2021,
     "worldRank": 60,
     "worldShare": 0.00025638559798465407
+   }
+  },
+  "BHS": {
+   "gas": {
+    "value": 28316851,
+    "unit": "m³",
+    "year": 1983,
+    "worldRank": 1,
+    "worldShare": 3.2983457061051487e-7
    }
   },
   "IRL": {

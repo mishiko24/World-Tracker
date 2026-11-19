@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-11-19T14:36:21.475Z",
+ "fetchedAt": "2026-11-19T14:39:02.957Z",
  "byCountry": {
   "ZWE": {
    "governmentType": "presidential republic"
@@ -278,7 +278,7 @@
    "governmentType": "presidential republic"
   },
   "NZL": {
-   "governmentType": "parliamentary democracy&nbsp;under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
   },
   "NIU": {
    "governmentType": "parliamentary democracy"
@@ -659,7 +659,7 @@
    "governmentType": "constitutional monarchy"
   },
   "BHS": {
-   "governmentType": "parliamentary democracy&nbsp;under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
   },
   "AZE": {
    "governmentType": "presidential republic"
@@ -668,10 +668,10 @@
    "governmentType": "federal parliamentary republic"
   },
   "AUS": {
-   "governmentType": "federal parliamentary democracy&nbsp;under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "federal parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
   },
   "IOA": {
-   "governmentType": "federal parliamentary democracy&nbsp;under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "federal parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
   },
   "HMD": {
    "governmentType": null
