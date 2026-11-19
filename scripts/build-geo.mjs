@@ -37,6 +37,7 @@ for (const feature of source.features) {
       name: p.NAME_LONG,
       iso2: cleanCode(p.ISO_A2_EH),
       iso3: cleanCode(p.ISO_A3_EH),
+      isoNumeric: cleanCode(p.ISO_N3_EH), // UN M49 code, used by FAOSTAT
       wikidata: p.WIKIDATAID, // used later to join country data
       label: [p.LABEL_X, p.LABEL_Y], // lon/lat of a good point inside the country (used for microstate dots)
     },
