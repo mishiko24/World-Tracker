@@ -99,12 +99,6 @@ button {
   font-weight: 600;
 }
 
-.country-codes {
-  margin-top: 4px;
-  font-size: 12px;
-  color: var(--text-dim);
-}
-
 .panel-scroll {
   flex: 1;
   overflow-y: auto;
@@ -272,4 +266,142 @@ button {
   color: rgba(255, 255, 255, 0.75);
   font-size: 11px;
   pointer-events: none;
+}
+
+/* ---------- info panel data ---------- */
+
+.panel-right {
+  width: 360px;
+}
+
+.panel-message {
+  margin: 0;
+  color: var(--text-dim);
+}
+
+.panel-message.error {
+  color: #ff7b72;
+}
+
+.fact {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 13px;
+}
+
+.fact:last-child {
+  border-bottom: none;
+}
+
+.fact-label {
+  color: var(--text-dim);
+  flex-shrink: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fact-value {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+  max-width: 62%;
+}
+
+.fact-meta {
+  font-size: 11px;
+  color: var(--text-dim);
+  opacity: 0.8;
+  cursor: default;
+}
+
+.no-data {
+  color: var(--text-dim);
+  font-style: italic;
+  margin: 0;
+}
+
+.rank-badge {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.age-structure {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.data-group {
+  margin-top: 8px;
+}
+
+.data-group-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 4px 0;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  padding: 2px;
+  margin-bottom: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+}
+
+.tab {
+  flex: 1;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.tab.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text);
+}
+
+.power-bar {
+  display: flex;
+  height: 12px;
+  margin: 8px 0 4px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.total-row {
+  font-weight: 600;
+}
+
+.total-row .fact-label {
+  color: var(--text);
 }

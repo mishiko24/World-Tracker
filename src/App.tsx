@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { loadCountries, type Country } from "./map/geo";
 import { getMapType } from "./map/mapTypes";
 import { loadSettings, saveSettings, type Settings } from "./settings";
-import { InfoPanel } from "./ui/InfoPanel";
+import { InfoPanel } from "./ui/info/InfoPanel";
 import { MapCanvas } from "./ui/MapCanvas";
 import { SettingsPanel } from "./ui/SettingsPanel";
 

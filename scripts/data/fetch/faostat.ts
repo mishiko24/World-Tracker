@@ -5,7 +5,7 @@
 import { spawn } from "node:child_process";
 import { writeFileSync } from "node:fs";
 import { createInterface } from "node:readline";
-import { loadCountries } from "../lib/countries.ts";
+import { numericCodeMatcher } from "../lib/countries.ts";
 import { parseCsvLine } from "../lib/csv.ts";
 import { fetchBytes, lastFullYear, writeCache } from "../lib/io.ts";
 
@@ -106,7 +106,7 @@ export async function fetchFaostat(): Promise<void> {
     }
   }
 
-  const ourIdByM49 = new Map(loadCountries().filter((c) => c.isoNumeric !== null).map((c) => [c.isoNumeric!, c.id]));
+  const ourIdByM49 = numericCodeMatcher();
   const byCountry: Record<string, FaoEntry> = {};
   for (const [area, crops] of cropsByArea) {
     const id = ourIdByM49.get(areaM49.get(area)!);

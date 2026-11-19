@@ -6,6 +6,7 @@
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import type {
   Agriculture,
+  Amount,
   CountryData,
   Economy,
   Government,
@@ -21,6 +22,7 @@ import type {
 import { loadCountries } from "./lib/countries.ts";
 import { readCache } from "./lib/io.ts";
 import type { EiaEntry } from "./fetch/eia.ts";
+import type { EiReservesEntry } from "./fetch/eiReserves.ts";
 import type { EnergyEntry } from "./fetch/energy.ts";
 import type { FactbookEntry } from "./fetch/factbook.ts";
 import type { FaoEntry } from "./fetch/faostat.ts";
@@ -38,6 +40,7 @@ const wikidata = readCache<WikidataEntry>("wikidata").byCountry;
 const factbook = readCache<FactbookEntry>("factbook").byCountry;
 const unwpp = readCache<UnWppEntry>("unwpp").byCountry;
 const eia = readCache<EiaEntry>("eia").byCountry;
+const eiReserves = readCache<EiReservesEntry>("eireserves").byCountry;
 const usgs = readCache<UsgsEntry>("usgs").byCountry;
 const faostat = readCache<FaoEntry>("faostat").byCountry;
 const energy = readCache<EnergyEntry>("energy").byCountry;
@@ -118,13 +121,21 @@ const ENERGY_RESOURCES = [
 ] as const;
 
 // Energy first (fixed order), then minerals by world share of production, then of reserves.
+// Energy production is EIA; reserves are EIA for coal, Energy Institute (2020) for oil and gas.
 function buildResources(id: string): Resource[] {
   const resources: Resource[] = [];
   const e = eia[id] ?? {};
+  const ei = eiReserves[id] ?? {};
   for (const r of ENERGY_RESOURCES) {
     const production = e[`${r.id}.production`];
-    const reserves = e[`${r.id}.reserves`];
-    if (production === undefined && reserves === undefined) {
+    const eiaReserves = e[`${r.id}.reserves`];
+    const eiReserve = r.id === "coal" ? undefined : ei[r.id];
+    const reserves: Amount | null = eiaReserves
+      ? { ...eiaReserves, source: "eia" }
+      : eiReserve
+        ? { ...eiReserve, source: "energyinstitute" }
+        : null;
+    if (production === undefined && reserves === null) {
       continue;
     }
     resources.push({
@@ -132,7 +143,7 @@ function buildResources(id: string): Resource[] {
       name: r.name,
       category: "energy",
       production: production ? { ...production, source: "eia" } : null,
-      reserves: reserves ? { ...reserves, source: "eia" } : null,
+      reserves,
     });
   }
 

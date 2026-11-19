@@ -100,7 +100,7 @@ check("click selects Spain (panel)", (await panelTitle()) === "Spain", String(aw
 check("Spain drawn selected", near(await pixel(spainX, spainY), COLORS.selected));
 
 const headers = await page.$$eval("aside.panel-right .collapsible-header", (els) => els.map((e) => e.textContent));
-check("5 sections in info panel", headers.length === 5, headers.join(", "));
+check("6 sections in info panel", headers.length === 6, headers.join(", "));
 check("sections collapsed by default", (await page.$$("aside.panel-right .collapsible-body")).length === 0);
 await page.click("aside.panel-right .collapsible-header >> text=Government");
 check("Government expands on click", (await page.$$("aside.panel-right .collapsible-body")).length === 1);

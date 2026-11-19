@@ -6,23 +6,39 @@
 // Every value carries its own year and source, because sources update at different times.
 // A missing value is null (never 0), so the UI can show "No data" instead of a misleading zero.
 
-export type SourceId = "worldbank" | "imf" | "wikidata" | "factbook" | "unwpp" | "eia" | "usgs" | "faostat" | "ember";
+export type SourceId =
+  | "worldbank"
+  | "imf"
+  | "wikidata"
+  | "factbook"
+  | "unwpp"
+  | "eia"
+  | "energyinstitute"
+  | "usgs"
+  | "faostat"
+  | "ember";
 
 export interface SourceInfo {
-  name: string;
+  short: string; // shown next to every value
+  name: string; // shown in the tooltip
   url: string;
 }
 
 export const SOURCES: Record<SourceId, SourceInfo> = {
-  worldbank: { name: "World Bank", url: "https://data.worldbank.org" },
-  imf: { name: "IMF World Economic Outlook", url: "https://www.imf.org/external/datamapper" },
-  wikidata: { name: "Wikidata", url: "https://www.wikidata.org" },
-  factbook: { name: "CIA World Factbook (final edition)", url: "https://github.com/factbook/factbook.json" },
-  unwpp: { name: "UN World Population Prospects, via Our World in Data", url: "https://ourworldindata.org" },
-  eia: { name: "U.S. EIA International Energy Data", url: "https://www.eia.gov/international/data/world" },
-  usgs: { name: "USGS Mineral Commodity Summaries", url: "https://www.usgs.gov/centers/national-minerals-information-center/mineral-commodity-summaries" },
-  faostat: { name: "FAOSTAT (UN Food and Agriculture Organization)", url: "https://www.fao.org/faostat" },
-  ember: { name: "Ember & Energy Institute, via Our World in Data", url: "https://github.com/owid/energy-data" },
+  worldbank: { short: "World Bank", name: "World Bank", url: "https://data.worldbank.org" },
+  imf: { short: "IMF", name: "IMF World Economic Outlook", url: "https://www.imf.org/external/datamapper" },
+  wikidata: { short: "Wikidata", name: "Wikidata", url: "https://www.wikidata.org" },
+  factbook: { short: "Factbook", name: "CIA World Factbook (final edition)", url: "https://github.com/factbook/factbook.json" },
+  unwpp: { short: "UN", name: "UN World Population Prospects, via Our World in Data", url: "https://ourworldindata.org" },
+  eia: { short: "EIA", name: "U.S. EIA International Energy Data", url: "https://www.eia.gov/international/data/world" },
+  energyinstitute: {
+    short: "Energy Institute",
+    name: "Energy Institute Statistical Review (reserves last published for 2020), via Our World in Data",
+    url: "https://www.energyinst.org/statistical-review",
+  },
+  usgs: { short: "USGS", name: "USGS Mineral Commodity Summaries", url: "https://www.usgs.gov/centers/national-minerals-information-center/mineral-commodity-summaries" },
+  faostat: { short: "FAO", name: "FAOSTAT (UN Food and Agriculture Organization)", url: "https://www.fao.org/faostat" },
+  ember: { short: "Ember", name: "Ember & Energy Institute, via Our World in Data", url: "https://github.com/owid/energy-data" },
 };
 
 export interface NumberFact {

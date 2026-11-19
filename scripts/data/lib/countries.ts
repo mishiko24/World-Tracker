@@ -107,13 +107,32 @@ export function loadCountries(): Country[] {
   }));
 }
 
+// Natural Earth gives some territories their parent's code (Indian Ocean Ter. and Ashmore and
+// Cartier Is. are both "AUS" / "036"). The country whose own id matches the code must win.
+function setPreferringOwner(map: Map<string, string>, code: string, id: string, ownerCode: string): void {
+  if (!map.has(code) || id === ownerCode) {
+    map.set(code, id);
+  }
+}
+
 // Maps a source's country code to our id. Codes that aren't ours (regions, aggregates) map to nothing.
 export function codeMatcher(system: CodeSystem): Map<string, string> {
   const map = new Map<string, string>();
   for (const c of loadCountries()) {
     const code = CODE_OVERRIDES[c.id]?.[system] ?? c.iso3;
     if (code !== null) {
-      map.set(code, c.id);
+      setPreferringOwner(map, code, c.id, c.iso3 ?? code);
+    }
+  }
+  return map;
+}
+
+// Maps a UN M49 numeric code ("036") to our id.
+export function numericCodeMatcher(): Map<string, string> {
+  const map = new Map<string, string>();
+  for (const c of loadCountries()) {
+    if (c.isoNumeric !== null) {
+      setPreferringOwner(map, c.isoNumeric, c.id, c.iso3 ?? "");
     }
   }
   return map;
