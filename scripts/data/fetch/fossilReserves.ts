@@ -8,6 +8,7 @@ import { parseCsv } from "../lib/csv.ts";
 import { fetchText, writeCache } from "../lib/io.ts";
 
 const BARRELS_PER_CUBIC_METER = 6.289811; // exact unit conversion
+const MAX_AGE_YEARS = 10; // a country's figure older than this (vs. the newest year) is too stale to show
 
 const SERIES = [
   { resource: "oil", slug: "oil-proved-reserves", factor: BARRELS_PER_CUBIC_METER, unit: "bbl" },
@@ -57,7 +58,10 @@ export async function fetchFossilReserves(): Promise<void> {
       }
     }
     world = world.sort((a, b) => b.year - a.year);
-    const countries = [...latest].map(([id, v]) => ({ id, ...v })).filter((c) => c.value > 0);
+    const newestYear = Math.max(...[...latest.values()].map((v) => v.year));
+    const countries = [...latest]
+      .map(([id, v]) => ({ id, ...v }))
+      .filter((c) => c.value > 0 && c.year >= newestYear - MAX_AGE_YEARS);
 
     for (const c of countries) {
       const sameYear = countries.filter((other) => other.year === c.year);
