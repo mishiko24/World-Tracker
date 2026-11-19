@@ -77,6 +77,19 @@ async function fetchSeries(series: Series, key: string): Promise<ApiRow[]> {
   }
 }
 
+// Diagnostic for a misconfigured series: which products (and units) exist for an activity.
+async function productsForActivity(activityId: string, key: string): Promise<string> {
+  const url =
+    `https://api.eia.gov/v2/international/data/?api_key=${key}&frequency=annual&data[0]=value` +
+    `&facets[activityId][]=${activityId}&facets[countryRegionId][]=SAU&facets[countryRegionId][]=USA&start=${lastFullYear() - 3}&length=${PAGE_SIZE}`;
+  const page = await fetchJson<{ response: { data: (ApiRow & { productId: string; productName: string })[] } }>(
+    url,
+    `EIA products for activity ${activityId}`,
+  );
+  const seen = new Set(page.response.data.map((r) => `${r.productId} ${r.productName} [${r.unit}]`));
+  return [...seen].join("; ");
+}
+
 export async function fetchEia(): Promise<void> {
   const key = (process.env.EIA_API_KEY ?? "").trim();
   if (key === "") {
@@ -90,7 +103,11 @@ export async function fetchEia(): Promise<void> {
     const units = new Set(rows.map((r) => r.unit));
     const unit = series.preferredUnits.find((u) => units.has(u));
     if (unit === undefined) {
-      throw new Error(`EIA ${series.resource} ${series.kind}: none of ${series.preferredUnits.join("/")} in units ${[...units].join(", ")}`);
+      const available = await productsForActivity(series.activityId, key);
+      throw new Error(
+        `EIA ${series.resource} ${series.kind}: none of ${series.preferredUnits.join("/")} in units [${[...units].join(", ")}]. ` +
+          `Products with activity ${series.activityId}: ${available}`,
+      );
     }
     const factor = UNIT_FACTORS[unit];
 

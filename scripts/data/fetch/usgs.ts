@@ -22,6 +22,8 @@ const UNITS: Record<string, { unit: "t" | "kg" | "carats" | "m³"; factor: numbe
   "thousand carats": { unit: "carats", factor: 1e3 },
   "million carats": { unit: "carats", factor: 1e6 },
   "million cubic meters": { unit: "m³", factor: 1e6 },
+  "thousand metric dry tons": { unit: "t", factor: 1e3 },
+  "thousands of carats": { unit: "carats", factor: 1e3 },
 };
 
 export interface UsgsAmount {
@@ -48,6 +50,7 @@ interface Observation {
   value: number;
   unit: { unit: "t" | "kg" | "carats" | "m³"; factor: number };
   year: number;
+  detail: string;
   rounded: boolean;
 }
 
@@ -105,7 +108,7 @@ export function parseUsgsCsv(text: string): Record<string, UsgsEntry> {
   for (const row of rows) {
     const kind = kindOf(row);
     const value = parseValue(row.Value);
-    const unit = UNITS[row.Unit.toLowerCase()];
+    const unit = UNITS[row.Unit.trim().toLowerCase()];
     if (kind === null || value === null) {
       continue;
     }
@@ -122,41 +125,47 @@ export function parseUsgsCsv(text: string): Record<string, UsgsEntry> {
       value: value * unit.factor,
       unit,
       year: Number(row.Year.replace(/\D/g, "")),
+      detail: row.Statistics_detail,
       rounded: row.Statistics_detail.toLowerCase().includes("rounded"),
     });
   }
   observations.sort((a, b) => Number(a.rounded) - Number(b.rounded)); // stable: unrounded first
 
-  // Keep the latest year per mineral + kind.
-  const latestYear = new Map<string, number>();
+  // A mineral can be reported in several variants (e.g. iron ore: "Iron content" and "Usable ore",
+  // plus ": rounded" copies). Ranks only make sense within one variant, so per mineral/kind use only
+  // the first unrounded variant in the file (the headline figure), or the first rounded one if that's all.
+  const chosenDetail = new Map<string, string>();
   for (const o of observations) {
+    const key = `${o.mineralId}|${o.kind}`;
+    if (!chosenDetail.has(key)) {
+      chosenDetail.set(key, o.detail);
+    }
+  }
+  const chosen = observations.filter((o) => o.detail === chosenDetail.get(`${o.mineralId}|${o.kind}`));
+
+  // Latest year per mineral/kind within the chosen variant.
+  const latestYear = new Map<string, number>();
+  for (const o of chosen) {
     const key = `${o.mineralId}|${o.kind}`;
     latestYear.set(key, Math.max(latestYear.get(key) ?? 0, o.year));
   }
-  // Some figures appear twice ("Mine production" and "Mine production: rounded"); observations are
-  // sorted unrounded first, so keeping the first per mineral/kind/country prefers the exact figure.
-  const seen = new Set<string>();
-  const current = observations.filter((o) => {
-    const key = `${o.mineralId}|${o.kind}|${o.country}`;
-    if (o.year !== latestYear.get(`${o.mineralId}|${o.kind}`) || seen.has(key)) {
-      return false;
-    }
-    seen.add(key);
-    return true;
-  });
 
   const byCountry: Record<string, UsgsEntry> = {};
-  const groups = new Map<string, Observation[]>();
-  for (const o of current) {
-    const key = `${o.mineralId}|${o.kind}`;
-    groups.set(key, [...(groups.get(key) ?? []), o]);
-  }
-  for (const group of groups.values()) {
-    const world = group.find((o) => o.country.toLowerCase().startsWith("world total"));
+  for (const [key, detail] of chosenDetail) {
+    const year = latestYear.get(key)!;
+    const [id, kind] = key.split("|");
+    const group = chosen.filter((o) => `${o.mineralId}|${o.kind}` === key && o.year === year);
+    // The world total is sometimes only given in the rounded copy of the variant.
+    const world =
+      group.find((o) => o.country.toLowerCase().startsWith("world total")) ??
+      observations.find(
+        (o) => o.mineralId === id && o.kind === kind && o.year === year && o.detail.startsWith(detail) &&
+          o.country.toLowerCase().startsWith("world total"),
+      );
     const countries = group.filter((o) => !NOT_COUNTRIES.has(o.country.toLowerCase()) && o.value > 0);
     for (const o of countries) {
-      const id = matchName(o.country);
-      if (id === null) {
+      const ourId = matchName(o.country);
+      if (ourId === null) {
         unmatchedNames.add(o.country);
         continue;
       }
@@ -167,9 +176,9 @@ export function parseUsgsCsv(text: string): Record<string, UsgsEntry> {
         worldRank: 1 + countries.filter((other) => other.value > o.value).length,
         worldShare: world ? o.value / world.value : null,
       };
-      byCountry[id] ??= {};
-      byCountry[id][o.mineralId] ??= { name: o.mineralName, production: null, reserves: null };
-      byCountry[id][o.mineralId][o.kind] = amount;
+      byCountry[ourId] ??= {};
+      byCountry[ourId][o.mineralId] ??= { name: o.mineralName, production: null, reserves: null };
+      byCountry[ourId][o.mineralId][o.kind] = amount;
     }
   }
 

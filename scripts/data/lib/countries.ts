@@ -120,7 +120,7 @@ export function codeMatcher(system: CodeSystem): Map<string, string> {
 }
 
 function normalizeName(name: string): string {
-  return name.trim().toLowerCase().replace(/\s+/g, " ");
+  return name.trim().toLowerCase().replace(/[’‘`]/g, "'").replace(/\s+/g, " ");
 }
 
 // Maps a country name to our id using every Natural Earth name variant plus NAME_OVERRIDES.
