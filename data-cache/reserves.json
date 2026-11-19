@@ -1,0 +1,1580 @@
+{
+ "fetchedAt": "2026-11-19T14:36:28.338Z",
+ "byCountry": {
+  "ALB": {
+   "oil": {
+    "value": 150000016.549856,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 59,
+    "worldShare": 0.00009043244646085505
+   },
+   "gas": {
+    "value": 5691687110,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 83,
+    "worldShare": 0.000029447719593607592
+   }
+  },
+  "DZA": {
+   "oil": {
+    "value": 12200000457.095001,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 15,
+    "worldShare": 0.00735517177621078
+   },
+   "gas": {
+    "value": 4503908157348,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 10,
+    "worldShare": 0.02330237448575169
+   }
+  },
+  "AGO": {
+   "oil": {
+    "value": 7783000180.7591,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 18,
+    "worldShare": 0.004692237796636418
+   },
+   "gas": {
+    "value": 343001991510,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 33,
+    "worldShare": 0.0017746278512550651
+   }
+  },
+  "ARG": {
+   "oil": {
+    "value": 2482704134.2224,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 32,
+    "worldShare": 0.00149677989283146
+   },
+   "gas": {
+    "value": 396464228630,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 31,
+    "worldShare": 0.0020512314201319775
+   }
+  },
+  "AUS": {
+   "oil": {
+    "value": 2446000193.72434,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 34,
+    "worldShare": 0.0014746517143796262
+   },
+   "gas": {
+    "value": 3228120803833,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 12,
+    "worldShare": 0.01670169044931307
+   }
+  },
+  "AUT": {
+   "oil": {
+    "value": 35200002.659283005,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 78,
+    "worldShare": 0.000021221480031300848
+   },
+   "gas": {
+    "value": 5040399264,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 88,
+    "worldShare": 0.000026078078660599122
+   }
+  },
+  "AZE": {
+   "oil": {
+    "value": 7000000478.8021,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 19,
+    "worldShare": 0.00422018065787899
+   },
+   "gas": {
+    "value": 1699010968208,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 19,
+    "worldShare": 0.008790363491757882
+   }
+  },
+  "BHR": {
+   "oil": {
+    "value": 186500016.216052,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 56,
+    "worldShare": 0.00011243767247052955
+   },
+   "gas": {
+    "value": 81382632255,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 55,
+    "worldShare": 0.00042105844683983773
+   }
+  },
+  "BGD": {
+   "oil": {
+    "value": 28000002.5441895,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 80,
+    "worldShare": 0.000016880723010717917
+   },
+   "gas": {
+    "value": 126293152570,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 48,
+    "worldShare": 0.0006534170399036678
+   }
+  },
+  "BRB": {
+   "oil": {
+    "value": 1978000.1390696801,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 94,
+    "worldShare": 0.000001192502479601589
+   },
+   "gas": {
+    "value": 113267407,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 98,
+    "worldShare": 5.860242799662657e-7
+   }
+  },
+  "BLR": {
+   "oil": {
+    "value": 198000017.317146,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 55,
+    "worldShare": 0.00011937082659807458
+   },
+   "gas": {
+    "value": 2831685123,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 92,
+    "worldShare": 0.000014650606730118414
+   }
+  },
+  "BLZ": {
+   "oil": {
+    "value": 6700000.3953839,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 92,
+    "worldShare": 0.000004039315734621123
+   }
+  },
+  "BEN": {
+   "oil": {
+    "value": 8000001.1761835,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 91,
+    "worldShare": 0.000004823063988206516
+   },
+   "gas": {
+    "value": 1132673933,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 95,
+    "worldShare": 0.0000058602420908504
+   }
+  },
+  "BOL": {
+   "oil": {
+    "value": 240900012.89244002,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 53,
+    "worldShare": 0.00014523450076469867
+   },
+   "gas": {
+    "value": 302990287542,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 34,
+    "worldShare": 0.0015676148134438387
+   }
+  },
+  "BRA": {
+   "oil": {
+    "value": 12714600086.097801,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 14,
+    "worldShare": 0.007665415097971376
+   },
+   "gas": {
+    "value": 363984793424,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 32,
+    "worldShare": 0.0018831889255217925
+   }
+  },
+  "BRN": {
+   "oil": {
+    "value": 1100000075.24033,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 38,
+    "worldShare": 0.0006631712462381269
+   },
+   "gas": {
+    "value": 260515004396,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 38,
+    "worldShare": 0.0013478556798918726
+   }
+  },
+  "BGR": {
+   "oil": {
+    "value": 15000001.0260045,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 82,
+    "worldShare": 0.00000904324426688355
+   },
+   "gas": {
+    "value": 5663370247,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 84,
+    "worldShare": 0.00002930121346541064
+   }
+  },
+  "CMR": {
+   "oil": {
+    "value": 200000013.68006,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 54,
+    "worldShare": 0.00012057659022511399
+   },
+   "gas": {
+    "value": 135071367025,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 46,
+    "worldShare": 0.00069883387199713
+   }
+  },
+  "CAN": {
+   "oil": {
+    "value": 170300010453.50702,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 4,
+    "worldShare": 0.10267096585620085
+   },
+   "gas": {
+    "value": 2067130088806,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 15,
+    "worldShare": 0.010694942649204807
+   }
+  },
+  "TCD": {
+   "oil": {
+    "value": 1500000039.7023401,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 37,
+    "worldShare": 0.0009043243887681593
+   }
+  },
+  "CHL": {
+   "oil": {
+    "value": 150000016.549856,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 59,
+    "worldShare": 0.00009043244646085505
+   },
+   "gas": {
+    "value": 97976304590,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 51,
+    "worldShare": 0.0005069109894173731
+   }
+  },
+  "CHN": {
+   "oil": {
+    "value": 26022601069.330803,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 12,
+    "worldShare": 0.01568858145553789
+   },
+   "gas": {
+    "value": 6654261589050,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 6,
+    "worldShare": 0.034427899072768615
+   }
+  },
+  "COL": {
+   "oil": {
+    "value": 2036000121.65154,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 35,
+    "worldShare": 0.0012274696778740058
+   },
+   "gas": {
+    "value": 87782233953,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 53,
+    "worldShare": 0.00045416878348894404
+   }
+  },
+  "COG": {
+   "oil": {
+    "value": 2882000205.9354,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 28,
+    "worldShare": 0.0017375086704527198
+   },
+   "gas": {
+    "value": 283989697694,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 37,
+    "worldShare": 0.0014693093319330937
+   }
+  },
+  "CIV": {
+   "oil": {
+    "value": 100000006.84003,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 69,
+    "worldShare": 0.000060288295112556994
+   },
+   "gas": {
+    "value": 28316849842,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 65,
+    "worldShare": 0.00014650606011993295
+   }
+  },
+  "HRV": {
+   "oil": {
+    "value": 71000009.259289,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 73,
+    "worldShare": 0.000042804692184329154
+   },
+   "gas": {
+    "value": 24918828159,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 68,
+    "worldShare": 0.00012892533444754396
+   }
+  },
+  "CUB": {
+   "oil": {
+    "value": 124000000.93386401,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 66,
+    "worldShare": 0.00007475748138914722
+   },
+   "gas": {
+    "value": 70792123675,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 56,
+    "worldShare": 0.00036626514548818715
+   }
+  },
+  "CZE": {
+   "oil": {
+    "value": 15000001.0260045,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 82,
+    "worldShare": 0.00000904324426688355
+   },
+   "gas": {
+    "value": 3964358940,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 89,
+    "worldShare": 0.00002051084822080661
+   }
+  },
+  "COD": {
+   "oil": {
+    "value": 180000024.891676,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 57,
+    "worldShare": 0.0001085189387866417
+   },
+   "gas": {
+    "value": 991089735,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 96,
+    "worldShare": 0.0000051277120552016526
+   }
+  },
+  "DNK": {
+   "oil": {
+    "value": 441000034.56740004,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 47,
+    "worldShare": 0.00026587138410079006
+   },
+   "gas": {
+    "value": 29534474015,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 64,
+    "worldShare": 0.0001528058187897138
+   }
+  },
+  "ECU": {
+   "oil": {
+    "value": 8273000358.940901,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 16,
+    "worldShare": 0.004987650529904397
+   },
+   "gas": {
+    "value": 10901986621,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 75,
+    "worldShare": 0.00005640483020656937
+   }
+  },
+  "EGY": {
+   "oil": {
+    "value": 3300000162.8228803,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 26,
+    "worldShare": 0.0019895137007941853
+   },
+   "gas": {
+    "value": 1783961534500,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 17,
+    "worldShare": 0.009229881758861814
+   }
+  },
+  "GNQ": {
+   "oil": {
+    "value": 1100000075.24033,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 38,
+    "worldShare": 0.0006631712462381269
+   },
+   "gas": {
+    "value": 139007419347,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 44,
+    "worldShare": 0.0007191982670954446
+   }
+  },
+  "ETH": {
+   "oil": {
+    "value": 428000.00160016003,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 97,
+    "worldShare": 2.580338863968579e-7
+   },
+   "gas": {
+    "value": 24918828159,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 68,
+    "worldShare": 0.00012892533444754396
+   }
+  },
+  "FRA": {
+   "oil": {
+    "value": 61719003.160507,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 74,
+    "worldShare": 0.00003720933222080535
+   },
+   "gas": {
+    "value": 7787134032,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 78,
+    "worldShare": 0.000040289168216798706
+   }
+  },
+  "GAB": {
+   "oil": {
+    "value": 2000000136.8006,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 36,
+    "worldShare": 0.0012057659022511398
+   },
+   "gas": {
+    "value": 25994867086,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 67,
+    "worldShare": 0.00013449255765952096
+   }
+  },
+  "GEO": {
+   "oil": {
+    "value": 35000002.3940105,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 79,
+    "worldShare": 0.000021100903289394947
+   },
+   "gas": {
+    "value": 8495055139,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 77,
+    "worldShare": 0.00004395181900037846
+   }
+  },
+  "DEU": {
+   "oil": {
+    "value": 115200001.841496,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 67,
+    "worldShare": 0.00006945211232932688
+   },
+   "gas": {
+    "value": 23389717563,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 70,
+    "worldShare": 0.0001210140035559514
+   }
+  },
+  "GHA": {
+   "oil": {
+    "value": 660000082.883064,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 41,
+    "worldShare": 0.00039790277049499354
+   },
+   "gas": {
+    "value": 22653480991,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 71,
+    "worldShare": 0.00011720485387716399
+   }
+  },
+  "GRC": {
+   "oil": {
+    "value": 10000000.684003001,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 89,
+    "worldShare": 0.0000060288295112557
+   },
+   "gas": {
+    "value": 991089735,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 96,
+    "worldShare": 0.0000051277120552016526
+   }
+  },
+  "GTM": {
+   "oil": {
+    "value": 86110009.644967,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 71,
+    "worldShare": 0.00005191425318525851
+   }
+  },
+  "HUN": {
+   "oil": {
+    "value": 12100001.2679304,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 86,
+    "worldShare": 0.000007294883974060765
+   },
+   "gas": {
+    "value": 3737824270,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 91,
+    "worldShare": 0.000019338800405903022
+   }
+  },
+  "IND": {
+   "oil": {
+    "value": 4604914669.7719,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 23,
+    "worldShare": 0.002776224355898934
+   },
+   "gas": {
+    "value": 1380616307258,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 23,
+    "worldShare": 0.007143049344906025
+   }
+  },
+  "IDN": {
+   "oil": {
+    "value": 2480000144.4735003,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 33,
+    "worldShare": 0.0014951497036233355
+   },
+   "gas": {
+    "value": 1408480167388,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 22,
+    "worldShare": 0.0072872117213764595
+   }
+  },
+  "IRN": {
+   "oil": {
+    "value": 208600009362.25,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 3,
+    "worldShare": 0.12576138064701864
+   },
+   "gas": {
+    "value": 33987354278564,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 2,
+    "worldShare": 0.17584418454157644
+   }
+  },
+  "IRQ": {
+   "oil": {
+    "value": 145019014581.98,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 5,
+    "worldShare": 0.08742948550030313
+   },
+   "gas": {
+    "value": 3728932857513,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 11,
+    "worldShare": 0.019292797908462805
+   }
+  },
+  "ISR": {
+   "oil": {
+    "value": 12730000.0593502,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 85,
+    "worldShare": 0.000007674699478657982
+   },
+   "gas": {
+    "value": 176017537713,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 43,
+    "worldShare": 0.0009106816650238655
+   }
+  },
+  "ITA": {
+   "oil": {
+    "value": 497934019.98098004,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 46,
+    "worldShare": 0.0003001959108984614
+   },
+   "gas": {
+    "value": 45760031789,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 62,
+    "worldShare": 0.00023675380580030542
+   }
+  },
+  "JPN": {
+   "oil": {
+    "value": 44115001.5110695,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 75,
+    "worldShare": 0.000026596180480715833
+   },
+   "gas": {
+    "value": 20897835493,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 72,
+    "worldShare": 0.00010812147397034343
+   }
+  },
+  "JOR": {
+   "oil": {
+    "value": 1000000.13129841,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 95,
+    "worldShare": 6.028829890457655e-7
+   },
+   "gas": {
+    "value": 6031488999,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 82,
+    "worldShare": 0.000031205790715800775
+   }
+  },
+  "KAZ": {
+   "oil": {
+    "value": 30000002052.009003,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 11,
+    "worldShare": 0.0180864885337671
+   },
+   "gas": {
+    "value": 2406932353973,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 14,
+    "worldShare": 0.012453015717615363
+   }
+  },
+  "KWT": {
+   "oil": {
+    "value": 101500007257.121,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 6,
+    "worldShare": 0.06119261972884633
+   },
+   "gas": {
+    "value": 1783961534500,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 17,
+    "worldShare": 0.009229881758861814
+   }
+  },
+  "KGZ": {
+   "oil": {
+    "value": 40000002.736012004,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 77,
+    "worldShare": 0.0000241153180450228
+   },
+   "gas": {
+    "value": 5663370247,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 84,
+    "worldShare": 0.00002930121346541064
+   }
+  },
+  "LBY": {
+   "oil": {
+    "value": 48363004629.533005,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 9,
+    "worldShare": 0.029157228961989252
+   },
+   "gas": {
+    "value": 1504870653152,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 21,
+    "worldShare": 0.00778591798217615
+   }
+  },
+  "LTU": {
+   "oil": {
+    "value": 12000000.820803601,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 87,
+    "worldShare": 0.00000723459541350684
+   }
+  },
+  "MYS": {
+   "oil": {
+    "value": 3599999994.64864,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 25,
+    "worldShare": 0.0021703784723712694
+   },
+   "gas": {
+    "value": 1189307689666,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 24,
+    "worldShare": 0.006153254505904427
+   }
+  },
+  "MRT": {
+   "oil": {
+    "value": 20000001.368006002,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 81,
+    "worldShare": 0.0000120576590225114
+   },
+   "gas": {
+    "value": 28316849842,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 65,
+    "worldShare": 0.00014650606011993295
+   }
+  },
+  "MEX": {
+   "oil": {
+    "value": 5786100291.8004,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 20,
+    "worldShare": 0.003488340980825577
+   },
+   "gas": {
+    "value": 180321708321,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 42,
+    "worldShare": 0.0009329506349615738
+   }
+  },
+  "MAR": {
+   "oil": {
+    "value": 684000.0895565201,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 96,
+    "worldShare": 4.123719643556229e-7
+   },
+   "gas": {
+    "value": 1444159308,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 94,
+    "worldShare": 0.000007471808890507051
+   }
+  },
+  "MMR": {
+   "oil": {
+    "value": 139000005.104774,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 63,
+    "worldShare": 0.00008380072755204054
+   },
+   "gas": {
+    "value": 637129127979,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 28,
+    "worldShare": 0.0032963863865041795
+   }
+  },
+  "NLD": {
+   "oil": {
+    "value": 137747011.855464,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 65,
+    "worldShare": 0.00008304531933582626
+   },
+   "gas": {
+    "value": 132607817649,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 47,
+    "worldShare": 0.0006860879304463383
+   }
+  },
+  "NZL": {
+   "oil": {
+    "value": 40993003.5027315,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 76,
+    "worldShare": 0.00002471398123678386
+   },
+   "gas": {
+    "value": 31148536130,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 63,
+    "worldShare": 0.00016115667287754245
+   }
+  },
+  "NER": {
+   "oil": {
+    "value": 150000016.549856,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 59,
+    "worldShare": 0.00009043244646085505
+   }
+  },
+  "NGA": {
+   "oil": {
+    "value": 36890001913.1754,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 10,
+    "worldShare": 0.022240351699196376
+   },
+   "gas": {
+    "value": 5760893344879,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 8,
+    "worldShare": 0.029805779648466466
+   }
+  },
+  "NOR": {
+   "oil": {
+    "value": 8122151821.7279005,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 17,
+    "worldShare": 0.004896706524837045
+   },
+   "gas": {
+    "value": 1544457674026,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 20,
+    "worldShare": 0.00799073378946037
+   }
+  },
+  "OMN": {
+   "oil": {
+    "value": 5373000600.8668,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 21,
+    "worldShare": 0.003239290237081613
+   },
+   "gas": {
+    "value": 651287555694,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 27,
+    "worldShare": 0.003369639431019777
+   }
+  },
+  "PAK": {
+   "oil": {
+    "value": 540000049.515784,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 45,
+    "worldShare": 0.0003255568011918469
+   },
+   "gas": {
+    "value": 592218577861,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 29,
+    "worldShare": 0.003064027639245228
+   }
+  },
+  "PNG": {
+   "oil": {
+    "value": 159656008.600836,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 58,
+    "worldShare": 0.00009625387904640719
+   },
+   "gas": {
+    "value": 183125063776,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 40,
+    "worldShare": 0.0009474546693128314
+   }
+  },
+  "PER": {
+   "oil": {
+    "value": 858890045.5586001,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 40,
+    "worldShare": 0.0005178101299403758
+   },
+   "gas": {
+    "value": 300158619880,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 35,
+    "worldShare": 0.0015529642970536532
+   }
+  },
+  "PHL": {
+   "oil": {
+    "value": 138500015.448762,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 64,
+    "worldShare": 0.00008349929233331002
+   },
+   "gas": {
+    "value": 98542638123,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 50,
+    "worldShare": 0.0005098410926985144
+   }
+  },
+  "POL": {
+   "oil": {
+    "value": 113000002.068404,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 68,
+    "worldShare": 0.00006812577006437181
+   },
+   "gas": {
+    "value": 91491743922,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 52,
+    "worldShare": 0.0004733610910219567
+   }
+  },
+  "QAT": {
+   "oil": {
+    "value": 25244001090.1683,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 13,
+    "worldShare": 0.015219176834461508
+   },
+   "gas": {
+    "value": 23860542297363,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 3,
+    "worldShare": 0.12344996225981213
+   }
+  },
+  "ROU": {
+   "oil": {
+    "value": 600000041.04018,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 42,
+    "worldShare": 0.00036172977067534194
+   },
+   "gas": {
+    "value": 105480261147,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 49,
+    "worldShare": 0.0005457350505898343
+   }
+  },
+  "RUS": {
+   "oil": {
+    "value": 80000005472.024,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 8,
+    "worldShare": 0.048230636090045596
+   },
+   "gas": {
+    "value": 47805301666259,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 1,
+    "worldShare": 0.24733564782267464
+   }
+  },
+  "SAU": {
+   "oil": {
+    "value": 258600019072.07602,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 2,
+    "worldShare": 0.1559055319953167
+   },
+   "gas": {
+    "value": 9422828674316,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 5,
+    "worldShare": 0.04875194493603545
+   }
+  },
+  "SRB": {
+   "oil": {
+    "value": 77500006.873476,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 72,
+    "worldShare": 0.00004672342966023656
+   },
+   "gas": {
+    "value": 48138644546,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 61,
+    "worldShare": 0.0002490603012446613
+   }
+  },
+  "SVK": {
+   "oil": {
+    "value": 8999999.986621602,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 90,
+    "worldShare": 0.000005425946180928175
+   },
+   "gas": {
+    "value": 14158424921,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 73,
+    "worldShare": 0.00007325303005996648
+   }
+  },
+  "ZAF": {
+   "oil": {
+    "value": 15000001.0260045,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 82,
+    "worldShare": 0.00000904324426688355
+   }
+  },
+  "ESP": {
+   "oil": {
+    "value": 150000016.549856,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 59,
+    "worldShare": 0.00009043244646085505
+   },
+   "gas": {
+    "value": 2548516495,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 93,
+    "worldShare": 0.000013185545458496513
+   }
+  },
+  "SDN": {
+   "oil": {
+    "value": 5000000342.0015,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 22,
+    "worldShare": 0.0030144147556278498
+   },
+   "gas": {
+    "value": 84950551390,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 54,
+    "worldShare": 0.0004395181900037846
+   }
+  },
+  "SUR": {
+   "oil": {
+    "value": 89000007.97457,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 70,
+    "worldShare": 0.000053656583787781594
+   }
+  },
+  "SYR": {
+   "oil": {
+    "value": 2500000233.89886,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 29,
+    "worldShare": 0.0015072074157341205
+   },
+   "gas": {
+    "value": 240693226456,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 39,
+    "worldShare": 0.0012453015255009302
+   }
+  },
+  "TWN": {
+   "oil": {
+    "value": 2380000.2005315805,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 93,
+    "worldShare": 0.000001434861446430974
+   },
+   "gas": {
+    "value": 6229707039,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 81,
+    "worldShare": 0.00003223133360800563
+   }
+  },
+  "TJK": {
+   "oil": {
+    "value": 12000000.820803601,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 87,
+    "worldShare": 0.00000723459541350684
+   },
+   "gas": {
+    "value": 5663370247,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 84,
+    "worldShare": 0.00002930121346541064
+   }
+  },
+  "THA": {
+   "oil": {
+    "value": 252750016.81644002,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 51,
+    "worldShare": 0.00015237866561258634
+   },
+   "gas": {
+    "value": 138242855668,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 45,
+    "worldShare": 0.0007152425582879292
+   }
+  },
+  "TTO": {
+   "oil": {
+    "value": 242982015.811172,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 52,
+    "worldShare": 0.00014648970474273953
+   },
+   "gas": {
+    "value": 298063158988,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 36,
+    "worldShare": 0.0015421227761523073
+   }
+  },
+  "TUN": {
+   "oil": {
+    "value": 425000076.24371004,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 48,
+    "worldShare": 0.00025622528266851393
+   },
+   "gas": {
+    "value": 65128751099,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 57,
+    "worldShare": 0.00033696391997296816
+   }
+  },
+  "TUR": {
+   "oil": {
+    "value": 366000013.71285003,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 50,
+    "worldShare": 0.0002206551532863234
+   },
+   "gas": {
+    "value": 3794457996,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 90,
+    "worldShare": 0.000019631812662296925
+   }
+  },
+  "TKM": {
+   "oil": {
+    "value": 600000041.04018,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 42,
+    "worldShare": 0.00036172977067534194
+   },
+   "gas": {
+    "value": 11326740264892,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 4,
+    "worldShare": 0.05860242574545954
+   }
+  },
+  "UGA": {
+   "oil": {
+    "value": 2500000233.89886,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 29,
+    "worldShare": 0.0015072074157341205
+   },
+   "gas": {
+    "value": 14158424921,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 73,
+    "worldShare": 0.00007325303005996648
+   }
+  },
+  "UKR": {
+   "oil": {
+    "value": 395000030.163024,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 49,
+    "worldShare": 0.0002381387675906099
+   },
+   "gas": {
+    "value": 1104357123374,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 25,
+    "worldShare": 0.005713736238800495
+   }
+  },
+  "ARE": {
+   "oil": {
+    "value": 97800013356.74901,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 7,
+    "worldShare": 0.05896195663962148
+   },
+   "gas": {
+    "value": 6090898036956,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 7,
+    "worldShare": 0.03151316191475171
+   }
+  },
+  "GBR": {
+   "oil": {
+    "value": 2500000233.89886,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 29,
+    "worldShare": 0.0015072074157341205
+   },
+   "gas": {
+    "value": 180661499500,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 41,
+    "worldShare": 0.0009347086506722394
+   }
+  },
+  "UZB": {
+   "oil": {
+    "value": 594000039.371816,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 44,
+    "worldShare": 0.00035811247221018464
+   },
+   "gas": {
+    "value": 1840595245361,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 16,
+    "worldShare": 0.009522893936929377
+   }
+  },
+  "VEN": {
+   "oil": {
+    "value": 303806035474.67804,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 1,
+    "worldShare": 0.18315946670857103
+   },
+   "gas": {
+    "value": 5673903465270,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 9,
+    "worldShare": 0.029355710357463656
+   }
+  },
+  "VNM": {
+   "oil": {
+    "value": 4400000175.1651,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 24,
+    "worldShare": 0.0026526849091121165
+   },
+   "gas": {
+    "value": 699426233768,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 26,
+    "worldShare": 0.00361869990573201
+   }
+  },
+  "YEM": {
+   "oil": {
+    "value": 3000000205.2009,
+    "unit": "bbl",
+    "year": 2021,
+    "worldRank": 27,
+    "worldShare": 0.00180864885337671
+   },
+   "gas": {
+    "value": 478554755449,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 30,
+    "worldShare": 0.0024759523804269005
+   }
+  },
+  "AFG": {
+   "gas": {
+    "value": 49554485827,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 60,
+    "worldShare": 0.00025638559798465407
+   }
+  },
+  "IRL": {
+   "gas": {
+    "value": 9910897351,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 76,
+    "worldShare": 0.00005127712055719034
+   }
+  },
+  "MOZ": {
+   "gas": {
+    "value": 2831685066223,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 13,
+    "worldShare": 0.014650606436364885
+   }
+  },
+  "NAM": {
+   "gas": {
+    "value": 62297072261,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 58,
+    "worldShare": 0.0003223133457602587
+   }
+  },
+  "RWA": {
+   "gas": {
+    "value": 56633699685,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 59,
+    "worldShare": 0.0002930121202450397
+   }
+  },
+  "SOM": {
+   "gas": {
+    "value": 5663370247,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 84,
+    "worldShare": 0.00002930121346541064
+   }
+  },
+  "KOR": {
+   "gas": {
+    "value": 7079212460,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 79,
+    "worldShare": 0.00003662651502739633
+   }
+  },
+  "TZA": {
+   "gas": {
+    "value": 6512875668,
+    "unit": "m³",
+    "year": 2021,
+    "worldRank": 80,
+    "worldShare": 0.00003369639488480134
+   }
+  }
+ }
+}

@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-11-19T14:34:10.232Z",
+ "fetchedAt": "2026-11-19T14:36:16.920Z",
  "byCountry": {
   "ZWE": {
    "headOfState": "Emmerson Mnangagwa",
@@ -222,7 +222,7 @@
    "headOfState": "Charles III",
    "headOfStateParty": null,
    "headOfGovernment": "Andy Burnham",
-   "headOfGovernmentParty": "Co-operative Party",
+   "headOfGovernmentParty": "Labour Party",
    "factbookCode": "united-kingdom"
   },
   "ARE": {
@@ -495,7 +495,7 @@
    "headOfState": "Va'aletoa Sualauvi II",
    "headOfStateParty": "independent politician",
    "headOfGovernment": "Fiamē Naomi Mataʻafa",
-   "headOfGovernmentParty": "Samoa Uniting Party",
+   "headOfGovernmentParty": "Faʻatuatua i le Atua Samoa ua Tasi",
    "factbookCode": "samoa"
   },
   "VCT": {
@@ -696,7 +696,7 @@
   },
   "NPL": {
    "headOfState": "Ram Chandra Poudel",
-   "headOfStateParty": "independent politician",
+   "headOfStateParty": "Nepali Congress",
    "headOfGovernment": "Pushpa Kamal Dahal",
    "headOfGovernmentParty": "Communist Party of Nepal (Maoist Centre)",
    "factbookCode": "nepal"
