@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-11-19T14:30:29.787Z",
+ "fetchedAt": "2026-11-19T14:34:18.056Z",
  "byCountry": {
   "AGO": {
    "oil.production": {
@@ -93,7 +93,7 @@
     "worldShare": 0.0006861687254587467
    }
   },
-  "ATC": {
+  "AUS": {
    "oil.production": {
     "value": 245583.402503012,
     "unit": "bbl/day",

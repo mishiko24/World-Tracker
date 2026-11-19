@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-11-19T14:30:16.071Z",
+ "fetchedAt": "2026-11-19T14:34:17.326Z",
  "byCountry": {
   "AFG": {
    "year": 2024,
@@ -135,7 +135,7 @@
     "other": 0
    }
   },
-  "ATC": {
+  "AUS": {
    "year": 2025,
    "totalTwh": 286.34,
    "mixTwh": {

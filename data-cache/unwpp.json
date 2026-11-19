@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-11-19T14:30:15.046Z",
+ "fetchedAt": "2026-11-19T14:34:15.975Z",
  "byCountry": {
   "AFG": {
    "medianAge": {
@@ -199,7 +199,7 @@
     "year": 2023
    }
   },
-  "ATC": {
+  "AUS": {
    "medianAge": {
     "value": 37.751,
     "year": 2023

@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-11-19T14:30:02.247Z",
+ "fetchedAt": "2026-11-19T14:34:08.690Z",
  "byCountry": {
   "SDN": {
    "gdpBillions": {
@@ -301,7 +301,7 @@
     "year": 2025
    }
   },
-  "ATC": {
+  "AUS": {
    "gdpBillions": {
     "value": 1840.755,
     "year": 2025
