@@ -1,0 +1,7 @@
+usgs-commodities | exit 0 | 200 text/csv 3189010
+usgs-commodities-meta | exit 0 | 200 application/fgdc+xml 13470
+eia-products | exit 0 | 200 application/json 1021
+eia-activities | exit 0 | 200 application/json 292
+eia-units | exit 0 | 200 application/json 288
+eia-countries | exit 0 | 200 application/json 9068
+eia-sample | exit 0 | 200 application/json 357884

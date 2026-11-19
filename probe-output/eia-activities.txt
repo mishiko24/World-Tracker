@@ -1,0 +1,1 @@
+{"response":{"totalFacets":4,"facets":[{"id":"2","name":"Consumption"},{"id":"1","name":"Production"},{"id":"5","name":"Stocks, OECD"},{"id":"3","name":"Imports"}]},"request":{"command":"\/v2\/international\/facet\/activityId\/","params":[]},"apiVersion":"2.1.14","ExcelAddInVersion":"2.1.0"}
