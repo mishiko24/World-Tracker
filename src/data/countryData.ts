@@ -120,6 +120,7 @@ export interface Agriculture {
   source: SourceId;
   largest: Crop[]; // biggest products by tonnage
   worldLeading: Crop[]; // products where the country is a world top-10 producer, best rank first
+  all: Crop[]; // every product, biggest first; used to compare with another country's lists
 }
 
 export type PowerSource = "coal" | "gas" | "oil" | "nuclear" | "hydro" | "wind" | "solar" | "bioenergy" | "other";

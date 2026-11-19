@@ -1,7 +1,9 @@
 // Power generation: total, a stacked bar of the mix, and one row per source. Rows add up to the total.
+// In comparison mode each row also shows the other country's generation from the same source.
 
-import type { Power, PowerSource } from "../../data/countryData";
-import { FactRow, SourceNote } from "./FactRow";
+import type { CountryData, Power, PowerSource } from "../../data/countryData";
+import { Compare } from "./Compare";
+import { FactRow } from "./FactRow";
 import { percent, shortNumber } from "./formatData";
 
 const SOURCE_STYLE: Record<PowerSource, { label: string; color: string }> = {
@@ -20,17 +22,27 @@ function twh(value: number): string {
   return value >= 100 ? `${shortNumber(value)} TWh` : `${value.toFixed(value < 1 ? 2 : 1)} TWh`;
 }
 
-export function PowerSection({ power }: { power: Power }) {
+export function PowerSection({ power, other }: { power: Power; other: CountryData | null }) {
   const generation = power.generation;
   const access = power.electricityAccess;
+  const comparing = other !== null;
+  const otherGeneration = other?.power.generation ?? null;
+  const otherTotal = otherGeneration?.totalTwh ?? null;
+  const otherTwh = (source: PowerSource) => otherGeneration?.mix.find((m) => m.source === source)?.twh ?? null;
 
   return (
     <>
       {generation === null ? (
-        <FactRow label="Total generation" value={null} />
+        <FactRow label="Total generation" value={null} compare={comparing && <Compare a={null} b={otherTotal} format={twh} />} />
       ) : (
         <>
-          <FactRow label="Total generation" value={twh(generation.totalTwh)} year={generation.year} source={generation.source} />
+          <FactRow
+            label="Total generation"
+            value={twh(generation.totalTwh)}
+            year={generation.year}
+            source={generation.source}
+            compare={comparing && <Compare a={generation.totalTwh} b={otherTotal} format={twh} />}
+          />
           <div className="power-bar">
             {generation.mix.map((m) => (
               <span
@@ -41,23 +53,27 @@ export function PowerSection({ power }: { power: Power }) {
             ))}
           </div>
           {generation.mix.map((m) => (
-            <div className="fact" key={m.source}>
-              <span className="fact-label">
-                <span className="swatch" style={{ background: SOURCE_STYLE[m.source].color }} />
-                {SOURCE_STYLE[m.source].label}
-              </span>
-              <span className="fact-value">
-                {twh(m.twh)}
-                <span className="fact-meta">{percent((m.twh / generation.totalTwh) * 100)}</span>
-              </span>
-            </div>
+            <FactRow
+              key={m.source}
+              label={
+                <>
+                  <span className="swatch" style={{ background: SOURCE_STYLE[m.source].color }} />
+                  {SOURCE_STYLE[m.source].label}
+                </>
+              }
+              value={twh(m.twh)}
+              meta={percent((m.twh / generation.totalTwh) * 100)}
+              compare={comparing && <Compare a={m.twh} b={otherTwh(m.source)} format={twh} />}
+            />
           ))}
-          <div className="fact total-row">
-            <span className="fact-label">Total</span>
-            <span className="fact-value">
-              {twh(generation.totalTwh)}
-              <SourceNote year={generation.year} source={generation.source} />
-            </span>
+          <div className="total-row">
+            <FactRow
+              label="Total"
+              value={twh(generation.totalTwh)}
+              year={generation.year}
+              source={generation.source}
+              compare={comparing && <Compare a={generation.totalTwh} b={otherTotal} format={twh} />}
+            />
           </div>
         </>
       )}
@@ -66,6 +82,16 @@ export function PowerSection({ power }: { power: Power }) {
         value={access === null ? null : percent(access.value)}
         year={access?.year}
         source={access?.source}
+        compare={
+          comparing && (
+            <Compare
+              a={access?.value ?? null}
+              b={other.power.electricityAccess?.value ?? null}
+              format={(v) => percent(v)}
+              mode="points"
+            />
+          )
+        }
       />
     </>
   );

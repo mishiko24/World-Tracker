@@ -13,11 +13,12 @@ export interface StateStyle {
   outlineWidth: number; // screen pixels
 }
 
-export type CountryState = "default" | "highlighted" | "selected";
+export type CountryState = "default" | "highlighted" | "compared" | "selected";
 
 export interface MapStyle {
   default: StateStyle;
   highlighted: StateStyle;
+  compared: StateStyle; // country B in comparison mode (right click)
   selected: StateStyle;
   oceanColor: string; // also the background while satellite tiles load
 }
@@ -33,6 +34,7 @@ export interface Settings {
 const DARK_STYLE: MapStyle = {
   default: { fillColor: "#262a30", fillOpacity: 1, outlineColor: "#4d555f", outlineOpacity: 1, outlineWidth: 0.6 },
   highlighted: { fillColor: "#c9772a", fillOpacity: 1, outlineColor: "#ffd9a8", outlineOpacity: 1, outlineWidth: 1 },
+  compared: { fillColor: "#2f7de1", fillOpacity: 1, outlineColor: "#ffffff", outlineOpacity: 1, outlineWidth: 1.5 },
   selected: { fillColor: "#e3261b", fillOpacity: 1, outlineColor: "#ffffff", outlineOpacity: 1, outlineWidth: 1.5 },
   oceanColor: "#0f1419",
 };
@@ -40,6 +42,7 @@ const DARK_STYLE: MapStyle = {
 const LIGHT_STYLE: MapStyle = {
   default: { fillColor: "#f4f2ee", fillOpacity: 1, outlineColor: "#9a9a9a", outlineOpacity: 1, outlineWidth: 0.6 },
   highlighted: { fillColor: "#f0b26b", fillOpacity: 1, outlineColor: "#8a5a20", outlineOpacity: 1, outlineWidth: 1 },
+  compared: { fillColor: "#2f7de1", fillOpacity: 1, outlineColor: "#0b2c57", outlineOpacity: 1, outlineWidth: 1.5 },
   selected: { fillColor: "#e3261b", fillOpacity: 1, outlineColor: "#5a0d08", outlineOpacity: 1, outlineWidth: 1.5 },
   oceanColor: "#c9d7e3",
 };
@@ -48,6 +51,7 @@ const LIGHT_STYLE: MapStyle = {
 const SATELLITE_STYLE: MapStyle = {
   default: { fillColor: "#ffffff", fillOpacity: 0, outlineColor: "#ffffff", outlineOpacity: 0.45, outlineWidth: 0.6 },
   highlighted: { fillColor: "#ffffff", fillOpacity: 0.2, outlineColor: "#ffffff", outlineOpacity: 1, outlineWidth: 1.2 },
+  compared: { fillColor: "#2f7de1", fillOpacity: 0.3, outlineColor: "#5aa2ff", outlineOpacity: 1, outlineWidth: 2 },
   selected: { fillColor: "#e3261b", fillOpacity: 0.3, outlineColor: "#ff4a3d", outlineOpacity: 1, outlineWidth: 2 },
   oceanColor: "#0b1a2a",
 };
@@ -92,6 +96,7 @@ function mergeStyle(defaults: MapStyle, saved: Partial<MapStyle> | undefined): M
     ...saved,
     default: { ...defaults.default, ...saved?.default },
     highlighted: { ...defaults.highlighted, ...saved?.highlighted },
+    compared: { ...defaults.compared, ...saved?.compared },
     selected: { ...defaults.selected, ...saved?.selected },
   };
 }

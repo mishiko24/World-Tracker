@@ -98,8 +98,15 @@ SECURITY: never write URLs containing the EIA key to files or logs. A leak happe
 - **Geometry:** Natural Earth 50m. Microstates get a clickable dot while they are under 6 px on screen.
 - **Borders:** Natural Earth default (de facto control): Kosovo, Taiwan, Somaliland, N. Cyprus, W. Sahara are separate.
   Overseas parts belong to the parent (French Guiana selects France). Country id = Natural Earth ADM0_A3.
-- **Selection:** click selects, no camera move; clicking the selected country keeps it; ocean click or Esc deselects;
-  a left drag (>5 px) is never a click.
+- **Controls:** left click selects (A), right click compares (B), middle drag pans, wheel zooms. A drag (>5 px) is
+  never a click. MapView only reports clicks; App.tsx owns the rules: compare needs A selected and B != A; new left
+  selection ends a comparison; right click on ocean / ✕ in panel header ends it; ocean left click or Esc clears all.
+  List view uses the same rules (left/right click on rows).
+- **Comparison mode:** every number both countries have gets a chip (src/ui/info/Compare.tsx): B's value, ▲/▼ by
+  amount, green/red by better/worse (better = higher, except inflation and government debt = lower), difference
+  relative to A in %, or in percentage points for values that are percentages. Lists match by resource id,
+  agriculture product name (Agriculture.all) and power source. B is drawn with the "compared" map style.
+- **Info panel:** no source/year lines (clutter); year + source are the value's tooltip.
 - **Zoom:** toward cursor, 1x (world height fills viewport) to 40x; exponential glide in log space.
 - **List view:** toggle in the left panel. The map stays mounted but hidden (camera survives). Sorting: first click
   highest first (name A→Z), second click reverses, missing values always last. Row click = select (opens info panel).

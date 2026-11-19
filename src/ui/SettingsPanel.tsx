@@ -16,6 +16,7 @@ interface SettingsPanelProps {
 const STATE_TITLES: Record<CountryState, string> = {
   default: "Default country",
   highlighted: "Highlighted country",
+  compared: "Compared country",
   selected: "Selected country",
 };
 
@@ -34,7 +35,7 @@ export function SettingsPanel({ settings, onChange, open, onOpenChange }: Settin
     );
   }
 
-  const states: CountryState[] = ["default", "highlighted", "selected"];
+  const states: CountryState[] = ["default", "highlighted", "selected", "compared"];
 
   return (
     <aside className="panel panel-left">

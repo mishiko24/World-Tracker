@@ -173,7 +173,7 @@ function buildAgriculture(id: string): Agriculture | null {
   if (f === undefined) {
     return null;
   }
-  return { year: f.year, source: "faostat", largest: f.largest, worldLeading: f.worldLeading };
+  return { year: f.year, source: "faostat", largest: f.largest, worldLeading: f.worldLeading, all: f.all };
 }
 
 function buildPower(id: string): Power {

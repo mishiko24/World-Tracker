@@ -79,11 +79,11 @@ async function pixel(x, y) {
 const near = (a, b) => a.every((v, i) => Math.abs(v - b[i]) < 12);
 const panelTitle = async () => (await page.$("aside.panel-right h2")) && page.textContent("aside.panel-right h2");
 
-async function rightDrag(dx, dy, steps = 10) {
+async function middleDrag(dx, dy, steps = 10) {
   await page.mouse.move(W / 2, H / 2);
-  await page.mouse.down({ button: "right" });
+  await page.mouse.down({ button: "middle" });
   for (let i = 1; i <= steps; i++) await page.mouse.move(W / 2 + (dx * i) / steps, H / 2 + (dy * i) / steps);
-  await page.mouse.up({ button: "right" });
+  await page.mouse.up({ button: "middle" });
 }
 
 const [spainX, spainY] = startScreen(-3.7, 40.0);
@@ -126,20 +126,20 @@ check("Vatican dot is clickable", (await panelTitle()) === "Vatican", String(awa
 
 // Select Spain, then pan with the right mouse button.
 await page.mouse.click(spainX, spainY);
-await rightDrag(300, 0);
-check("RMB pan moves map (Spain +300px)", near(await pixel(spainX + 300, spainY), COLORS.selected));
-check("RMB pan kept selection", (await panelTitle()) === "Spain");
+await middleDrag(300, 0);
+check("middle-button pan moves map (Spain +300px)", near(await pixel(spainX + 300, spainY), COLORS.selected));
+check("middle-button pan kept selection", (await panelTitle()) === "Spain");
 
 // Vertical pan at min zoom is clamped: nothing moves.
-await rightDrag(0, 250);
+await middleDrag(0, 250);
 check("vertical pan clamped at zoom 1", near(await pixel(spainX + 300, spainY), COLORS.selected));
 
 // Horizontal wrap: pan exactly one world width; Spain must be back where it was.
 const worldWidthPx = WORLD_WIDTH * SCALE;
-await rightDrag(-worldWidthPx, 0, 30);
+await middleDrag(-worldWidthPx, 0, 30);
 check("horizontal wrap after one world width", near(await pixel(spainX + 300, spainY), COLORS.selected));
-await rightDrag(-1500, 0, 30);
-await rightDrag(-1500, 0, 30);
+await middleDrag(-1500, 0, 30);
+await middleDrag(-1500, 0, 30);
 const landFraction = await page.evaluate(() => {
   const c = document.querySelector("canvas");
   const d = c.getContext("2d").getImageData(0, 0, c.width, c.height).data;
@@ -163,12 +163,12 @@ check("zoom keeps Spain under cursor", near(await pixel(spainX, spainY), COLORS.
 check("zoomed in: Spain now covers the point north of it", near(await pixel(eastX, eastY), COLORS.selected));
 await page.screenshot({ path: "/tmp/wt-zoomed.png" });
 
-await rightDrag(0, -200);
+await middleDrag(0, -200);
 check("vertical pan works when zoomed", near(await pixel(spainX, spainY - 200), COLORS.selected));
 
 for (let i = 0; i < 30; i++) await page.mouse.wheel(0, 100);
 await page.waitForTimeout(1000);
-await rightDrag(0, 1000); // push back to vertical center limit
+await middleDrag(0, 1000); // push back to vertical center limit
 const backAtMin = near(await pixel(eastX, eastY), COLORS.ocean) || near(await pixel(eastX, eastY - 200), COLORS.ocean);
 check("zoom out clamps at min zoom (Spain small again)", backAtMin);
 await page.keyboard.press("Escape");
@@ -185,6 +185,77 @@ await page.reload();
 await page.waitForSelector("canvas");
 const saved = await page.evaluate(() => JSON.parse(localStorage.getItem("worldTracker.settings.v2")).styles.dark.selected.fillColor);
 check("settings persist across reload", saved === "#00ff00", saved);
+
+// ---------- comparison mode ----------
+// Fresh start view (camera back at zoom 1, nothing selected, default colors).
+await page.evaluate(() => localStorage.clear());
+await page.reload();
+await page.waitForSelector("canvas");
+await page.waitForTimeout(300);
+if (await page.$('button[title="Hide settings"]')) await page.click('button[title="Hide settings"]');
+const COMPARED = [0x2f, 0x7d, 0xe1];
+const [franceX, franceY] = startScreen(2.5, 46.5);
+
+await page.mouse.click(franceX, franceY, { button: "right" });
+check("right click with nothing selected does nothing", (await page.$(".compare-header")) === null && (await panelTitle()) === null);
+
+// A right drag is not a click and must not pan any more.
+await page.mouse.click(spainX, spainY);
+await page.mouse.move(franceX, franceY);
+await page.mouse.down({ button: "right" });
+await page.mouse.move(franceX + 60, franceY, { steps: 5 });
+await page.mouse.up({ button: "right" });
+check("right drag neither pans nor compares", (await page.$(".compare-header")) === null && near(await pixel(spainX, spainY), COLORS.selected));
+
+await page.mouse.click(franceX, franceY, { button: "right" });
+await page.waitForSelector(".compare-header");
+check("right click compares: header shows vs France", (await page.textContent(".compare-header")).includes("vs France"));
+check("panel still shows Spain", (await panelTitle()) === "Spain");
+check("compared country drawn in compared color", near(await pixel(franceX, franceY), COMPARED));
+check("selected country keeps its color", near(await pixel(spainX, spainY), COLORS.selected));
+
+await page.click("aside.panel-right .collapsible-header >> text=Population");
+await page.click("aside.panel-right .collapsible-header >> text=Economy");
+await page.waitForTimeout(200);
+const rowChip = async (label) =>
+  page.evaluate((label) => {
+    const row = [...document.querySelectorAll("aside.panel-right .fact")].find((r) => r.querySelector(".fact-label").textContent === label);
+    const chip = row?.querySelector(".compare");
+    return chip ? { cls: chip.className, text: chip.textContent } : null;
+  }, label);
+const popChip = await rowChip("Population");
+check("France has more people: green ▲", popChip?.cls === "compare good" && popChip.text.startsWith("▲"), JSON.stringify(popChip));
+const spainData = await (await fetch(`${URL}data/countries/ESP.json`)).json();
+const franceData = await (await fetch(`${URL}data/countries/FRA.json`)).json();
+const expectedPct = Math.round(((franceData.population.total.value - spainData.population.total.value) / spainData.population.total.value) * 100);
+check("population difference is relative to Spain", popChip?.text.includes(`${expectedPct}%`), `${popChip?.text} expected ${expectedPct}%`);
+const infChip = await rowChip("Inflation");
+const franceLowerInflation = franceData.economy.inflation.value < spainData.economy.inflation.value;
+check(
+  "inflation: lower is better (color) and shown in pp",
+  infChip !== null && infChip.text.includes("pp") && (infChip.cls === "compare good") === franceLowerInflation && infChip.text.startsWith(franceLowerInflation ? "▼" : "▲"),
+  JSON.stringify(infChip),
+);
+const metaTexts = await page.$$eval("aside.panel-right .fact-meta", (els) => els.map((e) => e.textContent));
+check("meta lines carry no sources", metaTexts.every((t) => !/World Bank|IMF|UN|EIA|USGS|FAO|Ember/.test(t)), metaTexts.join(" | "));
+const tooltip = await page.$eval("aside.panel-right .fact-value", (el) => el.title);
+check("year and source available as tooltip", /20\d\d · /.test(tooltip), tooltip);
+
+await page.mouse.click(oceanX, oceanY, { button: "right" });
+await page.waitForTimeout(100);
+check("right click on ocean ends comparison", (await page.$(".compare-header")) === null && (await panelTitle()) === "Spain");
+
+await page.mouse.click(franceX, franceY, { button: "right" });
+await page.waitForSelector(".compare-header");
+await page.click('.compare-header button[title="End comparison"]');
+check("✕ ends comparison", (await page.$(".compare-header")) === null);
+
+await page.mouse.click(franceX, franceY, { button: "right" });
+await page.waitForSelector(".compare-header");
+await page.mouse.click(franceX, franceY);
+await page.waitForTimeout(100);
+check("left click selects a new country and ends comparison", (await panelTitle()) === "France" && (await page.$(".compare-header")) === null);
+await page.keyboard.press("Escape");
 
 // ---------- map types ----------
 await page.evaluate(() => localStorage.clear());
@@ -227,7 +298,7 @@ const zoomedLevel = Math.max(...tileRequests.map((t) => t.z));
 check("satellite: zooming in loads deeper tiles", zoomedLevel >= 6, `max level ${zoomedLevel}`);
 check("satellite: deepest level is capped at 8", zoomedLevel <= 8);
 check("satellite: zoomed ocean shows deep tiles", near(await pixel(atlX, atlY), tileColor(zoomedLevel)), String(await pixel(atlX, atlY)));
-await rightDrag(-3000, 0, 40);
+await middleDrag(-3000, 0, 40);
 await page.waitForTimeout(600);
 check("satellite: wrap keeps tile coords valid", tileRequests.every((t) => t.x >= 0 && t.x < 2 ** t.z));
 const perLevel = {}; for (const t of tileRequests) perLevel[t.z] = (perLevel[t.z] ?? 0) + 1;
@@ -264,6 +335,10 @@ check("name sorts A→Z", (await firstNames())[0] < (await firstNames())[1], (aw
 await page.click(".country-list tbody tr >> text=Georgia");
 check("row click opens info panel", (await panelTitle()) === "Georgia", String(await panelTitle()));
 check("selected row highlighted", (await page.$eval(".country-list tr.selected td", (td) => td.textContent)) === "Georgia");
+await page.click(".country-list tbody tr >> text=Armenia", { button: "right" });
+await page.waitForSelector(".compare-header");
+check("right click on a row compares", (await page.textContent(".compare-header")).includes("vs Armenia"));
+check("compared row highlighted", (await page.$eval(".country-list tr.compared td", (td) => td.textContent)) === "Armenia");
 // The pinned name column must hide cells scrolled under it, also on the selected and hovered rows.
 const nameCellsOpaque = await page.$$eval(".country-list tbody tr.selected td.name-column, .country-list tbody tr:hover td.name-column", (tds) =>
   tds.every((td) => !getComputedStyle(td).backgroundColor.startsWith("rgba")),
@@ -290,7 +365,7 @@ await page.evaluate(() => {
   };
   requestAnimationFrame(tick);
 });
-await rightDrag(-1200, 0, 120);
+await middleDrag(-1200, 0, 120);
 const frames = await page.evaluate(() => window.__frames.slice(5));
 frames.sort((a, b) => a - b);
 console.log(`INFO  pan frame time median ${frames[frames.length >> 1].toFixed(1)} ms, p95 ${frames[Math.floor(frames.length * 0.95)].toFixed(1)} ms (headless, software rendering)`);

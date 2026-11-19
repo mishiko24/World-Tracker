@@ -1,6 +1,7 @@
 // List view: every country in a sortable table (public/data/summary.json).
 // Click a column header to sort: first click = highest first (names A→Z), click again to reverse.
-// Countries without a value always sit at the bottom. Click a row to open its info panel.
+// Countries without a value always sit at the bottom. Left-click a row to select it (info panel),
+// right-click a row to compare it with the selected one.
 
 import { useEffect, useState } from "react";
 import type { CountrySummary } from "../../data/countryData";
@@ -15,7 +16,9 @@ interface Sort {
 
 interface CountryListProps {
   selectedId: string | null;
+  comparedId: string | null;
   onSelect: (id: string) => void;
+  onCompare: (id: string) => void;
   leftPanelOpen: boolean; // the list makes room for the panels instead of hiding under them
   rightPanelOpen: boolean;
 }
@@ -51,7 +54,17 @@ function sortRows(rows: CountrySummary[], sort: Sort): CountrySummary[] {
   });
 }
 
-export function CountryList({ selectedId, onSelect, leftPanelOpen, rightPanelOpen }: CountryListProps) {
+function rowClass(id: string, selectedId: string | null, comparedId: string | null): string | undefined {
+  if (id === selectedId) {
+    return "selected";
+  }
+  if (id === comparedId) {
+    return "compared";
+  }
+  return undefined;
+}
+
+export function CountryList({ selectedId, comparedId, onSelect, onCompare, leftPanelOpen, rightPanelOpen }: CountryListProps) {
   const rows = useSummaries();
   const [sort, setSort] = useState<Sort>({ key: "population", descending: true });
 
@@ -99,7 +112,15 @@ export function CountryList({ selectedId, onSelect, leftPanelOpen, rightPanelOpe
           </thead>
           <tbody>
             {sortRows(rows, sort).map((row) => (
-              <tr key={row.id} className={row.id === selectedId ? "selected" : undefined} onClick={() => onSelect(row.id)}>
+              <tr
+                key={row.id}
+                className={rowClass(row.id, selectedId, comparedId)}
+                onClick={() => onSelect(row.id)}
+                onContextMenu={(e) => {
+                  e.preventDefault();
+                  onCompare(row.id);
+                }}
+              >
                 <td className="name-column">{row.name}</td>
                 {COLUMNS.map((c) => {
                   const value = row[c.key];

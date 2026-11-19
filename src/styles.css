@@ -500,3 +500,55 @@ button {
 .country-list tbody tr.selected td {
   background: #41181a;
 }
+
+/* ---------- comparison mode ---------- */
+
+.fact-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 8px;
+}
+
+.compare {
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.compare.good {
+  color: #3fb950;
+}
+
+.compare.bad {
+  color: #f85149;
+}
+
+.compare.neutral {
+  color: var(--text-dim);
+}
+
+.compare-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.compare-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: #2f7de1;
+}
+
+.icon-button.small {
+  padding: 0 4px;
+  font-size: 11px;
+}
+
+/* Opaque, see the note on tr.selected: #19273c = compared blue (47, 125, 225) at 18% over #141418. */
+.country-list tbody tr.compared td {
+  background: #19273c;
+}

@@ -5,14 +5,18 @@ import { useEffect, useState } from "react";
 import type { CountryData } from "../../data/countryData";
 
 export type CountryDataState =
+  | { status: "none" } // no country asked for (id null)
   | { status: "loading" }
   | { status: "loaded"; data: CountryData }
   | { status: "failed"; message: string };
 
-export function useCountryData(id: string): CountryDataState {
-  const [state, setState] = useState<{ id: string; result: CountryDataState }>({ id, result: { status: "loading" } });
+export function useCountryData(id: string | null): CountryDataState {
+  const [state, setState] = useState<{ id: string | null; result: CountryDataState }>({ id, result: { status: "loading" } });
 
   useEffect(() => {
+    if (id === null) {
+      return;
+    }
     let cancelled = false; // a newer selection may finish first
     fetch(`${import.meta.env.BASE_URL}data/countries/${id}.json`)
       .then((response) => {
@@ -39,6 +43,9 @@ export function useCountryData(id: string): CountryDataState {
     };
   }, [id]);
 
+  if (id === null) {
+    return { status: "none" };
+  }
   // Until the effect for a new id resolves, report loading instead of the previous country's data.
   if (state.id !== id) {
     return { status: "loading" };

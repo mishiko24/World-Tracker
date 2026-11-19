@@ -34,6 +34,7 @@ export interface FaoEntry {
   year: number;
   largest: FaoCrop[];
   worldLeading: FaoCrop[];
+  all: FaoCrop[];
 }
 
 // By-products and catch-all categories that aren't meaningful "products" of a country.
@@ -122,12 +123,13 @@ export async function fetchFaostat(): Promise<void> {
     if (id === undefined) {
       continue;
     }
-    const largest = [...crops].sort((a, b) => b.tonnes - a.tonnes).slice(0, LARGEST_COUNT);
+    const all = [...crops].sort((a, b) => b.tonnes - a.tonnes);
+    const largest = all.slice(0, LARGEST_COUNT);
     const worldLeading = crops
       .filter((c) => c.worldRank <= LEADING_MAX_RANK)
       .sort((a, b) => a.worldRank - b.worldRank || b.worldShare - a.worldShare)
       .slice(0, LEADING_COUNT);
-    byCountry[id] = { year, largest, worldLeading };
+    byCountry[id] = { year, largest, worldLeading, all };
   }
 
   writeCache("faostat", byCountry);

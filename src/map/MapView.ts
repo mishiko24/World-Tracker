@@ -2,12 +2,13 @@
 //
 // Controls:
 //   hover            -> highlight country
-//   left click       -> select country; click on ocean deselects; a drag is never a click
-//   right drag       -> pan (horizontal wraps forever, vertical is clamped)
+//   left click       -> onSelect(country or null for ocean)
+//   right click      -> onCompare(country or null for ocean)
+//   middle drag      -> pan (horizontal wraps forever, vertical is clamped)
 //   wheel            -> zoom toward cursor, smoothed
-//   Esc              -> deselect
-//
-// The view only redraws when something changed (`dirty`).
+// A click that moved more than a few pixels is a drag and does nothing.
+// The view only reports clicks; App decides what they mean and pushes selection back via
+// setSelected/setCompared. The view only redraws when something changed (`dirty`).
 
 import { Camera, clampZoom } from "./Camera";
 import { WORLD_WIDTH, type Country } from "./geo";
@@ -15,7 +16,10 @@ import { getMapType } from "./mapTypes";
 import { TileLayer } from "./TileLayer";
 import type { CountryState, MapStyle, Settings, StateStyle } from "../settings";
 
-const CLICK_MAX_MOVE_PX = 5; // left button moving more than this between down and up is a drag, not a click
+const CLICK_MAX_MOVE_PX = 5; // moving more than this between button down and up is a drag, not a click
+const LEFT_BUTTON = 0;
+const MIDDLE_BUTTON = 1;
+const RIGHT_BUTTON = 2;
 const WHEEL_PIXELS_PER_NOTCH = 100; // typical deltaY of one mouse-wheel notch
 const MAX_ZOOM_GLIDE_SECONDS = 0.3; // zoom smoothness 1 = this time constant
 
@@ -31,12 +35,14 @@ export class MapView {
   private readonly camera = new Camera();
   private readonly countries: Country[];
   private readonly onSelect: (id: string | null) => void;
+  private readonly onCompare: (id: string | null) => void;
   private readonly resizeObserver: ResizeObserver;
 
   private settings: Settings;
   private tileLayer: TileLayer | null = null; // imagery under the countries, for map types that have it
   private hoveredId: string | null = null;
   private selectedId: string | null = null;
+  private comparedId: string | null = null;
   private dirty = true;
 
   private targetZoom = 1;
@@ -47,9 +53,9 @@ export class MapView {
   private pointerX = 0;
   private pointerY = 0;
   private panning = false;
-  private leftDown = false;
-  private leftDownX = 0;
-  private leftDownY = 0;
+  private clickButton: number | null = null; // left or right button currently held for a possible click
+  private clickDownX = 0;
+  private clickDownY = 0;
 
   private frameHandle = 0;
   private lastFrameTime = 0;
@@ -59,6 +65,7 @@ export class MapView {
     countries: Country[],
     settings: Settings,
     onSelect: (id: string | null) => void,
+    onCompare: (id: string | null) => void,
   ) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d")!;
@@ -67,6 +74,7 @@ export class MapView {
     this.settings = settings;
     this.tileLayer = this.createTileLayer();
     this.onSelect = onSelect;
+    this.onCompare = onCompare;
 
     canvas.addEventListener("pointerdown", this.handlePointerDown);
     canvas.addEventListener("pointermove", this.handlePointerMove);
@@ -74,7 +82,6 @@ export class MapView {
     canvas.addEventListener("pointerleave", this.handlePointerLeave);
     canvas.addEventListener("wheel", this.handleWheel, { passive: false });
     canvas.addEventListener("contextmenu", this.handleContextMenu);
-    window.addEventListener("keydown", this.handleKeyDown);
 
     this.resizeObserver = new ResizeObserver(() => {
       this.resize();
@@ -94,7 +101,6 @@ export class MapView {
     this.canvas.removeEventListener("pointerleave", this.handlePointerLeave);
     this.canvas.removeEventListener("wheel", this.handleWheel);
     this.canvas.removeEventListener("contextmenu", this.handleContextMenu);
-    window.removeEventListener("keydown", this.handleKeyDown);
   }
 
   setSettings(settings: Settings): void {
@@ -122,6 +128,11 @@ export class MapView {
 
   setSelected(id: string | null): void {
     this.selectedId = id;
+    this.dirty = true;
+  }
+
+  setCompared(id: string | null): void {
+    this.comparedId = id;
     this.dirty = true;
   }
 
@@ -180,6 +191,9 @@ export class MapView {
     if (country.id === this.selectedId) {
       return "selected";
     }
+    if (country.id === this.comparedId) {
+      return "compared";
+    }
     if (country.id === this.hoveredId) {
       return "highlighted";
     }
@@ -212,7 +226,7 @@ export class MapView {
     const lastCopy = Math.floor(right / WORLD_WIDTH);
 
     // Default countries first, then highlighted, then selected, so their outlines sit on top.
-    const states: CountryState[] = ["default", "highlighted", "selected"];
+    const states: CountryState[] = ["default", "highlighted", "compared", "selected"];
     for (const state of states) {
       const style = mapStyle[state];
       for (let copy = firstCopy; copy <= lastCopy; copy++) {
@@ -339,16 +353,17 @@ export class MapView {
   // ---------- input ----------
 
   private handlePointerDown = (e: PointerEvent): void => {
-    if (e.button === 2) {
+    if (e.button === MIDDLE_BUTTON) {
+      e.preventDefault(); // stops the browser's middle-click autoscroll
       this.panning = true;
       this.pointerX = e.offsetX;
       this.pointerY = e.offsetY;
       this.canvas.setPointerCapture(e.pointerId);
       this.setHovered(null);
-    } else if (e.button === 0) {
-      this.leftDown = true;
-      this.leftDownX = e.offsetX;
-      this.leftDownY = e.offsetY;
+    } else if (e.button === LEFT_BUTTON || e.button === RIGHT_BUTTON) {
+      this.clickButton = e.button;
+      this.clickDownX = e.offsetX;
+      this.clickDownY = e.offsetY;
     }
   };
 
@@ -368,16 +383,25 @@ export class MapView {
   };
 
   private handlePointerUp = (e: PointerEvent): void => {
-    if (e.button === 2 && this.panning) {
+    if (e.button === MIDDLE_BUTTON && this.panning) {
       this.panning = false;
       this.canvas.releasePointerCapture(e.pointerId);
       this.setHovered(this.hitTest(e.offsetX, e.offsetY));
-    } else if (e.button === 0 && this.leftDown) {
-      this.leftDown = false;
-      const moved = Math.hypot(e.offsetX - this.leftDownX, e.offsetY - this.leftDownY);
-      if (moved <= CLICK_MAX_MOVE_PX) {
-        this.select(this.hitTest(e.offsetX, e.offsetY));
-      }
+      return;
+    }
+    if (e.button !== this.clickButton) {
+      return;
+    }
+    this.clickButton = null;
+    const moved = Math.hypot(e.offsetX - this.clickDownX, e.offsetY - this.clickDownY);
+    if (moved > CLICK_MAX_MOVE_PX) {
+      return;
+    }
+    const hit = this.hitTest(e.offsetX, e.offsetY);
+    if (e.button === LEFT_BUTTON) {
+      this.onSelect(hit);
+    } else {
+      this.onCompare(hit);
     }
   };
 
@@ -406,20 +430,6 @@ export class MapView {
   private handleContextMenu = (e: MouseEvent): void => {
     e.preventDefault();
   };
-
-  private handleKeyDown = (e: KeyboardEvent): void => {
-    if (e.key === "Escape") {
-      this.select(null);
-    }
-  };
-
-  private select(id: string | null): void {
-    if (id === this.selectedId) {
-      return;
-    }
-    this.setSelected(id);
-    this.onSelect(id);
-  }
 }
 
 // Wraps a world-x difference into [-WORLD_WIDTH/2, WORLD_WIDTH/2).

@@ -1,13 +1,20 @@
 // Resources: Production and Reserves tabs over the same resource list (energy, then minerals).
+// In comparison mode each row also shows the other country's amount of the same resource.
 
 import { useState } from "react";
-import type { Amount, Resource } from "../../data/countryData";
-import { SourceNote } from "./FactRow";
+import type { Amount, CountryData, Resource } from "../../data/countryData";
+import { Compare } from "./Compare";
+import { FactRow } from "./FactRow";
 import { amount, share } from "./formatData";
 
 type Tab = "production" | "reserves";
 
-export function ResourcesSection({ resources }: { resources: Resource[] }) {
+interface ResourcesSectionProps {
+  resources: Resource[];
+  other: CountryData | null;
+}
+
+export function ResourcesSection({ resources, other }: ResourcesSectionProps) {
   const [tab, setTab] = useState<Tab>("production");
 
   if (resources.length === 0) {
@@ -27,41 +34,55 @@ export function ResourcesSection({ resources }: { resources: Resource[] }) {
           Reserves
         </button>
       </div>
-      {energy.length > 0 && <ResourceGroup title="Energy" resources={energy} tab={tab} />}
-      {minerals.length > 0 && <ResourceGroup title="Minerals & metals" resources={minerals} tab={tab} />}
+      {energy.length > 0 && <ResourceGroup title="Energy" resources={energy} tab={tab} other={other} />}
+      {minerals.length > 0 && <ResourceGroup title="Minerals & metals" resources={minerals} tab={tab} other={other} />}
     </>
   );
 }
 
-function ResourceGroup({ title, resources, tab }: { title: string; resources: Resource[]; tab: Tab }) {
+interface ResourceGroupProps {
+  title: string;
+  resources: Resource[];
+  tab: Tab;
+  other: CountryData | null;
+}
+
+function ResourceGroup({ title, resources, tab, other }: ResourceGroupProps) {
   return (
     <div className="data-group">
       <div className="data-group-title">{title}</div>
-      {resources.map((r) => (
-        <AmountRow key={r.id} name={r.name} value={r[tab]} />
-      ))}
+      {resources.map((r) => {
+        const value = r[tab];
+        const otherValue = other === null ? undefined : (other.resources.find((o) => o.id === r.id)?.[tab] ?? null);
+        return <AmountRow key={r.id} name={r.name} value={value} other={otherValue} />;
+      })}
     </div>
   );
 }
 
-function AmountRow({ name, value }: { name: string; value: Amount | null }) {
+function rankLine(value: Amount): string {
+  const parts: string[] = [];
+  if (value.worldRank !== null) {
+    parts.push(`#${value.worldRank} world`);
+  }
+  if (value.worldShare !== null) {
+    parts.push(share(value.worldShare));
+  }
+  return parts.join(" · ");
+}
+
+// Same resource id = same unit, so values can be compared directly.
+function AmountRow({ name, value, other }: { name: string; value: Amount | null; other: Amount | null | undefined }) {
+  const unit = value ?? other;
+  const format = (v: number) => amount({ ...unit!, value: v });
   return (
-    <div className="fact">
-      <span className="fact-label">{name}</span>
-      <span className="fact-value">
-        {value === null ? (
-          <span className="no-data">No data</span>
-        ) : (
-          <>
-            {amount(value)}
-            <span className="fact-meta">
-              {value.worldRank !== null && `#${value.worldRank} world`}
-              {value.worldShare !== null && ` · ${share(value.worldShare)}`}
-            </span>
-            <SourceNote year={value.year} source={value.source} />
-          </>
-        )}
-      </span>
-    </div>
+    <FactRow
+      label={name}
+      value={value === null ? null : amount(value)}
+      year={value?.year}
+      source={value?.source}
+      meta={value && rankLine(value)}
+      compare={other !== undefined && <Compare a={value?.value ?? null} b={other?.value ?? null} format={format} />}
+    />
   );
 }
