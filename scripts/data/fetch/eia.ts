@@ -81,13 +81,17 @@ async function fetchSeries(series: Series, key: string): Promise<ApiRow[]> {
 async function productsForActivity(activityId: string, key: string): Promise<string> {
   const url =
     `https://api.eia.gov/v2/international/data/?api_key=${key}&frequency=annual&data[0]=value` +
-    `&facets[activityId][]=${activityId}&facets[countryRegionId][]=SAU&facets[countryRegionId][]=USA&start=${lastFullYear() - 3}&length=${PAGE_SIZE}`;
+    `&facets[activityId][]=${activityId}&facets[countryRegionId][]=SAU&facets[countryRegionId][]=USA&start=${lastFullYear() - 25}&length=${PAGE_SIZE}`;
   const page = await fetchJson<{ response: { data: (ApiRow & { productId: string; productName: string })[] } }>(
     url,
     `EIA products for activity ${activityId}`,
   );
-  const seen = new Set(page.response.data.map((r) => `${r.productId} ${r.productName} [${r.unit}]`));
-  return [...seen].join("; ");
+  const years = new Map<string, number[]>();
+  for (const r of page.response.data) {
+    const key = `${r.productId} ${r.productName} [${r.unit}]`;
+    years.set(key, [...(years.get(key) ?? []), Number(r.period)]);
+  }
+  return [...years].map(([key, ys]) => `${key} ${Math.min(...ys)}-${Math.max(...ys)}`).join("; ");
 }
 
 export async function fetchEia(): Promise<void> {
