@@ -79,7 +79,7 @@ the logs (`gh api repos/mishiko24/World-Tracker/actions/jobs/<id>/logs`), then p
 | | median age | UN WPP via OWID grapher (unwpp) | Estimates only, no projections |
 | Economy | GDP (+rank), per capita, PPP, growth, inflation, debt | IMF DataMapper WEO (imf) | Last full year (IMF estimate for some). Rank computed in build.ts |
 | Resources | oil/gas/coal production, coal reserves | EIA API (eia), key in secret EIA_API_KEY | EIA dropped oil/gas reserves from its API |
-| | oil/gas reserves | Energy Institute via OWID (eireserves) | Stops at 2020. OPEC has newer but blocks bots (403) |
+| | oil/gas reserves | EIA via OWID grapher CSVs (reserves) | Ends 2021. EI stopped 2020; OPEC has newer but blocks bots (403) |
 | | minerals production + reserves | USGS MCS data release (usgs) | Update SCIENCEBASE_ITEM each new edition (Jan/Feb). One variant per mineral |
 | Agriculture | largest products, world top-10 | FAOSTAT bulk zip (faostat) | 545 MB CSV streamed via `unzip -p`. Excludes FAO aggregate items/areas |
 | Power | generation mix (sums to total) | Ember + EI via OWID energy-data on GitHub (energy) | |

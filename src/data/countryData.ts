@@ -13,7 +13,6 @@ export type SourceId =
   | "factbook"
   | "unwpp"
   | "eia"
-  | "energyinstitute"
   | "usgs"
   | "faostat"
   | "ember";
@@ -31,11 +30,6 @@ export const SOURCES: Record<SourceId, SourceInfo> = {
   factbook: { short: "Factbook", name: "CIA World Factbook (final edition)", url: "https://github.com/factbook/factbook.json" },
   unwpp: { short: "UN", name: "UN World Population Prospects, via Our World in Data", url: "https://ourworldindata.org" },
   eia: { short: "EIA", name: "U.S. EIA International Energy Data", url: "https://www.eia.gov/international/data/world" },
-  energyinstitute: {
-    short: "Energy Institute",
-    name: "Energy Institute Statistical Review (reserves last published for 2020), via Our World in Data",
-    url: "https://www.energyinst.org/statistical-review",
-  },
   usgs: { short: "USGS", name: "USGS Mineral Commodity Summaries", url: "https://www.usgs.gov/centers/national-minerals-information-center/mineral-commodity-summaries" },
   faostat: { short: "FAO", name: "FAOSTAT (UN Food and Agriculture Organization)", url: "https://www.fao.org/faostat" },
   ember: { short: "Ember", name: "Ember & Energy Institute, via Our World in Data", url: "https://github.com/owid/energy-data" },

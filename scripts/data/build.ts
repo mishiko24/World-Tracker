@@ -22,7 +22,7 @@ import type {
 import { loadCountries } from "./lib/countries.ts";
 import { readCache } from "./lib/io.ts";
 import type { EiaEntry } from "./fetch/eia.ts";
-import type { EiReservesEntry } from "./fetch/eiReserves.ts";
+import type { FossilReservesEntry } from "./fetch/fossilReserves.ts";
 import type { EnergyEntry } from "./fetch/energy.ts";
 import type { FactbookEntry } from "./fetch/factbook.ts";
 import type { FaoEntry } from "./fetch/faostat.ts";
@@ -40,7 +40,7 @@ const wikidata = readCache<WikidataEntry>("wikidata").byCountry;
 const factbook = readCache<FactbookEntry>("factbook").byCountry;
 const unwpp = readCache<UnWppEntry>("unwpp").byCountry;
 const eia = readCache<EiaEntry>("eia").byCountry;
-const eiReserves = readCache<EiReservesEntry>("eireserves").byCountry;
+const fossilReserves = readCache<FossilReservesEntry>("reserves").byCountry;
 const usgs = readCache<UsgsEntry>("usgs").byCountry;
 const faostat = readCache<FaoEntry>("faostat").byCountry;
 const energy = readCache<EnergyEntry>("energy").byCountry;
@@ -121,19 +121,19 @@ const ENERGY_RESOURCES = [
 ] as const;
 
 // Energy first (fixed order), then minerals by world share of production, then of reserves.
-// Energy production is EIA; reserves are EIA for coal, Energy Institute (2020) for oil and gas.
+// Energy production is EIA (API); coal reserves EIA (API); oil and gas reserves EIA via Our World in Data.
 function buildResources(id: string): Resource[] {
   const resources: Resource[] = [];
   const e = eia[id] ?? {};
-  const ei = eiReserves[id] ?? {};
+  const owidReserves = fossilReserves[id] ?? {};
   for (const r of ENERGY_RESOURCES) {
     const production = e[`${r.id}.production`];
     const eiaReserves = e[`${r.id}.reserves`];
-    const eiReserve = r.id === "coal" ? undefined : ei[r.id];
+    const owidReserve = r.id === "coal" ? undefined : owidReserves[r.id];
     const reserves: Amount | null = eiaReserves
       ? { ...eiaReserves, source: "eia" }
-      : eiReserve
-        ? { ...eiReserve, source: "energyinstitute" }
+      : owidReserve
+        ? { ...owidReserve, source: "eia" }
         : null;
     if (production === undefined && reserves === null) {
       continue;

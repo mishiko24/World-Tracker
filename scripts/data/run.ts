@@ -6,7 +6,7 @@
 // Fetchers write data-cache/<source>.json; build turns the caches into public/data/countries/*.json.
 
 import { fetchEia } from "./fetch/eia.ts";
-import { fetchEiReserves } from "./fetch/eiReserves.ts";
+import { fetchFossilReserves } from "./fetch/fossilReserves.ts";
 import { fetchEnergy } from "./fetch/energy.ts";
 import { fetchFactbook } from "./fetch/factbook.ts";
 import { fetchFaostat } from "./fetch/faostat.ts";
@@ -25,7 +25,7 @@ const STEPS: Record<string, () => Promise<void>> = {
   unwpp: fetchUnWpp,
   energy: fetchEnergy,
   eia: fetchEia,
-  eireserves: fetchEiReserves,
+  reserves: fetchFossilReserves,
   usgs: fetchUsgs,
   faostat: fetchFaostat,
   build: async () => {
