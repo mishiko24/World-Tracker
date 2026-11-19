@@ -32,8 +32,15 @@ interface LoadedProfile {
   governmentType: string | null;
 }
 
+const ENTITIES: Record<string, string> = { nbsp: " ", amp: "&", quot: '"', apos: "'", lt: "<", gt: ">", ndash: "–", mdash: "—" };
+
 function stripHtml(text: string): string {
-  return text.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+  return text
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&#(\d+);/g, (_, code: string) => String.fromCharCode(Number(code)))
+    .replace(/&([a-z]+);/g, (match, name: string) => ENTITIES[name] ?? match)
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function slugify(name: string): string {

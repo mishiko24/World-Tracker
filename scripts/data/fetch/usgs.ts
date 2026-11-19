@@ -119,7 +119,7 @@ export function parseUsgsCsv(text: string): Record<string, UsgsEntry> {
     used.add(`${row.Section} | ${row.Commodity} | ${row.Statistics_detail}`);
     observations.push({
       mineralId: mineralId(row.Commodity),
-      mineralName: row.Commodity,
+      mineralName: row.Commodity.replace(/ And /g, " and "),
       kind,
       country: row.Country,
       value: value * unit.factor,

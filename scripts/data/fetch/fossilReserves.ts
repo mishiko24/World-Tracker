@@ -37,25 +37,43 @@ export async function fetchFossilReserves(): Promise<void> {
     if (column === undefined) {
       throw new Error(`OWID ${series.slug}: no *_m3 column; columns are ${columns.join(", ")}`);
     }
-    const latestYear = Math.max(...rows.filter((r) => r[column] !== "").map((r) => Number(r.year)));
-    const current = rows.filter((r) => Number(r.year) === latestYear && r[column] !== "");
-    const world = current.find((r) => r.code === "OWID_WRL");
-    const countries = current
-      .map((r) => ({ id: ourId.get(r.code), value: Number(r[column]) * series.factor }))
-      .filter((c): c is { id: string; value: number } => c.id !== undefined && c.value > 0);
+    // Each country's latest year; rank and share are computed among countries reporting that same year.
+    const latest = new Map<string, { value: number; year: number }>();
+    let world: { value: number; year: number }[] = [];
+    for (const r of rows) {
+      if (r[column] === "") {
+        continue;
+      }
+      const year = Number(r.year);
+      const value = Number(r[column]) * series.factor;
+      if (r.code === "OWID_WRL") {
+        world.push({ value, year });
+        continue;
+      }
+      const id = ourId.get(r.code);
+      const previous = id === undefined ? undefined : latest.get(id);
+      if (id !== undefined && (previous === undefined || year > previous.year)) {
+        latest.set(id, { value, year });
+      }
+    }
+    world = world.sort((a, b) => b.year - a.year);
+    const countries = [...latest].map(([id, v]) => ({ id, ...v })).filter((c) => c.value > 0);
 
     for (const c of countries) {
+      const sameYear = countries.filter((other) => other.year === c.year);
+      const worldTotal = world.find((w) => w.year === c.year);
       byCountry[c.id] ??= {};
       byCountry[c.id][series.resource] = {
         value: c.value,
         unit: series.unit,
-        year: latestYear,
-        worldRank: 1 + countries.filter((other) => other.value > c.value).length,
-        worldShare: world ? c.value / (Number(world[column]) * series.factor) : null,
+        year: c.year,
+        worldRank: 1 + sameYear.filter((other) => other.value > c.value).length,
+        worldShare: worldTotal ? c.value / worldTotal.value : null,
       };
     }
     const saudi = byCountry.SAU?.[series.resource]?.value;
-    console.log(`  ${series.slug}: column ${column} (of ${columns.slice(3).join(", ")}), year ${latestYear}, ${countries.length} countries, world row ${world ? "yes" : "no"}; Saudi Arabia = ${saudi?.toExponential(4)} ${series.unit}`);
+    const years = [...new Set(countries.map((c) => c.year))].sort().join(",");
+    console.log(`  ${series.slug}: column ${column}, years ${years}, ${countries.length} countries; Saudi Arabia = ${saudi?.toExponential(4)}, USA = ${byCountry.USA?.[series.resource]?.value.toExponential(4)} ${series.unit}`);
   }
 
   writeCache("reserves", byCountry);

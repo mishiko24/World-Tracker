@@ -36,8 +36,14 @@ export interface FaoEntry {
   worldLeading: FaoCrop[];
 }
 
+// By-products and catch-all categories that aren't meaningful "products" of a country.
+const EXCLUDED_ITEMS = /offals|hides|skins|\bfat\b|unrendered|^other /i;
+
 function cleanItemName(name: string): string {
-  return name.replace(/, fresh or chilled$/i, "").replace(/\s+/g, " ").trim();
+  return name
+    .replace(/, fresh, chilled or frozen|, fresh or chilled|, fresh| with the bone|, in shell|, raw or retted|, raw|, dry| n\.e\.c\./gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 export async function fetchFaostat(): Promise<void> {
@@ -65,6 +71,9 @@ export async function fetchFaostat(): Promise<void> {
       continue;
     }
     if (Number(itemCode) >= AGGREGATE_ITEMS.min && Number(itemCode) <= AGGREGATE_ITEMS.max) {
+      continue;
+    }
+    if (EXCLUDED_ITEMS.test(fields[column.Item])) {
       continue;
     }
     const area = fields[column["Area Code"]];
