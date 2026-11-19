@@ -495,6 +495,8 @@ button {
   background: #1f1f26;
 }
 
+/* Row backgrounds must be opaque: the pinned name cell has to hide cells scrolling under it.
+   #41181a = the selected red (227, 38, 27) at 22% over the table background #141418. */
 .country-list tbody tr.selected td {
-  background: rgba(227, 38, 27, 0.22);
+  background: #41181a;
 }

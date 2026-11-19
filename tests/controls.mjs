@@ -264,6 +264,11 @@ check("name sorts A→Z", (await firstNames())[0] < (await firstNames())[1], (aw
 await page.click(".country-list tbody tr >> text=Georgia");
 check("row click opens info panel", (await panelTitle()) === "Georgia", String(await panelTitle()));
 check("selected row highlighted", (await page.$eval(".country-list tr.selected td", (td) => td.textContent)) === "Georgia");
+// The pinned name column must hide cells scrolled under it, also on the selected and hovered rows.
+const nameCellsOpaque = await page.$$eval(".country-list tbody tr.selected td.name-column, .country-list tbody tr:hover td.name-column", (tds) =>
+  tds.every((td) => !getComputedStyle(td).backgroundColor.startsWith("rgba")),
+);
+check("pinned name cells have opaque backgrounds", nameCellsOpaque);
 await page.uncheck("aside.panel-left .list-view-toggle input");
 check("toggle back shows the map", await page.$eval("canvas", (c) => getComputedStyle(c).visibility === "visible"));
 check("selection survives toggling", (await panelTitle()) === "Georgia");
