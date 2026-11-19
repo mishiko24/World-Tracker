@@ -1,0 +1,2726 @@
+{
+ "fetchedAt": "2026-11-19T14:30:29.787Z",
+ "byCountry": {
+  "AGO": {
+   "oil.production": {
+    "value": 1030814.7238615236,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 18,
+    "worldShare": 0.012204398204908515
+   },
+   "gas.production": {
+    "value": 7458404029.455047,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 46,
+    "worldShare": 0.0017467983572003586
+   }
+  },
+  "ALB": {
+   "oil.production": {
+    "value": 12156.394520547945,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 71,
+    "worldShare": 0.0001439264263794756
+   },
+   "gas.production": {
+    "value": 38040093.227386974,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 84,
+    "worldShare": 0.000008909194526728146
+   },
+   "coal.production": {
+    "value": 306870.9999999983,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 55,
+    "worldShare": 0.000034909106159534004
+   },
+   "coal.reserves": {
+    "value": 521999379.21118677,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 54,
+    "worldShare": 0.0004477250933618322
+   }
+  },
+  "ARE": {
+   "oil.production": {
+    "value": 3771219.178082192,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 8,
+    "worldShare": 0.04464959560811026
+   },
+   "gas.production": {
+    "value": 61966521612.015305,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 14,
+    "worldShare": 0.014512892801973574
+   }
+  },
+  "ARG": {
+   "oil.production": {
+    "value": 794004.4469152623,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 21,
+    "worldShare": 0.00940066747428782
+   },
+   "gas.production": {
+    "value": 47269323582.65341,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 15,
+    "worldShare": 0.011070729938209607
+   },
+   "coal.production": {
+    "value": 64999.9999999998,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 62,
+    "worldShare": 0.000007394285873770138
+   },
+   "coal.reserves": {
+    "value": 799999048.59952,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 49,
+    "worldShare": 0.0006861687254587467
+   }
+  },
+  "ATC": {
+   "oil.production": {
+    "value": 245583.402503012,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 31,
+    "worldShare": 0.002907600723275776
+   },
+   "gas.production": {
+    "value": 147471084366.83545,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 7,
+    "worldShare": 0.03453852149725462
+   },
+   "coal.production": {
+    "value": 458080418.0000048,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 6,
+    "worldShare": 0.052110424059510246
+   },
+   "coal.reserves": {
+    "value": 149471822240.33432,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 4,
+    "worldShare": 0.12820376466471226
+   }
+  },
+  "AUT": {
+   "oil.production": {
+    "value": 8754.980821917808,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 76,
+    "worldShare": 0.00010365516688271129
+   },
+   "gas.production": {
+    "value": 525561495.50039375,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 71,
+    "worldShare": 0.0001230893302806136
+   }
+  },
+  "AZE": {
+   "oil.production": {
+    "value": 571264.1002555181,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 27,
+    "worldShare": 0.00676351860164515
+   },
+   "gas.production": {
+    "value": 38975140732.4293,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 20,
+    "worldShare": 0.009128187683878358
+   }
+  },
+  "BGD": {
+   "oil.production": {
+    "value": 3000,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 82,
+    "worldShare": 0.00003551869581137652
+   },
+   "gas.production": {
+    "value": 19380926278.907646,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 32,
+    "worldShare": 0.004539117222842478
+   },
+   "coal.production": {
+    "value": 1257131.000000012,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 48,
+    "worldShare": 0.00014300901530428685
+   },
+   "coal.reserves": {
+    "value": 3259996123.043044,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 24,
+    "worldShare": 0.002796137556244393
+   }
+  },
+  "BGR": {
+   "oil.production": {
+    "value": 1000,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 87,
+    "worldShare": 0.000011839565270458842
+   },
+   "gas.production": {
+    "value": 8022222.928346411,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 92,
+    "worldShare": 0.0000018788477772173528
+   },
+   "coal.production": {
+    "value": 17200963.999999814,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 22,
+    "worldShare": 0.0019567514633911953
+   },
+   "coal.reserves": {
+    "value": 2173997414.5691957,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 32,
+    "worldShare": 0.0018646635114341445
+   }
+  },
+  "BHR": {
+   "oil.production": {
+    "value": 175780.82191780824,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 36,
+    "worldShare": 0.0020811685143907925
+   },
+   "gas.production": {
+    "value": 16727748737.536213,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 33,
+    "worldShare": 0.003917728765965446
+   }
+  },
+  "BLR": {
+   "oil.production": {
+    "value": 25730.490410958904,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 60,
+    "worldShare": 0.0003046378206614633
+   },
+   "gas.production": {
+    "value": 55149024.480674125,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 79,
+    "worldShare": 0.000012916198289016886
+   }
+  },
+  "BLZ": {
+   "oil.production": {
+    "value": 787.1234000000001,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 89,
+    "worldShare": 0.000009319198870205483
+   }
+  },
+  "BOL": {
+   "oil.production": {
+    "value": 17660.805479452054,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 66,
+    "worldShare": 0.00020909625920284975
+   },
+   "gas.production": {
+    "value": 9384700671.46258,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 42,
+    "worldShare": 0.0021979473961168225
+   },
+   "coal.reserves": {
+    "value": 999998.8107493999,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 86,
+    "worldShare": 8.577109068234334e-7
+   }
+  },
+  "BRA": {
+   "oil.production": {
+    "value": 3769407.010164946,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 9,
+    "worldShare": 0.04462814032777299
+   },
+   "gas.production": {
+    "value": 25750488142.185158,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 28,
+    "worldShare": 0.006030902885689193
+   },
+   "coal.production": {
+    "value": 6905592.033217034,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 30,
+    "worldShare": 0.0007855680249420997
+   },
+   "coal.reserves": {
+    "value": 6595992155.703042,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 17,
+    "worldShare": 0.005657461141407367
+   }
+  },
+  "BRB": {
+   "oil.production": {
+    "value": 1000,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 87,
+    "worldShare": 0.000011839565270458842
+   },
+   "gas.production": {
+    "value": 3124643.449177177,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 95,
+    "worldShare": 7.318083094324345e-7
+   }
+  },
+  "BRN": {
+   "oil.production": {
+    "value": 100875.73253662481,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 43,
+    "worldShare": 0.0011943248195727181
+   },
+   "gas.production": {
+    "value": 10097802649.904615,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 41,
+    "worldShare": 0.0023649597166534304
+   }
+  },
+  "CAN": {
+   "oil.production": {
+    "value": 4963934.906849315,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 4,
+    "worldShare": 0.058770831327951495
+   },
+   "gas.production": {
+    "value": 205632351660.64432,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 5,
+    "worldShare": 0.04816020326191755
+   },
+   "coal.production": {
+    "value": 42629080.99999978,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 15,
+    "worldShare": 0.00484940940692465
+   },
+   "coal.reserves": {
+    "value": 6581992172.3525505,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 18,
+    "worldShare": 0.005645453188711839
+   }
+  },
+  "CHL": {
+   "oil.production": {
+    "value": 1968.3219693957576,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 84,
+    "worldShare": 0.000023304076429939162
+   },
+   "gas.production": {
+    "value": 1484186566.962974,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 64,
+    "worldShare": 0.0003476044803567971
+   },
+   "coal.production": {
+    "value": 17486.00000000014,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 65,
+    "worldShare": 0.0000019891766582884005
+   },
+   "coal.reserves": {
+    "value": 1180998595.4950414,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 42,
+    "worldShare": 0.0010129565809584749
+   }
+  },
+  "CHN": {
+   "oil.production": {
+    "value": 4324684.931506849,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 6,
+    "worldShare": 0.05120238952074516
+   },
+   "gas.production": {
+    "value": 275137372706.1887,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 4,
+    "worldShare": 0.06443865319571716
+   },
+   "coal.production": {
+    "value": 4440217814,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 1,
+    "worldShare": 0.5051113824388126
+   },
+   "coal.reserves": {
+    "value": 157040813238.8965,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 3,
+    "worldShare": 0.1346957785184588
+   }
+  },
+  "CIV": {
+   "oil.production": {
+    "value": 55092.30825291715,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 51,
+    "worldShare": 0.0006522689794606509
+   },
+   "gas.production": {
+    "value": 2725890722.8655987,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 58,
+    "worldShare": 0.0006384182752509365
+   }
+  },
+  "CMR": {
+   "oil.production": {
+    "value": 59243.83561643835,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 49,
+    "worldShare": 0.0007014212586531561
+   },
+   "gas.production": {
+    "value": 2801164284.4629807,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 56,
+    "worldShare": 0.0006560477484223616
+   }
+  },
+  "COD": {
+   "oil.production": {
+    "value": 16000,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 68,
+    "worldShare": 0.00018943304432734147
+   },
+   "coal.reserves": {
+    "value": 987998825.0204073,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 45,
+    "worldShare": 0.0008474183759415524
+   }
+  },
+  "COG": {
+   "oil.production": {
+    "value": 241235.61643835617,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 32,
+    "worldShare": 0.0028561248263812918
+   },
+   "gas.production": {
+    "value": 1660667946.5244133,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 61,
+    "worldShare": 0.00038893736909236475
+   }
+  },
+  "COL": {
+   "oil.production": {
+    "value": 746478.9698630137,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 23,
+    "worldShare": 0.00883798648671803
+   },
+   "gas.production": {
+    "value": 9199126523.091425,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 44,
+    "worldShare": 0.0021544849319980377
+   },
+   "coal.production": {
+    "value": 50282233.99999991,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 14,
+    "worldShare": 0.005720018654889307
+   },
+   "coal.reserves": {
+    "value": 4553994584.152768,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 20,
+    "worldShare": 0.003906015469673916
+   }
+  },
+  "CUB": {
+   "oil.production": {
+    "value": 25463.089782244322,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 61,
+    "worldShare": 0.00030147191346443526
+   },
+   "gas.production": {
+    "value": 1130001065.1662726,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 65,
+    "worldShare": 0.000264652329971902
+   }
+  },
+  "CZE": {
+   "oil.production": {
+    "value": 1345.5506849315068,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 86,
+    "worldShare": 0.000015930735158957173
+   },
+   "gas.production": {
+    "value": 170755766.04647186,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 76,
+    "worldShare": 0.00003999191924096656
+   },
+   "coal.production": {
+    "value": 24510075.999999765,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 18,
+    "worldShare": 0.002788223211258943
+   },
+   "coal.reserves": {
+    "value": 3594995724.644093,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 23,
+    "worldShare": 0.0030834707100302434
+   }
+  },
+  "DEU": {
+   "oil.production": {
+    "value": 31579.964383561644,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 55,
+    "worldShare": 0.0003738930495579436
+   },
+   "gas.production": {
+    "value": 3785189728.4486184,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 51,
+    "worldShare": 0.0008865118024222704
+   },
+   "coal.production": {
+    "value": 84402757.99999921,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 10,
+    "worldShare": 0.00960150955671747
+   },
+   "coal.reserves": {
+    "value": 35399957900.528755,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 6,
+    "worldShare": 0.03036296610154954
+   }
+  },
+  "DNK": {
+   "oil.production": {
+    "value": 71810.64217701134,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 48,
+    "worldShare": 0.0008502067851682904
+   },
+   "gas.production": {
+    "value": 3549715344.167106,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 53,
+    "worldShare": 0.0008313624345412487
+   }
+  },
+  "DZA": {
+   "oil.production": {
+    "value": 1142958.904109589,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 17,
+    "worldShare": 0.013532136546657587
+   },
+   "gas.production": {
+    "value": 102418887131.13626,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 10,
+    "worldShare": 0.023987054479808007
+   },
+   "coal.reserves": {
+    "value": 222999734.79711622,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 67,
+    "worldShare": 0.00019126953222162567
+   }
+  },
+  "ECU": {
+   "oil.production": {
+    "value": 440700.2074273973,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 30,
+    "worldShare": 0.005217698870541421
+   },
+   "gas.production": {
+    "value": 310860548.66890484,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 74,
+    "worldShare": 0.00007280521323178044
+   },
+   "coal.reserves": {
+    "value": 23999971.4579856,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 78,
+    "worldShare": 0.000020585061763762402
+   }
+  },
+  "EGY": {
+   "oil.production": {
+    "value": 504794.52054794517,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 29,
+    "worldShare": 0.005976547674197374
+   },
+   "gas.production": {
+    "value": 40425517240.81933,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 19,
+    "worldShare": 0.009467873666586218
+   },
+   "coal.reserves": {
+    "value": 181999783.5563908,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 68,
+    "worldShare": 0.00015610338504186487
+   }
+  },
+  "ESP": {
+   "oil.production": {
+    "value": 26.504109589041096,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 96,
+    "worldShare": 3.1379713541484614e-7
+   },
+   "gas.production": {
+    "value": 43462139.47135121,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 83,
+    "worldShare": 0.000010179066932971754
+   },
+   "coal.reserves": {
+    "value": 1186998588.3595378,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 41,
+    "worldShare": 0.0010181028463994155
+   }
+  },
+  "FRA": {
+   "oil.production": {
+    "value": 10221.830136986302,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 74,
+    "worldShare": 0.00012102202509039257
+   },
+   "gas.production": {
+    "value": 18962068.833052773,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 89,
+    "worldShare": 0.000004441018555160902
+   },
+   "coal.reserves": {
+    "value": 159999809.71990398,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 69,
+    "worldShare": 0.00013723374509174932
+   }
+  },
+  "GAB": {
+   "oil.production": {
+    "value": 239315.06849315067,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 33,
+    "worldShare": 0.0028333863736289856
+   },
+   "gas.production": {
+    "value": 482127446.3408697,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 72,
+    "worldShare": 0.00011291684224982509
+   }
+  },
+  "GBR": {
+   "oil.production": {
+    "value": 615778.7123287672,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 24,
+    "worldShare": 0.007290552256775537
+   },
+   "gas.production": {
+    "value": 29633557851.442806,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 22,
+    "worldShare": 0.006940338706306883
+   },
+   "coal.production": {
+    "value": 119569.85780130576,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 60,
+    "worldShare": 0.000013602057084136952
+   },
+   "coal.reserves": {
+    "value": 25999969.0794844,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 77,
+    "worldShare": 0.00002230048357740927
+   }
+  },
+  "GEO": {
+   "oil.production": {
+    "value": 223.46849315068494,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 94,
+    "worldShare": 0.0000026457698105486187
+   },
+   "gas.production": {
+    "value": 7437839.641691385,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 94,
+    "worldShare": 0.0000017419820669296074
+   },
+   "coal.production": {
+    "value": 157960.00000000335,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 58,
+    "worldShare": 0.00001796925225570399
+   },
+   "coal.reserves": {
+    "value": 900998928.4852095,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 47,
+    "worldShare": 0.0007727975270479135
+   }
+  },
+  "GHA": {
+   "oil.production": {
+    "value": 182980.8219178082,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 35,
+    "worldShare": 0.002166413384338096
+   },
+   "gas.production": {
+    "value": 3742750064.1515336,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 52,
+    "worldShare": 0.0008765722046770274
+   }
+  },
+  "GNQ": {
+   "oil.production": {
+    "value": 76386.50421252973,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 46,
+    "worldShare": 0.000904383002406425
+   },
+   "gas.production": {
+    "value": 7123077305.384907,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 47,
+    "worldShare": 0.001668263034037677
+   }
+  },
+  "GRC": {
+   "oil.production": {
+    "value": 1497,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 85,
+    "worldShare": 0.000017723829209876886
+   },
+   "gas.production": {
+    "value": 1124592.1227129737,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 97,
+    "worldShare": 2.633855265439434e-7
+   },
+   "coal.production": {
+    "value": 6290897.000000001,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 31,
+    "worldShare": 0.000715641397237586
+   },
+   "coal.reserves": {
+    "value": 2875996579.7152743,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 27,
+    "worldShare": 0.0024667765680241945
+   }
+  },
+  "GTM": {
+   "oil.production": {
+    "value": 5384.625074259524,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 80,
+    "worldShare": 0.00006375162002364491
+   },
+   "gas.production": {
+    "value": 55122941.238617085,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 80,
+    "worldShare": 0.000012910089453373796
+   }
+  },
+  "GUY": {
+   "oil.production": {
+    "value": 747432.1424657534,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 22,
+    "worldShare": 0.00884927163596218
+   }
+  },
+  "HRV": {
+   "oil.production": {
+    "value": 8996.876712328767,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 75,
+    "worldShare": 0.00010651910906588759
+   },
+   "gas.production": {
+    "value": 588200554.4520367,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 70,
+    "worldShare": 0.00013775973494643606
+   }
+  },
+  "HUN": {
+   "oil.production": {
+    "value": 23419.824657534245,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 63,
+    "worldShare": 0.00027728054265557805
+   },
+   "gas.production": {
+    "value": 1760816713.0097878,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 60,
+    "worldShare": 0.00041239274910146795
+   },
+   "coal.production": {
+    "value": 2132000.0000000047,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 42,
+    "worldShare": 0.00024253257665966178
+   },
+   "coal.reserves": {
+    "value": 2632996868.7031703,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 29,
+    "worldShare": 0.0022583528176661
+   }
+  },
+  "IDN": {
+   "oil.production": {
+    "value": 581668.493150685,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 25,
+    "worldShare": 0.006886702090426976
+   },
+   "gas.production": {
+    "value": 68869089629.75453,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 13,
+    "worldShare": 0.016129511374289186
+   },
+   "coal.production": {
+    "value": 790386116.9999931,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 3,
+    "worldShare": 0.08991293691933996
+   },
+   "coal.reserves": {
+    "value": 35054958310.82022,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 7,
+    "worldShare": 0.030067055838695463
+   }
+  },
+  "IND": {
+   "oil.production": {
+    "value": 580600.3500561704,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 26,
+    "worldShare": 0.006874055740541281
+   },
+   "gas.production": {
+    "value": 34691725367.4843,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 21,
+    "worldShare": 0.008124988756447848
+   },
+   "coal.production": {
+    "value": 1006462984.7482855,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 2,
+    "worldShare": 0.11449346200918153
+   },
+   "coal.reserves": {
+    "value": 127726848100.58862,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 5,
+    "worldShare": 0.10955284099583669
+   }
+  },
+  "IRN": {
+   "oil.production": {
+    "value": 4051424.657534247,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 7,
+    "worldShare": 0.04796710667122307
+   },
+   "gas.production": {
+    "value": 277256659279.42444,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 3,
+    "worldShare": 0.06493500151500169
+   },
+   "coal.production": {
+    "value": 1906544.9999999392,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 43,
+    "worldShare": 0.000216885211710872
+   },
+   "coal.reserves": {
+    "value": 1202998569.3315282,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 40,
+    "worldShare": 0.0010318262209085905
+   }
+  },
+  "IRQ": {
+   "oil.production": {
+    "value": 4388068.493150685,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 5,
+    "worldShare": 0.05195282333590151
+   },
+   "gas.production": {
+    "value": 11770011094.696486,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 38,
+    "worldShare": 0.0027565999325391915
+   }
+  },
+  "ISR": {
+   "oil.production": {
+    "value": 19520.54794520548,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 65,
+    "worldShare": 0.00023111480151238149
+   },
+   "gas.production": {
+    "value": 26329834564.08784,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 26,
+    "worldShare": 0.006166588935148686
+   }
+  },
+  "ITA": {
+   "oil.production": {
+    "value": 83703.68493150684,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 45,
+    "worldShare": 0.0009910152411244974
+   },
+   "gas.production": {
+    "value": 3038189531.1792827,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 55,
+    "worldShare": 0.0007115603366307665
+   },
+   "coal.reserves": {
+    "value": 609999274.5571339,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 53,
+    "worldShare": 0.0005232036531622943
+   }
+  },
+  "JOR": {
+   "oil.production": {
+    "value": 20,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 98,
+    "worldShare": 2.3679130540917683e-7
+   },
+   "gas.production": {
+    "value": 266285453.9112678,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 75,
+    "worldShare": 0.00006236548618197352
+   }
+  },
+  "JPN": {
+   "oil.production": {
+    "value": 3106.6301369863013,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 81,
+    "worldShare": 0.00003678115027802381
+   },
+   "gas.production": {
+    "value": 1843048737.27673,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 59,
+    "worldShare": 0.00043165193167343303
+   },
+   "coal.production": {
+    "value": 450243.00000000076,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 52,
+    "worldShare": 0.00005121885314867544
+   },
+   "coal.reserves": {
+    "value": 349999583.76229,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 58,
+    "worldShare": 0.0003001988173882017
+   }
+  },
+  "KAZ": {
+   "oil.production": {
+    "value": 2046610.159015274,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 11,
+    "worldShare": 0.024230974560845484
+   },
+   "gas.production": {
+    "value": 27905638205.521046,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 25,
+    "worldShare": 0.006535650627335798
+   },
+   "coal.production": {
+    "value": 120138526.78232169,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 8,
+    "worldShare": 0.013666747868955066
+   },
+   "coal.reserves": {
+    "value": 25604969549.238388,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 11,
+    "worldShare": 0.021961687769214013
+   }
+  },
+  "KGZ": {
+   "oil.production": {
+    "value": 5543.402739726028,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 79,
+    "worldShare": 0.00006563147855742667
+   },
+   "gas.production": {
+    "value": 27789428.34196704,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 86,
+    "worldShare": 0.000006508433651968825
+   },
+   "coal.production": {
+    "value": 4536964.999999994,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 34,
+    "worldShare": 0.0005161171724506091
+   },
+   "coal.reserves": {
+    "value": 28498966107.54715,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 9,
+    "worldShare": 0.02444390313356103
+   }
+  },
+  "KWT": {
+   "oil.production": {
+    "value": 2583547.94520548,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 10,
+    "worldShare": 0.0305880845266201
+   },
+   "gas.production": {
+    "value": 20159355879.406723,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 31,
+    "worldShare": 0.004721429623991288
+   }
+  },
+  "LBY": {
+   "oil.production": {
+    "value": 1363041.095890411,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 15,
+    "worldShare": 0.01613781402111227
+   },
+   "gas.production": {
+    "value": 11355138202.940603,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 39,
+    "worldShare": 0.0026594344688683946
+   }
+  },
+  "LTU": {
+   "oil.production": {
+    "value": 700,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 90,
+    "worldShare": 0.00000828769568932119
+   }
+  },
+  "MAR": {
+   "oil.production": {
+    "value": 25,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 97,
+    "worldShare": 2.9598913176147104e-7
+   },
+   "gas.production": {
+    "value": 47231047.13476726,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 81,
+    "worldShare": 0.000011061765388149976
+   },
+   "coal.reserves": {
+    "value": 95999885.8319424,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 71,
+    "worldShare": 0.00008234024705504961
+   }
+  },
+  "MEX": {
+   "oil.production": {
+    "value": 1726046.0876712329,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 13,
+    "worldShare": 0.020435635314803684
+   },
+   "gas.production": {
+    "value": 28863540135.51358,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 24,
+    "worldShare": 0.0067599964137884895
+   },
+   "coal.production": {
+    "value": 5257004.999999997,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 33,
+    "worldShare": 0.0005980276586129089
+   },
+   "coal.reserves": {
+    "value": 1159998620.4693038,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 43,
+    "worldShare": 0.0009949446519151826
+   }
+  },
+  "MMR": {
+   "oil.production": {
+    "value": 5555.309589041096,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 78,
+    "worldShare": 0.00006577245047705794
+   },
+   "gas.production": {
+    "value": 12698925989.122112,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 36,
+    "worldShare": 0.002974156799283535
+   },
+   "coal.production": {
+    "value": 3507967.999999997,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 35,
+    "worldShare": 0.00039906028043134987
+   },
+   "coal.reserves": {
+    "value": 251999700.30884883,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 65,
+    "worldShare": 0.00021614314851950525
+   }
+  },
+  "MNG": {
+   "oil.production": {
+    "value": 13671.846575342466,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 70,
+    "worldShare": 0.00016186871989646632
+   },
+   "coal.production": {
+    "value": 95539886.37899809,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 9,
+    "worldShare": 0.010868449726674334
+   },
+   "coal.reserves": {
+    "value": 2519997003.0884876,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 30,
+    "worldShare": 0.002161431485195052
+   }
+  },
+  "MYS": {
+   "oil.production": {
+    "value": 512670.1369863014,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 28,
+    "worldShare": 0.006069791549064391
+   },
+   "gas.production": {
+    "value": 81897427678.60332,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 11,
+    "worldShare": 0.01918081825051949
+   },
+   "coal.production": {
+    "value": 3331192.000000033,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 37,
+    "worldShare": 0.00037895055305256015
+   },
+   "coal.reserves": {
+    "value": 225999731.2293644,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 66,
+    "worldShare": 0.00019384266494209596
+   }
+  },
+  "NER": {
+   "oil.production": {
+    "value": 101410.95890410959,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 42,
+    "worldShare": 0.0012006616670850246
+   },
+   "gas.production": {
+    "value": 45557042.94599972,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 82,
+    "worldShare": 0.000010669704599362256
+   },
+   "coal.production": {
+    "value": 219683.99999999706,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 57,
+    "worldShare": 0.000024990866121435416
+   },
+   "coal.reserves": {
+    "value": 89999892.967446,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 73,
+    "worldShare": 0.00007719398161410901
+   }
+  },
+  "NGA": {
+   "oil.production": {
+    "value": 1605414.2781736976,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 14,
+    "worldShare": 0.01900740713256406
+   },
+   "gas.production": {
+    "value": 42635056145.36079,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 18,
+    "worldShare": 0.009985359567508283
+   },
+   "coal.production": {
+    "value": 1305839.0000000075,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 47,
+    "worldShare": 0.00014854995186335703
+   },
+   "coal.reserves": {
+    "value": 2143997450.2467136,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 33,
+    "worldShare": 0.0018389321842294413
+   }
+  },
+  "NLD": {
+   "oil.production": {
+    "value": 21469.768621528572,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 64,
+    "worldShare": 0.00025419272693623666
+   },
+   "gas.production": {
+    "value": 9343411900.088596,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 43,
+    "worldShare": 0.0021882773436870985
+   },
+   "coal.reserves": {
+    "value": 3246996138.5033016,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 25,
+    "worldShare": 0.002784987314455688
+   }
+  },
+  "NOR": {
+   "oil.production": {
+    "value": 1858464.2345479452,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 12,
+    "worldShare": 0.022003408607743725
+   },
+   "gas.production": {
+    "value": 126757665775.75595,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 9,
+    "worldShare": 0.029687327404790756
+   },
+   "coal.production": {
+    "value": 92720.99999999985,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 61,
+    "worldShare": 0.000010547778161566799
+   },
+   "coal.reserves": {
+    "value": 1999997.6214987999,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 84,
+    "worldShare": 0.0000017154218136468667
+   }
+  },
+  "NZL": {
+   "oil.production": {
+    "value": 7914.704109589042,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 77,
+    "worldShare": 0.00009370665590184828
+   },
+   "gas.production": {
+    "value": 2736035435.9086704,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 57,
+    "worldShare": 0.0006407942216340934
+   },
+   "coal.production": {
+    "value": 2575719.000000024,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 40,
+    "worldShare": 0.00029300927102310126
+   },
+   "coal.reserves": {
+    "value": 6749991972.55845,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 16,
+    "worldShare": 0.005789548621058176
+   }
+  },
+  "OMN": {
+   "oil.production": {
+    "value": 1002069.1753424658,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 19,
+    "worldShare": 0.011864063406981989
+   },
+   "gas.production": {
+    "value": 45811601287.81949,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 16,
+    "worldShare": 0.010729323532789077
+   }
+  },
+  "PAK": {
+   "oil.production": {
+    "value": 57515.26766573127,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 50,
+    "worldShare": 0.0006809557655763363
+   },
+   "gas.production": {
+    "value": 22679992450.24497,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 30,
+    "worldShare": 0.005311776272369508
+   },
+   "coal.production": {
+    "value": 9386041.915827168,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 27,
+    "worldShare": 0.0010677396484433145
+   },
+   "coal.reserves": {
+    "value": 2856996602.3110356,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 28,
+    "worldShare": 0.002450480060794549
+   }
+  },
+  "PER": {
+   "oil.production": {
+    "value": 44152.745205479456,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 54,
+    "worldShare": 0.0005227493087302127
+   },
+   "gas.production": {
+    "value": 13968495167.454052,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 35,
+    "worldShare": 0.0032714967323716703
+   },
+   "coal.production": {
+    "value": 1894018.3373099675,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 44,
+    "worldShare": 0.00021546020055742676
+   },
+   "coal.reserves": {
+    "value": 1566998136.44431,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 36,
+    "worldShare": 0.0013440329909923203
+   }
+  },
+  "PHL": {
+   "oil.production": {
+    "value": 502.97260273972597,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 91,
+    "worldShare": 0.000005954976959389551
+   },
+   "gas.production": {
+    "value": 1647777809.2984655,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 62,
+    "worldShare": 0.0003859184295925133
+   },
+   "coal.production": {
+    "value": 19510008.99999945,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 20,
+    "worldShare": 0.0022194243683973016
+   },
+   "coal.reserves": {
+    "value": 360999570.6805334,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 57,
+    "worldShare": 0.00030963363736325947
+   }
+  },
+  "PNG": {
+   "oil.production": {
+    "value": 31515.898630136988,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 56,
+    "worldShare": 0.00037313453888867127
+   },
+   "gas.production": {
+    "value": 12263323296.743155,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 37,
+    "worldShare": 0.00287213630476023
+   }
+  },
+  "POL": {
+   "oil.production": {
+    "value": 16541.194520547946,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 67,
+    "worldShare": 0.00019584055217738354
+   },
+   "gas.production": {
+    "value": 5305812138.357848,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 49,
+    "worldShare": 0.0012426497532575206
+   },
+   "coal.production": {
+    "value": 80793869.45625772,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 11,
+    "worldShare": 0.009190968732425182
+   },
+   "coal.reserves": {
+    "value": 27757966988.781845,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 10,
+    "worldShare": 0.023808339351604865
+   }
+  },
+  "QAT": {
+   "oil.production": {
+    "value": 1297384.436580822,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 16,
+    "worldShare": 0.015360467717776112
+   },
+   "gas.production": {
+    "value": 173624754357.4099,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 6,
+    "worldShare": 0.04066385174134893
+   }
+  },
+  "ROU": {
+   "oil.production": {
+    "value": 51548.05205479452,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 52,
+    "worldShare": 0.0006103065268677498
+   },
+   "gas.production": {
+    "value": 9089705110.974842,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 45,
+    "worldShare": 0.002128857848486211
+   },
+   "coal.production": {
+    "value": 12240999.999999607,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 26,
+    "worldShare": 0.0013925146673971942
+   },
+   "coal.reserves": {
+    "value": 290999653.9280754,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 64,
+    "worldShare": 0.0002495938738856191
+   }
+  },
+  "RUS": {
+   "oil.production": {
+    "value": 9885109.03296257,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 2,
+    "worldShare": 0.11703539360136263
+   },
+   "gas.production": {
+    "value": 622137704412.7168,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 2,
+    "worldShare": 0.1457079980822573
+   },
+   "coal.production": {
+    "value": 475975172.82422537,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 5,
+    "worldShare": 0.05414609994891508
+   },
+   "coal.reserves": {
+    "value": 162165807143.98718,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 2,
+    "worldShare": 0.1390915469159289
+   }
+  },
+  "SAU": {
+   "oil.production": {
+    "value": 9548750.630136987,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 3,
+    "worldShare": 0.11305305633684185
+   },
+   "gas.production": {
+    "value": 137880363639.7559,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 8,
+    "worldShare": 0.03229232309552309
+   }
+  },
+  "SDN": {
+   "oil.production": {
+    "value": 30000,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 58,
+    "worldShare": 0.00035518695811376526
+   }
+  },
+  "SEN": {
+   "oil.production": {
+    "value": 100000,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 44,
+    "worldShare": 0.001183956527045884
+   },
+   "gas.production": {
+    "value": 971789939.5837469,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 66,
+    "worldShare": 0.00022759843303001584
+   }
+  },
+  "SRB": {
+   "oil.production": {
+    "value": 11480.91780821918,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 73,
+    "worldShare": 0.00013592907575518424
+   },
+   "gas.production": {
+    "value": 344175954.407011,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 73,
+    "worldShare": 0.00008060786052508338
+   },
+   "coal.production": {
+    "value": 33299697.000000086,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 16,
+    "worldShare": 0.0037881150635065723
+   },
+   "coal.reserves": {
+    "value": 7111991542.049732,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 15,
+    "worldShare": 0.006100039969328258
+   }
+  },
+  "SDS": {
+   "oil.production": {
+    "value": 112657.53424657533,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 41,
+    "worldShare": 0.0013338162299212808
+   }
+  },
+  "SUR": {
+   "oil.production": {
+    "value": 12089.45095890411,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 72,
+    "worldShare": 0.00014313384371195643
+   },
+   "gas.production": {
+    "value": 7571007.145109081,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 93,
+    "worldShare": 0.0000017731706128013306
+   }
+  },
+  "SVK": {
+   "oil.production": {
+    "value": 18.556164383561644,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 99,
+    "worldShare": 2.1969691938854172e-7
+   },
+   "gas.production": {
+    "value": 31508903.144689243,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 85,
+    "worldShare": 0.0000073795546651754525
+   },
+   "coal.reserves": {
+    "value": 18999977.4042386,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 79,
+    "worldShare": 0.000016296507229645236
+   }
+  },
+  "SYR": {
+   "oil.production": {
+    "value": 75246.57534246575,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 47,
+    "worldShare": 0.000890886740145622
+   },
+   "gas.production": {
+    "value": 3817847867.6127653,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 50,
+    "worldShare": 0.0008941605143472157
+   }
+  },
+  "TCD": {
+   "oil.production": {
+    "value": 126490.4109589041,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 39,
+    "worldShare": 0.0014975914766351074
+   }
+  },
+  "THA": {
+   "oil.production": {
+    "value": 161578.90410958906,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 38,
+    "worldShare": 0.00191302398153469
+   },
+   "gas.production": {
+    "value": 28864361805.451374,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 23,
+    "worldShare": 0.006760188853309308
+   },
+   "coal.production": {
+    "value": 12460000.000000115,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 24,
+    "worldShare": 0.001417427722879647
+   },
+   "coal.reserves": {
+    "value": 1062998735.8266121,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 44,
+    "worldShare": 0.0009117466939533097
+   }
+  },
+  "TJK": {
+   "oil.production": {
+    "value": 316,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 93,
+    "worldShare": 0.0000037413026254649937
+   },
+   "gas.production": {
+    "value": 17926565.700636692,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 90,
+    "worldShare": 0.000004198498149530317
+   },
+   "coal.production": {
+    "value": 3114731.999999951,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 38,
+    "worldShare": 0.0003543264435104541
+   },
+   "coal.reserves": {
+    "value": 4074995153.8038044,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 22,
+    "worldShare": 0.0034951719453054906
+   }
+  },
+  "TKM": {
+   "oil.production": {
+    "value": 190657.93,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 34,
+    "worldShare": 0.002257307006565573
+   },
+   "gas.production": {
+    "value": 76513672125.89908,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 12,
+    "worldShare": 0.017919913730210308
+   },
+   "coal.reserves": {
+    "value": 799999048.59952,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 49,
+    "worldShare": 0.0006861687254587467
+   }
+  },
+  "TLS": {
+   "oil.production": {
+    "value": 2000,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 83,
+    "worldShare": 0.000023679130540917683
+   }
+  },
+  "TTO": {
+   "oil.production": {
+    "value": 51199.55070497243,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 53,
+    "worldShare": 0.0006061804223896881
+   },
+   "gas.production": {
+    "value": 24735325181.90968,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 29,
+    "worldShare": 0.005793146257823938
+   }
+  },
+  "TUN": {
+   "oil.production": {
+    "value": 25326.027397260274,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 62,
+    "worldShare": 0.00029984915441129184
+   },
+   "gas.production": {
+    "value": 942968282.3297024,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 67,
+    "worldShare": 0.00022084824581243825
+   }
+  },
+  "TUR": {
+   "oil.production": {
+    "value": 124615.68767123288,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 40,
+    "worldShare": 0.0014753955679066748
+   },
+   "gas.production": {
+    "value": 3111050932.393109,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 54,
+    "worldShare": 0.0007286248688605829
+   },
+   "coal.production": {
+    "value": 75931868.99999924,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 12,
+    "worldShare": 0.00863787609716401
+   },
+   "coal.reserves": {
+    "value": 10974986947.974665,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 12,
+    "worldShare": 0.009413377202387182
+   }
+  },
+  "TWN": {
+   "oil.production": {
+    "value": 196,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 95,
+    "worldShare": 0.000002320554793009933
+   },
+   "gas.production": {
+    "value": 64046571.513096645,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 77,
+    "worldShare": 0.000015000051681507905
+   },
+   "coal.reserves": {
+    "value": 999998.8107493999,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 86,
+    "worldShare": 8.577109068234334e-7
+   }
+  },
+  "UKR": {
+   "oil.production": {
+    "value": 31230.73698630137,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 57,
+    "worldShare": 0.0003697583489938481
+   },
+   "gas.production": {
+    "value": 16035594525.812271,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 34,
+    "worldShare": 0.0037556225251136706
+   },
+   "coal.production": {
+    "value": 18591545.999999493,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 21,
+    "worldShare": 0.0021149416301437596
+   },
+   "coal.reserves": {
+    "value": 34374959119.51063,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 8,
+    "worldShare": 0.029483812422055528
+   }
+  },
+  "USA": {
+   "oil.production": {
+    "value": 13661933.671232877,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 1,
+    "worldShare": 0.16175135542124103
+   },
+   "gas.production": {
+    "value": 1112500462086.8574,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 1,
+    "worldShare": 0.26055359456035687
+   },
+   "coal.production": {
+    "value": 479416290.8088413,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 4,
+    "worldShare": 0.0545375554889708
+   },
+   "coal.reserves": {
+    "value": 247882705204.99353,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 1,
+    "worldShare": 0.21261195271611316
+   }
+  },
+  "UZB": {
+   "oil.production": {
+    "value": 29583.860273972605,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 59,
+    "worldShare": 0.000350260044665833
+   },
+   "gas.production": {
+    "value": 44000545911.80621,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 17,
+    "worldShare": 0.010305164618479093
+   },
+   "coal.production": {
+    "value": 8972224.99999994,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 28,
+    "worldShare": 0.0010206645626736467
+   },
+   "coal.reserves": {
+    "value": 1374998364.780425,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 39,
+    "worldShare": 0.001179352496882221
+   }
+  },
+  "VEN": {
+   "oil.production": {
+    "value": 972616.4383561644,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 20,
+    "worldShare": 0.011515355805039016
+   },
+   "gas.production": {
+    "value": 26191930178.92731,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 27,
+    "worldShare": 0.006134290986083738
+   },
+   "coal.production": {
+    "value": 341576.00000000116,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 54,
+    "worldShare": 0.000038857086024906536
+   },
+   "coal.reserves": {
+    "value": 730999130.6578114,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 52,
+    "worldShare": 0.0006269866728879299
+   }
+  },
+  "VNM": {
+   "oil.production": {
+    "value": 164669.95616438356,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 37,
+    "worldShare": 0.0019496206940918155
+   },
+   "gas.production": {
+    "value": 5675613348.905391,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 48,
+    "worldShare": 0.0013292591866596354
+   },
+   "coal.production": {
+    "value": 51942442.99999973,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 13,
+    "worldShare": 0.005908881115753996
+   },
+   "coal.reserves": {
+    "value": 3115996294.2951303,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 26,
+    "worldShare": 0.0026726271856618183
+   }
+  },
+  "YEM": {
+   "oil.production": {
+    "value": 15000,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 69,
+    "worldShare": 0.00017759347905688263
+   },
+   "gas.production": {
+    "value": 20870266.00083274,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 88,
+    "worldShare": 0.000004887928599820413
+   }
+  },
+  "ZAF": {
+   "oil.production": {
+    "value": 370.9150684931507,
+    "unit": "bbl/day",
+    "year": 2025,
+    "worldRank": 92,
+    "worldShare": 0.00000439147316322137
+   },
+   "gas.production": {
+    "value": 56373509.46175153,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 78,
+    "worldShare": 0.000013202979260510971
+   },
+   "coal.production": {
+    "value": 236501102.9999999,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 7,
+    "worldShare": 0.026903950231445553
+   },
+   "coal.reserves": {
+    "value": 9892988234.743814,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 14,
+    "worldShare": 0.008485334001204227
+   }
+  },
+  "BEL": {
+   "gas.production": {
+    "value": 14300013.479537787,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 91,
+    "worldShare": 0.000003349140104954158
+   },
+   "coal.reserves": {
+    "value": 4099995124.0725393,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 21,
+    "worldShare": 0.0035166147179760765
+   }
+  },
+  "IRL": {
+   "gas.production": {
+    "value": 932708892.287607,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 69,
+    "worldShare": 0.00021844544145903564
+   },
+   "coal.reserves": {
+    "value": 39999952.429975994,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 76,
+    "worldShare": 0.00003430843627293733
+   }
+  },
+  "MOZ": {
+   "gas.production": {
+    "value": 10446532278.322306,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 40,
+    "worldShare": 0.0024466340721350306
+   },
+   "coal.production": {
+    "value": 13820231.999999931,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 23,
+    "worldShare": 0.0015721653269203972
+   },
+   "coal.reserves": {
+    "value": 1791997868.8629248,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 34,
+    "worldShare": 0.0015370179450275928
+   }
+  },
+  "MRT": {
+   "gas.production": {
+    "value": 939000885.1248938,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 68,
+    "worldShare": 0.0002199190600385982
+   }
+  },
+  "RWA": {
+   "gas.production": {
+    "value": 20892019.68199518,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 87,
+    "worldShare": 0.000004893023429004718
+   }
+  },
+  "SVN": {
+   "gas.production": {
+    "value": 2897033.5989791616,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 96,
+    "worldShare": 6.785008577526462e-7
+   },
+   "coal.production": {
+    "value": 1757969.999999958,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 45,
+    "worldShare": 0.00019998358057709875
+   },
+   "coal.reserves": {
+    "value": 94999887.021193,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 72,
+    "worldShare": 0.00008148253614822617
+   }
+  },
+  "TZA": {
+   "gas.production": {
+    "value": 1549245725.2092862,
+    "unit": "m³/year",
+    "year": 2025,
+    "worldRank": 63,
+    "worldShare": 0.00036284168529993017
+   },
+   "coal.production": {
+    "value": 1001066.9999999598,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 50,
+    "worldShare": 0.0001138796242584181
+   },
+   "coal.reserves": {
+    "value": 1409998323.1566541,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 38,
+    "worldShare": 0.0012093723786210412
+   }
+  },
+  "AFG": {
+   "gas.production": {
+    "value": 80200075.5985266,
+    "unit": "m³/year",
+    "year": 2020,
+    "worldRank": 1,
+    "worldShare": 1
+   },
+   "coal.production": {
+    "value": 1210648.497841511,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 49,
+    "worldShare": 0.00013772124747216227
+   },
+   "coal.reserves": {
+    "value": 65999921.5094604,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 74,
+    "worldShare": 0.000056608919850346606
+   }
+  },
+  "ARM": {
+   "coal.production": {
+    "value": 63.999999999999254,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 67,
+    "worldShare": 7.280527629558226e-9
+   },
+   "coal.reserves": {
+    "value": 316999623.00755984,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 63,
+    "worldShare": 0.0002718943574630284
+   }
+  },
+  "BIH": {
+   "coal.production": {
+    "value": 12273341.999999864,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 25,
+    "worldShare": 0.001396193836531523
+   },
+   "coal.reserves": {
+    "value": 2263997307.5366416,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 31,
+    "worldShare": 0.0019418574930482532
+   }
+  },
+  "BTN": {
+   "coal.production": {
+    "value": 131820.51793335652,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 59,
+    "worldShare": 0.00001499567067119514
+   }
+  },
+  "BWA": {
+   "coal.production": {
+    "value": 2928803.000000018,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 39,
+    "worldShare": 0.00033317548692239694
+   },
+   "coal.reserves": {
+    "value": 1659998025.844004,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 35,
+    "worldShare": 0.0014238001053268994
+   }
+  },
+  "ETH": {
+   "coal.production": {
+    "value": 1313474.0000000005,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 46,
+    "worldShare": 0.0001494184960579137
+   }
+  },
+  "KHM": {
+   "coal.production": {
+    "value": 30474.000000000186,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 63,
+    "worldShare": 0.0000034666687341118957
+   }
+  },
+  "KOR": {
+   "coal.production": {
+    "value": 419999.9999999973,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 53,
+    "worldShare": 0.00004777846256897611
+   },
+   "coal.reserves": {
+    "value": 325999612.3043044,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 62,
+    "worldShare": 0.00027961375562443933
+   }
+  },
+  "LAO": {
+   "coal.production": {
+    "value": 20168912.99999952,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 19,
+    "worldShare": 0.002294380130541474
+   },
+   "coal.reserves": {
+    "value": 61999926.2664628,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 75,
+    "worldShare": 0.00005317807622305288
+   }
+  },
+  "MKD": {
+   "coal.production": {
+    "value": 3439088.999999962,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 36,
+    "worldShare": 0.0003912247263282779
+   },
+   "coal.reserves": {
+    "value": 331999605.16880083,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 61,
+    "worldShare": 0.0002847600210653799
+   }
+  },
+  "MNE": {
+   "coal.production": {
+    "value": 732899.9999999965,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 51,
+    "worldShare": 0.00008337341718286345
+   },
+   "coal.reserves": {
+    "value": 336999599.2225478,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 60,
+    "worldShare": 0.0002890485755994971
+   }
+  },
+  "MWI": {
+   "coal.production": {
+    "value": 28848.410775079392,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 64,
+    "worldShare": 0.0000032817445580752063
+   },
+   "coal.reserves": {
+    "value": 801999046.2210188,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 48,
+    "worldShare": 0.0006878841472723937
+   }
+  },
+  "NPL": {
+   "coal.production": {
+    "value": 2974.999999999951,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 66,
+    "worldShare": 3.3843077653024406e-7
+   },
+   "coal.reserves": {
+    "value": 7999990.4859951995,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 80,
+    "worldShare": 0.000006861687254587467
+   }
+  },
+  "PRK": {
+   "coal.production": {
+    "value": 25157029.999999315,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 17,
+    "worldShare": 0.002861819562384724
+   },
+   "coal.reserves": {
+    "value": 10599987393.94364,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 13,
+    "worldShare": 0.009091735612328395
+   }
+  },
+  "SWZ": {
+   "coal.production": {
+    "value": 250457.99999999968,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 56,
+    "worldShare": 0.000028491662328811146
+   },
+   "coal.reserves": {
+    "value": 4643994477.1202135,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 19,
+    "worldShare": 0.003983209451288025
+   }
+  },
+  "KOS": {
+   "coal.production": {
+    "value": 7052015.999999947,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 29,
+    "worldShare": 0.0008022249583138578
+   },
+   "coal.reserves": {
+    "value": 1563998140.0120616,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 37,
+    "worldShare": 0.00134145985827185
+   }
+  },
+  "ZMB": {
+   "coal.production": {
+    "value": 2395184.9999999725,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 41,
+    "worldShare": 0.0002724720401625535
+   },
+   "coal.reserves": {
+    "value": 944998876.1581829,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 46,
+    "worldShare": 0.0008105368069481445
+   }
+  },
+  "ZWE": {
+   "coal.production": {
+    "value": 5797529.999999939,
+    "unit": "t/year",
+    "year": 2025,
+    "worldRank": 32,
+    "worldShare": 0.0006595168335655118
+   },
+   "coal.reserves": {
+    "value": 501999402.9961988,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 55,
+    "worldShare": 0.00043057087522536356
+   }
+  },
+  "CAF": {
+   "coal.reserves": {
+    "value": 2999996.4322482,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 82,
+    "worldShare": 0.0000025731327204703003
+   }
+  },
+  "GRL": {
+   "coal.reserves": {
+    "value": 382999544.5170202,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 56,
+    "worldShare": 0.000328503277313375
+   }
+  },
+  "MDG": {
+   "coal.reserves": {
+    "value": 149999821.61240998,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 70,
+    "worldShare": 0.000128656636023515
+   }
+  },
+  "NAM": {
+   "coal.reserves": {
+    "value": 349999583.76229,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 58,
+    "worldShare": 0.0003001988173882017
+   }
+  },
+  "NCL": {
+   "coal.reserves": {
+    "value": 1999997.6214987999,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 84,
+    "worldShare": 0.0000017154218136468667
+   }
+  },
+  "PRT": {
+   "coal.reserves": {
+    "value": 2999996.4322482,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 82,
+    "worldShare": 0.0000025731327204703003
+   }
+  },
+  "SWE": {
+   "coal.reserves": {
+    "value": 4999994.053746999,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 81,
+    "worldShare": 0.000004288554534117166
+   }
+  },
+  "UGA": {
+   "coal.reserves": {
+    "value": 799999048.59952,
+    "unit": "t",
+    "year": 2025,
+    "worldRank": 49,
+    "worldShare": 0.0006861687254587467
+   }
+  }
+ }
+}
