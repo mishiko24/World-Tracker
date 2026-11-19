@@ -49,13 +49,15 @@ src/ui/                   React panels
 src/data/countryData.ts   THE CONTRACT: per-country JSON shape + source list. Imported by both the pipeline and the UI.
 src/ui/info/              Right panel: InfoPanel (6 sections), useCountryData (fetch), FactRow, one file per section type,
                           formatData (number/unit formatting)
+src/ui/list/              List view (settings.listView): CountryList (sortable table of public/data/summary.json),
+                          columns.ts (column list; adding a column = CountrySummary field + build.ts + one entry here)
 
 scripts/data/             Data pipeline (TypeScript run directly by Node 22, no build step)
   run.ts                  Entry: runs steps in order, keeps going after a failure, exits non-zero if any failed
   lib/countries.ts        Our country list + code/name matchers (CODE_OVERRIDES, NAME_OVERRIDES for odd sources)
   lib/io.ts, lib/csv.ts   fetch helpers (errors use labels, never URLs: API keys), cache read/write, CSV parsing
   fetch/<source>.ts       One per source -> data-cache/<source>.json, already keyed by our country id
-  build.ts                Caches -> public/data/countries/<id>.json + coverage report. No network.
+  build.ts                Caches -> public/data/countries/<id>.json + public/data/summary.json (list view) + coverage report. No network.
 
 data-cache/               Committed. Normalized per-source data; git diffs show what each refresh changed.
 public/data/countries/    Committed. What the site loads when a country is selected.
@@ -99,6 +101,10 @@ SECURITY: never write URLs containing the EIA key to files or logs. A leak happe
 - **Selection:** click selects, no camera move; clicking the selected country keeps it; ocean click or Esc deselects;
   a left drag (>5 px) is never a click.
 - **Zoom:** toward cursor, 1x (world height fills viewport) to 40x; exponential glide in log space.
+- **List view:** toggle in the left panel. The map stays mounted but hidden (camera survives). Sorting: first click
+  highest first (name A→Z), second click reverses, missing values always last. Row click = select (opens info panel).
+- **Info panel layout:** fixed label column, values left-aligned right after it. Resource lists show everything
+  available (no truncation), by Mishiko's choice.
 - **Map types:** Dark (default), Light, Satellite. Each map type has its own colors in settings.
   Satellite = NASA GIBS Blue Marble shaded relief (public domain, no key, max tile level 8 so soft when zoomed far).
   Swap or add sources in mapTypes.ts.

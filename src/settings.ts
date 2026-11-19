@@ -24,6 +24,7 @@ export interface MapStyle {
 
 export interface Settings {
   mapType: MapType;
+  listView: boolean; // show the sortable country table instead of the map
   styles: Record<MapType, MapStyle>;
   zoomAmount: number; // zoom change per scroll notch: 0.3 = 30%
   zoomSmoothness: number; // 0 = instant, 1 = slowest glide
@@ -53,6 +54,7 @@ const SATELLITE_STYLE: MapStyle = {
 
 export const DEFAULT_SETTINGS: Settings = {
   mapType: "dark",
+  listView: false,
   styles: {
     dark: DARK_STYLE,
     light: LIGHT_STYLE,

@@ -7,6 +7,7 @@ import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import type {
   Agriculture,
   Amount,
+  CountrySummary,
   CountryData,
   Economy,
   Government,
@@ -33,6 +34,7 @@ import type { WikidataEntry } from "./fetch/wikidata.ts";
 import type { WorldBankEntry } from "./fetch/worldbank.ts";
 
 const OUTPUT_DIR = "public/data/countries";
+const SUMMARY_FILE = "public/data/summary.json";
 
 const worldbank = readCache<WorldBankEntry>("worldbank").byCountry;
 const imf = readCache<ImfEntry>("imf").byCountry;
@@ -103,6 +105,10 @@ function gdpRank(id: string): RankFact | null {
 
 function buildEconomy(id: string): Economy {
   const e = imf[id] ?? {};
+  const debtUsd =
+    e.debt && e.gdpBillions && e.debt.year === e.gdpBillions.year
+      ? { value: (e.debt.value / 100) * e.gdpBillions.value * 1e9, year: e.debt.year, source: "imf" as const }
+      : null;
   return {
     gdp: fact(e.gdpBillions, "imf", 1e9),
     gdpRank: gdpRank(id),
@@ -111,6 +117,7 @@ function buildEconomy(id: string): Economy {
     growth: fact(e.growth, "imf"),
     inflation: fact(e.inflation, "imf"),
     debt: fact(e.debt, "imf"),
+    debtUsd,
   };
 }
 
@@ -205,6 +212,24 @@ for (const c of countries) {
   writeFileSync(`${OUTPUT_DIR}/${c.id}.json`, JSON.stringify(data));
 }
 
+// The list view's data: one row per country.
+const summary: CountrySummary[] = all.map((d) => ({
+  id: d.id,
+  name: d.name,
+  population: d.population.total?.value ?? null,
+  fertility: d.population.fertility?.value ?? null,
+  medianAge: d.population.medianAge?.value ?? null,
+  density: d.population.density?.value ?? null,
+  gdp: d.economy.gdp?.value ?? null,
+  gdpPerCapita: d.economy.gdpPerCapita?.value ?? null,
+  gdpPerCapitaPpp: d.economy.gdpPerCapitaPpp?.value ?? null,
+  growth: d.economy.growth?.value ?? null,
+  inflation: d.economy.inflation?.value ?? null,
+  debtUsd: d.economy.debtUsd?.value ?? null,
+  debtPercent: d.economy.debt?.value ?? null,
+}));
+writeFileSync(SUMMARY_FILE, JSON.stringify(summary));
+
 const coverage: [string, (d: CountryData) => unknown][] = [
   ["government.type", (d) => d.government.type],
   ["government.rulingParty", (d) => d.government.rulingParty],
@@ -221,6 +246,7 @@ const coverage: [string, (d: CountryData) => unknown][] = [
   ["economy.growth", (d) => d.economy.growth],
   ["economy.inflation", (d) => d.economy.inflation],
   ["economy.debt", (d) => d.economy.debt],
+  ["economy.debtUsd", (d) => d.economy.debtUsd],
   ["resources (any)", (d) => d.resources.length > 0 || null],
   ["resources oil production", (d) => d.resources.find((r) => r.id === "oil")?.production],
   ["agriculture", (d) => d.agriculture],

@@ -1,6 +1,5 @@
 // Left sidebar: map look and camera feel.
 
-import { useState } from "react";
 import { MAP_TYPES, getMapType, type MapType } from "../map/mapTypes";
 import { DEFAULT_SETTINGS, type CountryState, type MapStyle, type Settings, type StateStyle } from "../settings";
 import { Collapsible } from "./Collapsible";
@@ -10,6 +9,8 @@ import { formatPercent, formatPixels } from "./format";
 interface SettingsPanelProps {
   settings: Settings;
   onChange: (settings: Settings) => void;
+  open: boolean; // owned by App, because the list view makes room for the panel
+  onOpenChange: (open: boolean) => void;
 }
 
 const STATE_TITLES: Record<CountryState, string> = {
@@ -18,9 +19,7 @@ const STATE_TITLES: Record<CountryState, string> = {
   selected: "Selected country",
 };
 
-export function SettingsPanel({ settings, onChange }: SettingsPanelProps) {
-  const [open, setOpen] = useState(true);
-
+export function SettingsPanel({ settings, onChange, open, onOpenChange }: SettingsPanelProps) {
   // Style edits always go to the map type currently shown.
   const mapStyle = settings.styles[settings.mapType];
   function updateMapStyle(next: MapStyle) {
@@ -29,7 +28,7 @@ export function SettingsPanel({ settings, onChange }: SettingsPanelProps) {
 
   if (!open) {
     return (
-      <button className="panel-toggle" onClick={() => setOpen(true)} title="Show settings">
+      <button className="panel-toggle" onClick={() => onOpenChange(true)} title="Show settings">
         ☰
       </button>
     );
@@ -41,7 +40,7 @@ export function SettingsPanel({ settings, onChange }: SettingsPanelProps) {
     <aside className="panel panel-left">
       <header className="panel-header">
         <h2>Settings</h2>
-        <button className="icon-button" onClick={() => setOpen(false)} title="Hide settings">
+        <button className="icon-button" onClick={() => onOpenChange(false)} title="Hide settings">
           ✕
         </button>
       </header>
@@ -58,6 +57,15 @@ export function SettingsPanel({ settings, onChange }: SettingsPanelProps) {
             </option>
           ))}
         </select>
+      </label>
+
+      <label className="map-type list-view-toggle">
+        <span>List view</span>
+        <input
+          type="checkbox"
+          checked={settings.listView}
+          onChange={(e) => onChange({ ...settings, listView: e.target.checked })}
+        />
       </label>
 
       <div className="panel-scroll">

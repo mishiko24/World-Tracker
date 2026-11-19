@@ -283,9 +283,10 @@ button {
   color: #ff7b72;
 }
 
+/* Label column of fixed width, values start right after it (left-aligned). */
 .fact {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 128px 1fr;
   align-items: baseline;
   gap: 12px;
   padding: 6px 0;
@@ -307,13 +308,11 @@ button {
 }
 
 .fact-value {
-  text-align: right;
   font-variant-numeric: tabular-nums;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  flex-shrink: 0;
-  max-width: 62%;
+  align-items: flex-start;
+  min-width: 0;
 }
 
 .fact-meta {
@@ -337,7 +336,7 @@ button {
 .age-structure {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .data-group {
@@ -404,4 +403,98 @@ button {
 
 .total-row .fact-label {
   color: var(--text);
+}
+
+/* ---------- list view ---------- */
+
+.map-hidden {
+  visibility: hidden;
+}
+
+.list-view-toggle input {
+  justify-self: start;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.country-list {
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  overflow: auto;
+  background: #141418;
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+}
+
+/* Leave room for the side panels: left 320 + 12 gap + 12 margin, right 360 + same. */
+.country-list.left-panel-open {
+  left: calc(var(--panel-width) + 24px);
+}
+
+.country-list.right-panel-open {
+  right: 384px;
+}
+
+.country-list table {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  min-width: 100%;
+}
+
+.country-list th,
+.country-list td {
+  padding: 7px 12px;
+  text-align: right;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.country-list th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #1d1d23;
+  color: var(--text-dim);
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+.country-list th:hover {
+  color: var(--text);
+}
+
+.country-list .name-column {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  text-align: left;
+  background: #141418;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.country-list th.name-column {
+  z-index: 3;
+  background: #1d1d23;
+}
+
+.country-list tbody tr {
+  cursor: pointer;
+}
+
+.country-list tbody tr:hover td {
+  background: #1f1f26;
+}
+
+.country-list tbody tr.selected td {
+  background: rgba(227, 38, 27, 0.22);
 }

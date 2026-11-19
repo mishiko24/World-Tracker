@@ -85,6 +85,7 @@ export interface Economy {
   growth: NumberFact | null; // real GDP growth, percent
   inflation: NumberFact | null; // average consumer prices, percent
   debt: NumberFact | null; // general government gross debt, percent of GDP
+  debtUsd: NumberFact | null; // the same debt in current US dollars (debt % × GDP, same IMF year)
 }
 
 // Units are canonical so the UI can format them: production per year (oil per day, as quoted worldwide).
@@ -145,4 +146,23 @@ export interface CountryData {
   resources: Resource[]; // same list feeds both the Production and Reserves tabs
   agriculture: Agriculture | null;
   power: Power;
+}
+
+// One row of the list view: public/data/summary.json is an array of these, one per map country.
+// Plain numbers (no year/source) to keep the file small; the info panel has the details.
+// To add a list column: add a field here, fill it in scripts/data/build.ts, add it to src/ui/list/columns.ts.
+export interface CountrySummary {
+  id: string;
+  name: string;
+  population: number | null;
+  fertility: number | null;
+  medianAge: number | null;
+  density: number | null;
+  gdp: number | null;
+  gdpPerCapita: number | null;
+  gdpPerCapitaPpp: number | null;
+  growth: number | null;
+  inflation: number | null;
+  debtUsd: number | null;
+  debtPercent: number | null;
 }

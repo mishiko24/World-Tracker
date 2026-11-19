@@ -10,9 +10,10 @@ interface MapCanvasProps {
   settings: Settings;
   selectedId: string | null;
   onSelect: (id: string | null) => void;
+  hidden: boolean; // list view: kept alive (camera state survives) but invisible and not clickable
 }
 
-export function MapCanvas({ countries, settings, selectedId, onSelect }: MapCanvasProps) {
+export function MapCanvas({ countries, settings, selectedId, onSelect, hidden }: MapCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const viewRef = useRef<MapView | null>(null);
 
@@ -35,5 +36,5 @@ export function MapCanvas({ countries, settings, selectedId, onSelect }: MapCanv
     viewRef.current!.setSelected(selectedId);
   }, [selectedId]);
 
-  return <canvas ref={canvasRef} className="map-canvas" />;
+  return <canvas ref={canvasRef} className={hidden ? "map-canvas map-hidden" : "map-canvas"} />;
 }

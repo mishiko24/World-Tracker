@@ -75,7 +75,19 @@ export function EconomySection({ economy }: { economy: Economy }) {
       <NumberRow label="GDP per capita (PPP)" fact={economy.gdpPerCapitaPpp} format={dollars} />
       <NumberRow label="Real growth" fact={economy.growth} format={(v) => percent(v)} />
       <NumberRow label="Inflation" fact={economy.inflation} format={(v) => percent(v)} />
-      <NumberRow label="Government debt" fact={economy.debt} format={(v) => `${percent(v, 0)} of GDP`} />
+      <FactRow
+        label="Government debt"
+        value={
+          economy.debt === null ? null : (
+            <>
+              {economy.debtUsd && dollars(economy.debtUsd.value)}
+              <span className={economy.debtUsd ? "rank-badge" : undefined}>{percent(economy.debt.value, 0)} of GDP</span>
+            </>
+          )
+        }
+        year={economy.debt?.year}
+        source={economy.debt?.source}
+      />
     </>
   );
 }
