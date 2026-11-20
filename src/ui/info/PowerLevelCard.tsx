@@ -3,10 +3,11 @@
 // (--color-a / --color-b, see Compare.tsx). The higher number of each pair is green.
 
 import { PILLAR_LABELS, PILLAR_ORDER, type CountryData, type PowerLevel } from "../../data/countryData";
+import { POWER_LEVEL_METHOD_URL } from "../../links";
 import { winner } from "./Compare";
 
 function tooltip(powerLevel: PowerLevel | null): string | undefined {
-  return powerLevel === null ? undefined : `Power Level v${powerLevel.version}: World Tracker's own index. See Sources & method.`;
+  return powerLevel === null ? undefined : `Power Level v${powerLevel.version}: World Tracker's own index`;
 }
 
 interface PowerLevelCardProps {
@@ -52,6 +53,9 @@ export function PowerLevelCard({ powerLevel, other }: PowerLevelCardProps) {
           );
         })}
       </div>
+      <a className="power-method-link" href={POWER_LEVEL_METHOD_URL}>
+        How is this calculated?
+      </a>
     </div>
   );
 }
@@ -85,6 +89,9 @@ function ComparedCard({ a, b }: { a: PowerLevel | null; b: PowerLevel | null }) 
           );
         })}
       </div>
+      <a className="power-method-link" href={POWER_LEVEL_METHOD_URL}>
+        How is this calculated?
+      </a>
     </div>
   );
 }

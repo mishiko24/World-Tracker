@@ -1132,3 +1132,32 @@ button {
     flex: 1 1 100%;
   }
 }
+
+/* ---------- links to the Sources & method page ---------- */
+
+.panel-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--panel-border);
+  font-size: 12px;
+}
+
+.panel-footer a,
+.power-method-link {
+  color: var(--text-dim);
+  text-decoration: none;
+}
+
+.panel-footer a:hover,
+.power-method-link:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+.power-method-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 11px;
+}

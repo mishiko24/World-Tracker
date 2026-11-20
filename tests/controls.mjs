@@ -451,6 +451,16 @@ frames.sort((a, b) => a - b);
 console.log(`INFO  pan frame time median ${frames[frames.length >> 1].toFixed(1)} ms, p95 ${frames[Math.floor(frames.length * 0.95)].toFixed(1)} ms (headless, software rendering)`);
 
 await page.screenshot({ path: "/tmp/wt-start.png" });
+// ---------- Sources & method page ----------
+await page.goto(`${URL}?c=CHN`);
+await page.click(".power-method-link");
+await page.waitForSelector(".facts-strip .value");
+await page.waitForFunction(() => !document.querySelector(".facts-strip .value").textContent.includes("…"));
+const meta = await (await fetch(`${URL}data/meta.json`)).json();
+check("Power Level link opens the method section", page.url().endsWith("about.html#power-level"), page.url());
+check("about page shows the data date", (await page.textContent(".facts-strip")).includes(String(Number(meta.builtAt.slice(8)))), meta.builtAt);
+check("about page lists the six pillar weights", (await page.$$("#power-level + p + table tbody tr")).length === 6);
+
 await browser.close();
 server?.kill();
 console.log(failures === 0 ? "\nALL PASS" : `\n${failures} FAILED`);

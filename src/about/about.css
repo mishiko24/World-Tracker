@@ -1,0 +1,156 @@
+/* Sources & method page. A normal scrolling document, unlike the full-screen map page (src/styles.css). */
+
+:root {
+  --text: #e8e6e3;
+  --text-dim: #9a968f;
+  --border: rgba(255, 255, 255, 0.1);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: #111;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.about {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+}
+
+a {
+  color: #79b8ff;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.back-link:hover {
+  color: var(--text);
+}
+
+h1 {
+  font-size: 36px;
+  line-height: 1.2;
+  margin: 0 0 12px;
+}
+
+h2 {
+  font-size: 24px;
+  margin: 44px 0 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+h3 {
+  font-size: 17px;
+  margin: 24px 0 6px;
+}
+
+.lead {
+  font-size: 18px;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.version {
+  margin-left: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dim);
+}
+
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin: 6px 0;
+}
+
+.facts-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 28px 0 0;
+}
+
+.facts-strip > div {
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.facts-strip .label {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+}
+
+.facts-strip .value {
+  font-size: 19px;
+  font-weight: 600;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 12px 0;
+}
+
+th,
+td {
+  text-align: left;
+  vertical-align: top;
+  padding: 10px 10px 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+td.strong {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+td.number {
+  font-variant-numeric: tabular-nums;
+}
+
+.license {
+  display: block;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 28px;
+  }
+
+  td.strong {
+    white-space: normal;
+  }
+}

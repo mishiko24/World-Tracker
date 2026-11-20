@@ -9,6 +9,7 @@ import type {
   Amount,
   CountrySummary,
   CountryData,
+  DataMeta,
   Economy,
   Government,
   NumberFact,
@@ -22,7 +23,7 @@ import type {
 } from "../../src/data/countryData.ts";
 import { loadCountries } from "./lib/countries.ts";
 import { lastFullYear, readCache } from "./lib/io.ts";
-import { computePowerLevels } from "./powerLevel.ts";
+import { computePowerLevels, POWER_LEVEL_VERSION } from "./powerLevel.ts";
 import type { EiaEntry } from "./fetch/eia.ts";
 import type { FossilReservesEntry } from "./fetch/fossilReserves.ts";
 import type { EnergyEntry } from "./fetch/energy.ts";
@@ -35,6 +36,7 @@ import type { WorldBankEntry } from "./fetch/worldbank.ts";
 
 const OUTPUT_DIR = "public/data/countries";
 const SUMMARY_FILE = "public/data/summary.json";
+const META_FILE = "public/data/meta.json";
 
 const worldbank = readCache<WorldBankEntry>("worldbank").byCountry;
 const wikidata = readCache<WikidataEntry>("wikidata").byCountry;
@@ -250,6 +252,14 @@ const summary: CountrySummary[] = all.map((d) => ({
   debtPercent: d.economy.debt?.value ?? null,
 }));
 writeFileSync(SUMMARY_FILE, JSON.stringify(summary));
+
+const meta: DataMeta = {
+  builtAt,
+  powerLevelVersion: POWER_LEVEL_VERSION,
+  countries: all.length,
+  scored: all.filter((d) => d.powerLevel !== null).length,
+};
+writeFileSync(META_FILE, JSON.stringify(meta));
 
 const coverage: [string, (d: CountryData) => unknown][] = [
   ["powerLevel", (d) => d.powerLevel],

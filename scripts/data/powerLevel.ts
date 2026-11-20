@@ -22,13 +22,10 @@
 // pillar; a missing pillar's weight goes to the other pillars. No resources = 0 (USGS/EIA list every notable
 // producer), but no energy or food data = unknown. Without economy and population data there is no score.
 //
-// Change anything here = new version number (shown on the methodology page).
+// Change anything here = new version number, and update the method text in src/about/AboutPage.tsx.
+// Pillar weights live in src/data/countryData.ts (PILLAR_WEIGHTS), shared with that page.
 
-import type {
-  CountryData,
-  PillarId,
-  PowerLevel,
-} from "../../src/data/countryData.ts";
+import { PILLAR_WEIGHTS, type CountryData, type PillarId, type PowerLevel } from "../../src/data/countryData.ts";
 
 export const POWER_LEVEL_VERSION = 2;
 
@@ -42,14 +39,6 @@ function clamp01(v: number): number {
   return Math.min(Math.max(v, 0), 1);
 }
 
-const PILLAR_WEIGHTS: Record<PillarId, number> = {
-  economy: 0.4,
-  resources: 0.15,
-  population: 0.15,
-  energy: 0.15,
-  food: 0.1,
-  stability: 0.05,
-};
 
 // Strategic weight per resource id; resources not listed (sand, clays, gypsum...) don't count.
 const RESOURCE_WEIGHTS: Record<string, number> = {

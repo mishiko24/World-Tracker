@@ -58,6 +58,10 @@ src/map/heatColors.ts     Heat colours for "Color countries by: Power Level" (Ap
 src/share/shareCard.ts    1200x630 share image (one country / comparison) drawn on a canvas; silhouettes re-projected per
                           country (rotated to its longitude, parts >40° from the label point dropped: no French Guiana)
 src/ui/ShareDialog.tsx    Share button's dialog: preview, Copy link (current URL), Download image, native Share… on phones
+about.html + src/about/   Sources & method page (second Vite entry, see vite.config.ts): data date (public/data/meta.json),
+                          Power Level method, source + license table. Weights/licenses come from countryData.ts;
+                          the method text and the datasets table are kept in sync with the pipeline by hand
+src/links.ts              URLs of the about page and the issue tracker
 src/urlState.ts           ?c=ESP&vs=FRA&view=list&sort=gdp.desc  read once on load, written with replaceState
 src/ui/list/              List view (settings.listView): CountryList (sortable table of public/data/summary.json),
                           columns.ts (column list; adding a column = CountrySummary field + build.ts + one entry here)
@@ -68,7 +72,8 @@ scripts/data/             Data pipeline (TypeScript run directly by Node 22, no 
   lib/io.ts, lib/csv.ts   fetch helpers (errors use labels, never URLs: API keys), cache read/write, CSV parsing
   fetch/<source>.ts       One per source -> data-cache/<source>.json, already keyed by our country id
   powerLevel.ts           Power Level index (our own metric). Runs inside build.ts after all countries are built
-  build.ts                Caches -> public/data/countries/<id>.json + public/data/summary.json (list view) + coverage report. No network.
+  build.ts                Caches -> public/data/countries/<id>.json + summary.json (list view) + meta.json (build date,
+                          Power Level version) + coverage report. No network.
 
 data-cache/               Committed. Normalized per-source data; git diffs show what each refresh changed.
 public/data/countries/    Committed. What the site loads when a country is selected.

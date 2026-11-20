@@ -20,17 +20,53 @@ export interface SourceInfo {
   short: string; // shown next to every value
   name: string; // shown in the tooltip
   url: string;
+  license: string; // shown on the Sources & method page (about.html); every source must allow commercial use
 }
 
 export const SOURCES: Record<SourceId, SourceInfo> = {
-  worldbank: { short: "World Bank", name: "World Bank", url: "https://data.worldbank.org" },
-  wikidata: { short: "Wikidata", name: "Wikidata", url: "https://www.wikidata.org" },
-  factbook: { short: "Factbook", name: "CIA World Factbook (final edition)", url: "https://github.com/factbook/factbook.json" },
-  unwpp: { short: "UN", name: "UN World Population Prospects, via Our World in Data", url: "https://ourworldindata.org" },
-  eia: { short: "EIA", name: "U.S. EIA International Energy Data", url: "https://www.eia.gov/international/data/world" },
-  usgs: { short: "USGS", name: "USGS Mineral Commodity Summaries", url: "https://www.usgs.gov/centers/national-minerals-information-center/mineral-commodity-summaries" },
-  faostat: { short: "FAO", name: "FAOSTAT (UN Food and Agriculture Organization)", url: "https://www.fao.org/faostat" },
-  ember: { short: "Ember", name: "Ember & Energy Institute, via Our World in Data", url: "https://github.com/owid/energy-data" },
+  worldbank: {
+    short: "World Bank",
+    name: "World Bank",
+    url: "https://data.worldbank.org",
+    license: "CC BY 4.0",
+  },
+  wikidata: { short: "Wikidata", name: "Wikidata", url: "https://www.wikidata.org", license: "CC0 (public domain)" },
+  factbook: {
+    short: "Factbook",
+    name: "CIA World Factbook (final edition)",
+    url: "https://github.com/factbook/factbook.json",
+    license: "Public domain (U.S. government work)",
+  },
+  unwpp: {
+    short: "UN",
+    name: "UN World Population Prospects, via Our World in Data",
+    url: "https://ourworldindata.org",
+    license: "CC BY 3.0 IGO (UN), CC BY 4.0 (Our World in Data)",
+  },
+  eia: {
+    short: "EIA",
+    name: "U.S. EIA International Energy Data",
+    url: "https://www.eia.gov/international/data/world",
+    license: "Public domain (U.S. government work)",
+  },
+  usgs: {
+    short: "USGS",
+    name: "USGS Mineral Commodity Summaries",
+    url: "https://www.usgs.gov/centers/national-minerals-information-center/mineral-commodity-summaries",
+    license: "Public domain (U.S. government work)",
+  },
+  faostat: {
+    short: "FAO",
+    name: "FAOSTAT (UN Food and Agriculture Organization)",
+    url: "https://www.fao.org/faostat",
+    license: "CC BY 4.0",
+  },
+  ember: {
+    short: "Ember",
+    name: "Ember & Energy Institute, via Our World in Data",
+    url: "https://github.com/owid/energy-data",
+    license: "CC BY 4.0 (Ember, Our World in Data); Energy Institute Statistical Review, with attribution",
+  },
 };
 
 export interface NumberFact {
@@ -140,6 +176,25 @@ export interface Power {
 
 // Power Level: World Tracker's own index (method: scripts/data/powerLevel.ts). Scores are 0-100.
 export type PillarId = "economy" | "resources" | "population" | "energy" | "food" | "stability";
+
+// Pillar weights in the total score (sum 1). Used by the pipeline (scripts/data/powerLevel.ts) and shown on the
+// Sources & method page, so the page can't drift from the formula.
+export const PILLAR_WEIGHTS: Record<PillarId, number> = {
+  economy: 0.4,
+  resources: 0.15,
+  population: 0.15,
+  energy: 0.15,
+  food: 0.1,
+  stability: 0.05,
+};
+
+// Written by the pipeline next to summary.json: when the data was built.
+export interface DataMeta {
+  builtAt: string; // YYYY-MM-DD
+  powerLevelVersion: number;
+  countries: number; // countries on the map
+  scored: number; // countries with a Power Level
+}
 
 // Display order and names (info panel, share cards).
 export const PILLAR_ORDER: PillarId[] = ["economy", "resources", "population", "energy", "food", "stability"];
