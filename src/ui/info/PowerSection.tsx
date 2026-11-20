@@ -6,7 +6,7 @@ import type { Comparison } from "./Compare";
 import { FactRow } from "./FactRow";
 import { percent, shortNumber } from "./formatData";
 
-const SOURCE_STYLE: Record<PowerSource, { label: string; color: string }> = {
+export const POWER_SOURCE_STYLE: Record<PowerSource, { label: string; color: string }> = {
   coal: { label: "Coal", color: "#6b6b6b" },
   gas: { label: "Gas", color: "#e07b39" },
   oil: { label: "Oil", color: "#8b5a2b" },
@@ -49,8 +49,8 @@ export function PowerSection({ power, other }: { power: Power; other: CountryDat
             {generation.mix.map((m) => (
               <span
                 key={m.source}
-                style={{ width: `${(m.twh / generation.totalTwh) * 100}%`, background: SOURCE_STYLE[m.source].color }}
-                title={SOURCE_STYLE[m.source].label}
+                style={{ width: `${(m.twh / generation.totalTwh) * 100}%`, background: POWER_SOURCE_STYLE[m.source].color }}
+                title={POWER_SOURCE_STYLE[m.source].label}
               />
             ))}
           </div>
@@ -59,8 +59,8 @@ export function PowerSection({ power, other }: { power: Power; other: CountryDat
               key={m.source}
               label={
                 <>
-                  <span className="swatch" style={{ background: SOURCE_STYLE[m.source].color }} />
-                  {SOURCE_STYLE[m.source].label}
+                  <span className="swatch" style={{ background: POWER_SOURCE_STYLE[m.source].color }} />
+                  {POWER_SOURCE_STYLE[m.source].label}
                 </>
               }
               value={twh(m.twh)}

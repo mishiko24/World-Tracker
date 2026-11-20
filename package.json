@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "build:geo": "node scripts/build-geo.mjs",
     "test:controls": "node tests/controls.mjs",
-    "test:mobile": "node tests/mobile.mjs"
+    "test:mobile": "node tests/mobile.mjs",
+    "build:site": "node scripts/site/build-site.mjs",
+    "test:site": "node tests/site.mjs"
   },
   "dependencies": {
     "d3-geo": "^3.1.2",

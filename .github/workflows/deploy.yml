@@ -33,6 +33,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      - run: npm run build:site # static country/ranking/comparison pages + link-preview images (scripts/site)
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

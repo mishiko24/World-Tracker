@@ -61,7 +61,17 @@ src/ui/ShareDialog.tsx    Share button's dialog: preview, Copy link (current URL
 about.html + src/about/   Sources & method page (second Vite entry, see vite.config.ts): data date (public/data/meta.json),
                           Power Level method, source + license table. Weights/licenses come from countryData.ts;
                           the method text and the datasets table are kept in sync with the pipeline by hand
-src/links.ts              URLs of the about page and the issue tracker
+src/links.ts              URLs of the about page, the countries hub, the issue tracker, and SITE_URL (absolute address)
+share-card.html + src/share/cardPage.ts  Headless page that draws link-preview cards at build time (not linked)
+
+scripts/site/             Static pages for search engines + link previews, added to dist/ by `npm run build:site`
+  build-site.mjs          Entry. Loads the TS modules through Vite (they import the app's formatters/columns/labels)
+  pages.ts                countries/ hub, country/<slug>/, rank/<key>/, compare/<a>-vs-<b>/ (each G20 country vs
+                          every country, slugs alphabetical), sitemap.xml. Returns the card images it needs
+  cards.ts                Renders those cards (JPEG, ~60 KB) with share-card.html in headless Chrome
+  html.ts                 Page layout (title, description, canonical, og: tags), escaping, slugs
+  site.css                Styles of the static pages
+  Deploy runs it after `npm run build`. Check with `node tests/site.mjs` (links, preview tags, sitemap).
 src/urlState.ts           ?c=ESP&vs=FRA&view=list&sort=gdp.desc  read once on load, written with replaceState
 src/ui/list/              List view (settings.listView): CountryList (sortable table of public/data/summary.json),
                           columns.ts (column list; adding a column = CountrySummary field + build.ts + one entry here)
