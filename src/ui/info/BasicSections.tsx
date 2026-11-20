@@ -2,7 +2,7 @@
 // `other` is the compared country's data (comparison mode) or null.
 
 import type { CountryData, Economy, Government, NumberFact, Population } from "../../data/countryData";
-import { Compare, type Better, type DiffMode } from "./Compare";
+import type { Better, DiffMode } from "./Compare";
 import { FactRow } from "./FactRow";
 import { dollars, percent, shortNumber } from "./formatData";
 
@@ -22,11 +22,7 @@ function NumberRow({ label, fact, other, format, mode, better }: NumberRowProps)
       value={fact === null ? null : format(fact.value)}
       year={fact?.year}
       source={fact?.source}
-      compare={
-        other !== undefined && (
-          <Compare a={fact?.value ?? null} b={other?.value ?? null} format={format} mode={mode} better={better} />
-        )
-      }
+      compare={other === undefined ? undefined : { a: fact?.value ?? null, b: other?.value ?? null, format, mode, better }}
     />
   );
 }
@@ -47,7 +43,7 @@ export function GovernmentSection({ government, other }: { government: Governmen
         fact={government.politicalStability}
         other={other?.government.politicalStability}
         format={(v) => `${v.toFixed(0)} / 100`}
-        mode="points"
+        mode="score"
       />
     </>
   );
@@ -76,7 +72,7 @@ export function PopulationSection({ population, other }: { population: Populatio
       <NumberRow label="Population" fact={population.total} other={b?.total} format={shortNumber} />
       <NumberRow label="Children per woman" fact={population.fertility} other={b?.fertility} format={(v) => v.toFixed(2)} />
       <NumberRow label="Life expectancy" fact={population.lifeExpectancy} other={b?.lifeExpectancy} format={years} />
-      <NumberRow label="Median age" fact={population.medianAge} other={b?.medianAge} format={years} />
+      <NumberRow label="Median age" fact={population.medianAge} other={b?.medianAge} format={years} better="none" />
       {AGE_ROWS.map(({ label, key }) => (
         <FactRow
           key={key}
@@ -85,9 +81,9 @@ export function PopulationSection({ population, other }: { population: Populatio
           year={age?.year}
           source={age?.source}
           compare={
-            other !== null && (
-              <Compare a={age?.[key] ?? null} b={otherAge?.[key] ?? null} format={wholePercent} mode="points" />
-            )
+            other === null
+              ? undefined
+              : { a: age?.[key] ?? null, b: otherAge?.[key] ?? null, format: wholePercent, mode: "points", better: "none" }
           }
         />
       ))}
@@ -96,6 +92,7 @@ export function PopulationSection({ population, other }: { population: Populatio
         fact={population.density}
         other={b?.density}
         format={(v) => `${shortNumber(v)} per km²`}
+        better="none"
       />
     </>
   );
@@ -112,7 +109,7 @@ export function EconomySection({ economy, other }: { economy: Economy; other: Co
         year={economy.gdp?.year}
         source={economy.gdp?.source}
         meta={rank && `#${rank.rank} of ${rank.of}`}
-        compare={other !== null && <Compare a={economy.gdp?.value ?? null} b={b?.gdp?.value ?? null} format={dollars} />}
+        compare={other === null ? undefined : { a: economy.gdp?.value ?? null, b: b?.gdp?.value ?? null, format: dollars }}
       />
       <NumberRow label="GDP per capita" fact={economy.gdpPerCapita} other={b?.gdpPerCapita} format={dollars} />
       <NumberRow label="GDP per capita (PPP)" fact={economy.gdpPerCapitaPpp} other={b?.gdpPerCapitaPpp} format={dollars} />

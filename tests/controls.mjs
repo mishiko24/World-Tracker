@@ -217,25 +217,35 @@ check("selected country keeps its color", near(await pixel(spainX, spainY), COLO
 await page.click("aside.panel-right .collapsible-header >> text=Population");
 await page.click("aside.panel-right .collapsible-header >> text=Economy");
 await page.waitForTimeout(200);
-const rowChip = async (label) =>
+// Comparison rows: label | Spain (A) | France (B); the better value has class "win", B carries the difference.
+const compareRow = async (label) =>
   page.evaluate((label) => {
-    const row = [...document.querySelectorAll("aside.panel-right .fact")].find((r) => r.querySelector(".fact-label").textContent === label);
-    const chip = row?.querySelector(".compare");
-    return chip ? { cls: chip.className, text: chip.textContent } : null;
+    const row = [...document.querySelectorAll("aside.panel-right .fact.comparing")].find(
+      (r) => r.querySelector(".fact-label").textContent === label,
+    );
+    if (!row) return null;
+    const [a, b] = row.querySelectorAll(".fact-value");
+    return { aWins: a.classList.contains("win"), bWins: b.classList.contains("win"), b: b.textContent };
   }, label);
-const popChip = await rowChip("Population");
-check("France has more people: green ▲", popChip?.cls === "compare good" && popChip.text.startsWith("▲"), JSON.stringify(popChip));
+check(
+  "comparison columns name both countries",
+  (await page.textContent(".compare-columns")).includes("Spain") && (await page.textContent(".compare-columns")).includes("France"),
+);
+const popRow = await compareRow("Population");
+check("France has more people: France's value is the winner", popRow?.bWins === true && popRow.aWins === false, JSON.stringify(popRow));
 const spainData = await (await fetch(`${URL}data/countries/ESP.json`)).json();
 const franceData = await (await fetch(`${URL}data/countries/FRA.json`)).json();
 const expectedPct = Math.round(((franceData.population.total.value - spainData.population.total.value) / spainData.population.total.value) * 100);
-check("population difference is relative to Spain", popChip?.text.includes(`${expectedPct}%`), `${popChip?.text} expected ${expectedPct}%`);
-const infChip = await rowChip("Inflation");
+check("population difference is relative to Spain", popRow?.b.includes(`+${expectedPct}%`), `${popRow?.b} expected +${expectedPct}%`);
+const infRow = await compareRow("Inflation");
 const franceLowerInflation = franceData.economy.inflation.value < spainData.economy.inflation.value;
 check(
-  "inflation: lower is better (color) and shown in pp",
-  infChip !== null && infChip.text.includes("pp") && (infChip.cls === "compare good") === franceLowerInflation && infChip.text.startsWith(franceLowerInflation ? "▼" : "▲"),
-  JSON.stringify(infChip),
+  "inflation: lower is better and shown in pp",
+  infRow !== null && infRow.b.includes("pp") && infRow.bWins === franceLowerInflation && infRow.aWins === !franceLowerInflation,
+  JSON.stringify(infRow),
 );
+const medianRow = await compareRow("Median age");
+check("median age has no winner", medianRow !== null && !medianRow.aWins && !medianRow.bWins, JSON.stringify(medianRow));
 const metaTexts = await page.$$eval("aside.panel-right .fact-meta", (els) => els.map((e) => e.textContent));
 check("meta lines carry no sources", metaTexts.every((t) => !/World Bank|IMF|UN|EIA|USGS|FAO|Ember/.test(t)), metaTexts.join(" | "));
 const tooltip = await page.$eval("aside.panel-right .fact-value", (el) => el.title);
@@ -358,7 +368,7 @@ const spainLevel = (await (await fetch(`${URL}data/countries/ESP.json`)).json())
 check("Power Level card shows score", scoreText.startsWith(spainLevel.score.toFixed(1)), scoreText);
 check("Power Level card shows rank", (await page.textContent(".power-rank")).includes(`#${spainLevel.rank}`));
 check("six pillar bars", (await page.$$(".power-card .pillar")).length === 6);
-check("Power Level compares in compare mode", (await page.$$(".power-card .compare")).length === 7);
+check("Power Level compares in compare mode", (await page.$$(".power-card.comparing .pillar-bar")).length === 12 && (await page.$$(".power-side")).length === 2);
 await page.goto(URL);
 await page.waitForSelector("canvas");
 await page.waitForTimeout(300);

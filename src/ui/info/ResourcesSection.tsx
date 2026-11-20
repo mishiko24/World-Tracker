@@ -3,7 +3,6 @@
 
 import { useState } from "react";
 import type { Amount, CountryData, Resource } from "../../data/countryData";
-import { Compare } from "./Compare";
 import { FactRow } from "./FactRow";
 import { amount, share } from "./formatData";
 
@@ -82,7 +81,7 @@ function AmountRow({ name, value, other }: { name: string; value: Amount | null;
       year={value?.year}
       source={value?.source}
       meta={value && rankLine(value)}
-      compare={other !== undefined && <Compare a={value?.value ?? null} b={other?.value ?? null} format={format} />}
+      compare={other === undefined ? undefined : { a: value?.value ?? null, b: other?.value ?? null, format }}
     />
   );
 }

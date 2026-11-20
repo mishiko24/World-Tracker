@@ -501,7 +501,16 @@ button {
   background: #41181a;
 }
 
-/* ---------- comparison mode ---------- */
+/* ---------- comparison mode (see src/ui/info/Compare.tsx) ---------- */
+
+.panel-right.comparing {
+  width: 400px;
+}
+
+/* Room for the wider panel in list view. */
+.app:has(.panel-right.comparing) .country-list.right-panel-open {
+  right: 424px;
+}
 
 .fact-main {
   display: flex;
@@ -510,37 +519,144 @@ button {
   column-gap: 8px;
 }
 
-.compare {
-  font-size: 12px;
-  white-space: nowrap;
+/* Label | A | B. Must match .compare-columns. */
+.fact.comparing {
+  grid-template-columns: 104px 1fr 1fr;
+  gap: 10px;
 }
 
-.compare.good {
+.fact-value.win .fact-main {
   color: #3fb950;
+  font-weight: 600;
 }
 
-.compare.bad {
-  color: #f85149;
+.compare-columns {
+  position: sticky;
+  top: -6px; /* panel-scroll's top padding */
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 104px 1fr 1fr;
+  gap: 10px;
+  padding: 8px 16px 8px;
+  margin-top: -6px;
+  background: #1a1a1f;
+  border-bottom: 1px solid var(--panel-border);
+  font-size: 12px;
+  font-weight: 600;
 }
 
-.compare.neutral {
-  color: var(--text-dim);
+.compare-column {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+  padding-bottom: 4px;
+  border-bottom: 2px solid;
+}
+
+.compare-column.a {
+  border-color: var(--color-a);
+}
+
+.compare-column.b {
+  border-color: var(--color-b);
+}
+
+.country-swatch {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  margin-right: 6px;
+  vertical-align: baseline;
+}
+
+.compare-column .country-swatch {
+  margin-right: 0;
+}
+
+.country-swatch.a {
+  background: var(--color-a);
+}
+
+.country-swatch.b {
+  background: var(--color-b);
 }
 
 .compare-header {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   margin-top: 4px;
   font-size: 13px;
   color: var(--text-dim);
 }
 
-.compare-swatch {
-  width: 10px;
-  height: 10px;
-  border-radius: 2px;
-  background: #2f7de1;
+.compare-header .country-swatch {
+  margin: 0 2px 0 2px;
+}
+
+/* Power Level card, comparison mode */
+
+.power-versus {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 6px 0 4px;
+}
+
+.power-side {
+  padding-left: 10px;
+  border-left: 3px solid;
+}
+
+.power-side.a {
+  border-color: var(--color-a);
+}
+
+.power-side.b {
+  border-color: var(--color-b);
+}
+
+.power-score.win {
+  color: #3fb950;
+}
+
+.power-side-rank {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.pillar.comparing {
+  grid-template-columns: 74px 1fr 26px;
+  row-gap: 1px;
+  margin-bottom: 3px;
+}
+
+/* Label spans the A row and the B row. */
+.pillar.comparing .pillar-label {
+  grid-row: span 2;
+}
+
+.pillar.comparing .pillar-value {
+  font-size: 11px;
+  line-height: 12px;
+  text-align: right;
+  color: var(--text-dim);
+}
+
+.pillar.comparing .pillar-value.win {
+  color: #3fb950;
+  font-weight: 600;
+}
+
+.pillar-bar.a span {
+  background: var(--color-a);
+}
+
+.pillar-bar.b span {
+  background: var(--color-b);
 }
 
 .icon-button.small {
@@ -634,11 +750,6 @@ button {
   line-height: 1.15;
 }
 
-.power-score .compare {
-  font-size: 13px;
-  font-weight: 500;
-}
-
 .power-rank {
   font-size: 20px;
   font-weight: 600;
@@ -688,10 +799,6 @@ button {
   white-space: nowrap;
 }
 
-.pillar-value .compare {
-  margin-left: 4px;
-  font-size: 11px;
-}
 
 .heat-legend {
   position: absolute;
@@ -807,7 +914,8 @@ button {
   }
 
   /* Info panel: bottom sheet. Heights must match useBottomSheet.ts snapHeights(). */
-  .panel-right {
+  .panel-right,
+  .panel-right.comparing {
     top: auto;
     left: 0;
     right: 0;

@@ -9,6 +9,7 @@ import type { CountryData } from "../../data/countryData";
 import type { Country } from "../../map/geo";
 import { Collapsible } from "../Collapsible";
 import { AgricultureSection } from "./AgricultureSection";
+import { colorVariables, CompareColumns, type CompareColors } from "./Compare";
 import { EconomySection, GovernmentSection, PopulationSection } from "./BasicSections";
 import { PowerLevelCard } from "./PowerLevelCard";
 import { PowerSection } from "./PowerSection";
@@ -38,10 +39,11 @@ interface InfoPanelProps {
   onEndComparison: () => void;
   picking: boolean; // waiting for the user to pick the country to compare with
   onPickingChange: (picking: boolean) => void;
+  colors: CompareColors; // map colors of the selected and compared states, so the panel matches the map
 }
 
 export function InfoPanel(props: InfoPanelProps) {
-  const { country, compared, onClose, onEndComparison, picking, onPickingChange } = props;
+  const { country, compared, onClose, onEndComparison, picking, onPickingChange, colors } = props;
   const mobile = useMobile();
   const sheet = useBottomSheet(mobile);
   const state = useCountryData(country.id);
@@ -58,15 +60,21 @@ export function InfoPanel(props: InfoPanelProps) {
   }, [picking, setSnap]);
 
   return (
-    <aside className={`panel panel-right ${sheet.className}`} style={sheet.style}>
+    <aside
+      className={`panel panel-right ${sheet.className}${compared ? " comparing" : ""}`}
+      style={{ ...colorVariables(colors), ...sheet.style }}
+    >
       <header className="panel-header" {...sheet.handleProps}>
         <div className="sheet-grip" />
         <div className="panel-title">
-          <h2>{country.name}</h2>
+          <h2>
+            {compared && <span className="country-swatch a" />}
+            {country.name}
+          </h2>
           {compared && (
             <div className="compare-header">
-              <span className="compare-swatch" />
-              vs {compared.name}
+              vs <span className="country-swatch b" />
+              {compared.name}
               <button className="icon-button small" onClick={onEndComparison} title="End comparison">
                 ✕
               </button>
@@ -90,6 +98,7 @@ export function InfoPanel(props: InfoPanelProps) {
 
       {/* Sections are always rendered (even while loading) so their open/closed state survives country switches. */}
       <div className="panel-scroll">
+        {compared && <CompareColumns a={country.name} b={compared.name} />}
         {state.status === "loaded" && <PowerLevelCard powerLevel={state.data.powerLevel} other={other} />}
         <Collapsible title="Government">
           {loaded(state, (d) => <GovernmentSection government={d.government} other={other} />)}

@@ -2,7 +2,7 @@
 // In comparison mode each row also shows the other country's generation from the same source.
 
 import type { CountryData, Power, PowerSource } from "../../data/countryData";
-import { Compare } from "./Compare";
+import type { Comparison } from "./Compare";
 import { FactRow } from "./FactRow";
 import { percent, shortNumber } from "./formatData";
 
@@ -29,11 +29,13 @@ export function PowerSection({ power, other }: { power: Power; other: CountryDat
   const otherGeneration = other?.power.generation ?? null;
   const otherTotal = otherGeneration?.totalTwh ?? null;
   const otherTwh = (source: PowerSource) => otherGeneration?.mix.find((m) => m.source === source)?.twh ?? null;
+  const compareTwh = (a: number | null, b: number | null): Comparison | undefined =>
+    comparing ? { a, b, format: twh } : undefined;
 
   return (
     <>
       {generation === null ? (
-        <FactRow label="Total generation" value={null} compare={comparing && <Compare a={null} b={otherTotal} format={twh} />} />
+        <FactRow label="Total generation" value={null} compare={compareTwh(null, otherTotal)} />
       ) : (
         <>
           <FactRow
@@ -41,7 +43,7 @@ export function PowerSection({ power, other }: { power: Power; other: CountryDat
             value={twh(generation.totalTwh)}
             year={generation.year}
             source={generation.source}
-            compare={comparing && <Compare a={generation.totalTwh} b={otherTotal} format={twh} />}
+            compare={compareTwh(generation.totalTwh, otherTotal)}
           />
           <div className="power-bar">
             {generation.mix.map((m) => (
@@ -63,7 +65,7 @@ export function PowerSection({ power, other }: { power: Power; other: CountryDat
               }
               value={twh(m.twh)}
               meta={percent((m.twh / generation.totalTwh) * 100)}
-              compare={comparing && <Compare a={m.twh} b={otherTwh(m.source)} format={twh} />}
+              compare={compareTwh(m.twh, otherTwh(m.source))}
             />
           ))}
           <div className="total-row">
@@ -72,7 +74,7 @@ export function PowerSection({ power, other }: { power: Power; other: CountryDat
               value={twh(generation.totalTwh)}
               year={generation.year}
               source={generation.source}
-              compare={comparing && <Compare a={generation.totalTwh} b={otherTotal} format={twh} />}
+              compare={compareTwh(generation.totalTwh, otherTotal)}
             />
           </div>
         </>
@@ -83,14 +85,9 @@ export function PowerSection({ power, other }: { power: Power; other: CountryDat
         year={access?.year}
         source={access?.source}
         compare={
-          comparing && (
-            <Compare
-              a={access?.value ?? null}
-              b={other.power.electricityAccess?.value ?? null}
-              format={(v) => percent(v)}
-              mode="points"
-            />
-          )
+          comparing
+            ? { a: access?.value ?? null, b: other.power.electricityAccess?.value ?? null, format: (v) => percent(v), mode: "points" }
+            : undefined
         }
       />
     </>

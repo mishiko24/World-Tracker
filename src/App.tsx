@@ -161,6 +161,10 @@ export function App() {
           onEndComparison={() => setComparedId(null)}
           picking={picking}
           onPickingChange={setPicking}
+          colors={{
+            a: settings.styles[settings.mapType].selected.fillColor,
+            b: settings.styles[settings.mapType].compared.fillColor,
+          }}
         />
       )}
       {picking && selectedCountry && (

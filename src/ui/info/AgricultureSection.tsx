@@ -2,7 +2,6 @@
 // In comparison mode each product also shows the other country's tonnage of the same product.
 
 import type { Agriculture, CountryData, Crop } from "../../data/countryData";
-import { Compare } from "./Compare";
 import { FactRow, sourceTooltip } from "./FactRow";
 import { share, tonnes } from "./formatData";
 
@@ -45,7 +44,7 @@ function CropRow({ crop, otherCrops }: { crop: Crop; otherCrops: Crop[] | undefi
       label={crop.name}
       value={tonnes(crop.tonnes)}
       meta={`#${crop.worldRank} world · ${share(crop.worldShare)}`}
-      compare={otherCrops !== undefined && <Compare a={crop.tonnes} b={other?.tonnes ?? null} format={tonnes} />}
+      compare={otherCrops === undefined ? undefined : { a: crop.tonnes, b: other?.tonnes ?? null, format: tonnes }}
     />
   );
 }
