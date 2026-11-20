@@ -7,17 +7,6 @@ export function escape(text: string): string {
   return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
-// "São Tomé and Príncipe" -> "sao-tome-and-principe"
-export function slugOf(name: string): string {
-  return name
-    .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
-    .toLowerCase()
-    .replace(/&/g, " and ")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-}
-
 // Relative path from a page folder back to the site root: "country/france/" -> "../../".
 export function rootFrom(path: string): string {
   return "../".repeat(path.split("/").filter((part) => part !== "").length);
@@ -25,14 +14,15 @@ export function rootFrom(path: string): string {
 
 export interface PageInput {
   path: string; // folder under the site root, with trailing slash: "country/france/"
-  title: string; // <title> and link-preview title
+  title: string; // <title>: what Google shows, with keywords and the site name
+  previewTitle: string; // link-preview title in chat apps, which cut long titles and show the site name anyway
   description: string; // meta description and link-preview text, ~160 characters
   image: string; // link-preview image, path under the site root: "cards/fra.jpg"
   body: string; // HTML inside <main>
   builtAt: string; // data date, shown in the footer
 }
 
-export function page({ path, title, description, image, body, builtAt }: PageInput): string {
+export function page({ path, title, previewTitle, description, image, body, builtAt }: PageInput): string {
   const root = rootFrom(path);
   const url = SITE_URL + path;
   return `<!doctype html>
@@ -46,7 +36,7 @@ export function page({ path, title, description, image, body, builtAt }: PageInp
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="World Tracker">
 <meta property="og:url" content="${url}">
-<meta property="og:title" content="${escape(title)}">
+<meta property="og:title" content="${escape(previewTitle)}">
 <meta property="og:description" content="${escape(description)}">
 <meta property="og:image" content="${SITE_URL}${image}">
 <meta property="og:image:width" content="1200">

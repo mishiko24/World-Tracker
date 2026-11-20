@@ -23,6 +23,7 @@ import type {
 } from "../../src/data/countryData.ts";
 import { loadCountries } from "./lib/countries.ts";
 import { lastFullYear, readCache } from "./lib/io.ts";
+import { computeNearby } from "./nearby.ts";
 import { computePowerLevels, POWER_LEVEL_VERSION } from "./powerLevel.ts";
 import type { EiaEntry } from "./fetch/eia.ts";
 import type { FossilReservesEntry } from "./fetch/fossilReserves.ts";
@@ -37,6 +38,7 @@ import type { WorldBankEntry } from "./fetch/worldbank.ts";
 const OUTPUT_DIR = "public/data/countries";
 const SUMMARY_FILE = "public/data/summary.json";
 const META_FILE = "public/data/meta.json";
+const NEARBY_FILE = "public/data/nearby.json"; // which regional comparison pages exist (src/data/sitePages.ts)
 
 const worldbank = readCache<WorldBankEntry>("worldbank").byCountry;
 const wikidata = readCache<WikidataEntry>("wikidata").byCountry;
@@ -260,6 +262,7 @@ const meta: DataMeta = {
   scored: all.filter((d) => d.powerLevel !== null).length,
 };
 writeFileSync(META_FILE, JSON.stringify(meta));
+writeFileSync(NEARBY_FILE, JSON.stringify(computeNearby(all)));
 
 const coverage: [string, (d: CountryData) => unknown][] = [
   ["powerLevel", (d) => d.powerLevel],

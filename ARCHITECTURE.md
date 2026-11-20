@@ -57,7 +57,9 @@ src/ui/info/PowerLevelCard.tsx  Power Level score, rank and pillar bars at the t
 src/map/heatColors.ts     Heat colours for "Color countries by: Power Level" (App builds a fill map, MapView.setFillOverrides)
 src/share/shareCard.ts    1200x630 share image (one country / comparison) drawn on a canvas; silhouettes re-projected per
                           country (rotated to its longitude, parts >40° from the label point dropped: no French Guiana)
-src/ui/ShareDialog.tsx    Share button's dialog: preview, Copy link (current URL), Download image, native Share… on phones
+src/ui/ShareDialog.tsx    Share button's dialog: preview, Copy link, Download image, native Share… on phones. The link is the
+                          country/comparison static page (its preview shows the card); pairs without a page: map URL
+src/data/sitePages.ts     Which static pages exist + their addresses (G20 list, slugs). No imports: Node loads it too
 about.html + src/about/   Sources & method page (second Vite entry, see vite.config.ts): data date (public/data/meta.json),
                           Power Level method, source + license table. Weights/licenses come from countryData.ts;
                           the method text and the datasets table are kept in sync with the pipeline by hand
@@ -67,10 +69,11 @@ share-card.html + src/share/cardPage.ts  Headless page that draws link-preview c
 scripts/site/             Static pages for search engines + link previews, added to dist/ by `npm run build:site`
   build-site.mjs          Entry. Loads the TS modules through Vite (they import the app's formatters/columns/labels)
   pages.ts                countries/ hub, country/<slug>/, rank/<key>/, compare/<a>-vs-<b>/, sitemap.xml.
-                          Comparison pages = pairs people search for: each G20 country vs every country, plus
-                          each country vs its land neighbours (shared border in the map geometry) and its 5 nearest
-                          countries of 500k+ people. Not every pair: ~29k pages of pairs nobody searches would read as
-                          filler to Google (Mishiko agreed). Slugs alphabetical. Returns the card images it needs
+                          Which pairs get a page and the addresses: src/data/sitePages.ts (shared with the app's
+                          Share button). Pairs people search for: each G20 country vs every country, plus each
+                          country vs its neighbours/nearest countries (data/nearby.json). Not every pair: ~29k pages of
+                          pairs nobody searches would read as filler to Google (Mishiko agreed).
+                          og:title is short ("Russia vs United States"); <title> keeps keywords for Google
   cards.ts                Renders those cards (JPEG, ~60 KB) with share-card.html in headless Chrome
   notFound.ts             404.html: forwards guessed addresses (compare/usa-vs-russia, country/uk, /georgia) to the
                           real page, or a pair without a page to the map. Aliases: slugs, ISO codes, EXTRA_ALIASES
@@ -87,6 +90,7 @@ scripts/data/             Data pipeline (TypeScript run directly by Node 22, no 
   lib/countries.ts        Our country list + code/name matchers (CODE_OVERRIDES, NAME_OVERRIDES for odd sources)
   lib/io.ts, lib/csv.ts   fetch helpers (errors use labels, never URLs: API keys), cache read/write, CSV parsing
   fetch/<source>.ts       One per source -> data-cache/<source>.json, already keyed by our country id
+  nearby.ts               Each country's land neighbours + 5 nearest countries -> public/data/nearby.json
   powerLevel.ts           Power Level index (our own metric). Runs inside build.ts after all countries are built
   build.ts                Caches -> public/data/countries/<id>.json + summary.json (list view) + meta.json (build date,
                           Power Level version) + coverage report. No network.

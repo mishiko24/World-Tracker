@@ -404,6 +404,8 @@ await page.waitForSelector(".share-preview img");
 const card = await page.$eval(".share-preview img", (img) => img.decode().then(() => [img.naturalWidth, img.naturalHeight]));
 check("share card is 1200x630", card[0] === 1200 && card[1] === 630, card.join("x"));
 check("share card file named after both countries", (await page.getAttribute(".share-actions a[download]", "download")) === "world-tracker-jpn-vs-kor.png");
+await page.waitForFunction(() => !document.querySelector(".share-link").textContent.includes("…"));
+check("share link is the comparison page", (await page.textContent(".share-link")).endsWith("/compare/japan-vs-south-korea/"), await page.textContent(".share-link"));
 await page.keyboard.press("Escape");
 check("Esc closes the share dialog but keeps the selection", (await page.$(".share-dialog")) === null && (await panelTitle()) === "Japan");
 await page.goto(URL);
@@ -451,6 +453,18 @@ frames.sort((a, b) => a - b);
 console.log(`INFO  pan frame time median ${frames[frames.length >> 1].toFixed(1)} ms, p95 ${frames[Math.floor(frames.length * 0.95)].toFixed(1)} ms (headless, software rendering)`);
 
 await page.screenshot({ path: "/tmp/wt-start.png" });
+// Share link: country page for one country; the map URL for a pair without a page.
+await page.goto(`${URL}?c=GEO`);
+await page.waitForSelector(".share-button:not([disabled])");
+await page.click(".share-button");
+await page.waitForFunction(() => !document.querySelector(".share-link").textContent.includes("…"));
+check("share link for one country is its page", (await page.textContent(".share-link")).endsWith("/country/georgia/"));
+await page.goto(`${URL}?c=TUV&vs=ISL`);
+await page.waitForSelector(".share-button:not([disabled])");
+await page.click(".share-button");
+await page.waitForFunction(() => !document.querySelector(".share-link").textContent.includes("…"));
+check("pair without a page shares the map link", (await page.textContent(".share-link")).endsWith("?c=TUV&vs=ISL"), await page.textContent(".share-link"));
+
 // ---------- Sources & method page ----------
 await page.goto(`${URL}?c=CHN`);
 await page.click(".power-method-link");

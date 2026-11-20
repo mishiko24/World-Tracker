@@ -3,17 +3,14 @@
 //   countries/              hub: every country A-Z and every ranking
 //   country/<slug>/         one page per country: its data as plain HTML
 //   rank/<key>/             one page per list-view column: every country ranked
-//   compare/<a>-vs-<b>/     each G20 country against every other country, plus each country against its
-//                           neighbours (shared border) and its 5 nearest countries (slugs in alphabetical order)
+//   compare/<a>-vs-<b>/     which pairs, and the addresses: src/data/sitePages.ts (neighbours: data/nearby.json)
 //   sitemap.xml             all of the above plus the map and the Sources & method page
 //   404.html                forwards guessed addresses (compare/usa-vs-russia) to the real page (notFound.ts)
 //
 // Each page links into the interactive map (?c=ID, ?c=A&vs=B). Data comes from dist/data (copied from public/data).
 // Returns the share-card images the pages use as link previews; cards.ts renders them afterwards.
 
-import { geoDistance } from "d3-geo";
 import { copyFileSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
-import { neighbors } from "topojson-client";
 import type { GeometryCollection, Topology } from "topojson-specification";
 import {
   PILLAR_LABELS,
@@ -29,16 +26,11 @@ import { winner, type Better } from "../../src/ui/info/Compare";
 import { amount, dollars, fullNumber, percent, share, tonnes } from "../../src/ui/info/formatData";
 import { POWER_SOURCE_STYLE } from "../../src/ui/info/PowerSection";
 import { COLUMNS } from "../../src/ui/list/columns";
-import { escape, inWords, page, rootFrom, slugOf } from "./html";
+import { comparePagePath, countryPagePath, G20, isNearby, slugOf, type Nearby } from "../../src/data/sitePages";
+import { escape, inWords, page, rootFrom } from "./html";
 import { notFoundPage } from "./notFound";
 
 // Comparison pages exist for every pair that includes one of these (the pairs people search for).
-// Islands have no land neighbours; the nearest countries (by label point) cover Japan-South Korea, UK-Ireland, etc.
-const NEAREST_COUNTRIES = 5;
-const NEAREST_MIN_POPULATION = 500_000; // nearest picks skip tiny dependencies (Guam, Jersey) that crowd out real countries
-
-const G20 = ["ARG", "AUS", "BRA", "CAN", "CHN", "FRA", "DEU", "IND", "IDN", "ITA", "JPN", "KOR", "MEX", "RUS", "SAU", "ZAF", "TUR", "GBR", "USA"];
-
 export interface CardJob {
   file: string; // path under dist/, e.g. "cards/fra.jpg"
   a: string; // country id
@@ -80,7 +72,7 @@ export function buildPages(dist: string): { cards: CardJob[]; pages: number } {
     slugs,
     countries,
     summaries: new Map(summaries.map((x) => [x.id, x])),
-    nearby: nearbyCountries(dist, byId),
+    nearby: readJson<Nearby>(`${dist}/data/nearby.json`),
   };
 
   const cards: CardJob[] = countries.map((d) => ({ file: cardOf(d.id, null), a: d.id, b: null }));
@@ -100,7 +92,7 @@ export function buildPages(dist: string): { cards: CardJob[]; pages: number } {
   for (const [a, b] of comparePairs(site)) {
     const path = comparePath(site, a, b);
     // G20 vs G20 and regional pairs get their own card; a G20 country vs a far-away country uses the G20 one's card.
-    const ownCard = (G20.includes(a) && G20.includes(b)) || isNearby(site, a, b);
+    const ownCard = (G20.includes(a) && G20.includes(b)) || isNearby(site.nearby, a, b);
     if (ownCard) {
       cards.push({ file: cardOf(a, b), a, b });
     }
@@ -126,11 +118,11 @@ interface Site {
   slugs: Map<string, string>;
   countries: CountryData[];
   summaries: Map<string, CountrySummary>; // list-view rows: the values the rankings sort by
-  nearby: Map<string, string[]>; // id -> neighbours and nearest countries, closest first
+  nearby: Nearby;
 }
 
 function countryPath(site: Site, id: string): string {
-  return `country/${site.slugs.get(id)}/`;
+  return countryPagePath(site.byId.get(id)!.name);
 }
 
 // Pairs in alphabetical slug order, so "france-vs-germany" exists and "germany-vs-france" doesn't.
@@ -139,8 +131,7 @@ function orderPair(site: Site, a: string, b: string): [string, string] {
 }
 
 function comparePath(site: Site, a: string, b: string): string {
-  const [first, second] = orderPair(site, a, b);
-  return `compare/${site.slugs.get(first)}-vs-${site.slugs.get(second)}/`;
+  return comparePagePath(site.byId.get(a)!.name, site.byId.get(b)!.name);
 }
 
 function comparePairs(site: Site): [string, string][] {
@@ -159,7 +150,7 @@ function comparePairs(site: Site): [string, string][] {
       add(g, d.id);
     }
   }
-  for (const [id, nearby] of site.nearby) {
+  for (const [id, nearby] of Object.entries(site.nearby)) {
     for (const other of nearby) {
       add(id, other);
     }
@@ -178,34 +169,6 @@ function countryCodes(dist: string): Map<string, (string | null)[]> {
   );
 }
 
-function isNearby(site: Site, a: string, b: string): boolean {
-  return site.nearby.get(a)!.includes(b) || site.nearby.get(b)!.includes(a);
-}
-
-// Each country's land neighbours (countries sharing a border line in the map geometry) plus its
-// NEAREST_COUNTRIES closest countries by label point, closest first. Places without population data
-// (e.g. Siachen Glacier) are never partners; nearest picks also need NEAREST_MIN_POPULATION people.
-function nearbyCountries(dist: string, byId: Map<string, CountryData>): Map<string, string[]> {
-  const population = (id: string) => byId.get(id)!.population.total?.value ?? null;
-  const topo = readJson<Topology<{ countries: GeometryCollection<CountryProperties> }>>(`${dist}/data/countries.topo.json`);
-  const geometries = topo.objects.countries.geometries;
-  const props = geometries.map((g) => g.properties as CountryProperties); // build-geo.mjs sets them on every geometry
-  const borders = neighbors(geometries);
-  const nearby = new Map<string, string[]>();
-  props.forEach((p, i) => {
-    const byDistance = props
-      .filter((q) => q.id !== p.id && population(q.id) !== null)
-      .map((q) => ({ id: q.id, distance: geoDistance(p.label, q.label) }))
-      .sort((x, y) => x.distance - y.distance);
-    const bordering = new Set(borders[i].map((j) => props[j].id));
-    const nearest = byDistance
-      .filter((x) => population(x.id)! >= NEAREST_MIN_POPULATION)
-      .slice(0, NEAREST_COUNTRIES)
-      .map((x) => x.id);
-    nearby.set(p.id, byDistance.map((x) => x.id).filter((id) => bordering.has(id) || nearest.includes(id)));
-  });
-  return nearby;
-}
 
 function cardOf(a: string, b: string | null): string {
   return `cards/${a.toLowerCase()}${b === null ? "" : `-vs-${b.toLowerCase()}`}.jpg`;
@@ -330,7 +293,7 @@ function countryPage(site: Site, d: CountryData): string {
     `<ul class="link-grid">${ids
       .map((id) => `<li><a href="${root}${comparePath(site, d.id, id)}">${escape(d.name)} vs ${escape(site.byId.get(id)!.name)}</a></li>`)
       .join("")}</ul>`;
-  const nearby = site.nearby.get(d.id)!;
+  const nearby = site.nearby[d.id];
   sections.push(`<section><h2>Compare ${escape(d.name)}</h2><h3>Neighbours and nearby countries</h3>${compareLinks(nearby)}<h3>G20 countries</h3>${compareLinks(
     G20.filter((id) => id !== d.id && !nearby.includes(id)),
   )}<p class="note">Or pick any country on the <a href="${root}?c=${d.id}">map</a> and right-click (long-press) another.</p></section>`);
@@ -338,6 +301,7 @@ function countryPage(site: Site, d: CountryData): string {
   return page({
     path,
     title: `${d.name}: Power Level, population, GDP and economy | World Tracker`,
+    previewTitle: d.name,
     description:
       `${d.name}: Power Level ${powerLevelText(d)}` +
       (p.total === null ? "" : `, population ${inWords(p.total.value)}`) +
@@ -403,6 +367,7 @@ function comparePage(site: Site, a: CountryData, b: CountryData, path: string, i
   return page({
     path,
     title,
+    previewTitle: `${a.name} vs ${b.name}`,
     description: `${a.name} vs ${b.name} side by side: Power Level, population, GDP, growth, inflation, debt, stability and electricity.${verdict}`,
     image,
     builtAt: site.meta.builtAt,
@@ -426,6 +391,7 @@ function rankPage(site: Site, column: (typeof COLUMNS)[number], path: string): s
   return page({
     path,
     title: `Countries by ${label}: full ranking | World Tracker`,
+    previewTitle: `Countries by ${label}`,
     description: `All ${ranked.length} countries ranked by ${label.toLowerCase()}, highest first. Top three: ${top.join(", ")}.`,
     image: cardOf(ranked[0].d.id, null),
     builtAt: site.meta.builtAt,
@@ -446,6 +412,7 @@ function hubPage(site: Site): string {
   return page({
     path,
     title: "All countries and rankings | World Tracker",
+    previewTitle: "All countries and rankings",
     description: `Data pages for ${site.countries.length} countries and territories, and rankings by Power Level, population, GDP, growth, inflation and debt.`,
     image: cardOf(top.id, null),
     builtAt: site.meta.builtAt,

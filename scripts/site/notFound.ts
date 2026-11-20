@@ -57,7 +57,7 @@ const BASE = ${JSON.stringify(base)};
 const ALIASES = ${JSON.stringify(aliases)};
 const SLUGS = ${JSON.stringify(Object.fromEntries(slugs))};
 const COMPARE_PATHS = new Set(${JSON.stringify(comparePaths)});
-// Same normalization as slugOf() in html.ts.
+// Same normalization as slugOf() in src/data/sitePages.ts.
 function find(name) {
   return ALIASES[name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")];
 }
