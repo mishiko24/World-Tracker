@@ -22,6 +22,6 @@ export const COLUMNS: Column[] = [
   { key: "gdpPerCapitaPpp", label: "GDP per capita (PPP)", format: (v) => `$${fullNumber(v)}` },
   { key: "growth", label: "Real growth", format: (v) => percent(v) },
   { key: "inflation", label: "Inflation", format: (v) => percent(v) },
-  { key: "debtUsd", label: "Gov. debt", format: dollars },
-  { key: "debtPercent", label: "Gov. debt (% GDP)", format: (v) => percent(v, 0) },
+  { key: "debtUsd", label: "Central gov. debt", format: dollars },
+  { key: "debtPercent", label: "Central gov. debt (% GDP)", format: (v) => percent(v, 0) },
 ];

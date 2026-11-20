@@ -16,12 +16,11 @@ export interface Country {
   wikidata: string;
 }
 
-export type CodeSystem = "worldbank" | "imf" | "owid" | "eia";
+export type CodeSystem = "worldbank" | "owid" | "eia";
 
 // Where a source's code differs from our id/iso3. Key = our id.
 const CODE_OVERRIDES: Record<string, Partial<Record<CodeSystem, string>>> = {
-  KOS: { worldbank: "XKX", imf: "UVK", owid: "OWID_KOS", eia: "XKS" },
-  PSE: { imf: "WBG" },
+  KOS: { worldbank: "XKX", owid: "OWID_KOS", eia: "XKS" },
 };
 
 // Source country names that don't match any Natural Earth name. Key = lowercased source name, value = our id.

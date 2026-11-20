@@ -317,7 +317,7 @@ await page.check("aside.panel-left .list-view-toggle input");
 await page.waitForSelector(".country-list tbody tr");
 check("list view hides the map", await page.$eval("canvas", (c) => getComputedStyle(c).visibility === "hidden"));
 const headerNames = await page.$$eval(".country-list th", (els) => els.map((e) => e.textContent.replace(/[▲▼]/g, "").trim()));
-check("list view columns", headerNames.join("|") === "Name|Population|Births per woman|Median age|Density (per km²)|GDP|GDP per capita|GDP per capita (PPP)|Real growth|Inflation|Gov. debt|Gov. debt (% GDP)", headerNames.join("|"));
+check("list view columns", headerNames.join("|") === "Name|Population|Births per woman|Median age|Density (per km²)|GDP|GDP per capita|GDP per capita (PPP)|Real growth|Inflation|Central gov. debt|Central gov. debt (% GDP)", headerNames.join("|"));
 const firstNames = async () => page.$$eval(".country-list tbody tr td:first-child", (els) => els.slice(0, 3).map((e) => e.textContent));
 const columnValues = async (index) =>
   page.$$eval(".country-list tbody tr", (rows, i) => rows.map((r) => r.children[i].textContent), index);

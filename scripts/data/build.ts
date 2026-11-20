@@ -27,7 +27,6 @@ import type { FossilReservesEntry } from "./fetch/fossilReserves.ts";
 import type { EnergyEntry } from "./fetch/energy.ts";
 import type { FactbookEntry } from "./fetch/factbook.ts";
 import type { FaoEntry } from "./fetch/faostat.ts";
-import type { ImfEntry } from "./fetch/imf.ts";
 import type { UnWppEntry } from "./fetch/unwpp.ts";
 import type { UsgsEntry } from "./fetch/usgs.ts";
 import type { WikidataEntry } from "./fetch/wikidata.ts";
@@ -37,7 +36,6 @@ const OUTPUT_DIR = "public/data/countries";
 const SUMMARY_FILE = "public/data/summary.json";
 
 const worldbank = readCache<WorldBankEntry>("worldbank").byCountry;
-const imf = readCache<ImfEntry>("imf").byCountry;
 const wikidata = readCache<WikidataEntry>("wikidata").byCountry;
 const factbook = readCache<FactbookEntry>("factbook").byCountry;
 const unwpp = readCache<UnWppEntry>("unwpp").byCountry;
@@ -88,36 +86,37 @@ function buildPopulation(id: string): Population {
   };
 }
 
-// GDP rank among all countries with an IMF GDP figure for the same year.
+// GDP rank among all countries with a World Bank GDP figure (each country's latest year).
 function gdpRank(id: string): RankFact | null {
-  const own = imf[id]?.gdpBillions;
+  const own = worldbank[id]?.gdp;
   if (own === undefined) {
     return null;
   }
-  const sameYear = Object.values(imf).map((e) => e.gdpBillions).filter((g) => g !== undefined && g.year === own.year);
-  return {
-    rank: 1 + sameYear.filter((g) => g!.value > own.value).length,
-    of: sameYear.length,
-    year: own.year,
-    source: "imf",
-  };
+  const all = Object.values(worldbank).flatMap((e) => (e.gdp ? [e.gdp.value] : []));
+  return { rank: 1 + all.filter((g) => g > own.value).length, of: all.length, year: own.year, source: "worldbank" };
+}
+
+// Debt in dollars = debt % × GDP of the same year (debt figures often lag GDP by years).
+function debtUsd(entry: WorldBankEntry): NumberFact | null {
+  const debt = entry.debt;
+  const gdpThatYear = debt ? entry.gdpByYear?.[String(debt.year)] : undefined;
+  if (debt === undefined || gdpThatYear === undefined) {
+    return null;
+  }
+  return { value: (debt.value / 100) * gdpThatYear, year: debt.year, source: "worldbank" };
 }
 
 function buildEconomy(id: string): Economy {
-  const e = imf[id] ?? {};
-  const debtUsd =
-    e.debt && e.gdpBillions && e.debt.year === e.gdpBillions.year
-      ? { value: (e.debt.value / 100) * e.gdpBillions.value * 1e9, year: e.debt.year, source: "imf" as const }
-      : null;
+  const wb = worldbank[id] ?? {};
   return {
-    gdp: fact(e.gdpBillions, "imf", 1e9),
+    gdp: fact(wb.gdp, "worldbank"),
     gdpRank: gdpRank(id),
-    gdpPerCapita: fact(e.gdpPerCapita, "imf"),
-    gdpPerCapitaPpp: fact(e.gdpPerCapitaPpp, "imf"),
-    growth: fact(e.growth, "imf"),
-    inflation: fact(e.inflation, "imf"),
-    debt: fact(e.debt, "imf"),
-    debtUsd,
+    gdpPerCapita: fact(wb.gdpPerCapita, "worldbank"),
+    gdpPerCapitaPpp: fact(wb.gdpPerCapitaPpp, "worldbank"),
+    growth: fact(wb.growth, "worldbank"),
+    inflation: fact(wb.inflation, "worldbank"),
+    debt: fact(wb.debt, "worldbank"),
+    debtUsd: debtUsd(wb),
   };
 }
 

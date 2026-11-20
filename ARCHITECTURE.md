@@ -79,7 +79,7 @@ the logs (`gh api repos/mishiko24/World-Tracker/actions/jobs/<id>/logs`), then p
 | | head of state/government, ruling party | Wikidata SPARQL (wikidata) | Current = no end date, preferred rank, then latest start. Ruling party = party of head of government, else of head of state |
 | Population | total, density, fertility, life expectancy, age structure | World Bank (worldbank) | `mrnev=1` = latest non-empty per country. UN WPP fallback (Taiwan etc.) |
 | | median age | UN WPP via OWID grapher (unwpp) | Estimates only, no projections |
-| Economy | GDP (+rank), per capita, PPP, growth, inflation, debt | IMF DataMapper WEO (imf) | Last full year (IMF estimate for some). Rank computed in build.ts |
+| Economy | GDP (+rank), per capita, PPP, growth, inflation, central gov. debt | World Bank (worldbank) | Was IMF until Nov 2026: IMF terms forbid systematic download / commercial reuse without permission. WB = CC BY 4.0. No Taiwan. Debt is central gov (fewer countries, lags); debt $ = % × GDP of the debt's year (gdpByYear) |
 | Resources | oil/gas/coal production, coal reserves | EIA API (eia), key in secret EIA_API_KEY | EIA dropped oil/gas reserves from its API |
 | | oil/gas reserves | EIA via OWID grapher CSVs (reserves) | Ends 2021. EI stopped 2020; OPEC has newer but blocks bots (403) |
 | | minerals production + reserves | USGS MCS data release (usgs) | Update SCIENCEBASE_ITEM each new edition (Jan/Feb). One variant per mineral |
@@ -116,6 +116,8 @@ SECURITY: never write URLs containing the EIA key to files or logs. A leak happe
   Satellite = NASA GIBS Blue Marble shaded relief (public domain, no key, max tile level 8 so soft when zoomed far).
   Swap or add sources in mapTypes.ts.
 - **Data:** static per-country JSON built monthly by scripts/data from free sources (see Data pipeline). No backend.
+  **Licensing rule (the site will be monetized):** only sources that allow commercial reuse. IMF and SIPRI do not
+  (written permission / paid license needed), so neither is used. Military data is parked until a license is funded.
   Every value carries its year and source; missing = null = "No data" (never 0).
 - **Hosting:** GitHub repo + GitHub Pages (workflow in .github/workflows/deploy.yml). `base: "./"` in vite config.
 

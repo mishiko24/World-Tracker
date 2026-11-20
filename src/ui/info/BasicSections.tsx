@@ -118,7 +118,7 @@ export function EconomySection({ economy, other }: { economy: Economy; other: Co
         mode="points"
         better="lower"
       />
-      <NumberRow label="Government debt" fact={economy.debtUsd} other={b?.debtUsd} format={dollars} better="lower" />
+      <NumberRow label="Central gov. debt" fact={economy.debtUsd} other={b?.debtUsd} format={dollars} better="lower" />
       <NumberRow
         label="Debt, % of GDP"
         fact={economy.debt}

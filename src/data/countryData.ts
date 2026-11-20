@@ -8,7 +8,6 @@
 
 export type SourceId =
   | "worldbank"
-  | "imf"
   | "wikidata"
   | "factbook"
   | "unwpp"
@@ -25,7 +24,6 @@ export interface SourceInfo {
 
 export const SOURCES: Record<SourceId, SourceInfo> = {
   worldbank: { short: "World Bank", name: "World Bank", url: "https://data.worldbank.org" },
-  imf: { short: "IMF", name: "IMF World Economic Outlook", url: "https://www.imf.org/external/datamapper" },
   wikidata: { short: "Wikidata", name: "Wikidata", url: "https://www.wikidata.org" },
   factbook: { short: "Factbook", name: "CIA World Factbook (final edition)", url: "https://github.com/factbook/factbook.json" },
   unwpp: { short: "UN", name: "UN World Population Prospects, via Our World in Data", url: "https://ourworldindata.org" },
@@ -78,14 +76,14 @@ export interface Population {
 }
 
 export interface Economy {
-  gdp: NumberFact | null; // current US dollars
+  gdp: NumberFact | null; // current US dollars (all economy figures: World Bank)
   gdpRank: RankFact | null;
   gdpPerCapita: NumberFact | null; // current US dollars
   gdpPerCapitaPpp: NumberFact | null; // international dollars
   growth: NumberFact | null; // real GDP growth, percent
-  inflation: NumberFact | null; // average consumer prices, percent
-  debt: NumberFact | null; // general government gross debt, percent of GDP
-  debtUsd: NumberFact | null; // the same debt in current US dollars (debt % × GDP, same IMF year)
+  inflation: NumberFact | null; // consumer prices, annual percent
+  debt: NumberFact | null; // central government debt, percent of GDP
+  debtUsd: NumberFact | null; // the same debt in current US dollars (debt % × GDP of the debt's year)
 }
 
 // Units are canonical so the UI can format them: production per year (oil per day, as quoted worldwide).

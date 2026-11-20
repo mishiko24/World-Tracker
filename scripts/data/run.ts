@@ -1,7 +1,7 @@
 // Entry point for the data pipeline.
 //
 //   node scripts/data/run.ts                 all fetchers, then build
-//   node scripts/data/run.ts imf build       only these steps, in the order given
+//   node scripts/data/run.ts worldbank build only these steps, in the order given
 //
 // Fetchers write data-cache/<source>.json; build turns the caches into public/data/countries/*.json.
 
@@ -10,7 +10,6 @@ import { fetchFossilReserves } from "./fetch/fossilReserves.ts";
 import { fetchEnergy } from "./fetch/energy.ts";
 import { fetchFactbook } from "./fetch/factbook.ts";
 import { fetchFaostat } from "./fetch/faostat.ts";
-import { fetchImf } from "./fetch/imf.ts";
 import { fetchUnWpp } from "./fetch/unwpp.ts";
 import { fetchUsgs } from "./fetch/usgs.ts";
 import { fetchWikidata } from "./fetch/wikidata.ts";
@@ -19,7 +18,6 @@ import { fetchWorldBank } from "./fetch/worldbank.ts";
 // Order matters: factbook reads the wikidata cache.
 const STEPS: Record<string, () => Promise<void>> = {
   worldbank: fetchWorldBank,
-  imf: fetchImf,
   wikidata: fetchWikidata,
   factbook: fetchFactbook,
   unwpp: fetchUnWpp,
