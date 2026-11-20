@@ -55,6 +55,9 @@ src/ui/useMobile.ts       Phone layout switch (max-width 700px, same as the @med
 src/ui/info/useBottomSheet.ts  Phone: info panel as bottom sheet, peek/half/full snaps, header drag + tap
 src/ui/info/PowerLevelCard.tsx  Power Level score, rank and pillar bars at the top of the info panel
 src/map/heatColors.ts     Heat colours for "Color countries by: Power Level" (App builds a fill map, MapView.setFillOverrides)
+src/share/shareCard.ts    1200x630 share image (one country / comparison) drawn on a canvas; silhouettes re-projected per
+                          country (rotated to its longitude, parts >40° from the label point dropped: no French Guiana)
+src/ui/ShareDialog.tsx    Share button's dialog: preview, Copy link (current URL), Download image, native Share… on phones
 src/urlState.ts           ?c=ESP&vs=FRA&view=list&sort=gdp.desc  read once on load, written with replaceState
 src/ui/list/              List view (settings.listView): CountryList (sortable table of public/data/summary.json),
                           columns.ts (column list; adding a column = CountrySummary field + build.ts + one entry here)
@@ -155,7 +158,8 @@ economy 0.40, resources 0.15, population 0.15, energy 0.15, food 0.10, stability
 - Simplest thing that works; no speculative abstractions.
 - Map code is plain classes with explicit state; React never touches the canvas directly.
 - Comments explain *why* and the units/spaces involved (world units vs CSS px vs device px).
-- Run `npm run test:controls` after touching anything in src/map/.
+- Run `npm run test:controls` after touching anything in src/map/ or the panels; `npm run test:mobile` for touch
+  and phone layout. Check their exit code / last line: a crash mid-run prints no FAIL lines.
 
 ## Known limitations / ideas
 

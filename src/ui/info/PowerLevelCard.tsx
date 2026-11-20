@@ -2,19 +2,8 @@
 // Comparison mode: both scores side by side, and two bars per pillar in the countries' map colors
 // (--color-a / --color-b, see Compare.tsx). The higher number of each pair is green.
 
-import type { CountryData, PillarId, PowerLevel } from "../../data/countryData";
+import { PILLAR_LABELS, PILLAR_ORDER, type CountryData, type PowerLevel } from "../../data/countryData";
 import { winner } from "./Compare";
-
-export const PILLAR_LABELS: Record<PillarId, string> = {
-  economy: "Economy",
-  resources: "Resources",
-  population: "Population",
-  energy: "Energy",
-  food: "Food",
-  stability: "Stability",
-};
-
-const PILLAR_ORDER: PillarId[] = ["economy", "resources", "population", "energy", "food", "stability"];
 
 function tooltip(powerLevel: PowerLevel | null): string | undefined {
   return powerLevel === null ? undefined : `Power Level v${powerLevel.version}: World Tracker's own index. See Sources & method.`;

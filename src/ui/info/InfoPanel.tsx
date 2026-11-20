@@ -4,7 +4,7 @@
 // every number also shows that country's value.
 // On phones the panel is a bottom sheet (useBottomSheet.ts).
 
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import type { CountryData } from "../../data/countryData";
 import type { Country } from "../../map/geo";
 import { Collapsible } from "../Collapsible";
@@ -14,6 +14,8 @@ import { EconomySection, GovernmentSection, PopulationSection } from "./BasicSec
 import { PowerLevelCard } from "./PowerLevelCard";
 import { PowerSection } from "./PowerSection";
 import { ResourcesSection } from "./ResourcesSection";
+import type { CardSide } from "../../share/shareCard";
+import { ShareDialog } from "../ShareDialog";
 import { useMobile } from "../useMobile";
 import { useBottomSheet } from "./useBottomSheet";
 import { useCountryData, type CountryDataState } from "./useCountryData";
@@ -50,6 +52,18 @@ export function InfoPanel(props: InfoPanelProps) {
   const comparedState = useCountryData(compared?.id ?? null);
   // Comparison numbers appear once the other country's data has loaded.
   const other = comparedState.status === "loaded" ? comparedState.data : null;
+  const [sharing, setSharing] = useState(false);
+
+  // Share card inputs. Memoized: the dialog redraws the card whenever these change.
+  const cardA = useMemo<CardSide | null>(
+    () => (state.status === "loaded" ? { country, data: state.data, color: colors.a } : null),
+    [country, state, colors.a],
+  );
+  const cardB = useMemo<CardSide | null>(
+    () => (compared !== null && other !== null ? { country: compared, data: other, color: colors.b } : null),
+    [compared, other, colors.b],
+  );
+  const shareReady = cardA !== null && (compared === null || cardB !== null);
 
   // Picking happens on the map, so get the sheet out of the way.
   const setSnap = sheet.setSnap;
@@ -83,6 +97,9 @@ export function InfoPanel(props: InfoPanelProps) {
           )}
         </div>
         <div className="panel-header-buttons">
+          <button className="share-button" onClick={() => setSharing(true)} disabled={!shareReady} title="Share image and link">
+            Share
+          </button>
           <button
             className={picking ? "compare-button active" : "compare-button"}
             onClick={() => onPickingChange(!picking)}
@@ -119,6 +136,7 @@ export function InfoPanel(props: InfoPanelProps) {
           {loaded(state, (d) => <PowerSection power={d.power} other={other} />)}
         </Collapsible>
       </div>
+      {sharing && cardA !== null && <ShareDialog a={cardA} b={cardB} onClose={() => setSharing(false)} />}
     </aside>
   );
 }

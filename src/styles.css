@@ -1019,3 +1019,116 @@ button {
     opacity: 0;
   }
 }
+
+/* ---------- share ---------- */
+
+.share-button {
+  border: 1px solid var(--panel-border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.share-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.share-button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.dialog {
+  width: min(680px, 100%);
+  max-height: 100%;
+  overflow: auto;
+  background: #18181d;
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 8px 18px;
+}
+
+.dialog-header h2 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.share-preview {
+  margin: 0 18px;
+  aspect-ratio: 1200 / 630;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--panel-border);
+}
+
+.share-preview img {
+  display: block;
+  width: 100%;
+}
+
+.share-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 14px 18px 18px;
+}
+
+.primary-button,
+.secondary-button {
+  font: inherit;
+  font-size: 14px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.primary-button {
+  border: none;
+  background: var(--accent);
+  color: #fff;
+}
+
+.secondary-button {
+  border: 1px solid var(--panel-border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+}
+
+.secondary-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+@media (max-width: 700px) {
+  .share-button {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+
+  .share-actions > * {
+    flex: 1 1 100%;
+  }
+}

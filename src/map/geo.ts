@@ -5,6 +5,7 @@
 
 import { geoMercator, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
+import type { Feature, MultiPolygon, Polygon } from "geojson";
 import type { GeometryCollection, Topology } from "topojson-specification";
 
 export const WORLD_WIDTH = 1000;
@@ -44,6 +45,8 @@ export interface Country {
   labelX: number;
   labelY: number;
   size: number; // sqrt of projected area in world units; tells how big the country looks at a given zoom
+  label: [number, number]; // [lon, lat] of the label point, inside the main landmass
+  shape: Feature<Polygon | MultiPolygon>; // unprojected, for drawing the country on its own (share cards)
 }
 
 const SEAM_EPSILON = 1e-3;
@@ -137,6 +140,8 @@ export async function loadCountries(): Promise<Country[]> {
       labelX,
       labelY,
       size: Math.sqrt(measure.area(f)),
+      label: p.label,
+      shape: f as Feature<Polygon | MultiPolygon>,
     });
   }
   return countries;

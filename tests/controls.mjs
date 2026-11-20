@@ -361,14 +361,19 @@ await page.evaluate(() => localStorage.clear());
 
 // ---------- Power Level ----------
 await page.evaluate(() => localStorage.clear());
-await page.goto(`${URL}?c=ESP&vs=FRA`);
+await page.goto(`${URL}?c=ESP`);
 await page.waitForSelector(".power-card .power-score");
 const scoreText = await page.textContent(".power-card .power-score");
 const spainLevel = (await (await fetch(`${URL}data/countries/ESP.json`)).json()).powerLevel;
 check("Power Level card shows score", scoreText.startsWith(spainLevel.score.toFixed(1)), scoreText);
 check("Power Level card shows rank", (await page.textContent(".power-rank")).includes(`#${spainLevel.rank}`));
 check("six pillar bars", (await page.$$(".power-card .pillar")).length === 6);
-check("Power Level compares in compare mode", (await page.$$(".power-card.comparing .pillar-bar")).length === 12 && (await page.$$(".power-side")).length === 2);
+await page.goto(`${URL}?c=ESP&vs=FRA`);
+await page.waitForSelector(".power-card.comparing");
+check(
+  "Power Level compares in compare mode: two scores, two bars per pillar",
+  (await page.$$(".power-card.comparing .pillar-bar")).length === 12 && (await page.$$(".power-side")).length === 2,
+);
 await page.goto(URL);
 await page.waitForSelector("canvas");
 await page.waitForTimeout(300);
@@ -392,6 +397,15 @@ check("link opens selected country", (await panelTitle()) === "Japan", String(aw
 check("link opens comparison", (await page.textContent(".compare-header")).includes("South Korea"));
 await page.waitForTimeout(300);
 check("link focuses camera on the country (center is Japan)", near(await pixel(W / 2, H / 2), COLORS.selected), String(await pixel(W / 2, H / 2)));
+
+// ---------- share card ----------
+await page.click(".share-button");
+await page.waitForSelector(".share-preview img");
+const card = await page.$eval(".share-preview img", (img) => img.decode().then(() => [img.naturalWidth, img.naturalHeight]));
+check("share card is 1200x630", card[0] === 1200 && card[1] === 630, card.join("x"));
+check("share card file named after both countries", (await page.getAttribute(".share-actions a[download]", "download")) === "world-tracker-jpn-vs-kor.png");
+await page.keyboard.press("Escape");
+check("Esc closes the share dialog but keeps the selection", (await page.$(".share-dialog")) === null && (await panelTitle()) === "Japan");
 await page.goto(URL);
 await page.waitForSelector(".search-box input");
 await page.fill(".search-box input", "germ");

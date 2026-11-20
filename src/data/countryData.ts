@@ -141,6 +141,17 @@ export interface Power {
 // Power Level: World Tracker's own index (method: scripts/data/powerLevel.ts). Scores are 0-100.
 export type PillarId = "economy" | "resources" | "population" | "energy" | "food" | "stability";
 
+// Display order and names (info panel, share cards).
+export const PILLAR_ORDER: PillarId[] = ["economy", "resources", "population", "energy", "food", "stability"];
+export const PILLAR_LABELS: Record<PillarId, string> = {
+  economy: "Economy",
+  resources: "Resources",
+  population: "Population",
+  energy: "Energy",
+  food: "Food",
+  stability: "Stability",
+};
+
 export interface PowerLevel {
   version: number;
   score: number;
