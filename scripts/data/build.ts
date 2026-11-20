@@ -21,7 +21,7 @@ import type {
   TextFact,
 } from "../../src/data/countryData.ts";
 import { loadCountries } from "./lib/countries.ts";
-import { readCache } from "./lib/io.ts";
+import { lastFullYear, readCache } from "./lib/io.ts";
 import type { EiaEntry } from "./fetch/eia.ts";
 import type { FossilReservesEntry } from "./fetch/fossilReserves.ts";
 import type { EnergyEntry } from "./fetch/energy.ts";
@@ -44,6 +44,17 @@ const fossilReserves = readCache<FossilReservesEntry>("reserves").byCountry;
 const usgs = readCache<UsgsEntry>("usgs").byCountry;
 const faostat = readCache<FaoEntry>("faostat").byCountry;
 const energy = readCache<EnergyEntry>("energy").byCountry;
+
+// World Bank keeps a country's last value forever (Germany's central government debt is from 1990).
+// Values older than this are hidden rather than shown as if current.
+const MAX_AGE_YEARS = 6;
+
+function fresh(entry: { value: number; year: number } | undefined): { value: number; year: number } | undefined {
+  if (entry === undefined || entry.year < lastFullYear() - MAX_AGE_YEARS) {
+    return undefined;
+  }
+  return entry;
+}
 
 function fact(entry: { value: number; year: number } | undefined, source: SourceId, scale = 1): NumberFact | null {
   if (entry === undefined) {
@@ -72,15 +83,16 @@ function buildGovernment(id: string): Government {
 function buildPopulation(id: string): Population {
   const wb = worldbank[id] ?? {};
   const un = unwpp[id] ?? {};
+  const under15 = fresh(wb.under15);
   const age =
-    wb.under15 && wb.from15to64 && wb.over65
-      ? { under15: wb.under15.value, from15to64: wb.from15to64.value, over65: wb.over65.value, year: wb.under15.year, source: "worldbank" as const }
+    under15 && wb.from15to64 && wb.over65
+      ? { under15: under15.value, from15to64: wb.from15to64.value, over65: wb.over65.value, year: under15.year, source: "worldbank" as const }
       : null;
   return {
-    total: fact(wb.population, "worldbank") ?? fact(un.population, "unwpp"),
-    density: fact(wb.density, "worldbank"),
-    fertility: fact(wb.fertility, "worldbank") ?? fact(un.fertility, "unwpp"),
-    lifeExpectancy: fact(wb.lifeExpectancy, "worldbank") ?? fact(un.lifeExpectancy, "unwpp"),
+    total: fact(fresh(wb.population), "worldbank") ?? fact(un.population, "unwpp"),
+    density: fact(fresh(wb.density), "worldbank"),
+    fertility: fact(fresh(wb.fertility), "worldbank") ?? fact(un.fertility, "unwpp"),
+    lifeExpectancy: fact(fresh(wb.lifeExpectancy), "worldbank") ?? fact(un.lifeExpectancy, "unwpp"),
     medianAge: fact(un.medianAge, "unwpp"),
     ageStructure: age,
   };
@@ -88,17 +100,20 @@ function buildPopulation(id: string): Population {
 
 // GDP rank among all countries with a World Bank GDP figure (each country's latest year).
 function gdpRank(id: string): RankFact | null {
-  const own = worldbank[id]?.gdp;
+  const own = fresh(worldbank[id]?.gdp);
   if (own === undefined) {
     return null;
   }
-  const all = Object.values(worldbank).flatMap((e) => (e.gdp ? [e.gdp.value] : []));
+  const all = Object.values(worldbank).flatMap((e) => {
+    const gdp = fresh(e.gdp);
+    return gdp ? [gdp.value] : [];
+  });
   return { rank: 1 + all.filter((g) => g > own.value).length, of: all.length, year: own.year, source: "worldbank" };
 }
 
 // Debt in dollars = debt % × GDP of the same year (debt figures often lag GDP by years).
 function debtUsd(entry: WorldBankEntry): NumberFact | null {
-  const debt = entry.debt;
+  const debt = fresh(entry.debt);
   const gdpThatYear = debt ? entry.gdpByYear?.[String(debt.year)] : undefined;
   if (debt === undefined || gdpThatYear === undefined) {
     return null;
@@ -109,13 +124,13 @@ function debtUsd(entry: WorldBankEntry): NumberFact | null {
 function buildEconomy(id: string): Economy {
   const wb = worldbank[id] ?? {};
   return {
-    gdp: fact(wb.gdp, "worldbank"),
+    gdp: fact(fresh(wb.gdp), "worldbank"),
     gdpRank: gdpRank(id),
-    gdpPerCapita: fact(wb.gdpPerCapita, "worldbank"),
-    gdpPerCapitaPpp: fact(wb.gdpPerCapitaPpp, "worldbank"),
-    growth: fact(wb.growth, "worldbank"),
-    inflation: fact(wb.inflation, "worldbank"),
-    debt: fact(wb.debt, "worldbank"),
+    gdpPerCapita: fact(fresh(wb.gdpPerCapita), "worldbank"),
+    gdpPerCapitaPpp: fact(fresh(wb.gdpPerCapitaPpp), "worldbank"),
+    growth: fact(fresh(wb.growth), "worldbank"),
+    inflation: fact(fresh(wb.inflation), "worldbank"),
+    debt: fact(fresh(wb.debt), "worldbank"),
     debtUsd: debtUsd(wb),
   };
 }
@@ -177,7 +192,7 @@ function buildAgriculture(id: string): Agriculture | null {
 
 function buildPower(id: string): Power {
   const e = energy[id];
-  const access = fact(worldbank[id]?.electricityAccess, "worldbank");
+  const access = fact(fresh(worldbank[id]?.electricityAccess), "worldbank");
   if (e === undefined) {
     return { generation: null, electricityAccess: access };
   }
