@@ -72,9 +72,12 @@ scripts/site/             Static pages for search engines + link previews, added
                           countries of 500k+ people. Not every pair: ~29k pages of pairs nobody searches would read as
                           filler to Google (Mishiko agreed). Slugs alphabetical. Returns the card images it needs
   cards.ts                Renders those cards (JPEG, ~60 KB) with share-card.html in headless Chrome
+  notFound.ts             404.html: forwards guessed addresses (compare/usa-vs-russia, country/uk, /georgia) to the
+                          real page, or a pair without a page to the map. Aliases: slugs, ISO codes, EXTRA_ALIASES
   html.ts                 Page layout (title, description, canonical, og: tags), escaping, slugs
   site.css                Styles of the static pages
-  Deploy runs it after `npm run build`. Check with `node tests/site.mjs` (links, preview tags, sitemap).
+  Deploy runs it after `npm run build`, then `npm run test:site` (links, preview tags, sitemap, 404 forwarding)
+  and stops if anything fails.
 src/urlState.ts           ?c=ESP&vs=FRA&view=list&sort=gdp.desc  read once on load, written with replaceState
 src/ui/list/              List view (settings.listView): CountryList (sortable table of public/data/summary.json),
                           columns.ts (column list; adding a column = CountrySummary field + build.ts + one entry here)

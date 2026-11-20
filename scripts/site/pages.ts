@@ -6,6 +6,7 @@
 //   compare/<a>-vs-<b>/     each G20 country against every other country, plus each country against its
 //                           neighbours (shared border) and its 5 nearest countries (slugs in alphabetical order)
 //   sitemap.xml             all of the above plus the map and the Sources & method page
+//   404.html                forwards guessed addresses (compare/usa-vs-russia) to the real page (notFound.ts)
 //
 // Each page links into the interactive map (?c=ID, ?c=A&vs=B). Data comes from dist/data (copied from public/data).
 // Returns the share-card images the pages use as link previews; cards.ts renders them afterwards.
@@ -29,6 +30,7 @@ import { amount, dollars, fullNumber, percent, share, tonnes } from "../../src/u
 import { POWER_SOURCE_STYLE } from "../../src/ui/info/PowerSection";
 import { COLUMNS } from "../../src/ui/list/columns";
 import { escape, inWords, page, rootFrom, slugOf } from "./html";
+import { notFoundPage } from "./notFound";
 
 // Comparison pages exist for every pair that includes one of these (the pairs people search for).
 // Islands have no land neighbours; the nearest countries (by label point) cover Japan-South Korea, UK-Ireland, etc.
@@ -108,6 +110,10 @@ export function buildPages(dist: string): { cards: CardJob[]; pages: number } {
   }
 
   writeFileSync(`${dist}/sitemap.xml`, sitemap(paths, meta.builtAt));
+  writeFileSync(
+    `${dist}/404.html`,
+    notFoundPage({ slugs, codes: countryCodes(dist), comparePaths: paths.filter((p) => p.startsWith("compare/")) }),
+  );
   copyFileSync("scripts/site/site.css", `${dist}/site.css`);
   return { cards, pages: paths.length - 2 };
 }
@@ -159,6 +165,17 @@ function comparePairs(site: Site): [string, string][] {
     }
   }
   return pairs;
+}
+
+// id -> [ISO3, ISO2] from the map geometry, for the 404 page's name lookup.
+function countryCodes(dist: string): Map<string, (string | null)[]> {
+  const topo = readJson<Topology<{ countries: GeometryCollection<CountryProperties> }>>(`${dist}/data/countries.topo.json`);
+  return new Map(
+    topo.objects.countries.geometries.map((g) => {
+      const p = g.properties as CountryProperties;
+      return [p.id, [p.iso3, p.iso2]];
+    }),
+  );
 }
 
 function isNearby(site: Site, a: string, b: string): boolean {
