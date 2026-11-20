@@ -13,9 +13,11 @@ interface MapCanvasProps {
   onSelect: (id: string | null) => void;
   onCompare: (id: string | null) => void;
   hidden: boolean; // list view: kept alive (camera state survives) but invisible and not clickable
+  focusRequest: { id: string; seq: number } | null; // move the camera to this country; seq re-triggers the same id
 }
 
-export function MapCanvas({ countries, settings, selectedId, comparedId, onSelect, onCompare, hidden }: MapCanvasProps) {
+export function MapCanvas(props: MapCanvasProps) {
+  const { countries, settings, selectedId, comparedId, onSelect, onCompare, hidden, focusRequest } = props;
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const viewRef = useRef<MapView | null>(null);
   // MapView keeps its callbacks for its whole life; route them through a ref so it always calls the latest ones.
@@ -50,6 +52,12 @@ export function MapCanvas({ countries, settings, selectedId, comparedId, onSelec
   useEffect(() => {
     viewRef.current!.setCompared(comparedId);
   }, [comparedId]);
+
+  useEffect(() => {
+    if (focusRequest !== null) {
+      viewRef.current!.focusCountry(focusRequest.id);
+    }
+  }, [focusRequest]);
 
   return <canvas ref={canvasRef} className={hidden ? "map-canvas map-hidden" : "map-canvas"} />;
 }

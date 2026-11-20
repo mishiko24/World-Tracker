@@ -1,0 +1,13 @@
+{
+  "_comment": "Common English names shown in the app, where Natural Earth's NAME_LONG is a formal name people don't search for. Used by build-geo.mjs (map) and scripts/data/lib/countries.ts (data files).",
+  "KOR": "South Korea",
+  "PRK": "North Korea",
+  "RUS": "Russia",
+  "LAO": "Laos",
+  "SWZ": "Eswatini",
+  "CPV": "Cape Verde",
+  "BRN": "Brunei",
+  "FLK": "Falkland Islands",
+  "FRO": "Faroe Islands",
+  "STP": "São Tomé and Príncipe"
+}

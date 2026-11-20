@@ -57,6 +57,15 @@ export class Camera {
     this.clamp();
   }
 
+  // Centers on a world point and zooms so a box of the given world size fits in about 60% of the view.
+  focus(centerX: number, centerY: number, width: number, height: number, maxZoom: number): void {
+    const fitScale = Math.min((this.viewWidth * 0.6) / width, (this.viewHeight * 0.6) / height);
+    this.zoom = clampZoom(Math.min(fitScale / (this.viewHeight / WORLD_HEIGHT), maxZoom));
+    this.x = centerX;
+    this.y = centerY;
+    this.clamp();
+  }
+
   private clamp(): void {
     this.zoom = clampZoom(this.zoom);
 

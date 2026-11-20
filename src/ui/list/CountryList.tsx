@@ -3,55 +3,20 @@
 // Countries without a value always sit at the bottom. Left-click a row to select it (info panel),
 // right-click a row to compare it with the selected one.
 
-import { useEffect, useState } from "react";
 import type { CountrySummary } from "../../data/countryData";
-import { COLUMNS, type NumericKey } from "./columns";
-
-type SortKey = "name" | NumericKey;
-
-interface Sort {
-  key: SortKey;
-  descending: boolean;
-}
+import { COLUMNS } from "./columns";
+import { nextSort, sortRows, type Sort, type SortKey } from "./sort";
 
 interface CountryListProps {
+  rows: CountrySummary[] | null; // null while summary.json loads
+  sort: Sort;
+  onSortChange: (sort: Sort) => void;
   selectedId: string | null;
   comparedId: string | null;
   onSelect: (id: string) => void;
   onCompare: (id: string) => void;
   leftPanelOpen: boolean; // the list makes room for the panels instead of hiding under them
   rightPanelOpen: boolean;
-}
-
-function useSummaries(): CountrySummary[] | null {
-  const [rows, setRows] = useState<CountrySummary[] | null>(null);
-  useEffect(() => {
-    fetch(`${import.meta.env.BASE_URL}data/summary.json`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`summary.json: HTTP ${response.status}`);
-        }
-        return response.json() as Promise<CountrySummary[]>;
-      })
-      .then(setRows);
-  }, []);
-  return rows;
-}
-
-function sortRows(rows: CountrySummary[], sort: Sort): CountrySummary[] {
-  const direction = sort.descending ? -1 : 1;
-  if (sort.key === "name") {
-    return [...rows].sort((a, b) => direction * a.name.localeCompare(b.name));
-  }
-  const key = sort.key;
-  return [...rows].sort((a, b) => {
-    const va = a[key];
-    const vb = b[key];
-    if (va === null || vb === null) {
-      return Number(va === null) - Number(vb === null); // missing values last, either direction
-    }
-    return direction * (va - vb);
-  });
 }
 
 function rowClass(id: string, selectedId: string | null, comparedId: string | null): string | undefined {
@@ -64,16 +29,11 @@ function rowClass(id: string, selectedId: string | null, comparedId: string | nu
   return undefined;
 }
 
-export function CountryList({ selectedId, comparedId, onSelect, onCompare, leftPanelOpen, rightPanelOpen }: CountryListProps) {
-  const rows = useSummaries();
-  const [sort, setSort] = useState<Sort>({ key: "population", descending: true });
+export function CountryList(props: CountryListProps) {
+  const { rows, sort, onSortChange, selectedId, comparedId, onSelect, onCompare, leftPanelOpen, rightPanelOpen } = props;
 
   function clickHeader(key: SortKey) {
-    if (key === sort.key) {
-      setSort({ key, descending: !sort.descending });
-    } else {
-      setSort({ key, descending: key !== "name" });
-    }
+    onSortChange(nextSort(sort, key));
   }
 
   function arrow(key: SortKey): string {

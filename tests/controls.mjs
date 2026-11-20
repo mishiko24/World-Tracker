@@ -150,7 +150,7 @@ const landFraction = await page.evaluate(() => {
 check("land still drawn after long pan", landFraction > 0.15, `land fraction ${landFraction.toFixed(2)}`);
 
 // Zoom: reload to reset camera, zoom on Spain, Spain must stay under the cursor.
-await page.reload();
+await page.goto(URL);
 await page.waitForSelector("canvas");
 await page.waitForTimeout(300);
 if (await page.$('button[title="Hide settings"]')) await page.click('button[title="Hide settings"]');
@@ -181,7 +181,7 @@ await page.mouse.click(spainX + 400, spainY); // somewhere right of the panel; c
 await page.click('button[title="Hide settings"]');
 await page.mouse.click(spainX, spainY);
 check("selected fill color setting applies", near(await pixel(spainX, spainY), [0, 255, 0]));
-await page.reload();
+await page.goto(URL);
 await page.waitForSelector("canvas");
 const saved = await page.evaluate(() => JSON.parse(localStorage.getItem("worldTracker.settings.v2")).styles.dark.selected.fillColor);
 check("settings persist across reload", saved === "#00ff00", saved);
@@ -189,7 +189,7 @@ check("settings persist across reload", saved === "#00ff00", saved);
 // ---------- comparison mode ----------
 // Fresh start view (camera back at zoom 1, nothing selected, default colors).
 await page.evaluate(() => localStorage.clear());
-await page.reload();
+await page.goto(URL);
 await page.waitForSelector("canvas");
 await page.waitForTimeout(300);
 if (await page.$('button[title="Hide settings"]')) await page.click('button[title="Hide settings"]');
@@ -259,7 +259,7 @@ await page.keyboard.press("Escape");
 
 // ---------- map types ----------
 await page.evaluate(() => localStorage.clear());
-await page.reload();
+await page.goto(URL);
 await page.waitForSelector("canvas");
 await page.waitForTimeout(300);
 const mapTypeSelect = "aside.panel-left select";
@@ -310,7 +310,7 @@ check("map type persists", darkSelected === "satellite");
 
 // ---------- list view ----------
 await page.evaluate(() => localStorage.clear());
-await page.reload();
+await page.goto(URL);
 await page.waitForSelector("canvas");
 await page.waitForTimeout(300);
 await page.check("aside.panel-left .list-view-toggle input");
@@ -349,9 +349,40 @@ check("toggle back shows the map", await page.$eval("canvas", (c) => getComputed
 check("selection survives toggling", (await panelTitle()) === "Georgia");
 await page.evaluate(() => localStorage.clear());
 
+// ---------- shareable links + search ----------
+await page.evaluate(() => localStorage.clear());
+await page.goto(`${URL}?c=JPN&vs=KOR`);
+await page.waitForSelector(".compare-header");
+check("link opens selected country", (await panelTitle()) === "Japan", String(await panelTitle()));
+check("link opens comparison", (await page.textContent(".compare-header")).includes("South Korea"));
+await page.waitForTimeout(300);
+check("link focuses camera on the country (center is Japan)", near(await pixel(W / 2, H / 2), COLORS.selected), String(await pixel(W / 2, H / 2)));
+await page.goto(URL);
+await page.waitForSelector(".search-box input");
+await page.fill(".search-box input", "germ");
+await page.keyboard.press("Enter");
+await page.waitForSelector("aside.panel-right h2");
+check("search + Enter selects country", (await panelTitle()) === "Germany", String(await panelTitle()));
+check("URL follows selection", new globalThis.URL(page.url()).searchParams.get("c") === "DEU", page.url());
+await page.fill(".search-box input", "usa");
+const firstResult = await page.textContent(".search-results li");
+check("search matches ISO codes", firstResult === "United States", firstResult);
+await page.keyboard.press("Escape");
+check("Esc in search keeps the selection", (await panelTitle()) === "Germany");
+await page.check("aside.panel-left .list-view-toggle input");
+await page.waitForSelector(".country-list tbody tr");
+await page.click(".country-list th >> text=Inflation");
+const listUrl = new globalThis.URL(page.url()).searchParams;
+check("URL has list view + sort", listUrl.get("view") === "list" && listUrl.get("sort") === "inflation.desc", page.url());
+await page.goto(`${URL}?view=list&sort=gdp.asc`);
+await page.waitForSelector(".country-list tbody tr");
+const gdpArrow = await page.textContent(".country-list th >> text=GDP ▲");
+check("link restores list view and sort", gdpArrow !== null);
+await page.evaluate(() => localStorage.clear());
+
 // Frame cost while panning.
 await page.evaluate(() => localStorage.clear());
-await page.reload();
+await page.goto(URL);
 await page.waitForSelector("canvas");
 await page.waitForTimeout(300);
 await page.click('button[title="Hide settings"]');

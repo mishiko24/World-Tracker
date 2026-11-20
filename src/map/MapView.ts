@@ -27,6 +27,7 @@ const MAX_ZOOM_GLIDE_SECONDS = 0.3; // zoom smoothness 1 = this time constant
 const DOT_SHOW_BELOW_PX = 6;
 const DOT_RADIUS_PX = 3.5;
 const DOT_HIT_RADIUS_PX = 7;
+const FOCUS_MAX_ZOOM = 12; // focusing on a microstate shouldn't zoom all the way in
 
 export class MapView {
   private readonly canvas: HTMLCanvasElement;
@@ -129,6 +130,17 @@ export class MapView {
   setSelected(id: string | null): void {
     this.selectedId = id;
     this.dirty = true;
+  }
+
+  // Moves the camera to a country (used for shared links and search, never for clicks).
+  focusCountry(id: string): void {
+    const country = this.countries.find((c) => c.id === id)!;
+    // Countries spanning the date line (Russia, Fiji) have bounds as wide as the world; cap their zoom-out.
+    const width = Math.min(country.maxX - country.minX, WORLD_WIDTH / 3);
+    const height = country.maxY - country.minY;
+    this.camera.focus(country.labelX, country.labelY, Math.max(width, 1), Math.max(height, 1), FOCUS_MAX_ZOOM);
+    this.targetZoom = this.camera.zoom;
+    this.cameraMoved();
   }
 
   setCompared(id: string | null): void {

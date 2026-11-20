@@ -5,6 +5,7 @@
 import { readFileSync } from "node:fs";
 
 const NATURAL_EARTH = "data-raw/ne_50m_admin_0_countries.geojson";
+const DISPLAY_NAMES = JSON.parse(readFileSync("scripts/displayNames.json", "utf8")) as Record<string, string>;
 const EXCLUDED_IDS = new Set(["ATA"]); // must match scripts/build-geo.mjs
 
 export interface Country {
@@ -98,7 +99,7 @@ function loadNaturalEarth(): NaturalEarthProperties[] {
 export function loadCountries(): Country[] {
   return loadNaturalEarth().map((p) => ({
     id: p.ADM0_A3,
-    name: p.NAME_LONG,
+    name: DISPLAY_NAMES[p.ADM0_A3] ?? p.NAME_LONG,
     iso2: cleanCode(p.ISO_A2_EH),
     iso3: cleanCode(p.ISO_A3_EH),
     isoNumeric: cleanCode(p.ISO_N3_EH),

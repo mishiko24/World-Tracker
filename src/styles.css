@@ -552,3 +552,50 @@ button {
 .country-list tbody tr.compared td {
   background: #19273c;
 }
+
+/* ---------- search ---------- */
+
+.search-box {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(320px, calc(100vw - 24px));
+  z-index: 5;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 9px 14px;
+  font: inherit;
+  color: var(--text);
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.search-box input:focus {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.search-results {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 4px;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.search-results li {
+  padding: 7px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-results li.active {
+  background: rgba(255, 255, 255, 0.1);
+}

@@ -22,6 +22,7 @@ function cleanCode(code) {
 }
 
 const source = JSON.parse(readFileSync(SOURCE, "utf8"));
+const displayNames = JSON.parse(readFileSync("scripts/displayNames.json", "utf8"));
 
 const features = [];
 for (const feature of source.features) {
@@ -34,7 +35,7 @@ for (const feature of source.features) {
     geometry: feature.geometry,
     properties: {
       id: p.ADM0_A3, // unique for every Natural Earth country, including Kosovo (KOS), Somaliland (SOL)
-      name: p.NAME_LONG,
+      name: displayNames[p.ADM0_A3] ?? p.NAME_LONG,
       iso2: cleanCode(p.ISO_A2_EH),
       iso3: cleanCode(p.ISO_A3_EH),
       isoNumeric: cleanCode(p.ISO_N3_EH), // UN M49 code, used by FAOSTAT

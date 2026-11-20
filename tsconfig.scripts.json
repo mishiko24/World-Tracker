@@ -15,5 +15,5 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": ["scripts/data", "src/data"]
+  "include": ["scripts/data", "src/data/countryData.ts"]
 }
