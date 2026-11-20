@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSummaries } from "./data/useSummaries";
 import { loadCountries, type Country } from "./map/geo";
+import { heatColor } from "./map/heatColors";
 import { getMapType } from "./map/mapTypes";
 import { loadSettings, saveSettings, type Settings } from "./settings";
 import { InfoPanel } from "./ui/info/InfoPanel";
 import { CountryList } from "./ui/list/CountryList";
 import { DEFAULT_SORT, type Sort } from "./ui/list/sort";
 import { MapCanvas } from "./ui/MapCanvas";
+import { HeatLegend } from "./ui/HeatLegend";
 import { SearchBox } from "./ui/SearchBox";
 import { SettingsPanel } from "./ui/SettingsPanel";
 import { readUrlState, writeUrlState } from "./urlState";
@@ -26,6 +28,17 @@ export function App() {
   const [settingsOpen, setSettingsOpen] = useState(true);
   const [focusRequest, setFocusRequest] = useState<{ id: string; seq: number } | null>(null);
   const summaries = useSummaries();
+
+  // Power Level heat map: countries colored from the lowest to the highest score on the map.
+  const fillOverrides = useMemo(() => {
+    if (settings.colorBy !== "powerLevel" || summaries === null) {
+      return null;
+    }
+    const scored = summaries.filter((s) => s.powerLevel !== null);
+    const min = Math.min(...scored.map((s) => s.powerLevel!));
+    const max = Math.max(...scored.map((s) => s.powerLevel!));
+    return new Map(scored.map((s) => [s.id, heatColor(settings.mapType, (s.powerLevel! - min) / (max - min))]));
+  }, [settings.colorBy, settings.mapType, summaries]);
 
   // Load countries, then apply the state from a shared link.
   useEffect(() => {
@@ -105,6 +118,7 @@ export function App() {
         onCompare={compare}
         hidden={settings.listView}
         focusRequest={focusRequest}
+        fillOverrides={fillOverrides}
       />
       {settings.listView && (
         <CountryList
@@ -130,6 +144,7 @@ export function App() {
         />
       )}
       {tiles && !settings.listView && <div className="attribution">{tiles.attribution}</div>}
+      {fillOverrides && !settings.listView && <HeatLegend mapType={settings.mapType} label="Power Level" />}
     </div>
   );
 }

@@ -10,7 +10,7 @@ export interface Sort {
   descending: boolean;
 }
 
-export const DEFAULT_SORT: Sort = { key: "population", descending: true };
+export const DEFAULT_SORT: Sort = { key: "powerLevel", descending: true };
 
 export function isSortKey(key: string): key is SortKey {
   return key === "name" || COLUMNS.some((c) => c.key === key);

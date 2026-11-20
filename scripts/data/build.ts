@@ -22,6 +22,7 @@ import type {
 } from "../../src/data/countryData.ts";
 import { loadCountries } from "./lib/countries.ts";
 import { lastFullYear, readCache } from "./lib/io.ts";
+import { computePowerLevels } from "./powerLevel.ts";
 import type { EiaEntry } from "./fetch/eia.ts";
 import type { FossilReservesEntry } from "./fetch/fossilReserves.ts";
 import type { EnergyEntry } from "./fetch/energy.ts";
@@ -211,25 +212,30 @@ mkdirSync(OUTPUT_DIR, { recursive: true });
 const builtAt = new Date().toISOString().slice(0, 10);
 const all: CountryData[] = [];
 for (const c of countries) {
-  const data: CountryData = {
+  all.push({
     id: c.id,
     name: c.name,
     builtAt,
+    powerLevel: null, // filled below, needs every country
     government: buildGovernment(c.id),
     population: buildPopulation(c.id),
     economy: buildEconomy(c.id),
     resources: buildResources(c.id),
     agriculture: buildAgriculture(c.id),
     power: buildPower(c.id),
-  };
-  all.push(data);
-  writeFileSync(`${OUTPUT_DIR}/${c.id}.json`, JSON.stringify(data));
+  });
+}
+const powerLevels = computePowerLevels(all);
+for (const data of all) {
+  data.powerLevel = powerLevels.get(data.id) ?? null;
+  writeFileSync(`${OUTPUT_DIR}/${data.id}.json`, JSON.stringify(data));
 }
 
 // The list view's data: one row per country.
 const summary: CountrySummary[] = all.map((d) => ({
   id: d.id,
   name: d.name,
+  powerLevel: d.powerLevel?.score ?? null,
   population: d.population.total?.value ?? null,
   fertility: d.population.fertility?.value ?? null,
   medianAge: d.population.medianAge?.value ?? null,
@@ -245,6 +251,7 @@ const summary: CountrySummary[] = all.map((d) => ({
 writeFileSync(SUMMARY_FILE, JSON.stringify(summary));
 
 const coverage: [string, (d: CountryData) => unknown][] = [
+  ["powerLevel", (d) => d.powerLevel],
   ["government.type", (d) => d.government.type],
   ["government.rulingParty", (d) => d.government.rulingParty],
   ["government.headOfState", (d) => d.government.headOfState],
@@ -273,4 +280,12 @@ for (const [label, pick] of coverage) {
   const missing = all.filter((d) => !have.includes(d)).map((d) => d.id);
   const shown = missing.length > 25 ? `${missing.slice(0, 25).join(" ")} …` : missing.join(" ");
   console.log(`  ${label.padEnd(30)} ${String(have.length).padStart(3)}/${all.length}  missing: ${shown}`);
+}
+
+// Power Level calibration view: top 30 with pillar scores.
+console.log("\nPower Level top 30 (score | econ res pop energy food stab):");
+for (const d of [...all].filter((d) => d.powerLevel).sort((a, b) => b.powerLevel!.score - a.powerLevel!.score).slice(0, 30)) {
+  const p = d.powerLevel!.pillars;
+  const cells = [p.economy, p.resources, p.population, p.energy, p.food, p.stability].map((v) => (v === null ? "  —" : v.toFixed(0).padStart(3)));
+  console.log(`  ${String(d.powerLevel!.rank).padStart(3)}. ${d.name.padEnd(24)} ${d.powerLevel!.score.toFixed(1).padStart(5)} | ${cells.join(" ")}`);
 }

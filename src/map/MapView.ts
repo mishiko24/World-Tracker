@@ -27,7 +27,8 @@ const MAX_ZOOM_GLIDE_SECONDS = 0.3; // zoom smoothness 1 = this time constant
 const DOT_SHOW_BELOW_PX = 6;
 const DOT_RADIUS_PX = 3.5;
 const DOT_HIT_RADIUS_PX = 7;
-const FOCUS_MAX_ZOOM = 12; // focusing on a microstate shouldn't zoom all the way in
+const FOCUS_MAX_ZOOM = 12;
+const HEAT_FILL_OPACITY = 0.9; // heat map stays visible even where the style's fill is transparent (satellite) // focusing on a microstate shouldn't zoom all the way in
 
 export class MapView {
   private readonly canvas: HTMLCanvasElement;
@@ -40,6 +41,7 @@ export class MapView {
   private readonly resizeObserver: ResizeObserver;
 
   private settings: Settings;
+  private fillOverrides: Map<string, string> | null = null; // heat-map colors for default-state countries
   private tileLayer: TileLayer | null = null; // imagery under the countries, for map types that have it
   private hoveredId: string | null = null;
   private selectedId: string | null = null;
@@ -141,6 +143,22 @@ export class MapView {
     this.camera.focus(country.labelX, country.labelY, Math.max(width, 1), Math.max(height, 1), FOCUS_MAX_ZOOM);
     this.targetZoom = this.camera.zoom;
     this.cameraMoved();
+  }
+
+  // Per-country fill colors ("#rrggbb") replacing the default style's fill (e.g. Power Level heat map).
+  // Hover, selected and compared states keep their own colors. null = use the style everywhere.
+  setFillOverrides(colors: Map<string, string> | null): void {
+    this.fillOverrides = colors;
+    this.dirty = true;
+  }
+
+  // Fill for a country in a given state: heat-map override for default countries, else the style's.
+  private fillFor(country: Country, state: CountryState, style: StateStyle): string {
+    const override = state === "default" ? this.fillOverrides?.get(country.id) : undefined;
+    if (override !== undefined) {
+      return toRgba(override, HEAT_FILL_OPACITY);
+    }
+    return toRgba(style.fillColor, style.fillOpacity);
   }
 
   setCompared(id: string | null): void {
@@ -260,16 +278,16 @@ export class MapView {
           if (outsideView) {
             continue;
           }
-          this.drawCountryShape(country, style, scale);
+          this.drawCountryShape(country, style, this.fillFor(country, state, style), scale);
         }
       }
       this.drawDots(state, style, scale, firstCopy, lastCopy);
     }
   }
 
-  private drawCountryShape(country: Country, style: StateStyle, scale: number): void {
+  private drawCountryShape(country: Country, style: StateStyle, fill: string, scale: number): void {
     const ctx = this.ctx;
-    ctx.fillStyle = toRgba(style.fillColor, style.fillOpacity);
+    ctx.fillStyle = fill;
     ctx.fill(country.fillPath, "evenodd");
     if (style.outlineWidth > 0) {
       ctx.strokeStyle = toRgba(style.outlineColor, style.outlineOpacity);
@@ -283,13 +301,13 @@ export class MapView {
     const ctx = this.ctx;
     const dpr = window.devicePixelRatio;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.fillStyle = toRgba(style.fillColor, style.fillOpacity);
     ctx.strokeStyle = toRgba(style.outlineColor, style.outlineOpacity);
     ctx.lineWidth = style.outlineWidth;
     for (const country of this.countries) {
       if (country.size * scale >= DOT_SHOW_BELOW_PX || this.stateOf(country) !== state) {
         continue;
       }
+      ctx.fillStyle = this.fillFor(country, state, style);
       const y = this.camera.worldToScreenY(country.labelY);
       for (let copy = firstCopy; copy <= lastCopy; copy++) {
         const x = this.camera.worldToScreenX(country.labelX, copy);

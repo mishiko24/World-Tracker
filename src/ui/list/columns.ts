@@ -13,6 +13,7 @@ export interface Column {
 }
 
 export const COLUMNS: Column[] = [
+  { key: "powerLevel", label: "Power Level", format: (v) => v.toFixed(1) },
   { key: "population", label: "Population", format: fullNumber },
   { key: "fertility", label: "Births per woman", format: (v) => v.toFixed(2) },
   { key: "medianAge", label: "Median age", format: (v) => v.toFixed(1) },

@@ -599,3 +599,129 @@ button {
 .search-results li.active {
   background: rgba(255, 255, 255, 0.1);
 }
+
+/* ---------- Power Level ---------- */
+
+.power-card {
+  margin: 8px 12px 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.power-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.power-card-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.power-score {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 32px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+}
+
+.power-score .compare {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.power-rank {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.power-rank span {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-dim);
+}
+
+.pillars {
+  margin-top: 10px;
+  display: grid;
+  gap: 5px;
+}
+
+.pillar {
+  display: grid;
+  grid-template-columns: 74px 1fr 76px;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.pillar-label {
+  color: var(--text-dim);
+}
+
+.pillar-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.pillar-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(to right, #9a5b24, #ffd25a);
+}
+
+.pillar-value {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.pillar-value .compare {
+  margin-left: 4px;
+  font-size: 11px;
+}
+
+.heat-legend {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  width: 220px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  font-size: 11px;
+  pointer-events: none;
+}
+
+.heat-legend-label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.heat-legend-bar {
+  display: block;
+  height: 8px;
+  border-radius: 4px;
+}
+
+.heat-legend-ends {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-dim);
+  margin-top: 2px;
+}

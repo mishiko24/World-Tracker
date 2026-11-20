@@ -135,10 +135,22 @@ export interface Power {
   electricityAccess: NumberFact | null; // percent of population
 }
 
+// Power Level: World Tracker's own index (method: scripts/data/powerLevel.ts). Scores are 0-100.
+export type PillarId = "economy" | "resources" | "population" | "energy" | "food" | "stability";
+
+export interface PowerLevel {
+  version: number;
+  score: number;
+  rank: number; // 1 = most powerful
+  of: number; // countries with a score
+  pillars: Record<PillarId, number | null>; // null = no data for that pillar
+}
+
 export interface CountryData {
   id: string;
   name: string;
   builtAt: string; // ISO date the file was generated
+  powerLevel: PowerLevel | null; // null = insufficient data
   government: Government;
   population: Population;
   economy: Economy;
@@ -153,6 +165,7 @@ export interface CountryData {
 export interface CountrySummary {
   id: string;
   name: string;
+  powerLevel: number | null;
   population: number | null;
   fertility: number | null;
   medianAge: number | null;

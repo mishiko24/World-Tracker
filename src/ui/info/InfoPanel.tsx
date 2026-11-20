@@ -8,6 +8,7 @@ import type { Country } from "../../map/geo";
 import { Collapsible } from "../Collapsible";
 import { AgricultureSection } from "./AgricultureSection";
 import { EconomySection, GovernmentSection, PopulationSection } from "./BasicSections";
+import { PowerLevelCard } from "./PowerLevelCard";
 import { PowerSection } from "./PowerSection";
 import { ResourcesSection } from "./ResourcesSection";
 import { useCountryData, type CountryDataState } from "./useCountryData";
@@ -62,6 +63,7 @@ export function InfoPanel({ country, compared, onClose, onEndComparison }: InfoP
 
       {/* Sections are always rendered (even while loading) so their open/closed state survives country switches. */}
       <div className="panel-scroll">
+        {state.status === "loaded" && <PowerLevelCard powerLevel={state.data.powerLevel} other={other} />}
         <Collapsible title="Government">
           {loaded(state, (d) => <GovernmentSection government={d.government} />)}
         </Collapsible>

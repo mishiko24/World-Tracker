@@ -49,6 +49,9 @@ src/ui/                   React panels
 src/data/countryData.ts   THE CONTRACT: per-country JSON shape + source list. Imported by both the pipeline and the UI.
 src/ui/info/              Right panel: InfoPanel (6 sections), useCountryData (fetch), FactRow, one file per section type,
                           formatData (number/unit formatting)
+src/ui/info/PowerLevelCard.tsx  Power Level score, rank and pillar bars at the top of the info panel
+src/map/heatColors.ts     Heat colours for "Color countries by: Power Level" (App builds a fill map, MapView.setFillOverrides)
+src/urlState.ts           ?c=ESP&vs=FRA&view=list&sort=gdp.desc  read once on load, written with replaceState
 src/ui/list/              List view (settings.listView): CountryList (sortable table of public/data/summary.json),
                           columns.ts (column list; adding a column = CountrySummary field + build.ts + one entry here)
 
@@ -57,6 +60,7 @@ scripts/data/             Data pipeline (TypeScript run directly by Node 22, no 
   lib/countries.ts        Our country list + code/name matchers (CODE_OVERRIDES, NAME_OVERRIDES for odd sources)
   lib/io.ts, lib/csv.ts   fetch helpers (errors use labels, never URLs: API keys), cache read/write, CSV parsing
   fetch/<source>.ts       One per source -> data-cache/<source>.json, already keyed by our country id
+  powerLevel.ts           Power Level index (our own metric). Runs inside build.ts after all countries are built
   build.ts                Caches -> public/data/countries/<id>.json + public/data/summary.json (list view) + coverage report. No network.
 
 data-cache/               Committed. Normalized per-source data; git diffs show what each refresh changed.
@@ -121,6 +125,16 @@ SECURITY: never write URLs containing the EIA key to files or logs. A leak happe
   Every value carries its year and source; missing = null = "No data" (never 0).
 - **Hosting:** GitHub repo + GitHub Pages (workflow in .github/workflows/deploy.yml). `base: "./"` in vite config.
 
+## Power Level (powerLevel.ts, POWER_LEVEL_VERSION)
+
+Original 0-100 index, the site's signature number. Six pillars, each 0-100, weighted:
+economy 0.40, resources 0.15, population 0.15, energy 0.15, food 0.10, stability 0.05.
+- Size values (GDP, population, generation) use (v/max)^0.3 so giants don't flatten everyone else;
+  per-capita values use log min-max; world shares (resources, food) use sqrt(v/max).
+- A missing pillar's weight is redistributed over the others. No score without economy + population.
+- Rank is among countries with a score. build.ts prints the top 30: check it after any formula change,
+  and bump POWER_LEVEL_VERSION when the formula changes.
+
 ## Conventions
 
 - Errors surface; no defensive try/catch or silent fallbacks (Mishiko's preference).
@@ -136,3 +150,5 @@ SECURITY: never write URLs containing the EIA key to files or logs. A leak happe
 - Artifact previews on claude.ai block remote images, so satellite only works on Pages / localhost.
 - 50m coastlines look coarse past ~20x; could swap to 10m geometry when zoomed in.
 - Desktop/mouse only for now (no touch gestures).
+- Debt: World Bank central gov. debt covers ~60 countries. If the IMF grants permission, IMF becomes the
+  economy source with World Bank as fallback.

@@ -49,6 +49,7 @@ export function SettingsPanel({ settings, onChange, open, onOpenChange }: Settin
       <label className="map-type">
         <span>Map type</span>
         <select
+          className="map-type-select"
           value={settings.mapType}
           onChange={(e) => onChange({ ...settings, mapType: e.target.value as MapType })}
         >
@@ -57,6 +58,18 @@ export function SettingsPanel({ settings, onChange, open, onOpenChange }: Settin
               {t.label}
             </option>
           ))}
+        </select>
+      </label>
+
+      <label className="map-type">
+        <span>Color countries by</span>
+        <select
+          className="color-by-select"
+          value={settings.colorBy}
+          onChange={(e) => onChange({ ...settings, colorBy: e.target.value as Settings["colorBy"] })}
+        >
+          <option value="style">Map colors</option>
+          <option value="powerLevel">Power Level</option>
         </select>
       </label>
 
