@@ -66,8 +66,11 @@ share-card.html + src/share/cardPage.ts  Headless page that draws link-preview c
 
 scripts/site/             Static pages for search engines + link previews, added to dist/ by `npm run build:site`
   build-site.mjs          Entry. Loads the TS modules through Vite (they import the app's formatters/columns/labels)
-  pages.ts                countries/ hub, country/<slug>/, rank/<key>/, compare/<a>-vs-<b>/ (each G20 country vs
-                          every country, slugs alphabetical), sitemap.xml. Returns the card images it needs
+  pages.ts                countries/ hub, country/<slug>/, rank/<key>/, compare/<a>-vs-<b>/, sitemap.xml.
+                          Comparison pages = pairs people search for: each G20 country vs every country, plus
+                          each country vs its land neighbours (shared border in the map geometry) and its 5 nearest
+                          countries of 500k+ people. Not every pair: ~29k pages of pairs nobody searches would read as
+                          filler to Google (Mishiko agreed). Slugs alphabetical. Returns the card images it needs
   cards.ts                Renders those cards (JPEG, ~60 KB) with share-card.html in headless Chrome
   html.ts                 Page layout (title, description, canonical, og: tags), escaping, slugs
   site.css                Styles of the static pages

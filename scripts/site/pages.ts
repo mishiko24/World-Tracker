@@ -3,13 +3,17 @@
 //   countries/              hub: every country A-Z and every ranking
 //   country/<slug>/         one page per country: its data as plain HTML
 //   rank/<key>/             one page per list-view column: every country ranked
-//   compare/<a>-vs-<b>/     each G20 country against every other country (slugs in alphabetical order)
+//   compare/<a>-vs-<b>/     each G20 country against every other country, plus each country against its
+//                           neighbours (shared border) and its 5 nearest countries (slugs in alphabetical order)
 //   sitemap.xml             all of the above plus the map and the Sources & method page
 //
 // Each page links into the interactive map (?c=ID, ?c=A&vs=B). Data comes from dist/data (copied from public/data).
 // Returns the share-card images the pages use as link previews; cards.ts renders them afterwards.
 
-import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { geoDistance } from "d3-geo";
+import { copyFileSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { neighbors } from "topojson-client";
+import type { GeometryCollection, Topology } from "topojson-specification";
 import {
   PILLAR_LABELS,
   PILLAR_ORDER,
@@ -19,6 +23,7 @@ import {
   type NumberFact,
 } from "../../src/data/countryData";
 import { ABOUT_URL, SITE_URL } from "../../src/links";
+import type { CountryProperties } from "../../src/map/geo";
 import { winner, type Better } from "../../src/ui/info/Compare";
 import { amount, dollars, fullNumber, percent, share, tonnes } from "../../src/ui/info/formatData";
 import { POWER_SOURCE_STYLE } from "../../src/ui/info/PowerSection";
@@ -26,6 +31,10 @@ import { COLUMNS } from "../../src/ui/list/columns";
 import { escape, inWords, page, rootFrom, slugOf } from "./html";
 
 // Comparison pages exist for every pair that includes one of these (the pairs people search for).
+// Islands have no land neighbours; the nearest countries (by label point) cover Japan-South Korea, UK-Ireland, etc.
+const NEAREST_COUNTRIES = 5;
+const NEAREST_MIN_POPULATION = 500_000; // nearest picks skip tiny dependencies (Guam, Jersey) that crowd out real countries
+
 const G20 = ["ARG", "AUS", "BRA", "CAN", "CHN", "FRA", "DEU", "IND", "IDN", "ITA", "JPN", "KOR", "MEX", "RUS", "SAU", "ZAF", "TUR", "GBR", "USA"];
 
 export interface CardJob {
@@ -43,7 +52,13 @@ function write(dist: string, path: string, html: string): void {
   writeFileSync(`${dist}/${path}index.html`, html);
 }
 
+// Folders this script owns in dist/; emptied first so a rerun leaves no pages from the previous run.
+const OUTPUT_FOLDERS = ["countries", "country", "rank", "compare", "cards"];
+
 export function buildPages(dist: string): { cards: CardJob[]; pages: number } {
+  for (const folder of OUTPUT_FOLDERS) {
+    rmSync(`${dist}/${folder}`, { recursive: true, force: true });
+  }
   const meta = readJson<DataMeta>(`${dist}/data/meta.json`);
   const summaries = readJson<CountrySummary[]>(`${dist}/data/summary.json`);
   const countries = summaries.map((s) => readJson<CountryData>(`${dist}/data/countries/${s.id}.json`));
@@ -57,7 +72,14 @@ export function buildPages(dist: string): { cards: CardJob[]; pages: number } {
     }
     slugs.set(d.id, slug);
   }
-  const site: Site = { meta, byId, slugs, countries, summaries: new Map(summaries.map((x) => [x.id, x])) };
+  const site: Site = {
+    meta,
+    byId,
+    slugs,
+    countries,
+    summaries: new Map(summaries.map((x) => [x.id, x])),
+    nearby: nearbyCountries(dist, byId),
+  };
 
   const cards: CardJob[] = countries.map((d) => ({ file: cardOf(d.id, null), a: d.id, b: null }));
   const paths: string[] = ["", ABOUT_URL, "countries/"];
@@ -75,12 +97,12 @@ export function buildPages(dist: string): { cards: CardJob[]; pages: number } {
   }
   for (const [a, b] of comparePairs(site)) {
     const path = comparePath(site, a, b);
-    // Pairs of two G20 countries get their own card; the rest use the G20 country's card.
-    const bothG20 = G20.includes(a) && G20.includes(b);
-    if (bothG20) {
+    // G20 vs G20 and regional pairs get their own card; a G20 country vs a far-away country uses the G20 one's card.
+    const ownCard = (G20.includes(a) && G20.includes(b)) || isNearby(site, a, b);
+    if (ownCard) {
       cards.push({ file: cardOf(a, b), a, b });
     }
-    const image = bothG20 ? cardOf(a, b) : cardOf(G20.includes(a) ? a : b, null);
+    const image = ownCard ? cardOf(a, b) : cardOf(G20.includes(a) ? a : b, null);
     write(dist, path, comparePage(site, byId.get(a)!, byId.get(b)!, path, image));
     paths.push(path);
   }
@@ -98,6 +120,7 @@ interface Site {
   slugs: Map<string, string>;
   countries: CountryData[];
   summaries: Map<string, CountrySummary>; // list-view rows: the values the rankings sort by
+  nearby: Map<string, string[]>; // id -> neighbours and nearest countries, closest first
 }
 
 function countryPath(site: Site, id: string): string {
@@ -117,17 +140,54 @@ function comparePath(site: Site, a: string, b: string): string {
 function comparePairs(site: Site): [string, string][] {
   const seen = new Set<string>();
   const pairs: [string, string][] = [];
+  function add(a: string, b: string) {
+    const pair = orderPair(site, a, b);
+    const key = pair.join("-");
+    if (a !== b && !seen.has(key)) {
+      seen.add(key);
+      pairs.push(pair);
+    }
+  }
   for (const g of G20) {
     for (const d of site.countries) {
-      const pair = orderPair(site, g, d.id);
-      const key = pair.join("-");
-      if (d.id !== g && !seen.has(key)) {
-        seen.add(key);
-        pairs.push(pair);
-      }
+      add(g, d.id);
+    }
+  }
+  for (const [id, nearby] of site.nearby) {
+    for (const other of nearby) {
+      add(id, other);
     }
   }
   return pairs;
+}
+
+function isNearby(site: Site, a: string, b: string): boolean {
+  return site.nearby.get(a)!.includes(b) || site.nearby.get(b)!.includes(a);
+}
+
+// Each country's land neighbours (countries sharing a border line in the map geometry) plus its
+// NEAREST_COUNTRIES closest countries by label point, closest first. Places without population data
+// (e.g. Siachen Glacier) are never partners; nearest picks also need NEAREST_MIN_POPULATION people.
+function nearbyCountries(dist: string, byId: Map<string, CountryData>): Map<string, string[]> {
+  const population = (id: string) => byId.get(id)!.population.total?.value ?? null;
+  const topo = readJson<Topology<{ countries: GeometryCollection<CountryProperties> }>>(`${dist}/data/countries.topo.json`);
+  const geometries = topo.objects.countries.geometries;
+  const props = geometries.map((g) => g.properties as CountryProperties); // build-geo.mjs sets them on every geometry
+  const borders = neighbors(geometries);
+  const nearby = new Map<string, string[]>();
+  props.forEach((p, i) => {
+    const byDistance = props
+      .filter((q) => q.id !== p.id && population(q.id) !== null)
+      .map((q) => ({ id: q.id, distance: geoDistance(p.label, q.label) }))
+      .sort((x, y) => x.distance - y.distance);
+    const bordering = new Set(borders[i].map((j) => props[j].id));
+    const nearest = byDistance
+      .filter((x) => population(x.id)! >= NEAREST_MIN_POPULATION)
+      .slice(0, NEAREST_COUNTRIES)
+      .map((x) => x.id);
+    nearby.set(p.id, byDistance.map((x) => x.id).filter((id) => bordering.has(id) || nearest.includes(id)));
+  });
+  return nearby;
 }
 
 function cardOf(a: string, b: string | null): string {
@@ -249,10 +309,14 @@ function countryPage(site: Site, d: CountryData): string {
           .join("")}</tbody></table>`
   }</section>`);
 
-  const partners = G20.filter((id) => id !== d.id);
-  sections.push(`<section><h2>Compare ${escape(d.name)}</h2><ul class="link-grid">${partners
-    .map((id) => `<li><a href="${root}${comparePath(site, d.id, id)}">${escape(d.name)} vs ${escape(site.byId.get(id)!.name)}</a></li>`)
-    .join("")}</ul><p class="note">Or pick any country on the <a href="${root}?c=${d.id}">map</a> and right-click (long-press) another.</p></section>`);
+  const compareLinks = (ids: string[]) =>
+    `<ul class="link-grid">${ids
+      .map((id) => `<li><a href="${root}${comparePath(site, d.id, id)}">${escape(d.name)} vs ${escape(site.byId.get(id)!.name)}</a></li>`)
+      .join("")}</ul>`;
+  const nearby = site.nearby.get(d.id)!;
+  sections.push(`<section><h2>Compare ${escape(d.name)}</h2><h3>Neighbours and nearby countries</h3>${compareLinks(nearby)}<h3>G20 countries</h3>${compareLinks(
+    G20.filter((id) => id !== d.id && !nearby.includes(id)),
+  )}<p class="note">Or pick any country on the <a href="${root}?c=${d.id}">map</a> and right-click (long-press) another.</p></section>`);
 
   return page({
     path,

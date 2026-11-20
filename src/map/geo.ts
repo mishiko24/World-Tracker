@@ -21,7 +21,7 @@ export const WORLD_TOP = projection([0, TOP_LATITUDE])![1];
 export const WORLD_BOTTOM = projection([0, BOTTOM_LATITUDE])![1];
 export const WORLD_HEIGHT = WORLD_BOTTOM - WORLD_TOP;
 
-interface CountryProperties {
+export interface CountryProperties {
   id: string;
   name: string;
   iso2: string | null;
