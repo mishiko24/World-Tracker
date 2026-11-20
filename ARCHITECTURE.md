@@ -94,6 +94,7 @@ the logs (`gh api repos/mishiko24/World-Tracker/actions/jobs/<id>/logs`), then p
 | Agriculture | largest products, world top-10 | FAOSTAT bulk zip (faostat) | 545 MB CSV streamed via `unzip -p`. Excludes FAO aggregate items/areas |
 | Power | generation mix (sums to total) | Ember + EI via OWID energy-data on GitHub (energy) | |
 | | access to electricity | World Bank (worldbank) | |
+| Government | political stability (0-100) | World Bank WGI (worldbank, GOV_WGI_PV_SC) | Perception-based. Power Level stability pillar |
 
 SECURITY: never write URLs containing the EIA key to files or logs. A leak happened once via curl error output.
 
@@ -138,6 +139,8 @@ SECURITY: never write URLs containing the EIA key to files or logs. A leak happe
 
 Original 0-100 index, the site's signature number. Six pillars, each 0-100, weighted:
 economy 0.40, resources 0.15, population 0.15, energy 0.15, food 0.10, stability 0.05.
+- Every economic number (GDP, PPP, growth, inflation, debt) belongs in the economy pillar (Mishiko's rule).
+  Stability = World Bank WGI political stability score only (GOV_WGI_PV_SC, also shown in Government).
 - Size values (GDP, population, generation) use (v/max)^0.3 so giants don't flatten everyone else;
   per-capita values use log min-max; world shares (resources, food) use sqrt(v/max).
 - A missing pillar's weight is redistributed over the others. No score without economy + population.

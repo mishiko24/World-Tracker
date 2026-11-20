@@ -56,6 +56,9 @@ export interface Government {
   rulingParty: TextFact | null; // party of the head of government, or of the head of state if the former has none
   headOfState: TextFact | null;
   headOfGovernment: TextFact | null;
+  // World Bank WGI "Political Stability and Absence of Violence/Terrorism", 0-100, higher = more stable.
+  // Perception-based (expert and survey sources). Also the Power Level stability pillar.
+  politicalStability: NumberFact | null;
 }
 
 export interface AgeStructure {

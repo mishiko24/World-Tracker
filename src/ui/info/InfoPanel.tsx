@@ -92,7 +92,7 @@ export function InfoPanel(props: InfoPanelProps) {
       <div className="panel-scroll">
         {state.status === "loaded" && <PowerLevelCard powerLevel={state.data.powerLevel} other={other} />}
         <Collapsible title="Government">
-          {loaded(state, (d) => <GovernmentSection government={d.government} />)}
+          {loaded(state, (d) => <GovernmentSection government={d.government} other={other} />)}
         </Collapsible>
         <Collapsible title="Population">
           {loaded(state, (d) => <PopulationSection population={d.population} other={other} />)}

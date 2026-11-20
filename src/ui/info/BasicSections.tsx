@@ -31,7 +31,7 @@ function NumberRow({ label, fact, other, format, mode, better }: NumberRowProps)
   );
 }
 
-export function GovernmentSection({ government }: { government: Government }) {
+export function GovernmentSection({ government, other }: { government: Government; other: CountryData | null }) {
   return (
     <>
       <FactRow label="Government type" value={government.type?.value ?? null} source={government.type?.source} />
@@ -41,6 +41,13 @@ export function GovernmentSection({ government }: { government: Government }) {
         label="Head of government"
         value={government.headOfGovernment?.value ?? null}
         source={government.headOfGovernment?.source}
+      />
+      <NumberRow
+        label="Political stability"
+        fact={government.politicalStability}
+        other={other?.government.politicalStability}
+        format={(v) => `${v.toFixed(0)} / 100`}
+        mode="points"
       />
     </>
   );

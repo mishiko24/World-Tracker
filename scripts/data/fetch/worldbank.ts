@@ -1,5 +1,5 @@
 // World Bank Indicators API (no key, CC BY 4.0, commercial use allowed with attribution).
-// Population, economy and access to electricity.
+// Population, economy, access to electricity and political stability (Worldwide Governance Indicators).
 // `mrnev=1` returns each country's most recent non-empty value, so years can differ per country.
 //
 // Economy used to come from the IMF, whose terms forbid systematic downloading and commercial reuse
@@ -24,6 +24,7 @@ const INDICATORS = {
   growth: "NY.GDP.MKTP.KD.ZG", // real GDP growth, %
   inflation: "FP.CPI.TOTL.ZG", // consumer prices, annual %
   debt: "GC.DOD.TOTL.GD.ZS", // central government debt, % of GDP
+  politicalStability: "GOV_WGI_PV_SC", // WGI "Political Stability and Absence of Violence/Terrorism", score 0-100
 } as const;
 
 const GDP_HISTORY_YEARS = 15; // debt is often years older than GDP; dollars = debt % × GDP of the debt's year

@@ -1,13 +1,17 @@
-// Power Level v1: World Tracker's own 0-100 index of a country's weight in the world.
+// Power Level v2: World Tracker's own 0-100 index of a country's weight in the world.
 // Computed from all countries at once in build.ts, because every indicator is scaled relative to the world.
 //
 // Pillars (weights) and indicators (weights inside the pillar):
-//   economy    40%  GDP 0.5, total GDP at PPP 0.3, GDP per capita at PPP 0.2
+//   economy    40%  GDP 0.4, total GDP at PPP 0.25, GDP per capita at PPP 0.15,
+//                   real growth 0.1, inflation 0.05 (closer to 2% is better), government debt 0.05 (lower is better)
 //   resources  15%  importance-weighted world shares of production (0.6) and reserves (0.4)
 //   population 15%  population 0.6, working-age share 0.2, life expectancy 0.2
 //   energy     15%  electricity generation 0.7, generation per person 0.3
 //   food       10%  importance-weighted world shares of staple food production
-//   stability   5%  government debt 0.5 (lower is better), inflation 0.5 (closer to 2% is better)
+//   stability   5%  World Bank WGI political stability score (0-100), nothing else
+//
+// v1 -> v2 (Nov 2026): stability was debt + inflation, which ranked Russia above the US and rewarded countries
+// with no debt data. Economic indicators now all sit in the economy pillar.
 //
 // Scaling: every indicator becomes 0..1 across all countries.
 //   totals (GDP, population, TWh)   (value / max) ^ 0.3   keeps gaps between big countries visible
@@ -20,9 +24,23 @@
 //
 // Change anything here = new version number (shown on the methodology page).
 
-import type { CountryData, PillarId, PowerLevel } from "../../src/data/countryData.ts";
+import type {
+  CountryData,
+  PillarId,
+  PowerLevel,
+} from "../../src/data/countryData.ts";
 
-export const POWER_LEVEL_VERSION = 1;
+export const POWER_LEVEL_VERSION = 2;
+
+// Fixed ranges (not relative to the world), so one outlier like 200% inflation doesn't squash everyone else.
+const growthScore = (g: number) => clamp01((g + 5) / 13); // -5% or worse = 0, +8% or better = 1
+const inflationScore = (i: number) => 1 - clamp01(Math.abs(i - 2) / 30); // 2% = 1, 32% or -28% = 0
+const debtScore = (debtPercentOfGdp: number) =>
+  1 - clamp01(debtPercentOfGdp / 200); // 0% = 1, 200%+ = 0
+
+function clamp01(v: number): number {
+  return Math.min(Math.max(v, 0), 1);
+}
 
 const PILLAR_WEIGHTS: Record<PillarId, number> = {
   economy: 0.4,
@@ -89,15 +107,23 @@ type Indicator = { value: number | null; weight: number };
 const SIZE_EXPONENT = 0.3;
 
 // Totals: (v / max) ^ 0.3.
-function sizeScaler(values: (number | null)[]): (v: number | null) => number | null {
+function sizeScaler(
+  values: (number | null)[],
+): (v: number | null) => number | null {
   const max = Math.max(...values.filter((v): v is number => v !== null));
-  return (v) => (v === null || v <= 0 ? null : Math.pow(v / max, SIZE_EXPONENT));
+  return (v) =>
+    v === null || v <= 0 ? null : Math.pow(v / max, SIZE_EXPONENT);
 }
 
 // Maps raw values to 0..1 between the lowest and highest country: logarithmic or linear.
-function scaler(values: (number | null)[], kind: "log" | "linear"): (v: number | null) => number | null {
+function scaler(
+  values: (number | null)[],
+  kind: "log" | "linear",
+): (v: number | null) => number | null {
   const transform = (v: number) => (kind === "log" ? Math.log(v) : v);
-  const usable = values.filter((v): v is number => v !== null && (kind === "linear" || v > 0)).map(transform);
+  const usable = values
+    .filter((v): v is number => v !== null && (kind === "linear" || v > 0))
+    .map(transform);
   const min = Math.min(...usable);
   const max = Math.max(...usable);
   return (v) => {
@@ -115,14 +141,19 @@ function combine(indicators: Indicator[]): number | null {
   if (totalWeight === 0) {
     return null;
   }
-  return available.reduce((sum, i) => sum + i.value! * i.weight, 0) / totalWeight;
+  return (
+    available.reduce((sum, i) => sum + i.value! * i.weight, 0) / totalWeight
+  );
 }
 
 function resourceRaw(d: CountryData): number {
   let sum = 0;
   for (const r of d.resources) {
     const weight = RESOURCE_WEIGHTS[r.id] ?? 0;
-    sum += weight * (0.6 * (r.production?.worldShare ?? 0) + 0.4 * (r.reserves?.worldShare ?? 0));
+    sum +=
+      weight *
+      (0.6 * (r.production?.worldShare ?? 0) +
+        0.4 * (r.reserves?.worldShare ?? 0));
   }
   return sum;
 }
@@ -139,72 +170,128 @@ function foodRaw(d: CountryData): number | null {
 }
 
 // World shares: sqrt(v / max).
-function shareScaler(values: (number | null)[]): (v: number | null) => number | null {
+function shareScaler(
+  values: (number | null)[],
+): (v: number | null) => number | null {
   const max = Math.max(...values.filter((v): v is number => v !== null));
   return (v) => (v === null ? null : Math.sqrt(v / max));
 }
 
-export function computePowerLevels(all: CountryData[]): Map<string, PowerLevel> {
+export function computePowerLevels(
+  all: CountryData[],
+): Map<string, PowerLevel> {
   const pop = (d: CountryData) => d.population.total?.value ?? null;
   const gdpPppTotal = (d: CountryData) => {
     const perCapita = d.economy.gdpPerCapitaPpp?.value;
     const people = pop(d);
-    return perCapita !== undefined && people !== null ? perCapita * people : null;
+    return perCapita !== undefined && people !== null
+      ? perCapita * people
+      : null;
   };
   const twh = (d: CountryData) => d.power.generation?.totalTwh ?? null;
   const kwhPerPerson = (d: CountryData) => {
     const total = twh(d);
     const people = pop(d);
-    return total !== null && people !== null && people > 0 ? (total * 1e9) / people : null;
+    return total !== null && people !== null && people > 0
+      ? (total * 1e9) / people
+      : null;
   };
 
   const s = {
     gdp: sizeScaler(all.map((d) => d.economy.gdp?.value ?? null)),
     gdpPpp: sizeScaler(all.map(gdpPppTotal)),
-    gdpPerCapitaPpp: scaler(all.map((d) => d.economy.gdpPerCapitaPpp?.value ?? null), "log"),
+    gdpPerCapitaPpp: scaler(
+      all.map((d) => d.economy.gdpPerCapitaPpp?.value ?? null),
+      "log",
+    ),
     population: sizeScaler(all.map(pop)),
-    workingAge: scaler(all.map((d) => d.population.ageStructure?.from15to64 ?? null), "linear"),
-    lifeExpectancy: scaler(all.map((d) => d.population.lifeExpectancy?.value ?? null), "linear"),
+    workingAge: scaler(
+      all.map((d) => d.population.ageStructure?.from15to64 ?? null),
+      "linear",
+    ),
+    lifeExpectancy: scaler(
+      all.map((d) => d.population.lifeExpectancy?.value ?? null),
+      "linear",
+    ),
     twh: sizeScaler(all.map(twh)),
     kwhPerPerson: scaler(all.map(kwhPerPerson), "log"),
     resources: shareScaler(all.map(resourceRaw)),
     food: shareScaler(all.map(foodRaw)),
   };
 
-  const scores = new Map<string, { score: number; pillars: Record<PillarId, number | null> }>();
+  const scores = new Map<
+    string,
+    { score: number; pillars: Record<PillarId, number | null> }
+  >();
   for (const d of all) {
-    const debt = d.economy.debt?.value;
-    const inflation = d.economy.inflation?.value;
+    const e = d.economy;
+    const stability = d.government.politicalStability;
     const pillars: Record<PillarId, number | null> = {
-      economy: combine([
-        { value: s.gdp(d.economy.gdp?.value ?? null), weight: 0.5 },
-        { value: s.gdpPpp(gdpPppTotal(d)), weight: 0.3 },
-        { value: s.gdpPerCapitaPpp(d.economy.gdpPerCapitaPpp?.value ?? null), weight: 0.2 },
-      ]),
+      // No GDP figures = no economy pillar (growth/inflation/debt alone don't describe an economy's size).
+      economy:
+        e.gdp === null && e.gdpPerCapitaPpp === null
+          ? null
+          : combine([
+              { value: s.gdp(e.gdp?.value ?? null), weight: 0.4 },
+              { value: s.gdpPpp(gdpPppTotal(d)), weight: 0.25 },
+              {
+                value: s.gdpPerCapitaPpp(e.gdpPerCapitaPpp?.value ?? null),
+                weight: 0.15,
+              },
+              {
+                value: e.growth === null ? null : growthScore(e.growth.value),
+                weight: 0.1,
+              },
+              {
+                value:
+                  e.inflation === null
+                    ? null
+                    : inflationScore(e.inflation.value),
+                weight: 0.05,
+              },
+              {
+                value: e.debt === null ? null : debtScore(e.debt.value),
+                weight: 0.05,
+              },
+            ]),
       resources: s.resources(resourceRaw(d)),
       population: combine([
         { value: s.population(pop(d)), weight: 0.6 },
-        { value: s.workingAge(d.population.ageStructure?.from15to64 ?? null), weight: 0.2 },
-        { value: s.lifeExpectancy(d.population.lifeExpectancy?.value ?? null), weight: 0.2 },
+        {
+          value: s.workingAge(d.population.ageStructure?.from15to64 ?? null),
+          weight: 0.2,
+        },
+        {
+          value: s.lifeExpectancy(d.population.lifeExpectancy?.value ?? null),
+          weight: 0.2,
+        },
       ]),
       energy: combine([
         { value: s.twh(twh(d)), weight: 0.7 },
         { value: s.kwhPerPerson(kwhPerPerson(d)), weight: 0.3 },
       ]),
       food: s.food(foodRaw(d)),
-      stability: combine([
-        { value: debt === undefined ? null : 1 - Math.min(Math.max(debt / 200, 0), 1), weight: 0.5 },
-        { value: inflation === undefined ? null : 1 - Math.min(Math.abs(inflation - 2) / 30, 1), weight: 0.5 },
-      ]),
+      stability: stability === null ? null : stability.value / 100,
     };
     if (pillars.economy === null || pillars.population === null) {
       continue; // insufficient data
     }
-    const total = combine((Object.keys(PILLAR_WEIGHTS) as PillarId[]).map((p) => ({ value: pillars[p], weight: PILLAR_WEIGHTS[p] })))!;
+    const total = combine(
+      (Object.keys(PILLAR_WEIGHTS) as PillarId[]).map((p) => ({
+        value: pillars[p],
+        weight: PILLAR_WEIGHTS[p],
+      })),
+    )!;
     const rounded = Object.fromEntries(
-      Object.entries(pillars).map(([p, v]) => [p, v === null ? null : Math.round(v * 1000) / 10]),
+      Object.entries(pillars).map(([p, v]) => [
+        p,
+        v === null ? null : Math.round(v * 1000) / 10,
+      ]),
     ) as Record<PillarId, number | null>;
-    scores.set(d.id, { score: Math.round(total * 1000) / 10, pillars: rounded });
+    scores.set(d.id, {
+      score: Math.round(total * 1000) / 10,
+      pillars: rounded,
+    });
   }
 
   const ranked = [...scores.values()].map((v) => v.score);

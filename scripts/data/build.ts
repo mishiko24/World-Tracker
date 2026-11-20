@@ -78,6 +78,7 @@ function buildGovernment(id: string): Government {
     rulingParty: text(wd?.headOfGovernmentParty ?? wd?.headOfStateParty, "wikidata"),
     headOfState: text(wd?.headOfState, "wikidata"),
     headOfGovernment: text(wd?.headOfGovernment, "wikidata"),
+    politicalStability: fact(fresh(worldbank[id]?.politicalStability), "worldbank"),
   };
 }
 
@@ -256,6 +257,7 @@ const coverage: [string, (d: CountryData) => unknown][] = [
   ["government.rulingParty", (d) => d.government.rulingParty],
   ["government.headOfState", (d) => d.government.headOfState],
   ["government.headOfGovernment", (d) => d.government.headOfGovernment],
+  ["government.politicalStability", (d) => d.government.politicalStability],
   ["population.total", (d) => d.population.total],
   ["population.density", (d) => d.population.density],
   ["population.fertility", (d) => d.population.fertility],
