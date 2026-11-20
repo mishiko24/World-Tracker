@@ -11,6 +11,7 @@ import { MapCanvas } from "./ui/MapCanvas";
 import { HeatLegend } from "./ui/HeatLegend";
 import { SearchBox } from "./ui/SearchBox";
 import { SettingsPanel } from "./ui/SettingsPanel";
+import { isMobileNow } from "./ui/useMobile";
 import { readUrlState, writeUrlState } from "./urlState";
 
 // Selection rules (map and list view):
@@ -18,6 +19,9 @@ import { readUrlState, writeUrlState } from "./urlState";
 //   left click ocean / Esc -> nothing selected, no comparison
 //   right click a country  -> compare it (B) with A; ignored when nothing is selected or it is A itself
 //   right click ocean      -> comparison ends, A stays selected
+//   "Compare" button in the info panel -> picking mode: the next left click / tap on a country compares it
+//                                         instead of selecting it (touch screens have no right click)
+// On touch screens a long press is a right click (see MapView).
 // Selection, comparison, view and list sort are mirrored in the URL (urlState.ts) so any screen can be shared.
 export function App() {
   const [countries, setCountries] = useState<Country[] | null>(null);
@@ -25,7 +29,8 @@ export function App() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [comparedId, setComparedId] = useState<string | null>(null);
   const [sort, setSort] = useState<Sort>(DEFAULT_SORT);
-  const [settingsOpen, setSettingsOpen] = useState(true);
+  const [settingsOpen, setSettingsOpen] = useState(() => !isMobileNow()); // on phones settings cover the screen
+  const [picking, setPicking] = useState(false);
   const [focusRequest, setFocusRequest] = useState<{ id: string; seq: number } | null>(null);
   const summaries = useSummaries();
 
@@ -68,6 +73,7 @@ export function App() {
       if (e.key === "Escape") {
         setSelectedId(null);
         setComparedId(null);
+        setPicking(false);
       }
     }
     window.addEventListener("keydown", handleKeyDown);
@@ -81,7 +87,19 @@ export function App() {
     saveSettings(next);
   }
 
+  function clearSelection() {
+    setSelectedId(null);
+    setComparedId(null);
+    setPicking(false);
+  }
+
   function select(id: string | null) {
+    if (picking) {
+      setPicking(false);
+      compare(id ?? selectedId!); // ocean (or A itself) just cancels picking
+      return;
+    }
+    setPicking(false);
     setSelectedId(id);
     setComparedId(null);
   }
@@ -139,9 +157,19 @@ export function App() {
         <InfoPanel
           country={selectedCountry}
           compared={comparedCountry}
-          onClose={() => select(null)}
+          onClose={clearSelection}
           onEndComparison={() => setComparedId(null)}
+          picking={picking}
+          onPickingChange={setPicking}
         />
+      )}
+      {picking && selectedCountry && (
+        <div className="pick-banner">
+          Pick a country to compare with {selectedCountry.name}
+          <button className="icon-button small" onClick={() => setPicking(false)}>
+            Cancel
+          </button>
+        </div>
       )}
       {tiles && !settings.listView && <div className="attribution">{tiles.attribution}</div>}
       {fillOverrides && !settings.listView && <HeatLegend mapType={settings.mapType} label="Power Level" />}

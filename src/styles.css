@@ -725,3 +725,189 @@ button {
   color: var(--text-dim);
   margin-top: 2px;
 }
+
+/* ---------- compare button + picking ---------- */
+
+.panel-header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.compare-button {
+  border: 1px solid rgba(88, 166, 255, 0.45);
+  background: rgba(88, 166, 255, 0.1);
+  color: #9cc8ff;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.compare-button:hover,
+.compare-button.active {
+  background: rgba(88, 166, 255, 0.25);
+  color: #fff;
+}
+
+.pick-banner {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 8px 7px 14px;
+  border-radius: 8px;
+  background: #19273c;
+  border: 1px solid rgba(88, 166, 255, 0.45);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+}
+
+/* Bottom-sheet grip: phones only. */
+.sheet-grip {
+  display: none;
+}
+
+/* ---------- phones (keep in sync with src/ui/useMobile.ts) ---------- */
+
+@media (max-width: 700px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .map-canvas {
+    -webkit-touch-callout: none; /* no iOS long-press menu: long press = compare */
+    user-select: none;
+  }
+
+  /* Settings: full-screen drawer. */
+  .panel-left {
+    inset: 0;
+    width: auto;
+    border-radius: 0;
+    border: none;
+    z-index: 20;
+  }
+
+  .search-box {
+    left: 64px;
+    right: 12px;
+    width: auto;
+    transform: none;
+  }
+
+  /* 16px stops iOS from zooming the page when the input gets focus. */
+  .search-box input {
+    font-size: 16px;
+  }
+
+  /* Info panel: bottom sheet. Heights must match useBottomSheet.ts snapHeights(). */
+  .panel-right {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    border-radius: 14px 14px 0 0;
+    border-bottom: none;
+    z-index: 10;
+    transition: height 180ms ease-out;
+    animation: slide-in-up 180ms ease-out;
+  }
+
+  .panel-right.sheet-peek {
+    height: 172px;
+  }
+
+  .panel-right.sheet-half {
+    height: 50%;
+  }
+
+  .panel-right.sheet-full {
+    height: calc(100% - 64px);
+  }
+
+  .panel-right.sheet-dragging {
+    transition: none;
+  }
+
+  .panel-right .panel-header {
+    position: relative;
+    padding-top: 20px;
+    touch-action: none; /* the header drags the sheet */
+    cursor: grab;
+  }
+
+  .sheet-grip {
+    display: block;
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    width: 40px;
+    height: 4px;
+    margin-left: -20px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .compare-button {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+
+  .icon-button {
+    padding: 8px 10px;
+  }
+
+  .collapsible-header {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .pick-banner {
+    top: 60px;
+    left: 12px;
+    right: 12px;
+    transform: none;
+    white-space: normal;
+    justify-content: space-between;
+  }
+
+  .heat-legend {
+    top: 60px;
+    bottom: auto;
+  }
+
+  /* List view: full width under the menu button; leaves room for the peeking sheet. */
+  .country-list,
+  .country-list.left-panel-open,
+  .country-list.right-panel-open {
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .country-list.right-panel-open {
+    bottom: 172px;
+  }
+
+  .country-list .name-column {
+    max-width: 130px;
+  }
+}
+
+@keyframes slide-in-up {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+}

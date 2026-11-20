@@ -1,11 +1,13 @@
-// The map: draws countries on a canvas and handles mouse input.
+// The map: draws countries on a canvas and handles mouse, trackpad and touch input.
 //
-// Controls:
+// Mouse:
 //   hover            -> highlight country
 //   left click       -> onSelect(country or null for ocean)
 //   right click      -> onCompare(country or null for ocean)
 //   middle drag      -> pan (horizontal wraps forever, vertical is clamped)
 //   wheel            -> zoom toward cursor, smoothed
+//   trackpad pinch   -> zoom toward cursor, immediate (browsers send it as wheel + ctrlKey)
+// Touch (TouchGestures.ts): drag pans, pinch zooms, tap = left click, long press = right click.
 // A click that moved more than a few pixels is a drag and does nothing.
 // The view only reports clicks; App decides what they mean and pushes selection back via
 // setSelected/setCompared. The view only redraws when something changed (`dirty`).
@@ -14,6 +16,7 @@ import { Camera, clampZoom } from "./Camera";
 import { WORLD_WIDTH, type Country } from "./geo";
 import { getMapType } from "./mapTypes";
 import { TileLayer } from "./TileLayer";
+import { TouchGestures } from "./TouchGestures";
 import type { CountryState, MapStyle, Settings, StateStyle } from "../settings";
 
 const CLICK_MAX_MOVE_PX = 5; // moving more than this between button down and up is a drag, not a click
@@ -22,13 +25,14 @@ const MIDDLE_BUTTON = 1;
 const RIGHT_BUTTON = 2;
 const WHEEL_PIXELS_PER_NOTCH = 100; // typical deltaY of one mouse-wheel notch
 const MAX_ZOOM_GLIDE_SECONDS = 0.3; // zoom smoothness 1 = this time constant
+const PINCH_WHEEL_ZOOM_PER_PIXEL = 0.01; // trackpad pinch: zoom factor = e^(-deltaY * this)
 
 // Countries smaller than this on screen also get a dot, so microstates stay visible and clickable.
 const DOT_SHOW_BELOW_PX = 6;
 const DOT_RADIUS_PX = 3.5;
 const DOT_HIT_RADIUS_PX = 7;
-const FOCUS_MAX_ZOOM = 12;
-const HEAT_FILL_OPACITY = 0.9; // heat map stays visible even where the style's fill is transparent (satellite) // focusing on a microstate shouldn't zoom all the way in
+const FOCUS_MAX_ZOOM = 12; // focusing on a microstate shouldn't zoom all the way in
+const HEAT_FILL_OPACITY = 0.9; // heat map stays visible even where the style's fill is transparent (satellite)
 
 export class MapView {
   private readonly canvas: HTMLCanvasElement;
@@ -39,6 +43,7 @@ export class MapView {
   private readonly onSelect: (id: string | null) => void;
   private readonly onCompare: (id: string | null) => void;
   private readonly resizeObserver: ResizeObserver;
+  private readonly touch: TouchGestures;
 
   private settings: Settings;
   private fillOverrides: Map<string, string> | null = null; // heat-map colors for default-state countries
@@ -78,11 +83,27 @@ export class MapView {
     this.tileLayer = this.createTileLayer();
     this.onSelect = onSelect;
     this.onCompare = onCompare;
+    this.touch = new TouchGestures({
+      pan: (dx, dy) => {
+        this.camera.panByScreen(dx, dy);
+        this.dirty = true;
+      },
+      zoomBy: (factor, x, y) => {
+        this.zoomNow(this.camera.zoom * factor, x, y);
+      },
+      tap: (x, y) => {
+        this.onSelect(this.hitTest(x, y));
+      },
+      longPress: (x, y) => {
+        this.onCompare(this.hitTest(x, y));
+      },
+    });
 
     canvas.addEventListener("pointerdown", this.handlePointerDown);
     canvas.addEventListener("pointermove", this.handlePointerMove);
     canvas.addEventListener("pointerup", this.handlePointerUp);
     canvas.addEventListener("pointerleave", this.handlePointerLeave);
+    canvas.addEventListener("pointercancel", this.handlePointerCancel);
     canvas.addEventListener("wheel", this.handleWheel, { passive: false });
     canvas.addEventListener("contextmenu", this.handleContextMenu);
 
@@ -102,6 +123,7 @@ export class MapView {
     this.canvas.removeEventListener("pointermove", this.handlePointerMove);
     this.canvas.removeEventListener("pointerup", this.handlePointerUp);
     this.canvas.removeEventListener("pointerleave", this.handlePointerLeave);
+    this.canvas.removeEventListener("pointercancel", this.handlePointerCancel);
     this.canvas.removeEventListener("wheel", this.handleWheel);
     this.canvas.removeEventListener("contextmenu", this.handleContextMenu);
   }
@@ -196,6 +218,13 @@ export class MapView {
       }
     }
     this.camera.zoomAt(this.zoomAnchorX, this.zoomAnchorY, next);
+    this.cameraMoved();
+  }
+
+  // Zoom without the glide (pinch gestures: the map must follow the fingers).
+  private zoomNow(zoom: number, anchorX: number, anchorY: number): void {
+    this.targetZoom = clampZoom(zoom);
+    this.camera.zoomAt(anchorX, anchorY, this.targetZoom);
     this.cameraMoved();
   }
 
@@ -383,6 +412,10 @@ export class MapView {
   // ---------- input ----------
 
   private handlePointerDown = (e: PointerEvent): void => {
+    if (e.pointerType === "touch") {
+      this.touch.down(e);
+      return;
+    }
     if (e.button === MIDDLE_BUTTON) {
       e.preventDefault(); // stops the browser's middle-click autoscroll
       this.panning = true;
@@ -398,6 +431,10 @@ export class MapView {
   };
 
   private handlePointerMove = (e: PointerEvent): void => {
+    if (e.pointerType === "touch") {
+      this.touch.move(e); // no hover on touch screens
+      return;
+    }
     const dx = e.offsetX - this.pointerX;
     const dy = e.offsetY - this.pointerY;
     this.pointerInside = true;
@@ -413,6 +450,10 @@ export class MapView {
   };
 
   private handlePointerUp = (e: PointerEvent): void => {
+    if (e.pointerType === "touch") {
+      this.touch.up(e);
+      return;
+    }
     if (e.button === MIDDLE_BUTTON && this.panning) {
       this.panning = false;
       this.canvas.releasePointerCapture(e.pointerId);
@@ -442,6 +483,12 @@ export class MapView {
     }
   };
 
+  private handlePointerCancel = (e: PointerEvent): void => {
+    if (e.pointerType === "touch") {
+      this.touch.cancel(e);
+    }
+  };
+
   private handleWheel = (e: WheelEvent): void => {
     e.preventDefault();
     let pixels = e.deltaY;
@@ -449,6 +496,10 @@ export class MapView {
       pixels *= 40;
     } else if (e.deltaMode === WheelEvent.DOM_DELTA_PAGE) {
       pixels *= 800;
+    }
+    if (e.ctrlKey) {
+      this.zoomNow(this.camera.zoom * Math.exp(-pixels * PINCH_WHEEL_ZOOM_PER_PIXEL), e.offsetX, e.offsetY);
+      return;
     }
     const notches = pixels / WHEEL_PIXELS_PER_NOTCH;
     const factor = Math.pow(1 + this.settings.zoomAmount, -notches);

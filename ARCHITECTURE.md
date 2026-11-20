@@ -16,6 +16,7 @@ npm run dev            # local dev server
 npm run build          # type-check + production build into dist/
 npm run build:geo      # rebuild public/data/countries.topo.json from data-raw/
 npm run test:controls  # headless browser test of all controls (needs `npm run build` first; starts its own preview server)
+npm run test:mobile    # phone layout + real touch gestures via CDP (needs `npm run build` first)
 node tests/panel-screenshot.mjs <lon> <lat> out.png   # screenshot the info panel for a country (after build)
 node scripts/data/run.ts [steps]                       # data pipeline, see below
 ```
@@ -35,7 +36,8 @@ src/map/                  Everything canvas. No React in here.
   geo.ts                  World space definition (Mercator, WORLD_WIDTH=1000, lat 84N..60S) + loadCountries()
                           -> Country objects with pre-built Path2Ds, bounds, label point, size
   Camera.ts               World <-> screen math. x wraps forever, y and zoom are clamped.
-  MapView.ts              Owns the canvas: frame loop (redraw only when dirty), drawing, hit testing, mouse input
+  MapView.ts              Owns the canvas: frame loop (redraw only when dirty), drawing, hit testing, mouse/trackpad input
+  TouchGestures.ts        Touch -> pan / pinch zoom / tap / long press, fed by MapView's pointer handlers
   TileLayer.ts            Raster tiles (z/x/y) under the countries, ancestor fallback while loading, LRU cache
   mapTypes.ts             The map type list (dark/light/satellite) and which tile source each uses
 
@@ -49,6 +51,8 @@ src/ui/                   React panels
 src/data/countryData.ts   THE CONTRACT: per-country JSON shape + source list. Imported by both the pipeline and the UI.
 src/ui/info/              Right panel: InfoPanel (6 sections), useCountryData (fetch), FactRow, one file per section type,
                           formatData (number/unit formatting)
+src/ui/useMobile.ts       Phone layout switch (max-width 700px, same as the @media block at the end of styles.css)
+src/ui/info/useBottomSheet.ts  Phone: info panel as bottom sheet, peek/half/full snaps, header drag + tap
 src/ui/info/PowerLevelCard.tsx  Power Level score, rank and pillar bars at the top of the info panel
 src/map/heatColors.ts     Heat colours for "Color countries by: Power Level" (App builds a fill map, MapView.setFillOverrides)
 src/urlState.ts           ?c=ESP&vs=FRA&view=list&sort=gdp.desc  read once on load, written with replaceState
@@ -105,7 +109,12 @@ SECURITY: never write URLs containing the EIA key to files or logs. A leak happe
 - **Controls:** left click selects (A), right click compares (B), middle drag pans, wheel zooms. A drag (>5 px) is
   never a click. MapView only reports clicks; App.tsx owns the rules: compare needs A selected and B != A; new left
   selection ends a comparison; right click on ocean / ✕ in panel header ends it; ocean left click or Esc clears all.
-  List view uses the same rules (left/right click on rows).
+  List view uses the same rules (left/right click on rows). The info panel's "Compare" button starts picking mode:
+  the next left click / tap compares instead of selecting (ocean cancels).
+  Touch: one finger pans, pinch zooms, tap = left click, long press (500 ms) = right click.
+  Trackpad pinch arrives as wheel + ctrlKey and zooms immediately (no glide).
+- **Phones (≤700px wide):** settings start closed and open as a full-screen drawer; info panel is a bottom sheet
+  (peek 172px = name + Power Level score, half, full); list view goes full width.
 - **Comparison mode:** every number both countries have gets a chip (src/ui/info/Compare.tsx): B's value, ▲/▼ by
   amount, green/red by better/worse (better = higher, except inflation and government debt = lower), difference
   relative to A in %, or in percentage points for values that are percentages. Lists match by resource id,
@@ -149,6 +158,6 @@ economy 0.40, resources 0.15, population 0.15, energy 0.15, food 0.10, stability
   Esri World Imagery (terms), MapTiler (API key).
 - Artifact previews on claude.ai block remote images, so satellite only works on Pages / localhost.
 - 50m coastlines look coarse past ~20x; could swap to 10m geometry when zoomed in.
-- Desktop/mouse only for now (no touch gestures).
+- Safari's own trackpad pinch events (gesturechange) aren't handled; Safari users zoom with scroll.
 - Debt: World Bank central gov. debt covers ~60 countries. If the IMF grants permission, IMF becomes the
   economy source with World Bank as fallback.

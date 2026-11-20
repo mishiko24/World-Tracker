@@ -1,8 +1,10 @@
 // Right sidebar: info about the selected country, one collapsible section per topic.
 // Stays mounted while switching countries, so open sections stay open.
-// Comparison mode: when another country is right-clicked, every number also shows that country's value.
+// Comparison mode: when another country is right-clicked (long-pressed, or picked after "Compare"),
+// every number also shows that country's value.
+// On phones the panel is a bottom sheet (useBottomSheet.ts).
 
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import type { CountryData } from "../../data/countryData";
 import type { Country } from "../../map/geo";
 import { Collapsible } from "../Collapsible";
@@ -11,6 +13,8 @@ import { EconomySection, GovernmentSection, PopulationSection } from "./BasicSec
 import { PowerLevelCard } from "./PowerLevelCard";
 import { PowerSection } from "./PowerSection";
 import { ResourcesSection } from "./ResourcesSection";
+import { useMobile } from "../useMobile";
+import { useBottomSheet } from "./useBottomSheet";
 import { useCountryData, type CountryDataState } from "./useCountryData";
 
 // Section body: the content once data is loaded, otherwise a loading or error message.
@@ -32,18 +36,32 @@ interface InfoPanelProps {
   compared: Country | null;
   onClose: () => void;
   onEndComparison: () => void;
+  picking: boolean; // waiting for the user to pick the country to compare with
+  onPickingChange: (picking: boolean) => void;
 }
 
-export function InfoPanel({ country, compared, onClose, onEndComparison }: InfoPanelProps) {
+export function InfoPanel(props: InfoPanelProps) {
+  const { country, compared, onClose, onEndComparison, picking, onPickingChange } = props;
+  const mobile = useMobile();
+  const sheet = useBottomSheet(mobile);
   const state = useCountryData(country.id);
   const comparedState = useCountryData(compared?.id ?? null);
   // Comparison numbers appear once the other country's data has loaded.
   const other = comparedState.status === "loaded" ? comparedState.data : null;
 
+  // Picking happens on the map, so get the sheet out of the way.
+  const setSnap = sheet.setSnap;
+  useEffect(() => {
+    if (picking) {
+      setSnap("peek");
+    }
+  }, [picking, setSnap]);
+
   return (
-    <aside className="panel panel-right">
-      <header className="panel-header">
-        <div>
+    <aside className={`panel panel-right ${sheet.className}`} style={sheet.style}>
+      <header className="panel-header" {...sheet.handleProps}>
+        <div className="sheet-grip" />
+        <div className="panel-title">
           <h2>{country.name}</h2>
           {compared && (
             <div className="compare-header">
@@ -56,9 +74,18 @@ export function InfoPanel({ country, compared, onClose, onEndComparison }: InfoP
             </div>
           )}
         </div>
-        <button className="icon-button" onClick={onClose} title="Deselect">
-          ✕
-        </button>
+        <div className="panel-header-buttons">
+          <button
+            className={picking ? "compare-button active" : "compare-button"}
+            onClick={() => onPickingChange(!picking)}
+            title="Pick a country to compare with (or right-click / long-press it)"
+          >
+            {picking ? "Picking…" : "Compare"}
+          </button>
+          <button className="icon-button" onClick={onClose} title="Deselect">
+            ✕
+          </button>
+        </div>
       </header>
 
       {/* Sections are always rendered (even while loading) so their open/closed state survives country switches. */}
