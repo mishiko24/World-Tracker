@@ -146,12 +146,12 @@ SECURITY: never write URLs containing the EIA key to files or logs. A leak happe
   Trackpad pinch arrives as wheel + ctrlKey and zooms immediately (no glide).
 - **Phones (≤700px wide):** settings start closed and open as a full-screen drawer; info panel is a bottom sheet
   (peek 172px = name + Power Level score, half, full); list view goes full width.
-- **Comparison mode:** side by side (src/ui/info/Compare.tsx). A sticky header names both countries in their map
-  colors (selected/compared fill of the current map type, CSS vars --color-a/--color-b); every value row is
-  label | A | B. The better value is green (higher, or lower for inflation/debt; none for median age, density,
-  age groups). Under B: difference from A in %, pp for percentage values, points for 0-100 scores. Red is never
-  used for "worse" because A is red on the map. Power Level card: two score blocks and two bars per pillar in the
-  country colors. Panel widens to 400px. Lists match by resource id, agriculture product name, power source.
+- **Comparison mode:** (src/ui/info/Compare.tsx, FactRow.tsx). A sticky legend names both countries in their map
+  colors (selected/compared fill of the current map type, CSS vars --color-a/--color-b). Number rows look like the
+  Power Level card: two bars (scaled to the larger value) with values, better value green (higher, or lower for
+  inflation/debt; none for median age, density, age groups), then how much more/less B has: "8.3× more" from 2×,
+  else "22% more"; pp for percentage values, points for 0-100 scores, years for ages. Text rows (government) show
+  both values with color swatches. Red is never "worse" because A is red on the map. Panel widens to 400px.
 - **Info panel:** no source/year lines (clutter); year + source are the value's tooltip.
 - **Zoom:** toward cursor, 1x (world height fills viewport) to 40x; exponential glide in log space.
 - **List view:** toggle in the left panel. The map stays mounted but hidden (camera survives). Sorting: first click

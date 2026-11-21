@@ -218,38 +218,44 @@ check("selected country keeps its color", near(await pixel(spainX, spainY), COLO
 await page.click("aside.panel-right .collapsible-header >> text=Population");
 await page.click("aside.panel-right .collapsible-header >> text=Economy");
 await page.waitForTimeout(200);
-// Comparison rows: label | Spain (A) | France (B); the better value has class "win", B carries the difference.
+// Comparison rows: label | Spain's bar + value, France's bar + value, how much more/less France has.
+// The better value has class "win".
 const compareRow = async (label) =>
   page.evaluate((label) => {
-    const row = [...document.querySelectorAll("aside.panel-right .fact.comparing")].find(
+    const row = [...document.querySelectorAll("aside.panel-right .fact.compared-number")].find(
       (r) => r.querySelector(".fact-label").textContent === label,
     );
     if (!row) return null;
-    const [a, b] = row.querySelectorAll(".fact-value");
-    return { aWins: a.classList.contains("win"), bWins: b.classList.contains("win"), b: b.textContent };
+    const [a, b] = row.querySelectorAll(".compared-value");
+    const bars = [...row.querySelectorAll(".compare-bar span")].map((el) => parseFloat(el.style.width));
+    return { aWins: a.classList.contains("win"), bWins: b.classList.contains("win"), diff: row.querySelector(".compared-diff")?.textContent, bars };
   }, label);
-check(
-  "comparison columns name both countries",
-  (await page.textContent(".compare-columns")).includes("Spain") && (await page.textContent(".compare-columns")).includes("France"),
-);
+const legend = await page.textContent(".compare-legend");
+check("legend names both countries", legend.includes("Spain") && legend.includes("France"), legend);
 const popRow = await compareRow("Population");
 check("France has more people: France's value is the winner", popRow?.bWins === true && popRow.aWins === false, JSON.stringify(popRow));
+check("larger value fills its bar, smaller is shorter", popRow?.bars[1] === 100 && popRow.bars[0] < 100, JSON.stringify(popRow?.bars));
 const spainData = await (await fetch(`${URL}data/countries/ESP.json`)).json();
 const franceData = await (await fetch(`${URL}data/countries/FRA.json`)).json();
 const expectedPct = Math.round(((franceData.population.total.value - spainData.population.total.value) / spainData.population.total.value) * 100);
-check("population difference is relative to Spain", popRow?.b.includes(`+${expectedPct}%`), `${popRow?.b} expected +${expectedPct}%`);
+check("population: how much more France has", popRow?.diff === `${expectedPct}% more`, `${popRow?.diff} expected ${expectedPct}% more`);
 const infRow = await compareRow("Inflation");
 const franceLowerInflation = franceData.economy.inflation.value < spainData.economy.inflation.value;
 check(
   "inflation: lower is better and shown in pp",
-  infRow !== null && infRow.b.includes("pp") && infRow.bWins === franceLowerInflation && infRow.aWins === !franceLowerInflation,
+  infRow !== null && infRow.diff.includes("pp") && infRow.bWins === franceLowerInflation && infRow.aWins === !franceLowerInflation,
   JSON.stringify(infRow),
 );
 const medianRow = await compareRow("Median age");
-check("median age has no winner", medianRow !== null && !medianRow.aWins && !medianRow.bWins, JSON.stringify(medianRow));
+check("median age has no winner, difference in years", medianRow !== null && !medianRow.aWins && !medianRow.bWins && /years (more|less)$/.test(medianRow.diff), JSON.stringify(medianRow));
+const gdpRow = await compareRow("GDP");
+check("big differences read as ×", /^\d|same/.test(gdpRow?.diff ?? "") , JSON.stringify(gdpRow));
+await page.click("aside.panel-right .collapsible-header >> text=Government");
+const govLines = await page.$$eval("aside.panel-right .fact.compared-text", (rows) => rows[0].querySelectorAll(".compared-line").length);
+check("government rows show both countries", govLines === 2);
 const metaTexts = await page.$$eval("aside.panel-right .fact-meta", (els) => els.map((e) => e.textContent));
 check("meta lines carry no sources", metaTexts.every((t) => !/World Bank|IMF|UN|EIA|USGS|FAO|Ember/.test(t)), metaTexts.join(" | "));
-const tooltip = await page.$eval("aside.panel-right .fact-value", (el) => el.title);
+const tooltip = await page.$eval("aside.panel-right .compared-value", (el) => el.title);
 check("year and source available as tooltip", /20\d\d · /.test(tooltip), tooltip);
 
 await page.mouse.click(oceanX, oceanY, { button: "right" });

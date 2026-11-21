@@ -9,7 +9,7 @@ import type { CountryData } from "../../data/countryData";
 import type { Country } from "../../map/geo";
 import { Collapsible } from "../Collapsible";
 import { AgricultureSection } from "./AgricultureSection";
-import { colorVariables, CompareColumns, type CompareColors } from "./Compare";
+import { colorVariables, CompareLegend, type CompareColors } from "./Compare";
 import { EconomySection, GovernmentSection, PopulationSection } from "./BasicSections";
 import { PowerLevelCard } from "./PowerLevelCard";
 import { PowerSection } from "./PowerSection";
@@ -115,7 +115,7 @@ export function InfoPanel(props: InfoPanelProps) {
 
       {/* Sections are always rendered (even while loading) so their open/closed state survives country switches. */}
       <div className="panel-scroll">
-        {compared && <CompareColumns a={country.name} b={compared.name} />}
+        {compared && <CompareLegend a={country.name} b={compared.name} />}
         {state.status === "loaded" && <PowerLevelCard powerLevel={state.data.powerLevel} other={other} />}
         <Collapsible title="Government">
           {loaded(state, (d) => <GovernmentSection government={d.government} other={other} />)}

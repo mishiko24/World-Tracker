@@ -519,25 +519,91 @@ button {
   column-gap: 8px;
 }
 
-/* Label | A | B. Must match .compare-columns. */
-.fact.comparing {
-  grid-template-columns: 104px 1fr 1fr;
+/* Number rows: label | A's bar + value, B's bar + value, how much more/less (see FactRow.tsx ComparedNumber). */
+.fact.compared-number,
+.fact.compared-text {
+  grid-template-columns: 104px 1fr;
   gap: 10px;
+  align-items: start;
 }
 
-.fact-value.win .fact-main {
+.compared-bars {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 10px;
+  row-gap: 3px;
+  align-items: center;
+}
+
+.compare-bar {
+  display: block;
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.compare-bar span {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+}
+
+.compare-bar.a span {
+  background: var(--color-a);
+}
+
+.compare-bar.b span {
+  background: var(--color-b);
+}
+
+.compared-value {
+  min-width: 78px;
+  text-align: right;
+  font-size: 13px;
+  line-height: 17px;
+  font-variant-numeric: tabular-nums;
+}
+
+.compared-value.win {
   color: #3fb950;
   font-weight: 600;
 }
 
-.compare-columns {
+.compared-diff {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  margin-top: 1px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.compared-diff .country-swatch {
+  width: 7px;
+  height: 7px;
+  margin-right: 5px;
+}
+
+/* Text rows (government): both values, each with its country's swatch. */
+.compared-line {
+  display: flex;
+  align-items: baseline;
+}
+
+.compared-line + .compared-line {
+  margin-top: 3px;
+}
+
+/* Sticky key at the top of the panel: which color is which country. */
+.compare-legend {
   position: sticky;
   top: -6px; /* panel-scroll's top padding */
   z-index: 2;
-  display: grid;
-  grid-template-columns: 104px 1fr 1fr;
-  gap: 10px;
-  padding: 8px 16px 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  padding: 8px 16px;
   margin-top: -6px;
   background: #1a1a1f;
   border-bottom: 1px solid var(--panel-border);
@@ -545,21 +611,9 @@ button {
   font-weight: 600;
 }
 
-.compare-column {
+.compare-legend > span {
   display: flex;
-  align-items: baseline;
-  gap: 6px;
-  min-width: 0;
-  padding-bottom: 4px;
-  border-bottom: 2px solid;
-}
-
-.compare-column.a {
-  border-color: var(--color-a);
-}
-
-.compare-column.b {
-  border-color: var(--color-b);
+  align-items: center;
 }
 
 .country-swatch {
@@ -570,10 +624,6 @@ button {
   border-radius: 2px;
   margin-right: 6px;
   vertical-align: baseline;
-}
-
-.compare-column .country-swatch {
-  margin-right: 0;
 }
 
 .country-swatch.a {

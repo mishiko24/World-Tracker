@@ -30,13 +30,29 @@ function NumberRow({ label, fact, other, format, mode, better }: NumberRowProps)
 export function GovernmentSection({ government, other }: { government: Government; other: CountryData | null }) {
   return (
     <>
-      <FactRow label="Government type" value={government.type?.value ?? null} source={government.type?.source} />
-      <FactRow label="Ruling party" value={government.rulingParty?.value ?? null} source={government.rulingParty?.source} />
-      <FactRow label="Head of state" value={government.headOfState?.value ?? null} source={government.headOfState?.source} />
+      <FactRow
+        label="Government type"
+        value={government.type?.value ?? null}
+        source={government.type?.source}
+        compareText={other === null ? undefined : (other.government.type?.value ?? null)}
+      />
+      <FactRow
+        label="Ruling party"
+        value={government.rulingParty?.value ?? null}
+        source={government.rulingParty?.source}
+        compareText={other === null ? undefined : (other.government.rulingParty?.value ?? null)}
+      />
+      <FactRow
+        label="Head of state"
+        value={government.headOfState?.value ?? null}
+        source={government.headOfState?.source}
+        compareText={other === null ? undefined : (other.government.headOfState?.value ?? null)}
+      />
       <FactRow
         label="Head of government"
         value={government.headOfGovernment?.value ?? null}
         source={government.headOfGovernment?.source}
+        compareText={other === null ? undefined : (other.government.headOfGovernment?.value ?? null)}
       />
       <NumberRow
         label="Political stability"
@@ -71,8 +87,15 @@ export function PopulationSection({ population, other }: { population: Populatio
     <>
       <NumberRow label="Population" fact={population.total} other={b?.total} format={shortNumber} />
       <NumberRow label="Children per woman" fact={population.fertility} other={b?.fertility} format={(v) => v.toFixed(2)} />
-      <NumberRow label="Life expectancy" fact={population.lifeExpectancy} other={b?.lifeExpectancy} format={years} />
-      <NumberRow label="Median age" fact={population.medianAge} other={b?.medianAge} format={years} better="none" />
+      <NumberRow label="Life expectancy" fact={population.lifeExpectancy} other={b?.lifeExpectancy} format={years} mode="years" />
+      <NumberRow
+        label="Median age"
+        fact={population.medianAge}
+        other={b?.medianAge}
+        format={years}
+        mode="years"
+        better="none"
+      />
       {AGE_ROWS.map(({ label, key }) => (
         <FactRow
           key={key}
