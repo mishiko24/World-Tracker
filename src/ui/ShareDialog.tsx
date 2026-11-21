@@ -2,11 +2,14 @@
 // shown only where the browser can share files: mostly phones).
 // The link is the country's or the comparison's static page (src/data/sitePages.ts), because chat apps show those
 // with the share card as preview; a pair without a page gets the map's own URL (?c=A&vs=B, urlState.ts).
+// "Embed on a website": iframe code for embed.html (src/share/embed.ts), dark or light.
 // Rendered into <body> because the info panel's backdrop-filter would trap a position:fixed child.
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { comparePagePath, countryPagePath, hasComparePage, type Nearby } from "../data/sitePages";
+import { SITE_URL } from "../links";
+import { embedCode, type EmbedTheme } from "../share/embed";
 import { drawShareCard, loadCardFlags, shareFileName, type CardSide } from "../share/shareCard";
 
 interface ShareDialogProps {
@@ -20,8 +23,9 @@ function siteLabel(): string {
   return (window.location.host + window.location.pathname).replace(/\/$/, "");
 }
 
-// Absolute address of the page to share, or null while nearby.json (which pairs have a page) is loading.
-function useShareUrl(a: CardSide, b: CardSide | null): string | null {
+// Address of the page to share relative to the site root ("compare/france-vs-germany/", or "?c=TUV&vs=ISL" for a
+// pair without a page), or null while nearby.json (which pairs have a page) is loading.
+function useSharePath(a: CardSide, b: CardSide | null): string | null {
   const [nearby, setNearby] = useState<Nearby | null>(null);
   useEffect(() => {
     fetch(`${import.meta.env.BASE_URL}data/nearby.json`)
@@ -36,17 +40,15 @@ function useShareUrl(a: CardSide, b: CardSide | null): string | null {
   if (nearby === null) {
     return null;
   }
-  const siteRoot = new URL(".", window.location.href); // the map page's folder = site root
   if (b === null) {
-    return new URL(countryPagePath(a.data.name), siteRoot).href;
+    return countryPagePath(a.data.name);
   }
-  return hasComparePage(nearby, a.data.id, b.data.id)
-    ? new URL(comparePagePath(a.data.name, b.data.name), siteRoot).href
-    : window.location.href;
+  return hasComparePage(nearby, a.data.id, b.data.id) ? comparePagePath(a.data.name, b.data.name) : `?c=${a.data.id}&vs=${b.data.id}`;
 }
 
 export function ShareDialog({ a, b, onClose }: ShareDialogProps) {
-  const shareUrl = useShareUrl(a, b);
+  const sharePath = useSharePath(a, b);
+  const shareUrl = sharePath === null ? null : new URL(sharePath, new URL(".", window.location.href)).href; // map page's folder = site root
   const [file, setFile] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
@@ -132,8 +134,52 @@ export function ShareDialog({ a, b, onClose }: ShareDialogProps) {
             </a>
           )}
         </div>
+        {sharePath !== null && <EmbedSection a={a} b={b} pageUrl={SITE_URL + sharePath} />}
       </div>
     </div>,
     document.body,
+  );
+}
+
+// Collapsed by default: most people share a link; embedding is for site owners.
+function EmbedSection({ a, b, pageUrl }: { a: CardSide; b: CardSide | null; pageUrl: string }) {
+  const [open, setOpen] = useState(false);
+  const [theme, setTheme] = useState<EmbedTheme>("dark");
+  const [copied, setCopied] = useState(false);
+  const code = embedCode(
+    { a: { id: a.data.id, name: a.data.name }, b: b === null ? null : { id: b.data.id, name: b.data.name }, pageUrl },
+    theme,
+  );
+  if (!open) {
+    return (
+      <button className="embed-toggle" onClick={() => setOpen(true)}>
+        Embed on a website ▸
+      </button>
+    );
+  }
+  return (
+    <section className="embed-section">
+      <div className="embed-head">
+        <span>Embed on a website</span>
+        <span className="embed-themes">
+          {(["dark", "light"] as const).map((t) => (
+            <button
+              key={t}
+              className={t === theme ? "active" : undefined}
+              onClick={() => {
+                setTheme(t);
+                setCopied(false);
+              }}
+            >
+              {t === "dark" ? "Dark" : "Light"}
+            </button>
+          ))}
+        </span>
+      </div>
+      <textarea className="embed-code" readOnly value={code} rows={4} onFocus={(e) => e.currentTarget.select()} />
+      <button className="secondary-button" onClick={() => navigator.clipboard.writeText(code).then(() => setCopied(true))}>
+        {copied ? "Code copied" : "Copy code"}
+      </button>
+    </section>
   );
 }

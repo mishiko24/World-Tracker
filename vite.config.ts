@@ -3,7 +3,7 @@ import { defineConfig, type Plugin } from "vite";
 import { ANALYTICS_SNIPPET, SITE_URL } from "./src/links.ts";
 
 // Analytics on the site's real pages, in production builds only (not in `npm run dev`).
-const ANALYTICS_PAGES = ["index.html", "about.html", "play.html"];
+const ANALYTICS_PAGES = ["index.html", "about.html", "play.html", "embed.html"];
 const analytics: Plugin = {
   name: "analytics",
   apply: "build",
@@ -39,9 +39,10 @@ export default defineConfig({
   base: "./", // relative paths, so the build works on GitHub Pages under any repo name
   build: {
     rollupOptions: {
-      // Every page of the site. index.html = the map; about.html = Sources & method; play.html = Higher or Lower;
-      // share-card.html = headless card renderer for the static pages (scripts/site/cards.ts).
-      input: { main: "index.html", about: "about.html", play: "play.html", shareCard: "share-card.html" },
+      // Every page of the site. index.html = the map; about.html = Sources & method; play.html = games;
+      // embed.html = card for other websites (iframe); share-card.html = headless card renderer for the static
+      // pages (scripts/site/cards.ts).
+      input: { main: "index.html", about: "about.html", play: "play.html", embed: "embed.html", shareCard: "share-card.html" },
     },
   },
 });

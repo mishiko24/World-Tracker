@@ -73,6 +73,9 @@ play.html + src/game/     Games, tabs by ?mode= (PlayPage.tsx): daily (default; 
                           (HigherLower.tsx + game.ts), flags / outlines (Quiz.tsx + quiz.ts: 4 options, 2 from the
                           answer's neighbours, 3 lives). random.ts = seeded RNG; shared.tsx = data, card, share, best
                           scores (localStorage). Pool: 1M+ people and a Power Level
+embed.html + src/embed/   Card for other websites in an iframe: ?c=ID[&vs=ID][&theme=light]. Links to the static page
+                          (or the map). Code from the Share dialog (src/share/embed.ts: iframe + a plain backlink;
+                          EMBED_SIZE heights measured from embed.css). noindex; analytics on
 src/share/silhouette.ts   One country's outline in a box (share cards, outline quiz)
 src/links.ts              URLs of the about page, the countries hub, the issue tracker, SITE_URL (absolute address),
                           and the Cloudflare Web Analytics snippet (injected by vite.config.ts + scripts/site/html.ts;

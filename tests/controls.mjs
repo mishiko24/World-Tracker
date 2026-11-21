@@ -448,6 +448,15 @@ check("share card is 1200x630", card[0] === 1200 && card[1] === 630, card.join("
 check("share card file named after both countries", (await page.getAttribute(".share-actions a[download]", "download")) === "world-tracker-jpn-vs-kor.png");
 await page.waitForFunction(() => !document.querySelector(".share-link").textContent.includes("…"));
 check("share link is the comparison page", (await page.textContent(".share-link")).endsWith("/compare/japan-vs-south-korea/"), await page.textContent(".share-link"));
+await page.click(".embed-toggle");
+const embed = await page.inputValue(".embed-code");
+check(
+  "embed code: iframe of the comparison plus a plain link to its page",
+  embed.includes("embed.html?c=JPN&vs=KOR") && embed.includes('href="https://mishiko24.github.io/World-Tracker/compare/japan-vs-south-korea/"'),
+  embed,
+);
+await page.click(".embed-themes button >> text=Light");
+check("embed code: light theme", (await page.inputValue(".embed-code")).includes("&theme=light"));
 await page.keyboard.press("Escape");
 check("Esc closes the share dialog but keeps the selection", (await page.$(".share-dialog")) === null && (await panelTitle()) === "Japan");
 await page.goto(URL);
@@ -573,6 +582,19 @@ check("flag quiz: three wrong answers end the game", (await page.$(".game-over")
 await page.goto(`${URL}play.html?mode=outlines`);
 await page.waitForSelector("canvas.quiz-outline");
 check("outline quiz draws the shape", await page.$eval("canvas.quiz-outline", (c) => c.width > 0));
+
+// Embed card (embed.html): one country and a comparison render, and link to the right page.
+await page.goto(`${URL}embed.html?c=GEO`);
+await page.waitForSelector(".embed h1");
+check("embed: one country", (await page.textContent(".embed h1")) === "Georgia" && (await page.getAttribute(".embed", "href")).endsWith("/country/georgia/"));
+await page.goto(`${URL}embed.html?c=ARM&vs=GEO&theme=light`);
+await page.waitForSelector(".bar-row");
+check(
+  "embed: comparison with bars, light theme, links to the comparison page",
+  (await page.$$(".bar-row")).length === 5 &&
+    (await page.evaluate(() => document.documentElement.dataset.theme)) === "light" &&
+    (await page.getAttribute(".embed", "href")).endsWith("/compare/armenia-vs-georgia/"),
+);
 
 // ---------- Sources & method page ----------
 await page.goto(`${URL}?c=CHN`);
