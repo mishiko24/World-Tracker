@@ -18,9 +18,11 @@ import type {
   PowerSource,
   RankFact,
   Resource,
+  ResourceInfo,
   SourceId,
   TextFact,
 } from "../../src/data/countryData.ts";
+import { STAPLES } from "../../src/data/countryData.ts";
 import { loadCountries } from "./lib/countries.ts";
 import { lastFullYear, readCache } from "./lib/io.ts";
 import { computeNearby } from "./nearby.ts";
@@ -34,6 +36,9 @@ import type { UnWppEntry } from "./fetch/unwpp.ts";
 import type { UsgsEntry } from "./fetch/usgs.ts";
 import type { WikidataEntry } from "./fetch/wikidata.ts";
 import type { WorldBankEntry } from "./fetch/worldbank.ts";
+
+// Resources that get list columns: a column needs at least this many countries with the number.
+const MIN_RESOURCE_COUNTRIES = 3;
 
 const OUTPUT_DIR = "public/data/countries";
 const SUMMARY_FILE = "public/data/summary.json";
@@ -238,26 +243,83 @@ for (const data of all) {
 }
 
 // The list view's data: one row per country.
-const summary: CountrySummary[] = all.map((d) => ({
-  id: d.id,
-  name: d.name,
-  powerLevel: d.powerLevel?.score ?? null,
-  population: d.population.total?.value ?? null,
-  fertility: d.population.fertility?.value ?? null,
-  lifeExpectancy: d.population.lifeExpectancy?.value ?? null,
-  medianAge: d.population.medianAge?.value ?? null,
-  density: d.population.density?.value ?? null,
-  gdp: d.economy.gdp?.value ?? null,
-  gdpPerCapita: d.economy.gdpPerCapita?.value ?? null,
-  gdpPerCapitaPpp: d.economy.gdpPerCapitaPpp?.value ?? null,
-  growth: d.economy.growth?.value ?? null,
-  inflation: d.economy.inflation?.value ?? null,
-  debtUsd: d.economy.debtUsd?.value ?? null,
-  debtPercent: d.economy.debt?.value ?? null,
-  politicalStability: d.government.politicalStability?.value ?? null,
-  electricityTwh: d.power.generation?.totalTwh ?? null,
-  electricityAccess: d.power.electricityAccess?.value ?? null,
-}));
+const resourceInfo = resourceColumns();
+const summary: CountrySummary[] = all.map((d) => summaryOf(d));
+
+// Only resources that have a column; 6 significant digits is plenty for a table and keeps the file small.
+function summaryOf(d: CountryData): CountrySummary {
+  const amounts = (column: "production" | "reserves") =>
+    Object.fromEntries(
+      d.resources.flatMap((r) => {
+        const value = r[column]?.value;
+        const hasColumn = resourceInfo.some((info) => info.id === r.id && info[column] !== null);
+        return value === undefined || !hasColumn ? [] : [[r.id, Number(value.toPrecision(6))]];
+      }),
+    );
+  const cropTonnes = new Map((d.agriculture?.all ?? []).map((c) => [c.name, c.tonnes]));
+  return {
+    id: d.id,
+    name: d.name,
+    powerLevel: d.powerLevel?.score ?? null,
+    population: d.population.total?.value ?? null,
+    fertility: d.population.fertility?.value ?? null,
+    lifeExpectancy: d.population.lifeExpectancy?.value ?? null,
+    medianAge: d.population.medianAge?.value ?? null,
+    density: d.population.density?.value ?? null,
+    gdp: d.economy.gdp?.value ?? null,
+    gdpPerCapita: d.economy.gdpPerCapita?.value ?? null,
+    gdpPerCapitaPpp: d.economy.gdpPerCapitaPpp?.value ?? null,
+    growth: d.economy.growth?.value ?? null,
+    inflation: d.economy.inflation?.value ?? null,
+    debtUsd: d.economy.debtUsd?.value ?? null,
+    debtPercent: d.economy.debt?.value ?? null,
+    politicalStability: d.government.politicalStability?.value ?? null,
+    electricityTwh: d.power.generation?.totalTwh ?? null,
+    electricityAccess: d.power.electricityAccess?.value ?? null,
+    pillars: d.powerLevel?.pillars ?? null,
+    governmentType: d.government.type?.value ?? null,
+    rulingParty: d.government.rulingParty?.value ?? null,
+    headOfState: d.government.headOfState?.value ?? null,
+    headOfGovernment: d.government.headOfGovernment?.value ?? null,
+    under15: d.population.ageStructure?.under15 ?? null,
+    from15to64: d.population.ageStructure?.from15to64 ?? null,
+    over65: d.population.ageStructure?.over65 ?? null,
+    production: amounts("production"),
+    reserves: amounts("reserves"),
+    crops: Object.fromEntries(STAPLES.flatMap((s) => (cropTonnes.has(s.name) ? [[s.id, cropTonnes.get(s.name)!]] : []))),
+    generation: Object.fromEntries((d.power.generation?.mix ?? []).map((m) => [m.source, Number(m.twh.toPrecision(6))])),
+  };
+}
+
+// Energy first (oil, gas, coal as in the info panel), then minerals A-Z. Same id = same unit (see formatData.ts).
+function resourceColumns(): ResourceInfo[] {
+  const byId = new Map<string, { info: ResourceInfo; production: number; reserves: number }>();
+  for (const d of all) {
+    for (const r of d.resources) {
+      const entry = byId.get(r.id) ?? { info: { id: r.id, name: r.name, category: r.category, production: null, reserves: null }, production: 0, reserves: 0 };
+      if (r.production !== null) {
+        entry.info.production = r.production.unit;
+        entry.production++;
+      }
+      if (r.reserves !== null) {
+        entry.info.reserves = r.reserves.unit;
+        entry.reserves++;
+      }
+      byId.set(r.id, entry);
+    }
+  }
+  const usable = [...byId.values()]
+    .map((e) => ({
+      ...e.info,
+      production: e.production >= MIN_RESOURCE_COUNTRIES ? e.info.production : null,
+      reserves: e.reserves >= MIN_RESOURCE_COUNTRIES ? e.info.reserves : null,
+    }))
+    .filter((r) => r.production !== null || r.reserves !== null);
+  const energyOrder = (r: ResourceInfo) => ENERGY_RESOURCES.findIndex((e) => e.id === r.id);
+  const energy = usable.filter((r) => r.category === "energy").sort((a, b) => energyOrder(a) - energyOrder(b));
+  const minerals = usable.filter((r) => r.category === "mineral").sort((a, b) => a.name.localeCompare(b.name));
+  return [...energy, ...minerals];
+}
 writeFileSync(SUMMARY_FILE, JSON.stringify(summary));
 
 const meta: DataMeta = {
@@ -265,6 +327,7 @@ const meta: DataMeta = {
   powerLevelVersion: POWER_LEVEL_VERSION,
   countries: all.length,
   scored: all.filter((d) => d.powerLevel !== null).length,
+  resources: resourceInfo,
 };
 writeFileSync(META_FILE, JSON.stringify(meta));
 writeFileSync(NEARBY_FILE, JSON.stringify(computeNearby(all)));

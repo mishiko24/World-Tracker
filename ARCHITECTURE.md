@@ -112,7 +112,8 @@ scripts/site/             Static pages for search engines + link previews, added
   and stops if anything fails.
 src/urlState.ts           ?c=ESP&vs=FRA&view=list&sort=gdp.desc  read once on load, written with replaceState
 src/ui/list/              List view (settings.listView): CountryList (sortable table of public/data/summary.json),
-                          columns.ts (column list; adding a column = CountrySummary field + build.ts + one entry here)
+                          columns.ts (column groups = info panel sections; adding a column = CountrySummary field +
+                          build.ts summaryOf + one entry here; number columns with 15+ countries get a rank/<slug>/ page)
 
 scripts/data/             Data pipeline (TypeScript run directly by Node 22, no build step)
   run.ts                  Entry: runs steps in order, keeps going after a failure, exits non-zero if any failed
@@ -189,7 +190,13 @@ SECURITY: never write URLs containing the EIA key to files or logs. A leak happe
 - **Info panel:** no source/year lines (clutter); year + source are the value's tooltip.
 - **Zoom:** toward cursor, 1x (world height fills viewport) to 40x; exponential glide in log space.
 - **List view:** toggle in the left panel. The map stays mounted but hidden (camera survives). Sorting: first click
-  highest first (name A→Z), second click reverses, missing values always last. Row click = select (opens info panel).
+  highest first (name and text A→Z), second click reverses, missing values always last. Row click = select (opens info panel).
+  Columns are grouped like the info panel's sections (Power Level + pillars, Government incl. text columns, Population
+  incl. age groups, Economy, Resources: production, Resources: reserves, Agriculture = 15 staples (STAPLES in
+  countryData.ts), Power generation by source). A group header collapses it to a narrow "+" strip; collapsed groups
+  are saved in settings.listCollapsed (resources start collapsed: dozens of columns). Resource columns come from
+  meta.json `resources` (resources with 3+ countries, energy first then A-Z, unit per resource). Cells carry
+  data-column=<column id> (tests). A sort id with no column (old link) falls back to Power Level.
 - **Info panel layout:** fixed label column, values left-aligned right after it. Resource lists show everything
   available (no truncation), by Mishiko's choice.
 - **Map types:** Dark (default), Light, Satellite. Each map type has its own colors in settings.

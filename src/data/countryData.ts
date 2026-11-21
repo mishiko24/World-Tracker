@@ -194,7 +194,37 @@ export interface DataMeta {
   powerLevelVersion: number;
   countries: number; // countries on the map
   scored: number; // countries with a Power Level
+  resources: ResourceInfo[]; // the resources that get list-view columns, in column order
 }
+
+// A resource as a list-view column: its unit, or null when too few countries have that number to be worth a column.
+export interface ResourceInfo {
+  id: string;
+  name: string;
+  category: "energy" | "mineral";
+  production: AmountUnit | null;
+  reserves: AmountUnit | null;
+}
+
+// The world's staple foods: one list-view column each. name = the FAOSTAT item name.
+export const STAPLES = [
+  { id: "maize", name: "Maize (corn)", label: "Maize" },
+  { id: "wheat", name: "Wheat", label: "Wheat" },
+  { id: "rice", name: "Rice", label: "Rice" },
+  { id: "soybeans", name: "Soya beans", label: "Soybeans" },
+  { id: "potatoes", name: "Potatoes", label: "Potatoes" },
+  { id: "cassava", name: "Cassava", label: "Cassava" },
+  { id: "sugar-cane", name: "Sugar cane", label: "Sugar cane" },
+  { id: "bananas", name: "Bananas", label: "Bananas" },
+  { id: "palm-oil", name: "Oil palm fruit", label: "Oil palm fruit" },
+  { id: "coffee", name: "Coffee, green", label: "Coffee" },
+  { id: "milk", name: "Raw milk of cattle", label: "Milk" },
+  { id: "beef", name: "Meat of cattle", label: "Beef" },
+  { id: "chicken", name: "Meat of chickens", label: "Chicken" },
+  { id: "pork", name: "Meat of pig", label: "Pork" },
+  { id: "eggs", name: "Hen eggs in shell", label: "Eggs" },
+] as const;
+export type StapleId = (typeof STAPLES)[number]["id"];
 
 // Display order and names (info panel, share cards).
 export const PILLAR_ORDER: PillarId[] = ["economy", "resources", "population", "energy", "food", "stability"];
@@ -245,7 +275,7 @@ export type Trends = Partial<Record<TrendKey, TrendPoint[]>>;
 
 // One row of the list view: public/data/summary.json is an array of these, one per map country.
 // Plain numbers (no year/source) to keep the file small; the info panel has the details.
-// To add a list column: add a field here, fill it in scripts/data/build.ts, add it to src/ui/list/columns.ts.
+// To add a list column: add a field here, fill it in scripts/data/build.ts (summaryOf), add it to src/ui/list/columns.ts.
 export interface CountrySummary {
   id: string;
   name: string;
@@ -265,4 +295,21 @@ export interface CountrySummary {
   politicalStability: number | null; // 0-100
   electricityTwh: number | null; // electricity generated per year
   electricityAccess: number | null; // % of population
+  pillars: Record<PillarId, number | null> | null; // Power Level pillar scores; null = no Power Level
+  governmentType: string | null;
+  rulingParty: string | null;
+  headOfState: string | null;
+  headOfGovernment: string | null;
+  under15: number | null; // % of population
+  from15to64: number | null;
+  over65: number | null;
+  production: Record<string, number>; // resource id -> production per year, unit in DataMeta.resources
+  reserves: Record<string, number>;
+  crops: Partial<Record<StapleId, number>>; // tonnes per year
+  generation: Partial<Record<PowerSource, number>>; // TWh per year by source
 }
+
+// The summary fields that hold a single number (list columns, audit).
+export type SummaryNumberKey = {
+  [K in keyof CountrySummary]: CountrySummary[K] extends number | null ? K : never;
+}[keyof CountrySummary];

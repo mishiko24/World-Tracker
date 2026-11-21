@@ -15,14 +15,14 @@
 
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
-import type { CountrySummary, DataMeta } from "../../src/data/countryData.ts";
+import type { CountrySummary, DataMeta, SummaryNumberKey } from "../../src/data/countryData.ts";
 
 const STALE_DAYS = 40;
 const COVERAGE_DROP = 0.05; // 5% fewer countries with a field
 const RANK_MOVE = 15;
 const MAX_LISTED = 15; // per section, biggest first
 
-type Field = Exclude<keyof CountrySummary, "id" | "name">;
+type Field = SummaryNumberKey;
 
 const FIELDS: Field[] = [
   "powerLevel", "population", "fertility", "lifeExpectancy", "medianAge", "density", "gdp", "gdpPerCapita",

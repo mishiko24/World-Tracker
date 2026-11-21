@@ -5,9 +5,9 @@
 // and the DATASETS table <-> the fetchers in scripts/data/fetch/. Pillar weights and source licenses
 // are read from src/data/countryData.ts, so those can't drift.
 
-import { useEffect, useState } from "react";
+import { useDataMeta } from "../data/useDataMeta";
 import { COPYRIGHT, REPORT_ISSUE_URL } from "../links";
-import { PILLAR_LABELS, PILLAR_ORDER, PILLAR_WEIGHTS, SOURCES, type DataMeta, type PillarId, type SourceId } from "../data/countryData";
+import { PILLAR_LABELS, PILLAR_ORDER, PILLAR_WEIGHTS, SOURCES, type PillarId, type SourceId } from "../data/countryData";
 
 // What goes into each pillar, in plain words.
 const PILLAR_CONTENTS: Record<PillarId, string> = {
@@ -36,27 +36,12 @@ const DATASETS: { section: string; data: string; source: SourceId }[] = [
   { section: "Power generation", data: "Access to electricity", source: "worldbank" },
 ];
 
-function useMeta(): DataMeta | null {
-  const [meta, setMeta] = useState<DataMeta | null>(null);
-  useEffect(() => {
-    fetch(`${import.meta.env.BASE_URL}data/meta.json`)
-      .then((r) => {
-        if (!r.ok) {
-          throw new Error(`meta.json: HTTP ${r.status}`);
-        }
-        return r.json();
-      })
-      .then(setMeta);
-  }, []);
-  return meta;
-}
-
 function formatDate(isoDate: string): string {
   return new Date(`${isoDate}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 }
 
 export function AboutPage() {
-  const meta = useMeta();
+  const meta = useDataMeta();
 
   return (
     <main className="about">

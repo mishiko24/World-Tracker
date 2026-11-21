@@ -362,26 +362,44 @@ await page.waitForTimeout(300);
 await page.check("aside.panel-left .list-view-toggle input");
 await page.waitForSelector(".country-list tbody tr");
 check("list view hides the map", await page.$eval("canvas", (c) => getComputedStyle(c).visibility === "hidden"));
-const headerNames = await page.$$eval(".country-list th", (els) => els.map((e) => e.textContent.replace(/[▲▼]/g, "").trim()));
-check(
-  "list view columns",
-  headerNames.join("|") ===
-    "Name|Power Level|Population|Births per woman|Life expectancy|Median age|Density (per km²)|GDP|GDP per capita|GDP per capita (PPP)|Real growth|Inflation|Central gov. debt|Central gov. debt (% GDP)|Political stability|Electricity generated (TWh)|Access to electricity",
-  headerNames.join("|"),
+// A collapsed group's strip shows only "+"; its name is in the tooltip.
+const groupNames = await page.$$eval(".country-list tr.group-row th:not(.name-column)", (els) =>
+  els.map((e) => (e.classList.contains("group-strip") ? e.title.replace(/^Show the | columns$/g, "") : e.textContent.replace("−", "").trim())),
 );
-const PPP_COLUMN = headerNames.indexOf("GDP per capita (PPP)");
+check(
+  "list view column groups",
+  groupNames.join("|") === "Power Level|Government|Population|Economy|Resources: production|Resources: reserves|Agriculture|Power generation",
+  groupNames.join("|"),
+);
+const columnIds = await page.$$eval(".country-list tr.column-row th", (els) => els.map((e) => e.dataset.column));
+check(
+  "list view columns include pillars, text, age groups, crops and power sources",
+  ["pillar.economy", "governmentType", "under15", "gdpPerCapitaPpp", "crop.wheat", "generation.solar", "electricityAccess"].every((id) => columnIds.includes(id)),
+  columnIds.join(","),
+);
+check("resource groups start collapsed", (await page.$$(".country-list th.group-strip")).length === 2 && !columnIds.some((id) => id.startsWith("production.")));
 const firstNames = async () => page.$$eval(".country-list tbody tr td:first-child", (els) => els.slice(0, 3).map((e) => e.textContent));
-const columnValues = async (index) =>
-  page.$$eval(".country-list tbody tr", (rows, i) => rows.map((r) => r.children[i].textContent), index);
+const columnValues = async (id) => page.$$eval(`.country-list tbody td[data-column="${id}"]`, (tds) => tds.map((td) => td.textContent));
 check("default sort: Power Level, highest first", (await firstNames())[0] === "China", (await firstNames()).join(", "));
 await page.click(".country-list th >> text=GDP per capita (PPP)");
-const pppDesc = (await columnValues(PPP_COLUMN)).filter((v) => v !== "—").map((v) => Number(v.replace(/[$,]/g, "")));
+const pppDesc = (await columnValues("gdpPerCapitaPpp")).filter((v) => v !== "—").map((v) => Number(v.replace(/[$,]/g, "")));
 check("click header sorts highest first", pppDesc.every((v, i) => i === 0 || pppDesc[i - 1] >= v), pppDesc.slice(0, 3).join(", "));
 await page.click(".country-list th >> text=GDP per capita (PPP)");
-const pppAll = await columnValues(PPP_COLUMN);
+const pppAll = await columnValues("gdpPerCapitaPpp");
 const pppAsc = pppAll.filter((v) => v !== "—").map((v) => Number(v.replace(/[$,]/g, "")));
 check("second click reverses (lowest first)", pppAsc.every((v, i) => i === 0 || pppAsc[i - 1] <= v), pppAsc.slice(0, 3).join(", "));
 check("missing values stay at the bottom", pppAll.indexOf("—") === pppAsc.length && pppAll.slice(pppAsc.length).every((v) => v === "—"));
+// Text columns sort A→Z first; missing values still last.
+await page.click('.country-list th[data-column="governmentType"]');
+const types = (await columnValues("governmentType")).filter((v) => v !== "—");
+check("text column sorts A→Z", types.every((v, i) => i === 0 || types[i - 1].localeCompare(v) <= 0), types.slice(0, 3).join(", "));
+// Opening a collapsed group shows its columns, sortable like the rest; the choice is remembered.
+await page.click(".country-list th.group-strip >> nth=0");
+await page.click('.country-list th[data-column="production.oil"]');
+check("opened resource group sorts by oil", (await firstNames())[0] === "United States", (await firstNames()).join(", "));
+check("open group remembered", JSON.parse(await page.evaluate(() => localStorage.getItem("worldTracker.settings.v2"))).listCollapsed.join() === "reserves");
+await page.click(".country-list th.group-header button >> text=Resources: production");
+check("group collapses back to a strip", (await page.$$(".country-list th.group-strip")).length === 2);
 await page.click(".country-list th >> text=Name");
 check("name sorts A→Z", (await firstNames())[0] < (await firstNames())[1], (await firstNames()).join(", "));
 await page.click(".country-list tbody tr >> text=Georgia");

@@ -473,6 +473,119 @@ button {
   color: var(--text);
 }
 
+/* Two header rows: section groups, then columns. Both stay pinned while scrolling. */
+.country-list {
+  --group-row-height: 30px;
+  --name-column-width: 244px; /* .name-column max-width + padding */
+}
+
+.country-list td.group-strip {
+  vertical-align: top;
+}
+
+.country-list tr.group-row th {
+  height: var(--group-row-height);
+  box-sizing: border-box;
+  padding: 0 12px;
+  background: #18181d;
+}
+
+.country-list tr.column-row th {
+  top: var(--group-row-height);
+  vertical-align: bottom;
+}
+
+.country-list th.group-header {
+  text-align: left;
+  cursor: default;
+}
+
+/* The group name stays visible beside the pinned name column while the group scrolls past. */
+.country-list th.group-header button {
+  all: unset;
+  position: sticky;
+  left: calc(var(--name-column-width) + 12px);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.country-list th.group-header button:hover {
+  color: var(--text);
+}
+
+.country-list .group-toggle {
+  display: inline-block;
+  width: 1em;
+  margin-right: 6px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* A collapsed group: one narrow strip with a "+" and the group's name running down it. */
+.country-list .group-strip {
+  width: 26px;
+  min-width: 26px;
+  max-width: 26px;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+  background: repeating-linear-gradient(135deg, #18181d 0 6px, #1c1c22 6px 12px);
+}
+
+.country-list th.group-strip {
+  vertical-align: top;
+  padding-top: 8px;
+}
+
+.country-list th.group-strip .group-toggle {
+  margin: 0 0 8px;
+}
+
+/* Stays in view while the table scrolls (sticky inside the tall strip cell). */
+.country-list .group-strip-label {
+  display: block;
+  position: sticky;
+  top: calc(var(--group-row-height) + 60px);
+  margin: 12px auto;
+  writing-mode: vertical-rl;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.country-list .group-strip:hover,
+.country-list tbody tr:hover td.group-strip {
+  background: #24242c;
+  color: var(--text);
+}
+
+.country-list .group-start {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.country-list .column-unit {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.country-list .text-cell {
+  text-align: left;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.country-list th.name-column {
+  vertical-align: bottom;
+}
+
 .country-list .name-column {
   position: sticky;
   left: 0;
@@ -1074,6 +1187,10 @@ button {
 
   .country-list.right-panel-open {
     bottom: 172px;
+  }
+
+  .country-list {
+    --name-column-width: 154px;
   }
 
   .country-list .name-column {

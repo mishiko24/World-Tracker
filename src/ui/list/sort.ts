@@ -1,9 +1,10 @@
 // List sorting state. Lives in App (not CountryList) so it can be part of the shareable URL.
 
 import type { CountrySummary } from "../../data/countryData";
-import { COLUMNS, type NumericKey } from "./columns";
+import type { Column } from "./columns";
 
-export type SortKey = "name" | NumericKey;
+// "name" or a column id (src/ui/list/columns.ts).
+export type SortKey = string;
 
 export interface Sort {
   key: SortKey;
@@ -12,30 +13,34 @@ export interface Sort {
 
 export const DEFAULT_SORT: Sort = { key: "powerLevel", descending: true };
 
-export function isSortKey(key: string): key is SortKey {
-  return key === "name" || COLUMNS.some((c) => c.key === key);
+// Column ids are letters, digits, dots and dashes. Whether the column exists is only known once the data
+// has loaded; CountryList falls back to DEFAULT_SORT for an id that has no column (e.g. an old link).
+export function isSortKey(key: string): boolean {
+  return /^[a-zA-Z][\w.-]*$/.test(key);
 }
 
-// First click on a column = highest first (names A→Z); clicking the same column again reverses.
-export function nextSort(current: Sort, key: SortKey): Sort {
+// First click on a column = highest first (names and text A→Z); clicking the same column again reverses.
+export function nextSort(current: Sort, key: SortKey, isText: boolean): Sort {
   if (key === current.key) {
     return { key, descending: !current.descending };
   }
-  return { key, descending: key !== "name" };
+  return { key, descending: !isText };
 }
 
-// Missing values always sort last, in either direction.
-export function sortRows(rows: CountrySummary[], sort: Sort): CountrySummary[] {
-  const direction = sort.descending ? -1 : 1;
-  if (sort.key === "name") {
+// column = null sorts by name. Missing values always sort last, in either direction.
+export function sortRows(rows: CountrySummary[], column: Column | null, descending: boolean): CountrySummary[] {
+  const direction = descending ? -1 : 1;
+  if (column === null) {
     return [...rows].sort((a, b) => direction * a.name.localeCompare(b.name));
   }
-  const key = sort.key;
   return [...rows].sort((a, b) => {
-    const va = a[key];
-    const vb = b[key];
+    const va = column.value(a);
+    const vb = column.value(b);
     if (va === null || vb === null) {
       return Number(va === null) - Number(vb === null);
+    }
+    if (typeof va === "string" || typeof vb === "string") {
+      return direction * String(va).localeCompare(String(vb));
     }
     return direction * (va - vb);
   });

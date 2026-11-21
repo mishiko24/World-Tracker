@@ -144,6 +144,8 @@ export function App() {
           rows={summaries}
           sort={sort}
           onSortChange={setSort}
+          collapsed={settings.listCollapsed}
+          onCollapsedChange={(listCollapsed) => changeSettings({ ...settings, listCollapsed })}
           selectedId={selectedId}
           comparedId={comparedId}
           onSelect={select}

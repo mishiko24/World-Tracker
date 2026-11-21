@@ -2,7 +2,7 @@
 //
 //   countries/              hub: every country A-Z and every ranking
 //   country/<slug>/         one page per country: its data as plain HTML
-//   rank/<key>/             one page per list-view column: every country ranked
+//   rank/<slug>/            one page per list-view number column with enough countries: every country ranked
 //   compare/<a>-vs-<b>/     which pairs, and the addresses: src/data/sitePages.ts (neighbours: data/nearby.json)
 //   sitemap.xml             all of the above plus the map and the Sources & method page
 //   404.html                forwards guessed addresses (compare/usa-vs-russia) to the real page (notFound.ts)
@@ -25,7 +25,7 @@ import type { CountryProperties } from "../../src/map/geo";
 import { winner, type Better } from "../../src/ui/info/Compare";
 import { amount, dollars, fullNumber, percent, share, tonnes } from "../../src/ui/info/formatData";
 import { POWER_SOURCE_STYLE } from "../../src/ui/info/PowerSection";
-import { COLUMNS } from "../../src/ui/list/columns";
+import { columnGroups, type ColumnGroup, type NumberColumn } from "../../src/ui/list/columns";
 import { comparePagePath, countryPagePath, G20, isNearby, slugOf, type Nearby } from "../../src/data/sitePages";
 import { escape, inWords, page, rootFrom } from "./html";
 import { notFoundPage } from "./notFound";
@@ -84,10 +84,12 @@ export function buildPages(dist: string): { cards: CardJob[]; pages: number } {
     write(dist, path, countryPage(site, d));
     paths.push(path);
   }
-  for (const column of COLUMNS) {
-    const path = `rank/${kebab(column.key)}/`;
-    write(dist, path, rankPage(site, column, path));
-    paths.push(path);
+  for (const group of rankingGroups(site)) {
+    for (const column of group.columns) {
+      const path = `rank/${column.slug}/`;
+      write(dist, path, rankPage(site, column, path));
+      paths.push(path);
+    }
   }
   for (const [a, b] of comparePairs(site)) {
     const path = comparePath(site, a, b);
@@ -172,10 +174,6 @@ function countryCodes(dist: string): Map<string, (string | null)[]> {
 
 function cardOf(a: string, b: string | null): string {
   return `cards/${a.toLowerCase()}${b === null ? "" : `-vs-${b.toLowerCase()}`}.jpg`;
-}
-
-function kebab(key: string): string {
-  return key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`);
 }
 
 // Flag image (public/flags, built by scripts/build-flags.mjs); decorative, the name is always next to it.
@@ -385,14 +383,28 @@ function comparePage(site: Site, a: CountryData, b: CountryData, path: string, i
   });
 }
 
-function rankPage(site: Site, column: (typeof COLUMNS)[number], path: string): string {
+// A ranking of fewer countries than this is too thin to be worth a page.
+const MIN_RANKED = 15;
+
+// The list view's number columns, by section, that have enough countries for a ranking page.
+function rankingGroups(site: Site): { label: string; columns: NumberColumn[] }[] {
+  const ranked = (c: NumberColumn) => site.countries.filter((d) => c.value(site.summaries.get(d.id)!) !== null).length;
+  return columnGroups(site.meta.resources)
+    .map((g: ColumnGroup) => ({
+      label: g.label,
+      columns: g.columns.filter((c): c is NumberColumn => c.kind === "number" && ranked(c) >= MIN_RANKED),
+    }))
+    .filter((g) => g.columns.length > 0);
+}
+
+function rankPage(site: Site, column: NumberColumn, path: string): string {
   const root = rootFrom(path);
   const ranked = site.countries
-    .map((d) => ({ d, value: site.summaries.get(d.id)![column.key] }))
+    .map((d) => ({ d, value: column.value(site.summaries.get(d.id)!) }))
     .filter((r): r is { d: CountryData; value: number } => r.value !== null)
     .sort((x, y) => y.value - x.value);
   const top = ranked.slice(0, 3).map((r) => r.d.name);
-  const label = column.label;
+  const label = column.fullLabel;
   return page({
     path,
     title: `Countries by ${label}: full ranking | World Tracker`,
@@ -402,7 +414,7 @@ function rankPage(site: Site, column: (typeof COLUMNS)[number], path: string): s
     builtAt: site.meta.builtAt,
     body:
       `<h1>Countries by ${escape(label)}</h1><p class="lead">${ranked.length} countries, highest first. Latest available year for each country.</p>` +
-      `<a class="cta" href="${root}?view=list&amp;sort=${column.key}.desc">Open this ranking in the interactive list</a>` +
+      `<a class="cta" href="${root}?view=list&amp;sort=${column.id}.desc">Open this ranking in the interactive list</a>` +
       `<table class="list ranking"><thead><tr><th>#</th><th>Country</th><th>${escape(label)}</th></tr></thead><tbody>${ranked
         .map((r, i) => `<tr><td>${i + 1}</td><td>${countryLink(site, root, r.d.id)}</td><td>${escape(column.format(r.value))}</td></tr>`)
         .join("")}</tbody></table>`,
@@ -424,9 +436,14 @@ function hubPage(site: Site): string {
     body:
       `<h1>Countries &amp; rankings</h1><p class="lead">Every country on World Tracker, and every ranking. ` +
       `Think you know them? <a href="${root}${GAME_URL}">Try the daily challenge</a>, Higher or Lower, and the flag and outline quizzes.</p>` +
-      `<section><h2>Rankings</h2><ul class="link-grid">${COLUMNS.map(
-        (c) => `<li><a href="${root}rank/${kebab(c.key)}/">Countries by ${escape(c.label)}</a></li>`,
-      ).join("")}</ul></section>` +
+      `<section><h2>Rankings</h2>${rankingGroups(site)
+        .map(
+          (g) =>
+            `<h3>${escape(g.label)}</h3><ul class="link-grid">${g.columns
+              .map((c) => `<li><a href="${root}rank/${c.slug}/">Countries by ${escape(c.fullLabel)}</a></li>`)
+              .join("")}</ul>`,
+        )
+        .join("")}</section>` +
       `<section><h2>All countries</h2><ul class="link-grid">${sorted
         .map((d) => `<li>${countryLink(site, root, d.id)}${d.powerLevel === null ? "" : ` <span class="year">${d.powerLevel.score.toFixed(1)}</span>`}</li>`)
         .join("")}</ul></section>`,

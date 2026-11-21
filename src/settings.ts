@@ -26,6 +26,7 @@ export interface MapStyle {
 export interface Settings {
   mapType: MapType;
   listView: boolean; // show the sortable country table instead of the map
+  listCollapsed: string[]; // list column groups shown as a "+" strip (ColumnGroup ids, src/ui/list/columns.ts)
   colorBy: "style" | "powerLevel"; // country fill: the map style's colors, or a heat map of Power Level
   styles: Record<MapType, MapStyle>;
   zoomAmount: number; // zoom change per scroll notch: 0.3 = 30%
@@ -60,6 +61,7 @@ const SATELLITE_STYLE: MapStyle = {
 export const DEFAULT_SETTINGS: Settings = {
   mapType: "dark",
   listView: false,
+  listCollapsed: ["production", "reserves"], // dozens of columns each
   colorBy: "style",
   styles: {
     dark: DARK_STYLE,
