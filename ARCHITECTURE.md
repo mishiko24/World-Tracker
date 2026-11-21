@@ -63,6 +63,10 @@ src/data/sitePages.ts     Which static pages exist + their addresses (G20 list, 
 about.html + src/about/   Sources & method page (second Vite entry, see vite.config.ts): data date (public/data/meta.json),
                           Power Level method, source + license table. Weights/licenses come from countryData.ts;
                           the method text and the datasets table are kept in sync with the pipeline by hand
+src/ui/info/TrendChart.tsx  Trend charts: rows with history (CountryData.trends: 9 World Bank indicators, 2000-latest,
+                          fetched in fetch/worldbank.ts) get a chart icon; click opens an SVG line chart, two lines when
+                          comparing; pointer = year readout. TrendRow wraps any FactRow. The latest value of those 9
+                          indicators also comes from the history (mrnev=1 dropped values, Nov 2026)
 src/ui/Flag.tsx           Flag chip before country names (info header, list, search, comparison rows, Power Level card).
                           public/flags/<ID>.png, 96x72, built by scripts/build-flags.mjs from flag-icons (MIT);
                           every id has a file (grey placeholder for Northern Cyprus, Somaliland, Siachen).

@@ -1,10 +1,11 @@
 // Power generation: total, a stacked bar of the mix, and one row per source. Rows add up to the total.
 // In comparison mode each row also shows the other country's generation from the same source.
 
-import type { CountryData, Power, PowerSource } from "../../data/countryData";
+import type { CountryData, Power, PowerSource, Trends } from "../../data/countryData";
 import type { Comparison } from "./Compare";
 import { FactRow } from "./FactRow";
 import { percent, shortNumber } from "./formatData";
+import { TrendRow, trendOf } from "./TrendChart";
 
 export const POWER_SOURCE_STYLE: Record<PowerSource, { label: string; color: string }> = {
   coal: { label: "Coal", color: "#6b6b6b" },
@@ -22,7 +23,7 @@ function twh(value: number): string {
   return value >= 100 ? `${shortNumber(value)} TWh` : `${value.toFixed(value < 1 ? 2 : 1)} TWh`;
 }
 
-export function PowerSection({ power, other }: { power: Power; other: CountryData | null }) {
+export function PowerSection({ power, trends, other }: { power: Power; trends: Trends; other: CountryData | null }) {
   const generation = power.generation;
   const access = power.electricityAccess;
   const comparing = other !== null;
@@ -79,16 +80,22 @@ export function PowerSection({ power, other }: { power: Power; other: CountryDat
           </div>
         </>
       )}
-      <FactRow
+      <TrendRow
         label="Access to electricity"
-        value={access === null ? null : percent(access.value)}
-        year={access?.year}
-        source={access?.source}
-        compare={
-          comparing
-            ? { a: access?.value ?? null, b: other.power.electricityAccess?.value ?? null, format: (v) => percent(v), mode: "points" }
-            : undefined
-        }
+        trend={trendOf("electricityAccess", trends, other, (v) => percent(v))}
+        row={(shownLabel) => (
+          <FactRow
+            label={shownLabel}
+            value={access === null ? null : percent(access.value)}
+            year={access?.year}
+            source={access?.source}
+            compare={
+              comparing
+                ? { a: access?.value ?? null, b: other.power.electricityAccess?.value ?? null, format: (v) => percent(v), mode: "points" }
+                : undefined
+            }
+          />
+        )}
       />
     </>
   );

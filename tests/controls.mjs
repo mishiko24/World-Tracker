@@ -516,6 +516,26 @@ await page.click(".share-button");
 await page.waitForFunction(() => !document.querySelector(".share-link").textContent.includes("…"));
 check("pair without a page shares the map link", (await page.textContent(".share-link")).endsWith("?c=TUV&vs=ISL"), await page.textContent(".share-link"));
 
+// ---------- trend charts ----------
+await page.goto(`${URL}?c=ESP`);
+await page.waitForSelector(".power-card");
+await page.click("aside.panel-right .collapsible-header >> text=Population");
+check("rows with history get a trend toggle", (await page.$$("aside.panel-right .trend-toggle")).length === 3);
+await page.click("aside.panel-right .trend-toggle >> text=Population");
+check("trend chart opens with one line", (await page.$$("aside.panel-right .trend-line")).length === 1);
+const spainTrend = (await (await fetch(`${URL}data/countries/ESP.json`)).json()).trends.population;
+const readout = await page.textContent(".trend-readout");
+check("readout shows the latest year by default", readout.startsWith(String(spainTrend[spainTrend.length - 1][0])), readout);
+await page.goto(`${URL}?c=ESP&vs=FRA`);
+await page.waitForSelector(".power-card.comparing");
+await page.click("aside.panel-right .collapsible-header >> text=Economy");
+await page.click("aside.panel-right .trend-toggle >> text=GDP per capita (PPP)");
+check("comparison trend: both countries' lines", (await page.$$("aside.panel-right .trend-line.a, aside.panel-right .trend-line.b")).length === 2);
+const chart = await (await page.$(".trend-svg")).boundingBox();
+await page.mouse.move(chart.x + chart.width * 0.2, chart.y + chart.height / 2);
+const hovered = await page.textContent(".trend-year");
+check("pointing at the chart reads out an earlier year", Number(hovered) < spainTrend[spainTrend.length - 1][0], hovered);
+
 // ---------- Higher or Lower (play.html) ----------
 const summary = await (await fetch(`${URL}data/summary.json`)).json();
 const valueOf = (id, key) => summary.find((s) => s.id === id)[key];

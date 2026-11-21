@@ -1,10 +1,11 @@
 // Government, Population and Economy: plain lists of facts.
-// `other` is the compared country's data (comparison mode) or null.
+// `other` is the compared country's data (comparison mode) or null. Rows with history get a trend chart (TrendChart.tsx).
 
-import type { CountryData, Economy, Government, NumberFact, Population } from "../../data/countryData";
+import type { CountryData, Economy, Government, NumberFact, Population, Trends } from "../../data/countryData";
 import type { Better, DiffMode } from "./Compare";
 import { FactRow } from "./FactRow";
 import { dollars, percent, shortNumber } from "./formatData";
+import { TrendRow, trendOf, type TrendInput } from "./TrendChart";
 
 interface NumberRowProps {
   label: string;
@@ -13,16 +14,23 @@ interface NumberRowProps {
   format: (value: number) => string;
   mode?: DiffMode;
   better?: Better;
+  trend?: TrendInput;
 }
 
-function NumberRow({ label, fact, other, format, mode, better }: NumberRowProps) {
+function NumberRow({ label, fact, other, format, mode, better, trend }: NumberRowProps) {
   return (
-    <FactRow
+    <TrendRow
       label={label}
-      value={fact === null ? null : format(fact.value)}
-      year={fact?.year}
-      source={fact?.source}
-      compare={other === undefined ? undefined : { a: fact?.value ?? null, b: other?.value ?? null, format, mode, better }}
+      trend={trend}
+      row={(shownLabel) => (
+        <FactRow
+          label={shownLabel}
+          value={fact === null ? null : format(fact.value)}
+          year={fact?.year}
+          source={fact?.source}
+          compare={other === undefined ? undefined : { a: fact?.value ?? null, b: other?.value ?? null, format, mode, better }}
+        />
+      )}
     />
   );
 }
@@ -79,15 +87,39 @@ const AGE_ROWS = [
   { label: "Age 65+", key: "over65" },
 ] as const;
 
-export function PopulationSection({ population, other }: { population: Population; other: CountryData | null }) {
+interface SectionProps {
+  trends: Trends;
+  other: CountryData | null;
+}
+
+export function PopulationSection({ population, trends, other }: SectionProps & { population: Population }) {
   const b = other?.population;
   const age = population.ageStructure;
   const otherAge = b?.ageStructure ?? null;
   return (
     <>
-      <NumberRow label="Population" fact={population.total} other={b?.total} format={shortNumber} />
-      <NumberRow label="Children per woman" fact={population.fertility} other={b?.fertility} format={(v) => v.toFixed(2)} />
-      <NumberRow label="Life expectancy" fact={population.lifeExpectancy} other={b?.lifeExpectancy} format={years} mode="years" />
+      <NumberRow
+        label="Population"
+        fact={population.total}
+        other={b?.total}
+        format={shortNumber}
+        trend={trendOf("population", trends, other, shortNumber)}
+      />
+      <NumberRow
+        label="Children per woman"
+        fact={population.fertility}
+        other={b?.fertility}
+        format={(v) => v.toFixed(2)}
+        trend={trendOf("fertility", trends, other, (v) => v.toFixed(2))}
+      />
+      <NumberRow
+        label="Life expectancy"
+        fact={population.lifeExpectancy}
+        other={b?.lifeExpectancy}
+        format={years}
+        mode="years"
+        trend={trendOf("lifeExpectancy", trends, other, years)}
+      />
       <NumberRow
         label="Median age"
         fact={population.medianAge}
@@ -121,22 +153,47 @@ export function PopulationSection({ population, other }: { population: Populatio
   );
 }
 
-export function EconomySection({ economy, other }: { economy: Economy; other: CountryData | null }) {
+export function EconomySection({ economy, trends, other }: SectionProps & { economy: Economy }) {
   const b = other?.economy;
   const rank = economy.gdpRank;
   return (
     <>
-      <FactRow
+      <TrendRow
         label="GDP"
-        value={economy.gdp === null ? null : dollars(economy.gdp.value)}
-        year={economy.gdp?.year}
-        source={economy.gdp?.source}
-        meta={rank && `#${rank.rank} of ${rank.of}`}
-        compare={other === null ? undefined : { a: economy.gdp?.value ?? null, b: b?.gdp?.value ?? null, format: dollars }}
+        trend={trendOf("gdp", trends, other, dollars)}
+        row={(shownLabel) => (
+          <FactRow
+            label={shownLabel}
+            value={economy.gdp === null ? null : dollars(economy.gdp.value)}
+            year={economy.gdp?.year}
+            source={economy.gdp?.source}
+            meta={rank && `#${rank.rank} of ${rank.of}`}
+            compare={other === null ? undefined : { a: economy.gdp?.value ?? null, b: b?.gdp?.value ?? null, format: dollars }}
+          />
+        )}
       />
-      <NumberRow label="GDP per capita" fact={economy.gdpPerCapita} other={b?.gdpPerCapita} format={dollars} />
-      <NumberRow label="GDP per capita (PPP)" fact={economy.gdpPerCapitaPpp} other={b?.gdpPerCapitaPpp} format={dollars} />
-      <NumberRow label="Real growth" fact={economy.growth} other={b?.growth} format={(v) => percent(v)} mode="points" />
+      <NumberRow
+        label="GDP per capita"
+        fact={economy.gdpPerCapita}
+        other={b?.gdpPerCapita}
+        format={dollars}
+        trend={trendOf("gdpPerCapita", trends, other, dollars)}
+      />
+      <NumberRow
+        label="GDP per capita (PPP)"
+        fact={economy.gdpPerCapitaPpp}
+        other={b?.gdpPerCapitaPpp}
+        format={dollars}
+        trend={trendOf("gdpPerCapitaPpp", trends, other, dollars)}
+      />
+      <NumberRow
+        label="Real growth"
+        fact={economy.growth}
+        other={b?.growth}
+        format={(v) => percent(v)}
+        mode="points"
+        trend={trendOf("growth", trends, other, (v) => percent(v))}
+      />
       <NumberRow
         label="Inflation"
         fact={economy.inflation}
@@ -144,6 +201,7 @@ export function EconomySection({ economy, other }: { economy: Economy; other: Co
         format={(v) => percent(v)}
         mode="points"
         better="lower"
+        trend={trendOf("inflation", trends, other, (v) => percent(v))}
       />
       <NumberRow label="Central gov. debt" fact={economy.debtUsd} other={b?.debtUsd} format={dollars} better="lower" />
       <NumberRow

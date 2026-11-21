@@ -122,10 +122,10 @@ export function InfoPanel(props: InfoPanelProps) {
           {loaded(state, (d) => <GovernmentSection government={d.government} other={other} />)}
         </Collapsible>
         <Collapsible title="Population">
-          {loaded(state, (d) => <PopulationSection population={d.population} other={other} />)}
+          {loaded(state, (d) => <PopulationSection population={d.population} trends={d.trends} other={other} />)}
         </Collapsible>
         <Collapsible title="Economy">
-          {loaded(state, (d) => <EconomySection economy={d.economy} other={other} />)}
+          {loaded(state, (d) => <EconomySection economy={d.economy} trends={d.trends} other={other} />)}
         </Collapsible>
         <Collapsible title="Resources">
           {loaded(state, (d) => <ResourcesSection resources={d.resources} other={other} />)}
@@ -134,7 +134,7 @@ export function InfoPanel(props: InfoPanelProps) {
           {loaded(state, (d) => <AgricultureSection agriculture={d.agriculture} other={other} />)}
         </Collapsible>
         <Collapsible title="Power generation">
-          {loaded(state, (d) => <PowerSection power={d.power} other={other} />)}
+          {loaded(state, (d) => <PowerSection power={d.power} trends={d.trends} other={other} />)}
         </Collapsible>
       </div>
       {sharing && cardA !== null && <ShareDialog a={cardA} b={cardB} onClose={() => setSharing(false)} />}

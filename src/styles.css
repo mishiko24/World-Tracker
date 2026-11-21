@@ -1387,3 +1387,116 @@ button {
   font-family: ui-monospace, Menlo, Consolas, monospace;
   font-size: 11.5px;
 }
+
+/* ---------- trend charts (src/ui/info/TrendChart.tsx) ---------- */
+
+.trend-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.trend-toggle:hover,
+.trend-toggle.open {
+  color: var(--text);
+}
+
+.trend-icon {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  color: var(--accent);
+  opacity: 0.8;
+}
+
+.trend {
+  margin: 2px 0 10px;
+  padding: 8px 10px 4px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--panel-border);
+}
+
+.trend-readout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 14px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.trend-year {
+  color: var(--text-dim);
+}
+
+.trend-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+}
+
+.trend-swatch {
+  width: 10px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.trend-swatch.single {
+  background: var(--accent);
+}
+
+.trend-swatch.a {
+  background: var(--color-a);
+}
+
+.trend-swatch.b {
+  background: var(--color-b);
+}
+
+.trend-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: pan-y;
+}
+
+.trend-grid {
+  stroke: rgba(255, 255, 255, 0.07);
+}
+
+.trend-cursor {
+  stroke: rgba(255, 255, 255, 0.3);
+}
+
+.trend-axis {
+  font-size: 9px;
+  fill: var(--text-dim);
+}
+
+.trend-line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.trend-line.single {
+  stroke: var(--accent);
+}
+
+.trend-line.a {
+  stroke: var(--color-a);
+}
+
+.trend-line.b {
+  stroke: var(--color-b);
+}

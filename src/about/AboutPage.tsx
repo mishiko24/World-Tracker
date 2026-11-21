@@ -89,6 +89,10 @@ export function AboutPage() {
         <li>Each value shows the most recent year the source has for that country, so years can differ between countries.</li>
         <li>Missing values are shown as “No data”. Nothing is estimated or filled in by us.</li>
         <li>World Bank values more than six years old are hidden rather than shown as if they were current.</li>
+        <li>
+          Trend charts (the small chart icon next to a value) show every year since 2000 that the World Bank has for
+          population, life expectancy, children per woman, GDP, GDP per person, growth, inflation and access to electricity.
+        </li>
         <li>Overseas regions that are legally part of a country are counted with it (French Guiana is part of France).</li>
       </ul>
 
