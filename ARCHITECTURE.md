@@ -63,7 +63,9 @@ src/data/sitePages.ts     Which static pages exist + their addresses (G20 list, 
 about.html + src/about/   Sources & method page (second Vite entry, see vite.config.ts): data date (public/data/meta.json),
                           Power Level method, source + license table. Weights/licenses come from countryData.ts;
                           the method text and the datasets table are kept in sync with the pipeline by hand
-src/links.ts              URLs of the about page, the countries hub, the issue tracker, and SITE_URL (absolute address)
+src/links.ts              URLs of the about page, the countries hub, the issue tracker, SITE_URL (absolute address),
+                          and the Cloudflare Web Analytics snippet (injected by vite.config.ts + scripts/site/html.ts;
+                          tests block it so test runs aren't counted)
 share-card.html + src/share/cardPage.ts  Headless page that draws link-preview cards at build time (not linked)
 
 scripts/site/             Static pages for search engines + link previews, added to dist/ by `npm run build:site`

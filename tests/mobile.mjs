@@ -35,6 +35,7 @@ function check(name, ok, detail = "") {
 const browser = await chromium.launch({ executablePath: process.env.CHROME ?? "/usr/bin/google-chrome" });
 const context = await browser.newContext({ viewport: { width: W, height: H }, hasTouch: true, isMobile: true, deviceScaleFactor: 2 });
 const page = await context.newPage();
+await page.route("https://static.cloudflareinsights.com/**", (route) => route.abort()); // test runs aren't visits
 page.on("pageerror", (e) => check("no page errors", false, e.message));
 const cdp = await context.newCDPSession(page);
 const wait = (ms) => page.waitForTimeout(ms);

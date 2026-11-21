@@ -1,7 +1,7 @@
 // HTML helpers for the static pages: escaping, the shared page layout, URLs.
 // Every page lives in its own folder (country/france/index.html), so links to the site root are relative ("../../").
 
-import { ABOUT_URL, SITE_URL } from "../../src/links";
+import { ABOUT_URL, ANALYTICS_SNIPPET, SITE_URL } from "../../src/links";
 
 export function escape(text: string): string {
   return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -44,6 +44,7 @@ export function page({ path, title, previewTitle, description, image, body, buil
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="${root}site.css">
+${ANALYTICS_SNIPPET}
 </head>
 <body>
 <header class="site-header">

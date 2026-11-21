@@ -77,6 +77,7 @@ const server = createServer((req, res) => {
 }).listen(4191);
 const browser = await chromium.launch({ executablePath: process.env.CHROME ?? "/usr/bin/google-chrome" });
 const page = await browser.newPage();
+await page.route("https://static.cloudflareinsights.com/**", (route) => route.abort()); // test runs aren't visits
 const guesses = [
   ["compare/usa-vs-russia/", "compare/russia-vs-united-states/"],
   ["compare/united-states-vs-russia", "compare/russia-vs-united-states/"],

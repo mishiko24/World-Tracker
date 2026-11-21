@@ -51,6 +51,7 @@ function check(name, ok, detail = "") {
 
 const browser = await chromium.launch({ executablePath: process.env.CHROME ?? "/usr/bin/google-chrome" });
 const page = await browser.newPage({ viewport: { width: W, height: H } });
+await page.route("https://static.cloudflareinsights.com/**", (route) => route.abort()); // test runs aren't visits
 page.on("pageerror", (e) => check("no page errors", false, e.message));
 const tileRequests = [];
 await page.route(/gibs\.earthdata\.nasa\.gov/, (route) => {
