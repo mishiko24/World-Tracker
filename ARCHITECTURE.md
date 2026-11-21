@@ -65,7 +65,8 @@ about.html + src/about/   Sources & method page (second Vite entry, see vite.con
                           the method text and the datasets table are kept in sync with the pipeline by hand
 src/ui/info/TrendChart.tsx  Trend charts: rows with history (CountryData.trends: 9 World Bank indicators, 2000-latest,
                           fetched in fetch/worldbank.ts) get a chart icon; click opens an SVG line chart, two lines when
-                          comparing; pointer = year readout. TrendRow wraps any FactRow. The latest value of those 9
+                          comparing; pointer = year readout; press-and-drag = measure the change between two years
+                          (%, pp or years per TrendInput.change; touch: sideways drag). TrendRow wraps any FactRow. The latest value of those 9
                           indicators also comes from the history (mrnev=1 dropped values, Nov 2026)
 src/ui/ModeSwitch.tsx     Map | Play switch at the top of the map and the games page (own CSS: modeSwitch.css). Play has a
                           dot until today's daily is done; going to Play saves the map's ?query (sessionStorage) so

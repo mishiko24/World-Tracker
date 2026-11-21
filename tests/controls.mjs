@@ -536,6 +536,18 @@ await page.mouse.move(chart.x + chart.width * 0.2, chart.y + chart.height / 2);
 const hovered = await page.textContent(".trend-year");
 check("pointing at the chart reads out an earlier year", Number(hovered) < spainTrend[spainTrend.length - 1][0], hovered);
 
+// Drag across the chart to measure (Google Finance style).
+const chartBox = await (await page.$(".trend-svg")).boundingBox();
+await page.mouse.move(chartBox.x + chartBox.width * 0.25, chartBox.y + chartBox.height / 2);
+await page.mouse.down();
+for (let i = 1; i <= 6; i++) await page.mouse.move(chartBox.x + chartBox.width * (0.25 + i * 0.1), chartBox.y + chartBox.height / 2);
+await page.mouse.up();
+const measured = await page.textContent(".trend-readout.measuring");
+check("drag measures a change for both countries (two ▲/▼ amounts)", (measured.match(/[▲▼]/g) ?? []).length === 2 && measured.includes("→"), measured);
+check("measured span is shaded with end dots", (await page.$(".trend-span")) !== null && (await page.$$(".trend-end")).length === 4);
+await page.mouse.click(chartBox.x + chartBox.width * 0.5, chartBox.y + chartBox.height / 2);
+check("a click clears the measurement", (await page.$(".trend-readout.measuring")) === null);
+
 // ---------- Map | Play switch ----------
 await page.goto(`${URL}?c=FRA&vs=DEU`);
 await page.waitForSelector(".power-card");

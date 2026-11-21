@@ -1486,7 +1486,51 @@ button {
   display: block;
   width: 100%;
   height: auto;
-  touch-action: pan-y;
+  touch-action: pan-y; /* up/down scrolls the panel; sideways drags measure */
+  cursor: crosshair;
+  user-select: none;
+}
+
+.trend-span {
+  fill: rgba(255, 255, 255, 0.08);
+}
+
+.trend-end {
+  stroke: #1a1a1f;
+  stroke-width: 1.5;
+}
+
+.trend-end.single,
+.trend-end.a {
+  fill: var(--color-a, var(--accent));
+}
+
+.trend-end.single {
+  fill: var(--accent);
+}
+
+.trend-end.b {
+  fill: var(--color-b);
+}
+
+.trend-from-to {
+  font-weight: 500;
+  color: var(--text-dim);
+}
+
+.trend-change.up {
+  color: #3fb950;
+}
+
+.trend-change.down {
+  color: #f85149;
+}
+
+.trend-hint {
+  margin: 2px 0 0;
+  font-size: 10.5px;
+  color: var(--text-dim);
+  opacity: 0.7;
 }
 
 .trend-grid {

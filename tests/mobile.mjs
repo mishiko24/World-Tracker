@@ -148,6 +148,24 @@ await page.tap(".country-list tbody tr:nth-child(2) td");
 check("tapping a list row selects", (await title()) !== null, String(await title()));
 
 await page.screenshot({ path: "/tmp/mobile-list.png" });
+// Trend chart: a sideways finger drag measures a change.
+await page.goto(`${URL}?c=GEO`);
+await page.waitForSelector("aside.panel-right .panel-title");
+await page.tap("aside.panel-right .panel-title"); // sheet to half
+await wait(300);
+await page.tap("aside.panel-right .collapsible-header >> text=Population");
+await page.tap("aside.panel-right .trend-toggle >> text=Population");
+await wait(200);
+await page.$eval(".trend-svg", (el) => el.scrollIntoView({ block: "center" }));
+await wait(200);
+const trendBox = await page.$eval(".trend-svg", (el) => {
+  const r = el.getBoundingClientRect();
+  return [r.left, r.top, r.width, r.height];
+});
+await drag([trendBox[0] + trendBox[2] * 0.2, trendBox[1] + trendBox[3] / 2], [trendBox[0] + trendBox[2] * 0.9, trendBox[1] + trendBox[3] / 2]);
+const touchMeasure = await page.$(".trend-readout.measuring");
+check("touch: sideways drag on a trend chart measures a change", touchMeasure !== null, touchMeasure === null ? "" : await touchMeasure.textContent());
+
 // ---------- phone sideways (844x390): compact layout ----------
 const landscape = await browser.newContext({ viewport: { width: 844, height: 390 }, hasTouch: true, isMobile: true, deviceScaleFactor: 2 });
 const side = await landscape.newPage();
