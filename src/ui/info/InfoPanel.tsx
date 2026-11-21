@@ -57,12 +57,12 @@ export function InfoPanel(props: InfoPanelProps) {
 
   // Share card inputs. Memoized: the dialog redraws the card whenever these change.
   const cardA = useMemo<CardSide | null>(
-    () => (state.status === "loaded" ? { country, data: state.data, color: colors.a } : null),
-    [country, state, colors.a],
+    () => (state.status === "loaded" ? { country, data: state.data } : null),
+    [country, state],
   );
   const cardB = useMemo<CardSide | null>(
-    () => (compared !== null && other !== null ? { country: compared, data: other, color: colors.b } : null),
-    [compared, other, colors.b],
+    () => (compared !== null && other !== null ? { country: compared, data: other } : null),
+    [compared, other],
   );
   const shareReady = cardA !== null && (compared === null || cardB !== null);
 

@@ -1,15 +1,16 @@
-/* Static pages (scripts/site/pages.ts): country, ranking, comparison and hub pages. Copied to dist/site.css. */
+/* Static pages (scripts/site/pages.ts): country, ranking, comparison and hub pages.
+   Written to dist/site.css after src/theme.css (pages.ts), so the theme's variables are available. */
 
 :root {
-  --text: #e8e6e3;
-  --dim: #9a968f;
-  --border: rgba(255, 255, 255, 0.1);
-  --win: #3fb950;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --dim: var(--text-dim);
+  --border: var(--glass-border);
+  --win: var(--better);
+  font-family: var(--font);
   font-size: 16px;
   line-height: 1.55;
   color: var(--text);
-  background: #111;
+  background: var(--bg-gradient) fixed var(--bg);
+  min-height: 100%;
 }
 
 * {
@@ -21,7 +22,7 @@ body {
 }
 
 a {
-  color: #79b8ff;
+  color: var(--link);
 }
 
 .site-header {
@@ -86,14 +87,14 @@ h2 {
   display: inline-block;
   padding: 10px 18px;
   border-radius: 8px;
-  background: #2f6fde;
+  background: var(--primary);
   color: #fff;
   text-decoration: none;
   font-weight: 600;
 }
 
 .cta:hover {
-  background: #3b7cf0;
+  background: var(--primary-hover);
 }
 
 .score {

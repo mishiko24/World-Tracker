@@ -1,14 +1,14 @@
 /* Sources & method page. A normal scrolling document, unlike the full-screen map page (src/styles.css). */
 
 :root {
-  --text: #e8e6e3;
-  --text-dim: #9a968f;
-  --border: rgba(255, 255, 255, 0.1);
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Colors come from theme.css. */
+  --border: var(--glass-border);
+  font-family: var(--font);
   font-size: 16px;
   line-height: 1.6;
   color: var(--text);
-  background: #111;
+  background: var(--bg-gradient) fixed var(--bg);
+  min-height: 100%;
 }
 
 * {
@@ -26,7 +26,7 @@ body {
 }
 
 a {
-  color: #79b8ff;
+  color: var(--link);
 }
 
 .back-link {
@@ -91,7 +91,7 @@ li {
   padding: 14px 16px;
   border: 1px solid var(--border);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--glass);
 }
 
 .facts-strip .label {

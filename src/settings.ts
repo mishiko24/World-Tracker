@@ -33,19 +33,20 @@ export interface Settings {
   zoomSmoothness: number; // 0 = instant, 1 = slowest glide
 }
 
+// The default look (theme.css): indigo ocean, muted purple-blue land, A pink-red, B sky blue.
 const DARK_STYLE: MapStyle = {
-  default: { fillColor: "#262a30", fillOpacity: 1, outlineColor: "#4d555f", outlineOpacity: 1, outlineWidth: 0.6 },
-  highlighted: { fillColor: "#c9772a", fillOpacity: 1, outlineColor: "#ffd9a8", outlineOpacity: 1, outlineWidth: 1 },
-  compared: { fillColor: "#2f7de1", fillOpacity: 1, outlineColor: "#ffffff", outlineOpacity: 1, outlineWidth: 1.5 },
-  selected: { fillColor: "#e3261b", fillOpacity: 1, outlineColor: "#ffffff", outlineOpacity: 1, outlineWidth: 1.5 },
-  oceanColor: "#0f1419",
+  default: { fillColor: "#262b63", fillOpacity: 1, outlineColor: "#3d4489", outlineOpacity: 1, outlineWidth: 0.6 },
+  highlighted: { fillColor: "#4a3f9e", fillOpacity: 1, outlineColor: "#c4b5fd", outlineOpacity: 1, outlineWidth: 1 },
+  compared: { fillColor: "#4cc9ff", fillOpacity: 1, outlineColor: "#ffffff", outlineOpacity: 1, outlineWidth: 1.5 },
+  selected: { fillColor: "#ff5c8a", fillOpacity: 1, outlineColor: "#ffffff", outlineOpacity: 1, outlineWidth: 1.5 },
+  oceanColor: "#10123a",
 };
 
 const LIGHT_STYLE: MapStyle = {
   default: { fillColor: "#f4f2ee", fillOpacity: 1, outlineColor: "#9a9a9a", outlineOpacity: 1, outlineWidth: 0.6 },
-  highlighted: { fillColor: "#f0b26b", fillOpacity: 1, outlineColor: "#8a5a20", outlineOpacity: 1, outlineWidth: 1 },
-  compared: { fillColor: "#2f7de1", fillOpacity: 1, outlineColor: "#0b2c57", outlineOpacity: 1, outlineWidth: 1.5 },
-  selected: { fillColor: "#e3261b", fillOpacity: 1, outlineColor: "#5a0d08", outlineOpacity: 1, outlineWidth: 1.5 },
+  highlighted: { fillColor: "#d8cffc", fillOpacity: 1, outlineColor: "#5b4bb7", outlineOpacity: 1, outlineWidth: 1 },
+  compared: { fillColor: "#4cc9ff", fillOpacity: 1, outlineColor: "#0b4f8f", outlineOpacity: 1, outlineWidth: 1.5 },
+  selected: { fillColor: "#ff5c8a", fillOpacity: 1, outlineColor: "#7a1236", outlineOpacity: 1, outlineWidth: 1.5 },
   oceanColor: "#c9d7e3",
 };
 
@@ -53,8 +54,8 @@ const LIGHT_STYLE: MapStyle = {
 const SATELLITE_STYLE: MapStyle = {
   default: { fillColor: "#ffffff", fillOpacity: 0, outlineColor: "#ffffff", outlineOpacity: 0.45, outlineWidth: 0.6 },
   highlighted: { fillColor: "#ffffff", fillOpacity: 0.2, outlineColor: "#ffffff", outlineOpacity: 1, outlineWidth: 1.2 },
-  compared: { fillColor: "#2f7de1", fillOpacity: 0.3, outlineColor: "#5aa2ff", outlineOpacity: 1, outlineWidth: 2 },
-  selected: { fillColor: "#e3261b", fillOpacity: 0.3, outlineColor: "#ff4a3d", outlineOpacity: 1, outlineWidth: 2 },
+  compared: { fillColor: "#4cc9ff", fillOpacity: 0.3, outlineColor: "#4cc9ff", outlineOpacity: 1, outlineWidth: 2 },
+  selected: { fillColor: "#ff5c8a", fillOpacity: 0.3, outlineColor: "#ff5c8a", outlineOpacity: 1, outlineWidth: 2 },
   oceanColor: "#0b1a2a",
 };
 
@@ -72,14 +73,21 @@ export const DEFAULT_SETTINGS: Settings = {
   zoomSmoothness: 0.5,
 };
 
-// Bump the version when the Settings shape changes incompatibly; old saves are then ignored.
-const STORAGE_KEY = "worldTracker.settings.v2";
+// Bump the version when the Settings shape or the default colors change; see loadSettings for what carries over.
+const STORAGE_KEY = "worldTracker.settings.v3";
+// v2 = before the 2026-11 restyle. Its map colors are the old palette, so only the non-color choices carry over.
+const OLD_STORAGE_KEY = "worldTracker.settings.v2";
 
 // Saved settings are merged over the defaults, so settings added later get their default value.
 export function loadSettings(): Settings {
   const saved = localStorage.getItem(STORAGE_KEY);
   if (saved === null) {
-    return DEFAULT_SETTINGS;
+    const old = localStorage.getItem(OLD_STORAGE_KEY);
+    if (old === null) {
+      return DEFAULT_SETTINGS;
+    }
+    const { styles: _oldColors, ...choices } = JSON.parse(old) as Partial<Settings>;
+    return { ...DEFAULT_SETTINGS, ...choices };
   }
   const parsed = JSON.parse(saved) as Partial<Settings>;
   const savedStyles: Partial<Record<MapType, Partial<MapStyle>>> = parsed.styles ?? {};

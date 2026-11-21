@@ -1,6 +1,6 @@
 // Power Level at the top of the info panel: score, world rank and one bar per pillar.
 // Comparison mode: both scores side by side (with flags, --flag-a / --flag-b), and two bars per pillar in the
-// countries' map colors (--color-a / --color-b, see Compare.tsx). The higher number of each pair is green.
+// countries' map colors (--color-a / --color-b, see Compare.tsx). The higher number of each pair is teal.
 
 import { PILLAR_LABELS, PILLAR_ORDER, type CountryData, type PowerLevel } from "../../data/countryData";
 import { POWER_LEVEL_METHOD_URL } from "../../links";

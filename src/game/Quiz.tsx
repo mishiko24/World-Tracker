@@ -1,5 +1,5 @@
 // Flag and outline quizzes (rules in quiz.ts): a clue (the flag, or the country's outline), four names to pick from.
-// After a pick the right answer turns green (and a wrong pick red) for REVEAL_MS. LIVES wrong answers end the game;
+// After a pick the right answer turns teal (and a wrong pick red) for REVEAL_MS. LIVES wrong answers end the game;
 // the score is the number of right answers, best kept per quiz.
 
 import { useEffect, useRef, useState } from "react";
@@ -11,7 +11,7 @@ import { flagUrl } from "../ui/Flag";
 import { LIVES, nextQuestion, type Question, type QuizKind } from "./quiz";
 import { loadBest, playUrl, REVEAL_MS, saveBest, shareScore } from "./shared";
 
-const OUTLINE_COLOR = "#3b82f6";
+const OUTLINE_COLOR = "#a78bfa";
 const PROMPT: Record<QuizKind, string> = { flags: "Which country's flag is this?", outlines: "Which country has this shape?" };
 const NAME: Record<QuizKind, string> = { flags: "flag quiz", outlines: "outline quiz" };
 

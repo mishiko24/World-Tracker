@@ -33,10 +33,10 @@ const startScreen = (lon, lat) => [
 
 // Dark map preset colors (src/settings.ts).
 const COLORS = {
-  default: [0x26, 0x2a, 0x30],
-  highlighted: [0xc9, 0x77, 0x2a],
-  selected: [0xe3, 0x26, 0x1b],
-  ocean: [0x0f, 0x14, 0x19],
+  default: [0x26, 0x2b, 0x63],
+  highlighted: [0x4a, 0x3f, 0x9e],
+  selected: [0xff, 0x5c, 0x8a],
+  ocean: [0x10, 0x12, 0x3a],
 };
 const LIGHT = { default: [0xf4, 0xf2, 0xee], ocean: [0xc9, 0xd7, 0xe3] };
 // Mock satellite tiles: one flat color per zoom level, made by the test setup (see MOCK_TILES).
@@ -145,7 +145,8 @@ const landFraction = await page.evaluate(() => {
   const c = document.querySelector("canvas");
   const d = c.getContext("2d").getImageData(0, 0, c.width, c.height).data;
   let land = 0;
-  for (let i = 0; i < d.length; i += 400) if (d[i] === 0x26 && d[i + 1] === 0x2a) land++;
+  // COLORS.default
+  for (let i = 0; i < d.length; i += 400) if (d[i] === 0x26 && d[i + 1] === 0x2b && d[i + 2] === 0x63) land++;
   return land / (d.length / 400);
 });
 check("land still drawn after long pan", landFraction > 0.15, `land fraction ${landFraction.toFixed(2)}`);
@@ -204,8 +205,19 @@ await page.mouse.click(spainX, spainY);
 check("selected fill color setting applies", near(await pixel(spainX, spainY), [0, 255, 0]));
 await page.goto(URL);
 await page.waitForSelector("canvas");
-const saved = await page.evaluate(() => JSON.parse(localStorage.getItem("worldTracker.settings.v2")).styles.dark.selected.fillColor);
+const saved = await page.evaluate(() => JSON.parse(localStorage.getItem("worldTracker.settings.v3")).styles.dark.selected.fillColor);
 check("settings persist across reload", saved === "#00ff00", saved);
+
+// Settings saved before the restyle (v2): choices carry over, the old map colors don't.
+await page.evaluate(() => {
+  localStorage.clear();
+  const old = { mapType: "dark", listView: true, styles: { dark: { selected: { fillColor: "#e3261b" } } } };
+  localStorage.setItem("worldTracker.settings.v2", JSON.stringify(old));
+});
+await page.goto(URL);
+await page.waitForSelector(".country-list");
+check("old saved settings: list view carried over", (await page.$(".country-list")) !== null);
+await page.evaluate(() => localStorage.clear());
 
 // ---------- comparison mode ----------
 // Fresh start view (camera back at zoom 1, nothing selected, default colors).
@@ -214,7 +226,7 @@ await page.goto(URL);
 await page.waitForSelector("canvas");
 await page.waitForTimeout(300);
 if (await page.$('button[title="Hide settings"]')) await page.click('button[title="Hide settings"]');
-const COMPARED = [0x2f, 0x7d, 0xe1];
+const COMPARED = [0x4c, 0xc9, 0xff];
 const [franceX, franceY] = startScreen(2.5, 46.5);
 
 await page.mouse.click(franceX, franceY, { button: "right" });
@@ -351,7 +363,7 @@ const perLevel = {}; for (const t of tileRequests) perLevel[t.z] = (perLevel[t.z
 check("satellite: request count sane", tileRequests.length < 400, `${tileRequests.length} ${JSON.stringify(perLevel)}`);
 await page.screenshot({ path: "/tmp/wt-satellite.png" });
 
-const darkSelected = await page.evaluate(() => JSON.parse(localStorage.getItem("worldTracker.settings.v2")).mapType);
+const darkSelected = await page.evaluate(() => JSON.parse(localStorage.getItem("worldTracker.settings.v3")).mapType);
 check("map type persists", darkSelected === "satellite");
 
 // ---------- list view ----------
@@ -397,7 +409,7 @@ check("text column sorts A→Z", types.every((v, i) => i === 0 || types[i - 1].l
 await page.click(".country-list th.group-strip >> nth=0");
 await page.click('.country-list th[data-column="production.oil"]');
 check("opened resource group sorts by oil", (await firstNames())[0] === "United States", (await firstNames()).join(", "));
-check("open group remembered", JSON.parse(await page.evaluate(() => localStorage.getItem("worldTracker.settings.v2"))).listCollapsed.join() === "reserves");
+check("open group remembered", JSON.parse(await page.evaluate(() => localStorage.getItem("worldTracker.settings.v3"))).listCollapsed.join() === "reserves");
 await page.click(".country-list th.group-header button >> text=Resources: production");
 check("group collapses back to a strip", (await page.$$(".country-list th.group-strip")).length === 2);
 await page.click(".country-list th >> text=Name");

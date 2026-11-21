@@ -1,4 +1,4 @@
-/* Map | Play switch (ModeSwitch.tsx). Used on two pages with different stylesheets, so it brings its own colors. */
+/* Map | Play switch (ModeSwitch.tsx). Used on two pages; colors from theme.css. */
 
 .mode-switch {
   display: inline-flex;
@@ -6,9 +6,11 @@
   padding: 3px;
   gap: 2px;
   border-radius: 10px;
-  background: rgba(20, 20, 24, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  background: var(--panel-glass);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 6px 20px rgba(6, 4, 30, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .mode-switch a {
@@ -18,19 +20,19 @@
   gap: 6px;
   padding: 6px 13px;
   border-radius: 7px;
-  font: 600 14px/1 "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  color: #9a968f;
+  font: 600 14px/1 var(--font);
+  color: var(--text-dim);
   text-decoration: none;
   white-space: nowrap;
 }
 
 .mode-switch a:hover {
-  color: #e8e6e3;
+  color: var(--text);
 }
 
 /* On the map, Play stands out: it's an invitation, not just a navigation item. */
 .mode-switch a.play:not(.active) {
-  color: #f0b84a;
+  color: var(--gold);
 }
 
 .mode-switch a.play:not(.active):hover {
@@ -63,8 +65,8 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #e3261b;
-  box-shadow: 0 0 0 2px rgba(20, 20, 24, 0.92);
+  background: var(--a);
+  box-shadow: 0 0 0 2px #1b1650;
 }
 
 /* Phones (same breakpoint as src/ui/useMobile.ts): tighter, so the search box keeps room on the map. */

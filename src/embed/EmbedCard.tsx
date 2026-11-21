@@ -3,7 +3,7 @@
 //
 //   one country   flag, name, Power Level + rank, four key facts
 //   comparison    both flags and names (underlined in their colors), Power Level and four facts as two bars each,
-//                 better value green, how much more/less B has (same rules as the app: ui/info/Compare.tsx)
+//                 better value teal, how much more/less B has (same rules as the app: ui/info/Compare.tsx)
 
 import { useEffect, useState } from "react";
 import type { CountryData } from "../data/countryData";

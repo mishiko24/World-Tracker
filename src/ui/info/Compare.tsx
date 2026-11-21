@@ -6,7 +6,7 @@
 //                [blue bar ··]                 41.3 M
 //                ■ 8.3× less                               how B compares to A (blue swatch = B)
 //
-//   the better value is green           (better = higher, unless better="lower": inflation, government debt;
+//   the better value is teal            (better = higher, unless better="lower": inflation, government debt;
 //                                        better="none" where neither is better: median age, density, age groups)
 //   how much more/less, by mode         relative: "8.3× more" from 2× up, else "22% more"
 //                                       points: percentage points, for values that are themselves percentages

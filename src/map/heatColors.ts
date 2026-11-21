@@ -4,9 +4,9 @@
 import type { MapType } from "./mapTypes";
 
 const STOPS: Record<MapType, [string, string, string]> = {
-  dark: ["#22303f", "#9a5b24", "#ffd25a"],
-  light: ["#e9eef3", "#f0a35e", "#b3261e"],
-  satellite: ["#22303f", "#9a5b24", "#ffd25a"],
+  dark: ["#2c3170", "#b0458f", "#ffd25a"],
+  light: ["#ece9fb", "#a78bfa", "#3b1e8a"],
+  satellite: ["#2c3170", "#b0458f", "#ffd25a"],
 };
 
 function hexToRgb(hex: string): [number, number, number] {

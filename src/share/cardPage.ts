@@ -2,11 +2,10 @@
 // of every static page, with the same code as the Share button. Not linked from the site.
 // Exposes window.renderShareCard(a, b, siteLabel) and window.renderHomeCard(siteLabel) -> JPEG data URL,
 // and sets window.shareCardReady when loaded.
-// JPEG, not PNG: the color glows make PNGs ~300 KB; link previews don't need lossless.
+// JPEG, not PNG: the gradients and flag blur make PNGs ~300 KB; link previews don't need lossless.
 
 import type { CountryData, CountrySummary } from "../data/countryData";
 import { loadCountries } from "../map/geo";
-import { DEFAULT_SETTINGS } from "../settings";
 import { drawHomeCard, drawShareCard, loadCardAssets, loadCardFonts, type CardSide } from "./shareCard";
 
 declare global {
@@ -16,9 +15,6 @@ declare global {
     shareCardReady: boolean;
   }
 }
-
-// Same colors as a fresh visitor sees on the default (dark) map.
-const COLORS = { a: DEFAULT_SETTINGS.styles.dark.selected.fillColor, b: DEFAULT_SETTINGS.styles.dark.compared.fillColor };
 
 const JPEG_QUALITY = 0.86;
 
@@ -33,14 +29,14 @@ async function fetchJson<T>(path: string): Promise<T> {
   return (await response.json()) as T;
 }
 
-async function side(id: string, color: string): Promise<CardSide> {
-  return { country: countries.get(id)!, data: await fetchJson<CountryData>(`data/countries/${id}.json`), color };
+async function side(id: string): Promise<CardSide> {
+  return { country: countries.get(id)!, data: await fetchJson<CountryData>(`data/countries/${id}.json`) };
 }
 
 window.renderShareCard = async (a, b, siteLabel) => {
   const canvas = document.createElement("canvas");
-  const sideA = await side(a, COLORS.a);
-  const sideB = b === null ? null : await side(b, COLORS.b);
+  const sideA = await side(a);
+  const sideB = b === null ? null : await side(b);
   drawShareCard(canvas, sideA, sideB, await loadCardAssets(sideA, sideB), siteLabel);
   return canvas.toDataURL("image/jpeg", JPEG_QUALITY);
 };

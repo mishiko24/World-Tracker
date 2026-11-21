@@ -1,27 +1,27 @@
-/* Embeddable card (embed.html), fills its iframe. Dark by default, [data-theme="light"] for light pages.
-   Country colors are the dark map's selected (A) and compared (B) colors, as on share cards. */
+/* Embeddable card (embed.html), fills its iframe. The site's gradient look by default (theme.css),
+   [data-theme="light"] for light pages. Country colors are A and B, as on share cards. */
 
 :root {
-  --bg: #15171c;
-  --text: #e8e6e3;
-  --dim: #9a968f;
-  --line: rgba(255, 255, 255, 0.09);
-  --track: rgba(255, 255, 255, 0.08);
-  --win: #3fb950;
-  --color-a: #e3261b;
-  --color-b: #3b82f6;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --card-bg: var(--bg-gradient);
+  --dim: var(--text-dim);
+  --line: var(--glass-border);
+  --track: rgba(255, 255, 255, 0.1);
+  --win: var(--better);
+  --color-a: var(--a);
+  --color-b: var(--b);
+  font-family: var(--font);
   color: var(--text);
   background: transparent; /* iframe space below the card blends into the host page */
 }
 
 :root[data-theme="light"] {
-  --bg: #ffffff;
-  --text: #1c1c1e;
-  --dim: #6b6b70;
+  --card-bg: #ffffff;
+  --text: #1c1a3a;
+  --dim: #6b6884;
   --line: rgba(0, 0, 0, 0.09);
   --track: rgba(0, 0, 0, 0.07);
-  --win: #1a7f37;
+  --win: #0d9488;
+  --color-b: #1fa8e0; /* sky blue is too pale on white */
 }
 
 * {
@@ -38,7 +38,7 @@ body {
 .embed {
   display: flex;
   flex-direction: column;
-  background: var(--bg);
+  background: var(--card-bg);
   padding: 14px 16px 10px;
   border: 1px solid var(--line);
   border-radius: 12px;

@@ -58,6 +58,9 @@ src/ui/info/useBottomSheet.ts  Phone: info panel as bottom sheet, peek/half/full
 src/ui/info/PowerLevelCard.tsx  Power Level score, rank and pillar bars at the top of the info panel
 src/map/heatColors.ts     Heat colours for "Color countries by: Power Level" (App builds a fill map, MapView.setFillOverrides)
 src/share/comparisonCard.ts  Comparison share image: the "fight poster" (DESIGN.md §6)
+src/theme.css             The look (DESIGN.md §0): fonts, gradient, glass, A/B/teal colors. Imported by every page;
+                          scripts/site/pages.ts prepends it to dist/site.css for the static pages
+src/share/singleCard.ts   One-country share image (same style as the comparison card)
 src/share/draw.ts         Canvas helpers for the cards (text, fit, masks, color mix); Outfit font (public/fonts, OFL)
 src/share/shareCard.ts    1200x630 share image entry (one country / comparison), loadCardAssets (Outfit + large flags
                           public/flags/large/<ID>.png 480x360) must run before drawing; silhouettes re-projected per
@@ -186,7 +189,7 @@ SECURITY: never write URLs containing the EIA key to files or logs. A leak happe
   (peek 172px = name + Power Level score, half, full); list view goes full width.
 - **Comparison mode:** (src/ui/info/Compare.tsx, FactRow.tsx). A sticky legend names both countries in their map
   colors (selected/compared fill of the current map type, CSS vars --color-a/--color-b). Number rows look like the
-  Power Level card: two bars (scaled to the larger value) with values, better value green (higher, or lower for
+  Power Level card: two bars (scaled to the larger value) with values, better value teal (higher, or lower for
   inflation/debt; none for median age, density, age groups), then how much more/less B has: "8.3× more" from 2×,
   else "22% more"; pp for percentage values, points for 0-100 scores, years for ages. Text rows (government) show
   both values with color swatches. Red is never "worse" because A is red on the map. Panel widens to 400px.

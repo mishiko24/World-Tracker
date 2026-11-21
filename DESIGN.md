@@ -4,6 +4,19 @@ How World Tracker presents data. Read this before any UI work (app, games, stati
 The site shows a lot of numbers; the job is to make them effortless to read and compare. When a change breaks one
 of these rules, fix the change, not the rule; when a rule is wrong, change it here first, with the reason.
 
+## 0. The look
+
+One look everywhere (map, panels, list, games, about, embed, static pages, share cards), defined once in
+src/theme.css (the cards' canvas code repeats the same values in comparisonCard.ts):
+
+- Background: purple-to-navy gradient (#1a0a3d → #141d5e → #08325e). The map matches it: indigo ocean
+  #10123a, muted purple-blue land #262b63.
+- Surfaces: glass, i.e. translucent white (6-11%) with a thin light border; floating panels add a backdrop blur.
+  Tables with pinned cells use the opaque --surface colors.
+- Type: Outfit (public/fonts, OFL) for everything; heavy weights (800) for names and headline numbers.
+- Colors with meaning: A #ff5c8a, B #4cc9ff, better #5eead4, falling #fbbf24; games use gold for Play and a
+  softer red for a wrong answer (games have no A/B). Main buttons: violet gradient.
+
 ## 1. Comparisons: the eye never travels
 
 The core rule, from Mishiko: when two countries are compared, the difference must be visible at a glance.
@@ -15,10 +28,11 @@ The core rule, from Mishiko: when two countries are compared, the difference mus
   one axis. A bar's length must mean the same thing for both countries.
 - **Say the difference**: next to every pair, the difference in words or numbers: "8.2× less", "+19", "0.5 pp
   lower", "3.2 years more". The reader shouldn't do arithmetic.
-- **Mark the winner**: the better value is green and bold (higher, or lower where lower is better: inflation,
+- **Mark the winner**: the better value is teal (#5eead4) and bold (higher, or lower where lower is better: inflation,
   debt). Neither is marked where "better" doesn't apply (median age, density, age groups).
-- **One country, one color, everywhere**: country A (selected) is red, country B (compared) is blue: map fill,
-  bars, chart lines, name underlines, swatches. Red never means "worse", because red is A.
+- **One country, one color, everywhere**: country A (selected) is pink-red #ff5c8a, country B (compared) is sky
+  blue #4cc9ff: map fill, bars, chart lines, name underlines, swatches, share cards. Red never means "worse",
+  because red is A.
 - **The key is always visible**: names with flags, underlined in their colors, in a header that doesn't scroll away.
 
 ## 2. Hierarchy: numbers loud, labels quiet
@@ -45,8 +59,8 @@ The core rule, from Mishiko: when two countries are compared, the difference mus
 ## 5. Charts
 
 - Plain and direct: few gridlines, first and last year on the axis, values readable by pointing.
-- Pointing reads out a year; dragging measures a change (start → end, ▲/▼ %, pp or years). Green up, red down
-  in change readouts only (there they're directions, not countries).
+- Pointing reads out a year; dragging measures a change (start → end, ▲/▼ %, pp or years). Teal up, amber down
+  in change readouts (not red: red is A).
 - Two countries on one chart use their A/B colors on one shared axis.
 
 ## 6. Share cards and anything that leaves the site
@@ -85,7 +99,7 @@ Share cards, link previews and embeds are how the site spreads, so they get the 
 
 - [ ] Can someone see which country is ahead on each number without moving their eyes across the screen?
 - [ ] Is every pair on one scale, with the difference written next to it?
-- [ ] Red = A, blue = B, green = better, nowhere else?
+- [ ] Red = A, blue = B, teal = better, nowhere else? Colors from theme.css variables, not new hex values?
 - [ ] Flag before every country name?
 - [ ] Works by touch on a 390 px wide phone and on a sideways phone?
 - [ ] Readable as a small thumbnail (cards)?

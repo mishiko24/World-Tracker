@@ -1,0 +1,72 @@
+/* World Tracker's look, shared by every page (map, games, about, embed; the static pages get a copy via
+   scripts/site/build-site.mjs). Same palette as the comparison share card (src/share/comparisonCard.ts):
+   a purple-to-navy gradient, glass panels, Outfit, A = pink-red, B = sky blue, better = teal. See DESIGN.md. */
+
+@font-face {
+  font-family: Outfit;
+  src: url(/fonts/outfit-400.woff2) format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: Outfit;
+  src: url(/fonts/outfit-500.woff2) format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: Outfit;
+  src: url(/fonts/outfit-600.woff2) format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: Outfit;
+  src: url(/fonts/outfit-700.woff2) format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: Outfit;
+  src: url(/fonts/outfit-800.woff2) format("woff2");
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: Outfit;
+  src: url(/fonts/outfit-900.woff2) format("woff2");
+  font-weight: 900;
+  font-display: swap;
+}
+
+:root {
+  --font: Outfit, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Backgrounds */
+  --bg: #141a4f; /* solid stand-in for the gradient */
+  --bg-gradient: linear-gradient(135deg, #1a0a3d 0%, #141d5e 55%, #08325e 100%);
+  --surface: #17144a; /* opaque panel color (tables with pinned cells, dialogs) */
+  --surface-raised: #1f1b5e; /* table headers, menus */
+  --surface-hover: #241f69;
+  --glass: rgba(255, 255, 255, 0.06); /* cards and tiles on the gradient */
+  --glass-strong: rgba(255, 255, 255, 0.11);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --panel-glass: rgba(24, 18, 72, 0.8); /* floating panels over the map, with backdrop blur */
+
+  /* Text */
+  --text: #ffffff;
+  --text-soft: rgba(255, 255, 255, 0.85);
+  --text-dim: rgba(255, 255, 255, 0.6);
+  --link: #a5b4fc;
+
+  /* Meaning */
+  --a: #ff5c8a; /* the selected country (A), everywhere */
+  --b: #4cc9ff; /* the compared country (B), everywhere */
+  --better: #5eead4; /* the better value of a pair; a rising trend */
+  --better-text: #082a30; /* text on a --better fill */
+  --down: #fbbf24; /* a falling trend (not red: red is A) */
+  --gold: #f0b84a; /* games */
+  --wrong: #f87171; /* games: a wrong answer (games have no A/B countries) */
+  --primary: linear-gradient(135deg, #8b5cf6, #6366f1); /* main action buttons */
+  --primary-hover: linear-gradient(135deg, #9d74f8, #7577f3);
+}

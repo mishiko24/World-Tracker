@@ -10,7 +10,7 @@
 // Each page links into the interactive map (?c=ID, ?c=A&vs=B). Data comes from dist/data (copied from public/data).
 // Returns the share-card images the pages use as link previews; cards.ts renders them afterwards.
 
-import { copyFileSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import type { GeometryCollection, Topology } from "topojson-specification";
 import {
   PILLAR_LABELS,
@@ -108,7 +108,9 @@ export function buildPages(dist: string): { cards: CardJob[]; pages: number } {
     `${dist}/404.html`,
     notFoundPage({ slugs, codes: countryCodes(dist), comparePaths: paths.filter((p) => p.startsWith("compare/")) }),
   );
-  copyFileSync("scripts/site/site.css", `${dist}/site.css`);
+  // The app's theme first (fonts relative to dist/site.css), then the static pages' own rules.
+  const theme = readFileSync("src/theme.css", "utf8").replaceAll("url(/fonts/", "url(fonts/");
+  writeFileSync(`${dist}/site.css`, `${theme}\n${readFileSync("scripts/site/site.css", "utf8")}`);
   return { cards, pages: paths.length - 3 };
 }
 

@@ -16,19 +16,20 @@ import type { CardFlags, CardSide } from "./shareCard";
 
 const WIDTH = 1200;
 const HEIGHT = 630;
-const A = "#ff5c8a";
+// The card palette (theme.css has the same values for the site).
+export const A = "#ff5c8a";
 const B = "#4cc9ff";
 const WIN = "#5eead4";
 const WIN_TEXT = "#082a30";
-const DEEP_A = "#2c0a1c"; // header tint behind A's flag
+export const DEEP_A = "#2c0a1c"; // header tint behind A's flag
 const DEEP_B = "#061c38";
 const LOSER_MIX = "#241c5c"; // a losing bar = its color mixed into this
-const TEXT = "#ffffff";
+export const TEXT = "#ffffff";
 const SOFT = "rgba(255, 255, 255, 0.85)";
-const DIM = "rgba(255, 255, 255, 0.6)";
-const PADDING = 48;
+export const DIM = "rgba(255, 255, 255, 0.6)";
+export const PADDING = 48;
 
-const HEADER = 300; // header height; it fades out into the card over its lower half
+export const HEADER = 300; // header height; it fades out into the card over its lower half
 const FLAG_H = HEADER * 0.86;
 const FLAG_W = (FLAG_H * 4) / 3;
 const VS = { x: WIDTH / 2, y: 137, r: 37 };
@@ -55,7 +56,7 @@ export function drawComparison(ctx: CanvasRenderingContext2D, a: CardSide, b: Ca
 
 // ---------- header ----------
 
-function background(ctx: CanvasRenderingContext2D): void {
+export function background(ctx: CanvasRenderingContext2D): void {
   const g = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
   g.addColorStop(0, "#1a0a3d");
   g.addColorStop(0.55, "#141d5e");
@@ -69,21 +70,15 @@ function header(flags: CardFlags): HTMLCanvasElement {
   const [canvas, ctx] = layer(WIDTH, HEADER);
   half(ctx, flags.a, DEEP_A, "left");
   half(ctx, flags.b!, DEEP_B, "right");
-  const down = ctx.createLinearGradient(0, 0, 0, HEADER);
-  down.addColorStop(0.55, "#000");
-  down.addColorStop(1, "rgba(0, 0, 0, 0)");
-  fadeOut(ctx, down);
+  fadeHeaderDown(ctx);
   return canvas;
 }
 
-// One side: its tint, a big blurred copy of the flag whose colors bleed slowly into the tint, the sharp whole
-// flag on top (only its inner edge and bottom feathered), then the tint again far from the flag.
-// The diagonal split runs from 54% at the top to 46% at the bottom.
+// One side of the comparison header: clipped to its half of the diagonal (54% at the top, 46% at the bottom).
 function half(ctx: CanvasRenderingContext2D, flag: HTMLImageElement, deep: string, side: "left" | "right"): void {
-  const left = side === "left";
   ctx.save();
   ctx.beginPath();
-  if (left) {
+  if (side === "left") {
     ctx.moveTo(0, 0);
     ctx.lineTo(WIDTH * 0.54, 0);
     ctx.lineTo(WIDTH * 0.46, HEADER);
@@ -96,6 +91,16 @@ function half(ctx: CanvasRenderingContext2D, flag: HTMLImageElement, deep: strin
   }
   ctx.closePath();
   ctx.clip();
+  flagBackdrop(ctx, flag, deep, side);
+  ctx.restore();
+}
+
+// A flag as a header backdrop (both cards): the tint, a big blurred copy of the flag whose colors bleed slowly
+// into the tint, the sharp whole flag on top at the outer edge (only its inner edge and bottom feathered), then
+// the tint again far from the flag. Darkened throughout: it's a background. Draws over the whole header width;
+// clip first to limit it.
+export function flagBackdrop(ctx: CanvasRenderingContext2D, flag: HTMLImageElement, deep: string, side: "left" | "right"): void {
+  const left = side === "left";
   ctx.fillStyle = deep;
   ctx.fillRect(0, 0, WIDTH, HEADER);
 
@@ -120,7 +125,7 @@ function half(ctx: CanvasRenderingContext2D, flag: HTMLImageElement, deep: strin
   fadeOut(f, down);
   ctx.drawImage(flagLayer, left ? 0 : WIDTH - FLAG_W, 0);
 
-  // Tint returns toward the middle, so the halo doesn't reach the VS.
+  // Tint returns away from the flag, so the halo doesn't reach the text.
   const outer = left ? 0 : WIDTH;
   const dir = left ? 1 : -1;
   const tint = ctx.createLinearGradient(outer, 0, outer + dir * FLAG_W * 1.35, 0);
@@ -128,7 +133,14 @@ function half(ctx: CanvasRenderingContext2D, flag: HTMLImageElement, deep: strin
   tint.addColorStop(1, withAlpha(deep, 0.8));
   ctx.fillStyle = tint;
   ctx.fillRect(0, 0, WIDTH, HEADER);
-  ctx.restore();
+}
+
+// Fades the header out downward into the card (both cards).
+export function fadeHeaderDown(ctx: CanvasRenderingContext2D): void {
+  const down = ctx.createLinearGradient(0, 0, 0, HEADER);
+  down.addColorStop(0.55, "#000");
+  down.addColorStop(1, "rgba(0, 0, 0, 0)");
+  fadeOut(ctx, down);
 }
 
 // Name, color key line, score and rank. Left side is right-aligned against the VS badge, right side left-aligned.
