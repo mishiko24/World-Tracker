@@ -4,6 +4,7 @@
 //   flags     Name the country from its flag                                                 (Quiz.tsx, quiz.ts)
 //   outlines  Name the country from its shape                                                (Quiz.tsx, quiz.ts)
 
+import { ModeSwitch } from "../ui/ModeSwitch";
 import { Daily } from "./Daily";
 import { HigherLower } from "./HigherLower";
 import { Quiz } from "./Quiz";
@@ -32,14 +33,15 @@ export function PlayPage() {
         <a className="brand" href="./">
           World Tracker
         </a>
-        <nav className="mode-tabs">
-          {MODES.map((m) => (
-            <a key={m.id} href={`?mode=${m.id}`} className={m.id === mode ? "active" : undefined}>
-              {m.label}
-            </a>
-          ))}
-        </nav>
+        <ModeSwitch active="play" />
       </header>
+      <nav className="mode-tabs">
+        {MODES.map((m) => (
+          <a key={m.id} href={`?mode=${m.id}`} className={m.id === mode ? "active" : undefined}>
+            {m.label}
+          </a>
+        ))}
+      </nav>
       <main>
         {data === null ? (
           <p className="loading">Loading countries…</p>

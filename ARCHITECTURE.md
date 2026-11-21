@@ -67,6 +67,9 @@ src/ui/info/TrendChart.tsx  Trend charts: rows with history (CountryData.trends:
                           fetched in fetch/worldbank.ts) get a chart icon; click opens an SVG line chart, two lines when
                           comparing; pointer = year readout. TrendRow wraps any FactRow. The latest value of those 9
                           indicators also comes from the history (mrnev=1 dropped values, Nov 2026)
+src/ui/ModeSwitch.tsx     Map | Play switch at the top of the map and the games page (own CSS: modeSwitch.css). Play has a
+                          dot until today's daily is done; going to Play saves the map's ?query (sessionStorage) so
+                          Map returns to the same view
 src/ui/Flag.tsx           Flag chip before country names (info header, list, search, comparison rows, Power Level card).
                           public/flags/<ID>.png, 96x72, built by scripts/build-flags.mjs from flag-icons (MIT);
                           every id has a file (grey placeholder for Northern Cyprus, Somaliland, Siachen).

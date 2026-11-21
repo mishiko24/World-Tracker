@@ -9,6 +9,7 @@ import { CountryList } from "./ui/list/CountryList";
 import { DEFAULT_SORT, type Sort } from "./ui/list/sort";
 import { MapCanvas } from "./ui/MapCanvas";
 import { HeatLegend } from "./ui/HeatLegend";
+import { ModeSwitch } from "./ui/ModeSwitch";
 import { SearchBox } from "./ui/SearchBox";
 import { SettingsPanel } from "./ui/SettingsPanel";
 import { isCompactNow } from "./ui/useMobile";
@@ -151,7 +152,10 @@ export function App() {
           rightPanelOpen={selectedCountry !== undefined}
         />
       )}
-      {!settings.listView && <SearchBox countries={countries} onPick={pickFromSearch} />}
+      <div className="top-bar">
+        <ModeSwitch active="map" />
+        {!settings.listView && <SearchBox countries={countries} onPick={pickFromSearch} />}
+      </div>
       <SettingsPanel settings={settings} onChange={changeSettings} open={settingsOpen} onOpenChange={setSettingsOpen} />
       {selectedCountry && (
         <InfoPanel

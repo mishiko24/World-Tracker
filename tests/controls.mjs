@@ -536,6 +536,20 @@ await page.mouse.move(chart.x + chart.width * 0.2, chart.y + chart.height / 2);
 const hovered = await page.textContent(".trend-year");
 check("pointing at the chart reads out an earlier year", Number(hovered) < spainTrend[spainTrend.length - 1][0], hovered);
 
+// ---------- Map | Play switch ----------
+await page.goto(`${URL}?c=FRA&vs=DEU`);
+await page.waitForSelector(".power-card");
+await page.evaluate(() => localStorage.clear());
+await page.reload();
+await page.waitForSelector(".mode-switch .daily-dot");
+check("Play shows a dot while today's daily isn't done", true);
+await page.click(".mode-switch >> text=Play");
+await page.waitForSelector(".mode-tabs");
+check("Play opens the games page", page.url().includes("play.html"));
+await page.click(".mode-switch >> text=Map");
+await page.waitForSelector(".power-card");
+check("Map returns to the same view", page.url().endsWith("?c=FRA&vs=DEU"), page.url());
+
 // ---------- Higher or Lower (play.html) ----------
 const summary = await (await fetch(`${URL}data/summary.json`)).json();
 const valueOf = (id, key) => summary.find((s) => s.id === id)[key];

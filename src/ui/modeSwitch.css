@@ -1,0 +1,68 @@
+/* Map | Play switch (ModeSwitch.tsx). Used on two pages with different stylesheets, so it brings its own colors. */
+
+.mode-switch {
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: 3px;
+  gap: 2px;
+  border-radius: 10px;
+  background: rgba(20, 20, 24, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.mode-switch a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  border-radius: 7px;
+  font: 600 14px/1 "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #9a968f;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.mode-switch a:hover {
+  color: #e8e6e3;
+}
+
+/* On the map, Play stands out: it's an invitation, not just a navigation item. */
+.mode-switch a.play:not(.active) {
+  color: #f0b84a;
+}
+
+.mode-switch a.play:not(.active):hover {
+  color: #ffd27a;
+  background: rgba(240, 184, 74, 0.12);
+}
+
+.mode-switch a.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.mode-switch svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+
+.mode-switch svg circle[r="0.6"] {
+  fill: currentColor;
+}
+
+.daily-dot {
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #e3261b;
+  box-shadow: 0 0 0 2px rgba(20, 20, 24, 0.92);
+}

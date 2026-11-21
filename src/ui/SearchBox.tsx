@@ -67,7 +67,7 @@ export function SearchBox({ countries, onPick }: SearchBoxProps) {
     <div className="search-box">
       <input
         type="search"
-        placeholder="Search countries…"
+        placeholder="Search…"
         value={query}
         onChange={(e) => {
           setQuery(e.target.value);

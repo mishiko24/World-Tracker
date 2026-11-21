@@ -176,10 +176,13 @@ a.button {
   text-decoration: none;
 }
 
-/* Mode tabs in the header (PlayPage.tsx). */
+/* Game tabs under the header (PlayPage.tsx). */
 .mode-tabs {
   display: flex;
+  justify-content: center;
   gap: 4px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
   overflow-x: auto;
 }
 
@@ -367,14 +370,11 @@ button.primary:hover {
   }
 
   .game-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
     padding: 10px 12px;
   }
 
   .mode-tabs {
-    width: 100%;
+    justify-content: flex-start;
   }
 
   .quiz-clue {
