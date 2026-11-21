@@ -9,6 +9,7 @@
 
 import type { CountrySummary } from "../data/countryData";
 import { dollars, fullNumber, shortNumber } from "../ui/info/formatData";
+import { pick, shuffled, type Random } from "./random";
 
 const POOL_MIN_POPULATION = 1_000_000;
 const MIN_DIFFERENCE = 0.05; // 5% of the larger value
@@ -44,14 +45,11 @@ export function gamePool(summaries: CountrySummary[]): CountrySummary[] {
   return summaries.filter((s) => s.powerLevel !== null && s.population !== null && s.population >= POOL_MIN_POPULATION);
 }
 
-function pick<T>(items: T[]): T {
-  return items[Math.floor(Math.random() * items.length)];
-}
-
-// Next round with `left` on the left (first round: a random left country). Picks a stat the left country has,
-// then a right country with a clearly different value for it.
-export function nextRound(pool: CountrySummary[], left: CountrySummary = pick(pool)): Round {
-  for (const metric of [...METRICS].sort(() => Math.random() - 0.5)) {
+// Next round with `left` on the left (null: a random left country, for the first round). Picks a stat the left
+// country has, then a right country with a clearly different value for it.
+export function nextRound(pool: CountrySummary[], left: CountrySummary | null, random: Random = Math.random): Round {
+  left ??= pick(pool, random);
+  for (const metric of shuffled(METRICS, random)) {
     const a = left[metric.key];
     if (a === null) {
       continue;
@@ -61,10 +59,10 @@ export function nextRound(pool: CountrySummary[], left: CountrySummary = pick(po
       return c.id !== left.id && b !== null && Math.abs(a - b) >= MIN_DIFFERENCE * Math.max(Math.abs(a), Math.abs(b));
     });
     if (candidates.length > 0) {
-      return { left, right: pick(candidates), metric };
+      return { left, right: pick(candidates, random), metric };
     }
   }
-  throw new Error(`No playable round for ${left.id}`);
+  throw new Error(`No playable round for ${left!.id}`);
 }
 
 export function correctGuess(round: Round): Guess {

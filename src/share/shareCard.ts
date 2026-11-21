@@ -8,20 +8,16 @@
 // Text uses the system UI font (the site loads no web font).
 // Canvas units are card pixels; the canvas is created at exactly CARD_WIDTH x CARD_HEIGHT.
 
-import { geoDistance, geoMercator, geoPath } from "d3-geo";
-import type { Feature, MultiPolygon, Polygon, Position } from "geojson";
+import { geoMercator, geoPath } from "d3-geo";
 import { PILLAR_LABELS, PILLAR_ORDER, type CountryData } from "../data/countryData";
 import type { Country } from "../map/geo";
 import { heatColor } from "../map/heatColors";
 import { flagUrl } from "../ui/Flag";
+import { drawSilhouette } from "./silhouette";
 import { dollars, shortNumber } from "../ui/info/formatData";
 
 export const CARD_WIDTH = 1200;
 export const CARD_HEIGHT = 630;
-
-// Parts of a country further than this from its label point are left out of the silhouette,
-// so France is drawn without French Guiana and the US without Hawaii.
-const MAINLAND_RADIUS_DEGREES = 40;
 
 const FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif';
 const BACKGROUND = "#0f1419";
@@ -126,7 +122,7 @@ export function drawHomeCard(canvas: HTMLCanvasElement, countries: Country[], po
 function drawSingle(ctx: CanvasRenderingContext2D, side: CardSide, flag: HTMLImageElement, siteLabel: string): void {
   const level = side.data.powerLevel;
   glow(ctx, 300, 300, side.color);
-  drawSilhouette(ctx, side, 60, 70, 460, 450);
+  drawSilhouette(ctx, side.country, side.color, 60, 70, 460, 450);
 
   const x = 580;
   const right = 1140;
@@ -179,8 +175,8 @@ function drawComparison(ctx: CanvasRenderingContext2D, a: CardSide, b: CardSide,
   glow(ctx, 150, 150, a.color);
   glow(ctx, 1050, 150, b.color);
 
-  drawSilhouette(ctx, a, 40, 46, 200, 200);
-  drawSilhouette(ctx, b, 960, 46, 200, 200);
+  drawSilhouette(ctx, a.country, a.color, 40, 46, 200, 200);
+  drawSilhouette(ctx, b.country, b.color, 960, 46, 200, 200);
 
   const scoreA = la?.score ?? null;
   const scoreB = lb?.score ?? null;
@@ -235,35 +231,6 @@ function headline(
 }
 
 // ---------- drawing helpers ----------
-
-function drawSilhouette(ctx: CanvasRenderingContext2D, side: CardSide, x: number, y: number, w: number, h: number): void {
-  const shape = mainland(side.country.shape, side.country.label);
-  // Rotating to the country's own longitude keeps Russia and Fiji in one piece across the date line.
-  const projection = geoMercator()
-    .rotate([-side.country.label[0], 0])
-    .fitExtent(
-      [
-        [x, y],
-        [x + w, y + h],
-      ],
-      shape,
-    );
-  ctx.beginPath();
-  geoPath(projection, ctx)(shape);
-  ctx.fillStyle = side.color;
-  ctx.fill();
-  ctx.strokeStyle = "rgba(255, 255, 255, 0.85)";
-  ctx.lineWidth = 1.5;
-  ctx.lineJoin = "round";
-  ctx.stroke();
-}
-
-function mainland(shape: Feature<Polygon | MultiPolygon>, label: [number, number]): Feature<MultiPolygon> {
-  const polygons = shape.geometry.type === "Polygon" ? [shape.geometry.coordinates] : shape.geometry.coordinates;
-  const radians = (MAINLAND_RADIUS_DEGREES * Math.PI) / 180;
-  const near = polygons.filter((polygon) => polygon[0].some((p: Position) => geoDistance(p as [number, number], label) <= radians));
-  return { type: "Feature", properties: {}, geometry: { type: "MultiPolygon", coordinates: near.length > 0 ? near : polygons } };
-}
 
 // Flag with rounded corners and a hairline edge (white flags would vanish into a light glow otherwise).
 function drawFlag(ctx: CanvasRenderingContext2D, flag: HTMLImageElement, x: number, y: number, w: number, h: number): void {

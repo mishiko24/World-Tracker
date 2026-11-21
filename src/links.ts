@@ -8,7 +8,7 @@ export const ABOUT_URL = "about.html";
 export const POWER_LEVEL_METHOD_URL = "about.html#power-level";
 export const REPORT_ISSUE_URL = "https://github.com/mishiko24/World-Tracker/issues/new";
 export const COUNTRIES_URL = "countries/"; // static hub page: every country and every ranking (scripts/site)
-export const GAME_URL = "play.html"; // Higher or Lower (src/game)
+export const GAME_URL = "play.html"; // games: daily challenge, Higher or Lower, flag and outline quizzes (src/game)
 
 // Cloudflare Web Analytics (free, cookieless: no consent banner needed). Dashboard: dash.cloudflare.com ->
 // Analytics & Logs -> Web Analytics. The token is public by design (it's in every page's HTML).

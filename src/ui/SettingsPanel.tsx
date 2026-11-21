@@ -130,7 +130,7 @@ export function SettingsPanel({ settings, onChange, open, onOpenChange }: Settin
         </button>
       </div>
       <footer className="panel-footer">
-        <a href={GAME_URL}>Play Higher or Lower</a>
+        <a href={GAME_URL}>Play: daily challenge &amp; quizzes</a>
         <a href={COUNTRIES_URL}>Countries &amp; rankings</a>
         <a href={ABOUT_URL}>Sources &amp; method</a>
         <a href={REPORT_ISSUE_URL} target="_blank" rel="noreferrer">

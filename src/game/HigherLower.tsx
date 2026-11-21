@@ -1,49 +1,23 @@
-// Higher or Lower page (play.html). Rules in game.ts; this file only draws them.
-//
+// Higher or Lower, endless: rules in game.ts. One wrong answer ends the run; the streak is the score.
 //   guessing  left value visible, right value hidden, Higher / Lower buttons
 //   revealed  right value shown with ✓ or ✗ for REVEAL_MS, then the next round or game over
 //   over      streak, best, play again, share score, open the last pair on the map
-// Best streak is kept in localStorage (per browser).
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState } from "react";
 import type { CountrySummary } from "../data/countryData";
-import { flagUrl } from "../ui/Flag";
-import { correctGuess, gamePool, nextRound, type Guess, type Round } from "./game";
+import { correctGuess, nextRound, type Guess, type Round } from "./game";
+import { CountryCard, loadBest, playUrl, REVEAL_MS, saveBest, shareScore } from "./shared";
 
-const REVEAL_MS = 1300;
-const BEST_KEY = "worldTracker.higherLower.best";
+const BEST_KEY = "higherLower";
 
 type Phase = "guessing" | "revealed" | "over";
 
-function useSummaries(): CountrySummary[] | null {
-  const [summaries, setSummaries] = useState<CountrySummary[] | null>(null);
-  useEffect(() => {
-    fetch(`${import.meta.env.BASE_URL}data/summary.json`)
-      .then((r) => {
-        if (!r.ok) {
-          throw new Error(`summary.json: HTTP ${r.status}`);
-        }
-        return r.json();
-      })
-      .then(setSummaries);
-  }, []);
-  return summaries;
-}
-
-export function GamePage() {
-  const summaries = useSummaries();
-  if (summaries === null) {
-    return <p className="loading">Loading countries…</p>;
-  }
-  return <Game pool={gamePool(summaries)} />;
-}
-
-function Game({ pool }: { pool: CountrySummary[] }) {
-  const [round, setRound] = useState<Round>(() => nextRound(pool));
+export function HigherLower({ pool }: { pool: CountrySummary[] }) {
+  const [round, setRound] = useState<Round>(() => nextRound(pool, null));
   const [phase, setPhase] = useState<Phase>("guessing");
   const [guess, setGuess] = useState<Guess | null>(null);
   const [streak, setStreak] = useState(0);
-  const [best, setBest] = useState(() => Number(localStorage.getItem(BEST_KEY) ?? 0));
+  const [best, setBest] = useState(() => loadBest(BEST_KEY));
   const [bestBeforeRun, setBestBeforeRun] = useState(best); // "new best!" only when this run beat it
 
   const correct = guess !== null && guess === correctGuess(round);
@@ -64,7 +38,7 @@ function Game({ pool }: { pool: CountrySummary[] }) {
         setStreak(newStreak);
         if (newStreak > best) {
           setBest(newStreak);
-          localStorage.setItem(BEST_KEY, String(newStreak));
+          saveBest(BEST_KEY, newStreak);
         }
         setRound(nextRound(pool, round.right));
         setGuess(null);
@@ -80,7 +54,7 @@ function Game({ pool }: { pool: CountrySummary[] }) {
 
   function restart() {
     setBestBeforeRun(best);
-    setRound(nextRound(pool));
+    setRound(nextRound(pool, null));
     setStreak(0);
     setGuess(null);
     setPhase("guessing");
@@ -88,23 +62,15 @@ function Game({ pool }: { pool: CountrySummary[] }) {
 
   const { left, right, metric } = round;
   return (
-    <div className="game">
-      <header className="game-header">
-        <a className="brand" href="./">
-          World Tracker
-        </a>
-        <div className="scores">
-          <span>
-            Streak <strong className="streak">{streak}</strong>
-          </span>
-          <span>
-            Best <strong>{best}</strong>
-          </span>
-        </div>
-      </header>
-
-      <main>
-        <h1>Higher or Lower</h1>
+    <>
+      <div className="scores">
+        <span>
+          Streak <strong className="streak">{streak}</strong>
+        </span>
+        <span>
+          Best <strong>{best}</strong>
+        </span>
+      </div>
         <p className="question">
           Does <strong>{right.name}</strong> have a higher or lower <strong>{metric.label}</strong> than{" "}
           <strong>{left.name}</strong>?
@@ -132,27 +98,7 @@ function Game({ pool }: { pool: CountrySummary[] }) {
         {phase === "over" && (
           <GameOver streak={streak} best={best} newBest={streak > bestBeforeRun} round={round} onRestart={restart} />
         )}
-      </main>
-    </div>
-  );
-}
-
-interface CountryCardProps {
-  country: CountrySummary;
-  label: string;
-  value: string | null; // null = hidden (to be guessed)
-  children?: ReactNode;
-}
-
-function CountryCard({ country, label, value, children }: CountryCardProps) {
-  return (
-    <section className="country-card" data-id={country.id}>
-      <img className="card-flag" src={flagUrl(country.id)} alt="" />
-      <h2>{country.name}</h2>
-      <div className="card-label">{label}</div>
-      <div className="card-value">{value ?? "?"}</div>
-      {children}
-    </section>
+    </>
   );
 }
 
@@ -166,22 +112,10 @@ interface GameOverProps {
 
 function GameOver({ streak, best, newBest, round, onRestart }: GameOverProps) {
   const [copied, setCopied] = useState(false);
-  const url = new URL("play.html", window.location.href).href;
   const text = `I got ${streak} in a row on World Tracker's Higher or Lower (countries edition). Can you beat it?`;
 
   function share() {
-    const nav: Partial<Navigator> = navigator; // TypeScript assumes share() exists; desktop Firefox lacks it
-    if (nav.share !== undefined) {
-      navigator.share({ text, url }).catch((e: DOMException) => {
-        if (e.name !== "AbortError") {
-          throw e; // AbortError = the user closed the share sheet
-        }
-      });
-    } else {
-      navigator.clipboard.writeText(`${text} ${url}`).then(() => {
-        setCopied(true);
-      });
-    }
+    shareScore(text, playUrl("endless")).then(setCopied);
   }
 
   return (

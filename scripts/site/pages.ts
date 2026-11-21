@@ -423,7 +423,7 @@ function hubPage(site: Site): string {
     builtAt: site.meta.builtAt,
     body:
       `<h1>Countries &amp; rankings</h1><p class="lead">Every country on World Tracker, and every ranking. ` +
-      `Think you know them? <a href="${root}${GAME_URL}">Play Higher or Lower</a>.</p>` +
+      `Think you know them? <a href="${root}${GAME_URL}">Try the daily challenge</a>, Higher or Lower, and the flag and outline quizzes.</p>` +
       `<section><h2>Rankings</h2><ul class="link-grid">${COLUMNS.map(
         (c) => `<li><a href="${root}rank/${kebab(c.key)}/">Countries by ${escape(c.label)}</a></li>`,
       ).join("")}</ul></section>` +

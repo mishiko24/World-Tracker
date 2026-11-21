@@ -45,7 +45,9 @@ body {
 
 .scores {
   display: flex;
-  gap: 18px;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: 10px;
   font-size: 14px;
   color: var(--dim);
 }
@@ -157,8 +159,137 @@ button {
   color: var(--text);
 }
 
-button:hover {
+button:hover,
+a.button:hover {
   background: rgba(255, 255, 255, 0.13);
+}
+
+a.button {
+  display: inline-block;
+  border-radius: 10px;
+  padding: 11px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* Mode tabs in the header (PlayPage.tsx). */
+.mode-tabs {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+}
+
+.mode-tabs a {
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dim);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.mode-tabs a:hover {
+  color: var(--text);
+}
+
+.mode-tabs a.active {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Daily challenge (Daily.tsx). */
+.daily-progress {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: -12px 0 22px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dot.current {
+  box-shadow: 0 0 0 2px var(--text);
+}
+
+.dot.right {
+  background: var(--win);
+}
+
+.dot.wrong {
+  background: var(--lose);
+}
+
+.daily-result h2 {
+  font-size: 40px;
+}
+
+.grid {
+  font-size: 24px;
+  letter-spacing: 2px;
+  margin: 4px 0 18px;
+}
+
+.next-daily {
+  margin: 16px 0 0;
+  font-size: 14px;
+  color: var(--dim);
+}
+
+/* Flag and outline quizzes (Quiz.tsx). */
+.quiz-clue {
+  display: grid;
+  place-items: center;
+  min-height: 270px;
+  margin-bottom: 20px;
+}
+
+.quiz-flag {
+  width: 320px;
+  max-width: 90%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.option:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.option.right {
+  opacity: 1;
+  border-color: var(--win);
+  background: rgba(63, 185, 80, 0.2);
+}
+
+.option.wrong {
+  opacity: 1;
+  border-color: var(--lose);
+  background: rgba(248, 81, 73, 0.2);
+}
+
+.lives {
+  color: var(--lose);
+  letter-spacing: 2px;
 }
 
 .guess.higher {
@@ -233,6 +364,25 @@ button.primary:hover {
 @media (max-width: 640px) {
   main {
     padding-top: 18px;
+  }
+
+  .game-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .mode-tabs {
+    width: 100%;
+  }
+
+  .quiz-clue {
+    min-height: 200px;
+  }
+
+  .quiz-options {
+    grid-template-columns: 1fr;
   }
 
   h1 {

@@ -513,11 +513,11 @@ const valueOf = (id, key) => summary.find((s) => s.id === id)[key];
 const gameState = () =>
   page.evaluate(() => {
     const [left, right] = [...document.querySelectorAll(".country-card")].map((c) => c.dataset.id);
-    return { left, right, metric: document.querySelector(".cards").dataset.metric, streak: document.querySelector(".streak").textContent };
+    return { left, right, metric: document.querySelector(".cards").dataset.metric, streak: document.querySelector(".streak")?.textContent ?? null };
   });
-await page.goto(`${URL}play.html`);
+await page.goto(`${URL}play.html?mode=endless`);
 await page.evaluate(() => localStorage.clear());
-await page.goto(`${URL}play.html`);
+await page.goto(`${URL}play.html?mode=endless`);
 await page.waitForSelector(".guess");
 let round = await gameState();
 const rightAnswer = valueOf(round.right, round.metric) > valueOf(round.left, round.metric) ? "higher" : "lower";
@@ -530,9 +530,49 @@ const wrongAnswer = valueOf(round.right, round.metric) > valueOf(round.left, rou
 await page.click(`[data-guess="${wrongAnswer}"]`);
 await page.waitForSelector(".game-over", { timeout: 4000 });
 check("wrong answer ends the game", (await page.textContent(".final")).includes("1 in a row"));
-await page.goto(`${URL}play.html`);
+await page.goto(`${URL}play.html?mode=endless`);
 await page.waitForSelector(".scores");
 check("best streak is remembered", (await page.textContent(".scores")).replace(/\s+/g, "").includes("Best1"), await page.textContent(".scores"));
+
+// Daily challenge: same questions for everyone today, all 10 answered, result kept.
+await page.goto(`${URL}play.html`);
+await page.waitForSelector(".guess");
+const firstDaily = await gameState();
+await page.goto(`${URL}play.html?mode=daily`);
+await page.waitForSelector(".guess");
+check("daily is the default mode and the same questions on reload", JSON.stringify(await gameState()) === JSON.stringify(firstDaily));
+let dailyRight = 0;
+for (let i = 0; i < 10; i++) {
+  await page.waitForSelector(".guess");
+  const r = await gameState();
+  const higher = valueOf(r.right, r.metric) > valueOf(r.left, r.metric);
+  const answerRight = i % 3 !== 0; // get some wrong on purpose: a wrong answer must not end the daily
+  dailyRight += answerRight ? 1 : 0;
+  await page.click(`[data-guess="${higher === answerRight ? "higher" : "lower"}"]`);
+  await page.waitForTimeout(1400);
+}
+await page.waitForSelector(".daily-result");
+check("daily: all 10 answered, score counts right answers", (await page.textContent(".daily-result h2")) === `${dailyRight}/10`, await page.textContent(".daily-result h2"));
+await page.goto(`${URL}play.html?mode=daily`);
+await page.waitForSelector(".daily-result");
+check("daily: one attempt per day (result shown on return)", (await page.$(".guess")) === null);
+
+// Flag quiz: right answer scores, three wrong answers end it.
+await page.goto(`${URL}play.html?mode=flags`);
+await page.waitForSelector(".option");
+const answerId = await page.getAttribute(".quiz-clue", "data-answer");
+await page.click(`.option[data-id="${answerId}"]`);
+await page.waitForTimeout(1500);
+check("flag quiz: right answer scores", (await page.textContent(".streak")) === "1");
+for (let i = 0; i < 3; i++) {
+  const answer = await page.getAttribute(".quiz-clue", "data-answer");
+  await page.click(`.option:not([data-id="${answer}"]) >> nth=0`);
+  await page.waitForTimeout(1500);
+}
+check("flag quiz: three wrong answers end the game", (await page.$(".game-over")) !== null);
+await page.goto(`${URL}play.html?mode=outlines`);
+await page.waitForSelector("canvas.quiz-outline");
+check("outline quiz draws the shape", await page.$eval("canvas.quiz-outline", (c) => c.width > 0));
 
 // ---------- Sources & method page ----------
 await page.goto(`${URL}?c=CHN`);
