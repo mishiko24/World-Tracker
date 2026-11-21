@@ -1,5 +1,7 @@
 # World Tracker — architecture notes
 
+Before any UI work, read DESIGN.md (how data is presented: comparisons, colors, numbers, cards).
+
 Written for whoever maintains this code next (Claude, in a later session). Read this first.
 
 ## What it is
