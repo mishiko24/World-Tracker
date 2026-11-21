@@ -8,6 +8,7 @@ import { preview } from "vite";
 import type { CardJob } from "./pages";
 
 const PORT = 4190;
+export const HOME_CARD = "cards/home.jpg"; // preview of index.html and about.html (vite.config.ts points at it)
 const CHROME = process.env.CHROME ?? "/usr/bin/google-chrome"; // preinstalled on GitHub's ubuntu runners
 
 export async function renderCards(dist: string, jobs: CardJob[], siteLabel: string): Promise<void> {
@@ -25,6 +26,9 @@ export async function renderCards(dist: string, jobs: CardJob[], siteLabel: stri
     const dataUrl = await page.evaluate(([a, b, label]) => window.renderShareCard(a!, b, label!), [job.a, job.b, siteLabel] as const);
     writeFileSync(`${dist}/${job.file}`, Buffer.from(dataUrl.slice(dataUrl.indexOf(",") + 1), "base64"));
   }
+
+  const home = await page.evaluate((label) => window.renderHomeCard(label), siteLabel);
+  writeFileSync(`${dist}/${HOME_CARD}`, Buffer.from(home.slice(home.indexOf(",") + 1), "base64"));
 
   await browser.close();
   await server.close();

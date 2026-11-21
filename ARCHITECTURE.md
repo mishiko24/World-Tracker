@@ -81,7 +81,9 @@ scripts/site/             Static pages for search engines + link previews, added
                           country vs its neighbours/nearest countries (data/nearby.json). Not every pair: ~29k pages of
                           pairs nobody searches would read as filler to Google (Mishiko agreed).
                           og:title is short ("Russia vs United States"); <title> keeps keywords for Google
-  cards.ts                Renders those cards (JPEG, ~60 KB) with share-card.html in headless Chrome
+  cards.ts                Renders those cards (JPEG, ~60 KB) with share-card.html in headless Chrome, plus
+                          cards/home.jpg (world in Power Level colors) = preview of index.html/about.html
+                          (og: tags injected by the preview-image plugin in vite.config.ts)
   notFound.ts             404.html: forwards guessed addresses (compare/usa-vs-russia, country/uk, /georgia) to the
                           real page, or a pair without a page to the map. Aliases: slugs, ISO codes, EXTRA_ALIASES
   html.ts                 Page layout (title, description, canonical, og: tags), escaping, slugs

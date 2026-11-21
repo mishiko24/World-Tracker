@@ -53,6 +53,11 @@ for (const file of staticPages) {
   }
 }
 
+for (const file of ["index.html", "about.html"]) {
+  const image = readFileSync(join(DIST, file), "utf8").match(/property="og:image" content="([^"]+)"/)?.[1];
+  if (image === undefined || !exists(join(DIST, image.slice(SITE_URL.length)))) fail(`${file}: link-preview image missing (${image})`);
+}
+
 const sitemap = readFileSync(join(DIST, "sitemap.xml"), "utf8");
 const listed = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 for (const url of listed) {

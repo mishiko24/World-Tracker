@@ -1,6 +1,6 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig, type Plugin } from "vite";
-import { ANALYTICS_SNIPPET } from "./src/links.ts";
+import { ANALYTICS_SNIPPET, SITE_URL } from "./src/links.ts";
 
 // Analytics on the site's real pages, in production builds only (not in `npm run dev`).
 const ANALYTICS_PAGES = ["index.html", "about.html"];
@@ -12,8 +12,30 @@ const analytics: Plugin = {
   },
 };
 
+// Link-preview image for the map and the about page: cards/home.jpg, drawn by `npm run build:site`
+// (scripts/site/cards.ts). Absolute URLs, as link previews require.
+const PREVIEW_PAGES: Record<string, string> = { "index.html": "", "about.html": "about.html" };
+const previewImage: Plugin = {
+  name: "preview-image",
+  apply: "build",
+  transformIndexHtml(html, context) {
+    const page = Object.keys(PREVIEW_PAGES).find((name) => context.filename.endsWith(name));
+    if (page === undefined) {
+      return html;
+    }
+    const meta = [
+      `<meta property="og:url" content="${SITE_URL}${PREVIEW_PAGES[page]}" />`,
+      `<meta property="og:image" content="${SITE_URL}cards/home.jpg" />`,
+      `<meta property="og:image:width" content="1200" />`,
+      `<meta property="og:image:height" content="630" />`,
+      `<meta name="twitter:card" content="summary_large_image" />`,
+    ].join("\n");
+    return html.replace("</head>", `${meta}\n</head>`);
+  },
+};
+
 export default defineConfig({
-  plugins: [react(), analytics],
+  plugins: [react(), analytics, previewImage],
   base: "./", // relative paths, so the build works on GitHub Pages under any repo name
   build: {
     rollupOptions: {

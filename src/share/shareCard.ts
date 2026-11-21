@@ -12,6 +12,7 @@ import { geoDistance, geoMercator, geoPath } from "d3-geo";
 import type { Feature, MultiPolygon, Polygon, Position } from "geojson";
 import { PILLAR_LABELS, PILLAR_ORDER, type CountryData } from "../data/countryData";
 import type { Country } from "../map/geo";
+import { heatColor } from "../map/heatColors";
 import { flagUrl } from "../ui/Flag";
 import { dollars, shortNumber } from "../ui/info/formatData";
 
@@ -66,6 +67,58 @@ export function drawShareCard(canvas: HTMLCanvasElement, a: CardSide, b: CardSid
 
 export function shareFileName(a: Country, b: Country | null): string {
   return `world-tracker-${a.id}${b === null ? "" : `-vs-${b.id}`}.png`.toLowerCase();
+}
+
+// Home page link preview (index.html, about.html): the world in Power Level colors (same scale as the map's
+// "Color countries by: Power Level"), the site name and what it does. powerLevels: id -> 0..1 within the world.
+export function drawHomeCard(canvas: HTMLCanvasElement, countries: Country[], powerLevels: Map<string, number>, siteLabel: string): void {
+  canvas.width = CARD_WIDTH;
+  canvas.height = CARD_HEIGHT;
+  const ctx = canvas.getContext("2d")!;
+  ctx.fillStyle = BACKGROUND;
+  ctx.fillRect(0, 0, CARD_WIDTH, CARD_HEIGHT);
+
+  // The whole map on the right; the text on the left, so no country (the Americas!) sits under the text.
+  const features = { type: "FeatureCollection" as const, features: countries.map((c) => c.shape) };
+  const projection = geoMercator().fitExtent(
+    [
+      [475, 50],
+      [1185, 600],
+    ],
+    features,
+  );
+  const path = geoPath(projection, ctx);
+  ctx.lineWidth = 0.5;
+  ctx.strokeStyle = "rgba(15, 20, 25, 0.9)";
+  for (const country of countries) {
+    const t = powerLevels.get(country.id);
+    ctx.beginPath();
+    path(country.shape);
+    ctx.fillStyle = t === undefined ? "#262c35" : heatColor("dark", t);
+    ctx.fill();
+    ctx.stroke();
+  }
+
+  text(ctx, "WORLD TRACKER", 56, 150, 20, 700, DIM, "left", 0.14);
+  text(ctx, "Compare any", 52, 228, 58, 800, TEXT);
+  text(ctx, "two countries", 52, 292, 58, 800, TEXT);
+  text(ctx, "Power Level, economy,", 56, 352, 23, 400, DIM);
+  text(ctx, "population, resources and", 56, 384, 23, 400, DIM);
+  text(ctx, `energy for ${countries.length} countries`, 56, 416, 23, 400, DIM);
+
+  // Power Level scale.
+  const scale = ctx.createLinearGradient(56, 0, 336, 0);
+  scale.addColorStop(0, heatColor("dark", 0));
+  scale.addColorStop(0.5, heatColor("dark", 0.5));
+  scale.addColorStop(1, heatColor("dark", 1));
+  ctx.fillStyle = scale;
+  ctx.beginPath();
+  ctx.roundRect(56, 466, 280, 10, 5);
+  ctx.fill();
+  text(ctx, "Power Level", 56, 502, 17, 500, DIM);
+  text(ctx, "low → high", 336, 502, 17, 400, DIM, "right");
+
+  text(ctx, siteLabel, 56, 590, 19, 400, DIM);
 }
 
 // ---------- layouts ----------
