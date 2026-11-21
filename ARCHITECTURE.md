@@ -150,7 +150,8 @@ SECURITY: never write URLs containing the EIA key to files or logs. A leak happe
   List view uses the same rules (left/right click on rows). The info panel's "Compare" button starts picking mode:
   the next left click / tap compares instead of selecting (ocean cancels).
   Touch: one finger pans, pinch zooms, tap = left click, long press (500 ms) = right click.
-  Trackpad pinch arrives as wheel + ctrlKey and zooms immediately (no glide).
+  Trackpad pinch arrives as wheel + ctrlKey (Chrome/Firefox) or gesturestart/gesturechange (Safari) and zooms
+  immediately (no glide). Safari's gesture events are ignored while fingers are down (touch handles those).
 - **Phones sideways (≤500px tall, >700px wide):** settings start closed and open full screen; the info panel is
   a slim full-height side panel (320px, 360 comparing). isCompactNow() in useMobile.ts.
 - **Phones (≤700px wide):** settings start closed and open as a full-screen drawer; info panel is a bottom sheet
@@ -203,6 +204,6 @@ economy 0.40, resources 0.15, population 0.15, energy 0.15, food 0.10, stability
   Esri World Imagery (terms), MapTiler (API key).
 - Artifact previews on claude.ai block remote images, so satellite only works on Pages / localhost.
 - 50m coastlines look coarse past ~20x; could swap to 10m geometry when zoomed in.
-- Safari's own trackpad pinch events (gesturechange) aren't handled; Safari users zoom with scroll.
+- Safari pinch is tested with simulated gesture events (no Safari in CI).
 - Debt: World Bank central gov. debt covers ~60 countries. If the IMF grants permission, IMF becomes the
   economy source with World Bank as fallback.

@@ -172,6 +172,26 @@ await page.waitForTimeout(1000);
 await middleDrag(0, 1000); // push back to vertical center limit
 const backAtMin = near(await pixel(eastX, eastY), COLORS.ocean) || near(await pixel(eastX, eastY - 200), COLORS.ocean);
 check("zoom out clamps at min zoom (Spain small again)", backAtMin);
+
+// Safari trackpad pinch arrives as gesturestart/gesturechange (scale = total pinch). Simulated: Chrome has no such events.
+const safariPinch = (scale) =>
+  page.evaluate(
+    ([x, y, scale]) => {
+      const canvas = document.querySelector("canvas");
+      const fire = (type, s) => canvas.dispatchEvent(Object.assign(new Event(type, { cancelable: true }), { scale: s, clientX: x, clientY: y }));
+      fire("gesturestart", 1);
+      fire("gesturechange", (1 + scale) / 2);
+      fire("gesturechange", scale);
+      fire("gestureend", scale);
+    },
+    [spainX, spainY, scale],
+  );
+await safariPinch(4);
+await page.waitForTimeout(300);
+check("Safari pinch zooms around the pinch point", near(await pixel(spainX, spainY), COLORS.selected) && near(await pixel(eastX, eastY), COLORS.selected));
+await safariPinch(0.1);
+await page.waitForTimeout(300);
+check("Safari pinch out zooms back out", near(await pixel(eastX, eastY), COLORS.ocean));
 await page.keyboard.press("Escape");
 
 // Settings: change selected fill color, check it applies and persists.

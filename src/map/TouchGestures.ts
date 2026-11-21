@@ -35,6 +35,11 @@ export class TouchGestures {
     this.handlers = handlers;
   }
 
+  // True while a finger is on the screen.
+  get active(): boolean {
+    return this.touches.size > 0;
+  }
+
   down(e: PointerEvent): void {
     this.touches.set(e.pointerId, { x: e.offsetX, y: e.offsetY });
     this.cancelLongPress();

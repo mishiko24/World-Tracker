@@ -6,7 +6,8 @@
 //   right click      -> onCompare(country or null for ocean)
 //   middle drag      -> pan (horizontal wraps forever, vertical is clamped)
 //   wheel            -> zoom toward cursor, smoothed
-//   trackpad pinch   -> zoom toward cursor, immediate (browsers send it as wheel + ctrlKey)
+//   trackpad pinch   -> zoom toward cursor, immediate (Chrome/Firefox send it as wheel + ctrlKey,
+//                       Safari as its own gesture events)
 // Touch (TouchGestures.ts): drag pans, pinch zooms, tap = left click, long press = right click.
 // A click that moved more than a few pixels is a drag and does nothing.
 // The view only reports clicks; App decides what they mean and pushes selection back via
@@ -27,6 +28,13 @@ const WHEEL_PIXELS_PER_NOTCH = 100; // typical deltaY of one mouse-wheel notch
 const MAX_ZOOM_GLIDE_SECONDS = 0.3; // zoom smoothness 1 = this time constant
 const PINCH_WHEEL_ZOOM_PER_PIXEL = 0.01; // trackpad pinch: zoom factor = e^(-deltaY * this)
 
+// Safari's trackpad pinch (non-standard, not in TypeScript's DOM types). scale = total pinch since gesturestart.
+interface SafariGestureEvent extends UIEvent {
+  scale: number;
+  clientX: number;
+  clientY: number;
+}
+
 // Countries smaller than this on screen also get a dot, so microstates stay visible and clickable.
 const DOT_SHOW_BELOW_PX = 6;
 const DOT_RADIUS_PX = 3.5;
@@ -44,6 +52,7 @@ export class MapView {
   private readonly onCompare: (id: string | null) => void;
   private readonly resizeObserver: ResizeObserver;
   private readonly touch: TouchGestures;
+  private gestureStartZoom = 1; // Safari pinch: zoom when the gesture began
 
   private settings: Settings;
   private fillOverrides: Map<string, string> | null = null; // heat-map colors for default-state countries
@@ -106,6 +115,8 @@ export class MapView {
     canvas.addEventListener("pointercancel", this.handlePointerCancel);
     canvas.addEventListener("wheel", this.handleWheel, { passive: false });
     canvas.addEventListener("contextmenu", this.handleContextMenu);
+    canvas.addEventListener("gesturestart", this.handleGestureStart);
+    canvas.addEventListener("gesturechange", this.handleGestureChange);
 
     this.resizeObserver = new ResizeObserver(() => {
       this.resize();
@@ -126,6 +137,8 @@ export class MapView {
     this.canvas.removeEventListener("pointercancel", this.handlePointerCancel);
     this.canvas.removeEventListener("wheel", this.handleWheel);
     this.canvas.removeEventListener("contextmenu", this.handleContextMenu);
+    this.canvas.removeEventListener("gesturestart", this.handleGestureStart);
+    this.canvas.removeEventListener("gesturechange", this.handleGestureChange);
   }
 
   setSettings(settings: Settings): void {
@@ -487,6 +500,26 @@ export class MapView {
     if (e.pointerType === "touch") {
       this.touch.cancel(e);
     }
+  };
+
+  // Safari trackpad pinch. Safari on phones/tablets also sends these during two-finger touches, which
+  // TouchGestures already handles: ignored while a finger is down, or the map would zoom twice.
+  private handleGestureStart = (e: Event): void => {
+    if (this.touch.active) {
+      return;
+    }
+    e.preventDefault(); // no page zoom
+    this.gestureStartZoom = this.camera.zoom;
+  };
+
+  private handleGestureChange = (e: Event): void => {
+    if (this.touch.active) {
+      return;
+    }
+    e.preventDefault();
+    const gesture = e as SafariGestureEvent;
+    const rect = this.canvas.getBoundingClientRect();
+    this.zoomNow(this.gestureStartZoom * gesture.scale, gesture.clientX - rect.left, gesture.clientY - rect.top);
   };
 
   private handleWheel = (e: WheelEvent): void => {
