@@ -27,7 +27,11 @@
 
 import { PILLAR_WEIGHTS, type CountryData, type PillarId, type PowerLevel } from "../../src/data/countryData.ts";
 
-export const POWER_LEVEL_VERSION = 2;
+export const POWER_LEVEL_VERSION = 3;
+
+// v2 -> v3 (Nov 2026): places with data for fewer than MIN_PILLARS pillars aren't scored. With 2-3 pillars one
+// number swung the score (Monaco 15 -> 25 from a single year of 8.5% growth).
+const MIN_PILLARS = 4;
 
 // Fixed ranges (not relative to the world), so one outlier like 200% inflation doesn't squash everyone else.
 const growthScore = (g: number) => clamp01((g + 5) / 13); // -5% or worse = 0, +8% or better = 1
@@ -262,7 +266,8 @@ export function computePowerLevels(
       food: s.food(foodRaw(d)),
       stability: stability === null ? null : stability.value / 100,
     };
-    if (pillars.economy === null || pillars.population === null) {
+    const available = Object.values(pillars).filter((v) => v !== null).length;
+    if (pillars.economy === null || pillars.population === null || available < MIN_PILLARS) {
       continue; // insufficient data
     }
     const total = combine(

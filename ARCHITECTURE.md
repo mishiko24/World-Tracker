@@ -202,7 +202,8 @@ economy 0.40, resources 0.15, population 0.15, energy 0.15, food 0.10, stability
   Stability = World Bank WGI political stability score only (GOV_WGI_PV_SC, also shown in Government).
 - Size values (GDP, population, generation) use (v/max)^0.3 so giants don't flatten everyone else;
   per-capita values use log min-max; world shares (resources, food) use sqrt(v/max).
-- A missing pillar's weight is redistributed over the others. No score without economy + population.
+- A missing pillar's weight is redistributed over the others. No score without economy + population, or with
+  fewer than 4 of the 6 pillars (v3: with 2-3 pillars one number swung small territories' scores).
 - Rank is among countries with a score. build.ts prints the top 30: check it after any formula change,
   and bump POWER_LEVEL_VERSION when the formula changes.
 

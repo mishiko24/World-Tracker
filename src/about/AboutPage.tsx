@@ -128,7 +128,7 @@ export function AboutPage() {
         </li>
         <li>Per-person values (GDP per person, electricity per person) use a logarithmic scale between the lowest and highest country.</li>
         <li>World shares (resources, food) use a square-root scale.</li>
-        <li>If a country is missing data for a pillar, that pillar’s weight is spread over the others. Without economy and population data a country is not scored.</li>
+        <li>If a country is missing data for a pillar, that pillar’s weight is spread over the others. A country needs economy and population data and at least four of the six pillars to be scored, so a single number can't make up most of a score.</li>
       </ul>
       <h3>Limits</h3>
       <ul>
