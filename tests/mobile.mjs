@@ -166,6 +166,15 @@ await drag([trendBox[0] + trendBox[2] * 0.2, trendBox[1] + trendBox[3] / 2], [tr
 const touchMeasure = await page.$(".trend-readout.measuring");
 check("touch: sideways drag on a trend chart measures a change", touchMeasure !== null, touchMeasure === null ? "" : await touchMeasure.textContent());
 
+// Map | Play switch: same spot on the map and the games page.
+const phoneSwitch = () => page.$eval(".mode-switch", (el) => { const r = el.getBoundingClientRect(); return [Math.round(r.left), Math.round(r.top), Math.round(r.width)].join(","); });
+await page.goto(URL);
+await page.waitForSelector(".mode-switch");
+const onMap = await phoneSwitch();
+await page.goto(`${URL}play.html`);
+await page.waitForSelector(".mode-switch");
+check("phone: the Map | Play switch stays in the same spot", (await phoneSwitch()) === onMap, `${onMap} vs ${await phoneSwitch()}`);
+
 // ---------- phone sideways (844x390): compact layout ----------
 const landscape = await browser.newContext({ viewport: { width: 844, height: 390 }, hasTouch: true, isMobile: true, deviceScaleFactor: 2 });
 const side = await landscape.newPage();

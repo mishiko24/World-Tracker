@@ -29,9 +29,17 @@ export function PlayPage() {
   const mode = modeFromUrl();
   return (
     <div className="game">
+      {/* The Map | Play switch sits exactly where it is on the map page: top center, or on phones right after the
+          map's ☰ button, whose slot the globe button takes here (game.css). */}
       <header className="game-header">
         <a className="brand" href="./">
           World Tracker
+        </a>
+        <a className="brand-button" href="./" aria-label="World Tracker map">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <circle cx="8" cy="8" r="6.2" />
+            <path d="M1.8 8h12.4M8 1.8c2 2.2 2 10.2 0 12.4M8 1.8c-2 2.2-2 10.2 0 12.4" />
+          </svg>
         </a>
         <ModeSwitch active="play" />
       </header>

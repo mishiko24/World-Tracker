@@ -68,7 +68,8 @@ src/ui/info/TrendChart.tsx  Trend charts: rows with history (CountryData.trends:
                           comparing; pointer = year readout; press-and-drag = measure the change between two years
                           (%, pp or years per TrendInput.change; touch: sideways drag). TrendRow wraps any FactRow. The latest value of those 9
                           indicators also comes from the history (mrnev=1 dropped values, Nov 2026)
-src/ui/ModeSwitch.tsx     Map | Play switch at the top of the map and the games page (own CSS: modeSwitch.css). Play has a
+src/ui/ModeSwitch.tsx     Map | Play switch, pinned to the same spot on both pages (top center; phones: after the ☰ slot at
+                          64px; tests check it). Own CSS: modeSwitch.css. Play has a
                           dot until today's daily is done; going to Play saves the map's ?query (sessionStorage) so
                           Map returns to the same view
 src/ui/Flag.tsx           Flag chip before country names (info header, list, search, comparison rows, Power Level card).
@@ -207,7 +208,7 @@ economy 0.40, resources 0.15, population 0.15, energy 0.15, food 0.10, stability
 - Size values (GDP, population, generation) use (v/max)^0.3 so giants don't flatten everyone else;
   per-capita values use log min-max; world shares (resources, food) use sqrt(v/max).
 - A missing pillar's weight is redistributed over the others. No score without economy + population, or with
-  fewer than 4 of the 6 pillars (v3: with 2-3 pillars one number swung small territories' scores).
+  fewer than 5 of the 6 pillars (v3/v4: with few pillars one number swung small territories' scores).
 - Rank is among countries with a score. build.ts prints the top 30: check it after any formula change,
   and bump POWER_LEVEL_VERSION when the formula changes.
 

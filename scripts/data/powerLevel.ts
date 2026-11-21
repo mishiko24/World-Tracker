@@ -27,11 +27,12 @@
 
 import { PILLAR_WEIGHTS, type CountryData, type PillarId, type PowerLevel } from "../../src/data/countryData.ts";
 
-export const POWER_LEVEL_VERSION = 3;
+export const POWER_LEVEL_VERSION = 4;
 
-// v2 -> v3 (Nov 2026): places with data for fewer than MIN_PILLARS pillars aren't scored. With 2-3 pillars one
+// v2 -> v3 (Nov 2026): places with data for fewer than MIN_PILLARS pillars aren't scored. With few pillars one
 // number swung the score (Monaco 15 -> 25 from a single year of 8.5% growth).
-const MIN_PILLARS = 4;
+// v3 -> v4: 4 -> 5 pillars; with 4, Monaco and other microstates were still scored on thin data. Don't force a score.
+const MIN_PILLARS = 5;
 
 // Fixed ranges (not relative to the world), so one outlier like 200% inflation doesn't squash everyone else.
 const growthScore = (g: number) => clamp01((g + 5) / 13); // -5% or worse = 0, +8% or better = 1

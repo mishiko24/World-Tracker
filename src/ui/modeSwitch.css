@@ -66,3 +66,10 @@
   background: #e3261b;
   box-shadow: 0 0 0 2px rgba(20, 20, 24, 0.92);
 }
+
+/* Phones (same breakpoint as src/ui/useMobile.ts): tighter, so the search box keeps room on the map. */
+@media (max-width: 700px) {
+  .mode-switch a {
+    padding: 7px 9px;
+  }
+}

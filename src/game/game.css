@@ -26,12 +26,43 @@ body {
   text-align: center;
 }
 
+/* The switch is pinned to the map page's spot: top 12px, centered (styles.css .top-bar). */
 .game-header {
+  position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 14px 20px;
-  border-bottom: 1px solid var(--border);
+  height: 62px;
+  padding: 0 20px;
+}
+
+.game-header .mode-switch {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Phones only: takes the slot of the map's ☰ button (12px, 40x40). */
+.brand-button {
+  display: none;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 42px;
+  height: 40px;
+  place-items: center;
+  border-radius: 8px;
+  background: rgba(20, 20, 24, 0.92);
+  border: 1px solid var(--border);
+  color: var(--dim);
+}
+
+.brand-button svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
 }
 
 .brand {
@@ -369,10 +400,6 @@ button.primary:hover {
     padding-top: 18px;
   }
 
-  .game-header {
-    padding: 10px 12px;
-  }
-
   .mode-tabs {
     justify-content: flex-start;
   }
@@ -431,5 +458,22 @@ button.primary:hover {
 
   .guess-buttons button {
     flex: 1;
+  }
+}
+
+/* Phones and phones sideways: same breakpoints as the map (src/ui/useMobile.ts), where the switch sits right
+   after the ☰ button at 64px. */
+@media (max-width: 700px), (max-height: 500px) {
+  .game-header .brand {
+    display: none;
+  }
+
+  .brand-button {
+    display: grid;
+  }
+
+  .game-header .mode-switch {
+    left: 64px;
+    transform: none;
   }
 }

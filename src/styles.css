@@ -719,20 +719,20 @@ button {
 
 /* ---------- search ---------- */
 
-/* Top center: Map | Play switch and the search box (App.tsx). */
+/* Top center: the Map | Play switch, exactly centered so it sits in the same spot as on the games page
+   (src/game/game.css .game-header .mode-switch); the search box hangs off its right side (App.tsx). */
 .top-bar {
   position: absolute;
   top: 12px;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
   z-index: 5;
 }
 
 .search-box {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: calc(100% + 8px);
   width: 300px;
 }
 
@@ -959,20 +959,21 @@ button {
     z-index: 20;
   }
 
+  /* Phones: switch right after the ☰ button (same slot as on the games page), search fills the rest. */
   .top-bar {
     left: 64px;
     right: 12px;
     transform: none;
+    display: flex;
+    gap: 8px;
   }
 
   .search-box {
+    position: relative;
+    left: auto;
     flex: 1;
     width: auto;
     min-width: 0;
-  }
-
-  .mode-switch a {
-    padding: 7px 9px;
   }
 
   /* 16px stops iOS from zooming the page when the input gets focus. */
@@ -1313,9 +1314,13 @@ button {
   .top-bar {
     left: 64px;
     transform: none;
+    display: flex;
+    gap: 8px;
   }
 
   .search-box {
+    position: relative;
+    left: auto;
     width: 240px;
   }
 
