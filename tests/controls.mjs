@@ -343,16 +343,22 @@ await page.check("aside.panel-left .list-view-toggle input");
 await page.waitForSelector(".country-list tbody tr");
 check("list view hides the map", await page.$eval("canvas", (c) => getComputedStyle(c).visibility === "hidden"));
 const headerNames = await page.$$eval(".country-list th", (els) => els.map((e) => e.textContent.replace(/[▲▼]/g, "").trim()));
-check("list view columns", headerNames.join("|") === "Name|Power Level|Population|Births per woman|Median age|Density (per km²)|GDP|GDP per capita|GDP per capita (PPP)|Real growth|Inflation|Central gov. debt|Central gov. debt (% GDP)", headerNames.join("|"));
+check(
+  "list view columns",
+  headerNames.join("|") ===
+    "Name|Power Level|Population|Births per woman|Life expectancy|Median age|Density (per km²)|GDP|GDP per capita|GDP per capita (PPP)|Real growth|Inflation|Central gov. debt|Central gov. debt (% GDP)|Political stability|Electricity generated (TWh)|Access to electricity",
+  headerNames.join("|"),
+);
+const PPP_COLUMN = headerNames.indexOf("GDP per capita (PPP)");
 const firstNames = async () => page.$$eval(".country-list tbody tr td:first-child", (els) => els.slice(0, 3).map((e) => e.textContent));
 const columnValues = async (index) =>
   page.$$eval(".country-list tbody tr", (rows, i) => rows.map((r) => r.children[i].textContent), index);
 check("default sort: Power Level, highest first", (await firstNames())[0] === "China", (await firstNames()).join(", "));
 await page.click(".country-list th >> text=GDP per capita (PPP)");
-const pppDesc = (await columnValues(8)).filter((v) => v !== "—").map((v) => Number(v.replace(/[$,]/g, "")));
+const pppDesc = (await columnValues(PPP_COLUMN)).filter((v) => v !== "—").map((v) => Number(v.replace(/[$,]/g, "")));
 check("click header sorts highest first", pppDesc.every((v, i) => i === 0 || pppDesc[i - 1] >= v), pppDesc.slice(0, 3).join(", "));
 await page.click(".country-list th >> text=GDP per capita (PPP)");
-const pppAll = await columnValues(8);
+const pppAll = await columnValues(PPP_COLUMN);
 const pppAsc = pppAll.filter((v) => v !== "—").map((v) => Number(v.replace(/[$,]/g, "")));
 check("second click reverses (lowest first)", pppAsc.every((v, i) => i === 0 || pppAsc[i - 1] <= v), pppAsc.slice(0, 3).join(", "));
 check("missing values stay at the bottom", pppAll.indexOf("—") === pppAsc.length && pppAll.slice(pppAsc.length).every((v) => v === "—"));

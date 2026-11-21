@@ -243,6 +243,7 @@ const summary: CountrySummary[] = all.map((d) => ({
   powerLevel: d.powerLevel?.score ?? null,
   population: d.population.total?.value ?? null,
   fertility: d.population.fertility?.value ?? null,
+  lifeExpectancy: d.population.lifeExpectancy?.value ?? null,
   medianAge: d.population.medianAge?.value ?? null,
   density: d.population.density?.value ?? null,
   gdp: d.economy.gdp?.value ?? null,
@@ -252,6 +253,9 @@ const summary: CountrySummary[] = all.map((d) => ({
   inflation: d.economy.inflation?.value ?? null,
   debtUsd: d.economy.debtUsd?.value ?? null,
   debtPercent: d.economy.debt?.value ?? null,
+  politicalStability: d.government.politicalStability?.value ?? null,
+  electricityTwh: d.power.generation?.totalTwh ?? null,
+  electricityAccess: d.power.electricityAccess?.value ?? null,
 }));
 writeFileSync(SUMMARY_FILE, JSON.stringify(summary));
 

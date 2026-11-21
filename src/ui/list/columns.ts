@@ -16,6 +16,7 @@ export const COLUMNS: Column[] = [
   { key: "powerLevel", label: "Power Level", format: (v) => v.toFixed(1) },
   { key: "population", label: "Population", format: fullNumber },
   { key: "fertility", label: "Births per woman", format: (v) => v.toFixed(2) },
+  { key: "lifeExpectancy", label: "Life expectancy", format: (v) => v.toFixed(1) },
   { key: "medianAge", label: "Median age", format: (v) => v.toFixed(1) },
   { key: "density", label: "Density (per km²)", format: (v) => fullNumber(v) },
   { key: "gdp", label: "GDP", format: dollars },
@@ -25,4 +26,7 @@ export const COLUMNS: Column[] = [
   { key: "inflation", label: "Inflation", format: (v) => percent(v) },
   { key: "debtUsd", label: "Central gov. debt", format: dollars },
   { key: "debtPercent", label: "Central gov. debt (% GDP)", format: (v) => percent(v, 0) },
+  { key: "politicalStability", label: "Political stability", format: (v) => v.toFixed(0) },
+  { key: "electricityTwh", label: "Electricity generated (TWh)", format: (v) => fullNumber(v) },
+  { key: "electricityAccess", label: "Access to electricity", format: (v) => percent(v) },
 ];

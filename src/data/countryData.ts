@@ -237,6 +237,7 @@ export interface CountrySummary {
   powerLevel: number | null;
   population: number | null;
   fertility: number | null;
+  lifeExpectancy: number | null;
   medianAge: number | null;
   density: number | null;
   gdp: number | null;
@@ -246,4 +247,7 @@ export interface CountrySummary {
   inflation: number | null;
   debtUsd: number | null;
   debtPercent: number | null;
+  politicalStability: number | null; // 0-100
+  electricityTwh: number | null; // electricity generated per year
+  electricityAccess: number | null; // % of population
 }
