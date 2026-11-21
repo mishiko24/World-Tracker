@@ -226,7 +226,22 @@ export interface CountryData {
   resources: Resource[]; // same list feeds both the Production and Reserves tabs
   agriculture: Agriculture | null;
   power: Power;
+  trends: Trends; // yearly history of some numbers, for the trend charts
 }
+
+// Yearly values since TRENDS_FROM_YEAR (World Bank), oldest first. A missing key = no history for that number.
+export type TrendKey =
+  | "population"
+  | "lifeExpectancy"
+  | "fertility"
+  | "gdp"
+  | "gdpPerCapita"
+  | "gdpPerCapitaPpp"
+  | "growth"
+  | "inflation"
+  | "electricityAccess";
+export type TrendPoint = [year: number, value: number];
+export type Trends = Partial<Record<TrendKey, TrendPoint[]>>;
 
 // One row of the list view: public/data/summary.json is an array of these, one per map country.
 // Plain numbers (no year/source) to keep the file small; the info panel has the details.

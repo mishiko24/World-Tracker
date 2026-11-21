@@ -6,6 +6,7 @@
 // without written permission. Debt here is *central* government debt (IMF GFS via the World Bank),
 // which covers fewer countries and lags more than the IMF's general government debt.
 
+import type { TrendKey, TrendPoint } from "../../../src/data/countryData.ts";
 import { codeMatcher } from "../lib/countries.ts";
 import { fetchJson, writeCache } from "../lib/io.ts";
 
@@ -29,9 +30,24 @@ const INDICATORS = {
 
 const GDP_HISTORY_YEARS = 15; // debt is often years older than GDP; dollars = debt % × GDP of the debt's year
 
+// History for the trend charts: these indicators, every year from TRENDS_FROM_YEAR.
+const TRENDS_FROM_YEAR = 2000;
+const TREND_FIELDS: TrendKey[] = [
+  "population",
+  "lifeExpectancy",
+  "fertility",
+  "gdp",
+  "gdpPerCapita",
+  "gdpPerCapitaPpp",
+  "growth",
+  "inflation",
+  "electricityAccess",
+];
+
 export type WorldBankField = keyof typeof INDICATORS;
 export type WorldBankEntry = Partial<Record<WorldBankField, { value: number; year: number }>> & {
   gdpByYear?: Record<string, number>;
+  trends?: Partial<Record<TrendKey, TrendPoint[]>>; // oldest first
 };
 
 interface ApiRow {
@@ -77,6 +93,35 @@ export async function fetchWorldBank(): Promise<void> {
     byCountry[id] ??= {};
     byCountry[id].gdpByYear ??= {};
     byCountry[id].gdpByYear![row.date] = row.value;
+  }
+
+  // Trend history: one request per indicator, all countries, every year since TRENDS_FROM_YEAR.
+  const thisYear = new Date().getUTCFullYear();
+  for (const field of TREND_FIELDS) {
+    const code = INDICATORS[field];
+    const url = `https://api.worldbank.org/v2/country/all/indicator/${code}?format=json&per_page=20000&date=${TRENDS_FROM_YEAR}:${thisYear}`;
+    const [meta, rows] = await fetchJson<[{ pages: number }, ApiRow[]]>(url, `World Bank ${code} history`);
+    if (meta.pages !== 1) {
+      throw new Error(`World Bank ${code} history: expected 1 page, got ${meta.pages}`);
+    }
+    let series = 0;
+    for (const row of rows) {
+      const id = ourId.get(row.countryiso3code);
+      if (id === undefined || row.value === null) {
+        continue;
+      }
+      byCountry[id] ??= {};
+      byCountry[id].trends ??= {};
+      const points = (byCountry[id].trends![field] ??= []);
+      if (points.length === 0) {
+        series++;
+      }
+      points.push([Number(row.date), row.value]);
+    }
+    for (const entry of Object.values(byCountry)) {
+      entry.trends?.[field]?.sort((p, q) => p[0] - q[0]); // the API lists newest first
+    }
+    console.log(`  ${code} history: ${series} countries`);
   }
 
   writeCache("worldbank", byCountry);

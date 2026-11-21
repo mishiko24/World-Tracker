@@ -228,6 +228,7 @@ for (const c of countries) {
     resources: buildResources(c.id),
     agriculture: buildAgriculture(c.id),
     power: buildPower(c.id),
+    trends: worldbank[c.id]?.trends ?? {}, // no freshness rule: old years are the point of a trend
   });
 }
 const powerLevels = computePowerLevels(all);
