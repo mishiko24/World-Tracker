@@ -507,6 +507,33 @@ await page.click(".share-button");
 await page.waitForFunction(() => !document.querySelector(".share-link").textContent.includes("…"));
 check("pair without a page shares the map link", (await page.textContent(".share-link")).endsWith("?c=TUV&vs=ISL"), await page.textContent(".share-link"));
 
+// ---------- Higher or Lower (play.html) ----------
+const summary = await (await fetch(`${URL}data/summary.json`)).json();
+const valueOf = (id, key) => summary.find((s) => s.id === id)[key];
+const gameState = () =>
+  page.evaluate(() => {
+    const [left, right] = [...document.querySelectorAll(".country-card")].map((c) => c.dataset.id);
+    return { left, right, metric: document.querySelector(".cards").dataset.metric, streak: document.querySelector(".streak").textContent };
+  });
+await page.goto(`${URL}play.html`);
+await page.evaluate(() => localStorage.clear());
+await page.goto(`${URL}play.html`);
+await page.waitForSelector(".guess");
+let round = await gameState();
+const rightAnswer = valueOf(round.right, round.metric) > valueOf(round.left, round.metric) ? "higher" : "lower";
+await page.click(`[data-guess="${rightAnswer}"]`);
+await page.waitForSelector(".guess", { timeout: 4000 });
+const after = await gameState();
+check("right answer: streak 1, right country moves left", after.streak === "1" && after.left === round.right, JSON.stringify({ round, after }));
+round = after;
+const wrongAnswer = valueOf(round.right, round.metric) > valueOf(round.left, round.metric) ? "lower" : "higher";
+await page.click(`[data-guess="${wrongAnswer}"]`);
+await page.waitForSelector(".game-over", { timeout: 4000 });
+check("wrong answer ends the game", (await page.textContent(".final")).includes("1 in a row"));
+await page.goto(`${URL}play.html`);
+await page.waitForSelector(".scores");
+check("best streak is remembered", (await page.textContent(".scores")).replace(/\s+/g, "").includes("Best1"), await page.textContent(".scores"));
+
 // ---------- Sources & method page ----------
 await page.goto(`${URL}?c=CHN`);
 await page.click(".power-method-link");

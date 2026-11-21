@@ -1,0 +1,285 @@
+/* Higher or Lower page (play.html). Its own document, like the about page (src/about/about.css). */
+
+:root {
+  --text: #e8e6e3;
+  --dim: #9a968f;
+  --border: rgba(255, 255, 255, 0.1);
+  --card: #1a1a1f;
+  --win: #3fb950;
+  --lose: #f85149;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--text);
+  background: #111;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.loading {
+  padding: 40px;
+  color: var(--dim);
+  text-align: center;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.scores {
+  display: flex;
+  gap: 18px;
+  font-size: 14px;
+  color: var(--dim);
+}
+
+.scores strong {
+  color: var(--text);
+  font-size: 18px;
+  margin-left: 4px;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 6px;
+  font-size: 34px;
+}
+
+.question {
+  margin: 0 auto 26px;
+  max-width: 620px;
+  font-size: 19px;
+  line-height: 1.45;
+  color: var(--dim);
+}
+
+.question strong {
+  color: var(--text);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+}
+
+.versus {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  color: var(--dim);
+  text-transform: uppercase;
+}
+
+.country-card {
+  min-height: 330px;
+  padding: 26px 20px;
+  border-radius: 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-flag {
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+.country-card h2 {
+  margin: 16px 0 10px;
+  font-size: 26px;
+  line-height: 1.2;
+}
+
+.card-label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--dim);
+}
+
+.card-value {
+  margin-top: 4px;
+  font-size: 34px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.guess-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 11px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text);
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.13);
+}
+
+.guess.higher {
+  border-color: rgba(63, 185, 80, 0.5);
+}
+
+.guess.lower {
+  border-color: rgba(248, 81, 73, 0.5);
+}
+
+button.primary {
+  border: none;
+  background: #2f6fde;
+  color: #fff;
+}
+
+button.primary:hover {
+  background: #3b7cf0;
+}
+
+.verdict {
+  margin-top: 18px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.right-answer {
+  color: var(--win);
+}
+
+.wrong-answer {
+  color: var(--lose);
+}
+
+.game-over {
+  margin: 28px auto 0;
+  max-width: 460px;
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+
+.game-over h2 {
+  margin: 0 0 6px;
+}
+
+.final {
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: var(--dim);
+}
+
+.final strong {
+  color: var(--text);
+  font-size: 24px;
+}
+
+.game-over-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.map-link {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 14px;
+  color: #79b8ff;
+}
+
+@media (max-width: 640px) {
+  main {
+    padding-top: 18px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  .question {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .versus {
+    margin: 0 auto;
+    width: 40px;
+    height: 40px;
+    font-size: 13px;
+  }
+
+  .country-card {
+    min-height: 0;
+    padding: 16px;
+  }
+
+  .card-flag {
+    width: 72px;
+    height: 54px;
+  }
+
+  .country-card h2 {
+    margin: 10px 0 6px;
+    font-size: 21px;
+  }
+
+  .card-value {
+    font-size: 26px;
+  }
+
+  .guess-buttons {
+    width: 100%;
+  }
+
+  .guess-buttons button {
+    flex: 1;
+  }
+}

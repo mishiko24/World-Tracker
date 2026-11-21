@@ -1,7 +1,7 @@
 // HTML helpers for the static pages: escaping, the shared page layout, URLs.
 // Every page lives in its own folder (country/france/index.html), so links to the site root are relative ("../../").
 
-import { ABOUT_URL, ANALYTICS_SNIPPET, SITE_URL } from "../../src/links";
+import { ABOUT_URL, ANALYTICS_SNIPPET, GAME_URL, SITE_URL } from "../../src/links";
 
 export function escape(text: string): string {
   return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -49,7 +49,7 @@ ${ANALYTICS_SNIPPET}
 <body>
 <header class="site-header">
 <a class="brand" href="${root}">World Tracker</a>
-<nav><a href="${root}">Map</a><a href="${root}countries/">Countries &amp; rankings</a><a href="${root}${ABOUT_URL}">Sources &amp; method</a></nav>
+<nav><a href="${root}">Map</a><a href="${root}countries/">Countries &amp; rankings</a><a href="${root}${GAME_URL}">Play</a><a href="${root}${ABOUT_URL}">Sources &amp; method</a></nav>
 </header>
 <main>
 ${body}

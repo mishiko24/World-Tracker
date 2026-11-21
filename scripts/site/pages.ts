@@ -20,7 +20,7 @@ import {
   type DataMeta,
   type NumberFact,
 } from "../../src/data/countryData";
-import { ABOUT_URL, SITE_URL } from "../../src/links";
+import { ABOUT_URL, GAME_URL, SITE_URL } from "../../src/links";
 import type { CountryProperties } from "../../src/map/geo";
 import { winner, type Better } from "../../src/ui/info/Compare";
 import { amount, dollars, fullNumber, percent, share, tonnes } from "../../src/ui/info/formatData";
@@ -76,7 +76,7 @@ export function buildPages(dist: string): { cards: CardJob[]; pages: number } {
   };
 
   const cards: CardJob[] = countries.map((d) => ({ file: cardOf(d.id, null), a: d.id, b: null }));
-  const paths: string[] = ["", ABOUT_URL, "countries/"];
+  const paths: string[] = ["", ABOUT_URL, GAME_URL, "countries/"];
 
   write(dist, "countries/", hubPage(site));
   for (const d of countries) {
@@ -107,7 +107,7 @@ export function buildPages(dist: string): { cards: CardJob[]; pages: number } {
     notFoundPage({ slugs, codes: countryCodes(dist), comparePaths: paths.filter((p) => p.startsWith("compare/")) }),
   );
   copyFileSync("scripts/site/site.css", `${dist}/site.css`);
-  return { cards, pages: paths.length - 2 };
+  return { cards, pages: paths.length - 3 };
 }
 
 // ---------- paths ----------
@@ -422,7 +422,8 @@ function hubPage(site: Site): string {
     image: cardOf(top.id, null),
     builtAt: site.meta.builtAt,
     body:
-      `<h1>Countries &amp; rankings</h1><p class="lead">Every country on World Tracker, and every ranking.</p>` +
+      `<h1>Countries &amp; rankings</h1><p class="lead">Every country on World Tracker, and every ranking. ` +
+      `Think you know them? <a href="${root}${GAME_URL}">Play Higher or Lower</a>.</p>` +
       `<section><h2>Rankings</h2><ul class="link-grid">${COLUMNS.map(
         (c) => `<li><a href="${root}rank/${kebab(c.key)}/">Countries by ${escape(c.label)}</a></li>`,
       ).join("")}</ul></section>` +

@@ -2,7 +2,7 @@
 
 import { MAP_TYPES, getMapType, type MapType } from "../map/mapTypes";
 import { DEFAULT_SETTINGS, type CountryState, type MapStyle, type Settings, type StateStyle } from "../settings";
-import { ABOUT_URL, COUNTRIES_URL, REPORT_ISSUE_URL } from "../links";
+import { ABOUT_URL, COUNTRIES_URL, GAME_URL, REPORT_ISSUE_URL } from "../links";
 import { Collapsible } from "./Collapsible";
 import { ColorField, Slider } from "./controls";
 import { formatPercent, formatPixels } from "./format";
@@ -130,6 +130,7 @@ export function SettingsPanel({ settings, onChange, open, onOpenChange }: Settin
         </button>
       </div>
       <footer className="panel-footer">
+        <a href={GAME_URL}>Play Higher or Lower</a>
         <a href={COUNTRIES_URL}>Countries &amp; rankings</a>
         <a href={ABOUT_URL}>Sources &amp; method</a>
         <a href={REPORT_ISSUE_URL} target="_blank" rel="noreferrer">

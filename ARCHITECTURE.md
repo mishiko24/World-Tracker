@@ -68,6 +68,8 @@ src/ui/Flag.tsx           Flag chip before country names (info header, list, sea
                           every id has a file (grey placeholder for Northern Cyprus, Somaliland, Siachen).
                           Comparison: header names underlined in map colors = the color key; spans .flag-a/.flag-b
                           get the images from CSS vars --flag-a/--flag-b on the info panel (absolute URLs)
+play.html + src/game/     Higher or Lower: game.ts = rules (pool: 1M+ people and a Power Level; values ≥5% apart;
+                          random stat per round), GamePage.tsx = UI. Best streak in localStorage. Data: summary.json
 src/links.ts              URLs of the about page, the countries hub, the issue tracker, SITE_URL (absolute address),
                           and the Cloudflare Web Analytics snippet (injected by vite.config.ts + scripts/site/html.ts;
                           tests block it so test runs aren't counted)

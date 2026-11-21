@@ -3,7 +3,7 @@ import { defineConfig, type Plugin } from "vite";
 import { ANALYTICS_SNIPPET, SITE_URL } from "./src/links.ts";
 
 // Analytics on the site's real pages, in production builds only (not in `npm run dev`).
-const ANALYTICS_PAGES = ["index.html", "about.html"];
+const ANALYTICS_PAGES = ["index.html", "about.html", "play.html"];
 const analytics: Plugin = {
   name: "analytics",
   apply: "build",
@@ -14,7 +14,7 @@ const analytics: Plugin = {
 
 // Link-preview image for the map and the about page: cards/home.jpg, drawn by `npm run build:site`
 // (scripts/site/cards.ts). Absolute URLs, as link previews require.
-const PREVIEW_PAGES: Record<string, string> = { "index.html": "", "about.html": "about.html" };
+const PREVIEW_PAGES: Record<string, string> = { "index.html": "", "about.html": "about.html", "play.html": "play.html" };
 const previewImage: Plugin = {
   name: "preview-image",
   apply: "build",
@@ -39,9 +39,9 @@ export default defineConfig({
   base: "./", // relative paths, so the build works on GitHub Pages under any repo name
   build: {
     rollupOptions: {
-      // Every page of the site. index.html = the map; about.html = Sources & method;
+      // Every page of the site. index.html = the map; about.html = Sources & method; play.html = Higher or Lower;
       // share-card.html = headless card renderer for the static pages (scripts/site/cards.ts).
-      input: { main: "index.html", about: "about.html", shareCard: "share-card.html" },
+      input: { main: "index.html", about: "about.html", play: "play.html", shareCard: "share-card.html" },
     },
   },
 });
