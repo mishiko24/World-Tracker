@@ -6,7 +6,7 @@
 // are read from src/data/countryData.ts, so those can't drift.
 
 import { useEffect, useState } from "react";
-import { REPORT_ISSUE_URL } from "../links";
+import { COPYRIGHT, REPORT_ISSUE_URL } from "../links";
 import { PILLAR_LABELS, PILLAR_ORDER, PILLAR_WEIGHTS, SOURCES, type DataMeta, type PillarId, type SourceId } from "../data/countryData";
 
 // What goes into each pillar, in plain words.
@@ -200,6 +200,14 @@ export function AboutPage() {
         </a>
         . Include the country and the value; we check it against the source.
       </p>
+
+      <h2>Who makes this</h2>
+      <p>
+        World Tracker is made by Mishiko (AstraBuilds). The site, its design, its texts and the Power Level index are
+        not open source: copying or republishing them needs permission. The data belongs to the sources above, under
+        their own licences.
+      </p>
+      <p className="copyright">{COPYRIGHT}</p>
     </main>
   );
 }

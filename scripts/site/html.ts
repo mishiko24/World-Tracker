@@ -1,7 +1,7 @@
 // HTML helpers for the static pages: escaping, the shared page layout, URLs.
 // Every page lives in its own folder (country/france/index.html), so links to the site root are relative ("../../").
 
-import { ABOUT_URL, ANALYTICS_SNIPPET, GAME_URL, SITE_URL } from "../../src/links";
+import { ABOUT_URL, ANALYTICS_SNIPPET, COPYRIGHT, GAME_URL, SITE_URL } from "../../src/links";
 
 export function escape(text: string): string {
   return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -54,7 +54,7 @@ ${ANALYTICS_SNIPPET}
 <main>
 ${body}
 </main>
-<footer class="site-footer">Data updated ${escape(formatDate(builtAt))} from the World Bank, UN, FAO, EIA, USGS and others. <a href="${root}${ABOUT_URL}">Sources &amp; method</a></footer>
+<footer class="site-footer">Data updated ${escape(formatDate(builtAt))} from the World Bank, UN, FAO, EIA, USGS and others. <a href="${root}${ABOUT_URL}">Sources &amp; method</a><br>${escape(COPYRIGHT)}</footer>
 </body>
 </html>
 `;

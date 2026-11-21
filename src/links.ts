@@ -6,6 +6,9 @@ export const SITE_URL = "https://mishiko24.github.io/World-Tracker/";
 
 export const ABOUT_URL = "about.html";
 export const POWER_LEVEL_METHOD_URL = "about.html#power-level";
+// Ownership notice shown on the about page, the static pages and the settings panel (see LICENSE).
+export const COPYRIGHT = "© 2026 Mishiko (AstraBuilds). All rights reserved.";
+
 export const REPORT_ISSUE_URL = "https://github.com/mishiko24/World-Tracker/issues/new";
 export const COUNTRIES_URL = "countries/"; // static hub page: every country and every ranking (scripts/site)
 export const GAME_URL = "play.html"; // games: daily challenge, Higher or Lower, flag and outline quizzes (src/game)

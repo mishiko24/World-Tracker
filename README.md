@@ -1,17 +1,14 @@
 # World Tracker
 
-Interactive world map: hover and select countries to see their government, population, economy,
-resources and power generation.
+https://mishiko24.github.io/World-Tracker/
 
-```
-npm install
-npm run dev
-```
+An interactive world map with government, population, economy, resources, agriculture and energy data for every
+country: compare any two countries side by side, see trends since 2000, rank them by World Tracker's Power Level
+index, and play the daily challenge and quizzes.
 
-Controls: hover to highlight, left-click to select, click the ocean or press Esc to deselect,
-hold the right mouse button to pan, scroll to zoom.
+**© 2026 Mishiko (AstraBuilds). All rights reserved.** This repository is public to read, not to reuse: copying,
+republishing or hosting the code, design or texts needs written permission. See [LICENSE](LICENSE). Data, map
+shapes and flags belong to their sources under their own licences (listed on the site's
+[Sources & method](https://mishiko24.github.io/World-Tracker/about.html) page).
 
-See [ARCHITECTURE.md](ARCHITECTURE.md) for how the code is organized.
-
-Map data: [Natural Earth](https://www.naturalearthdata.com/) (public domain).
-Satellite imagery: NASA Earth Observatory Blue Marble via [NASA GIBS](https://www.earthdata.nasa.gov/gibs).
+For development: `npm install`, `npm run dev`. How the code is organized: [ARCHITECTURE.md](ARCHITECTURE.md).

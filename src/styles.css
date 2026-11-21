@@ -1500,3 +1500,10 @@ button {
 .trend-line.b {
   stroke: var(--color-b);
 }
+
+.panel-footer .copyright {
+  flex-basis: 100%;
+  color: var(--text-dim);
+  opacity: 0.7;
+  font-size: 11px;
+}

@@ -1,0 +1,17 @@
+Copyright (c) 2026 Mishiko (AstraBuilds). All rights reserved.
+
+World Tracker (https://mishiko24.github.io/World-Tracker/) and everything in this repository — source code,
+design, texts, the Power Level index and its method — are the property of the copyright holder.
+
+The code is public so it can be read. No permission is given to copy, modify, publish, host, distribute,
+sublicense or sell this software or any part of it, or to build derived works from it, without prior written
+permission from the copyright holder.
+
+Third-party material keeps its own licence and is not covered by the above:
+  - Country data from the World Bank, UN, FAO, Wikidata, CIA World Factbook, U.S. EIA, USGS, Ember, the Energy
+    Institute and Our World in Data, under the licences listed on https://mishiko24.github.io/World-Tracker/about.html
+  - Country shapes: Natural Earth (public domain)
+  - Flags: flag-icons (MIT licence, public/flags/LICENSE-flag-icons.txt)
+  - Satellite imagery: NASA GIBS
+
+Contact for permissions: open an issue at https://github.com/mishiko24/World-Tracker/issues

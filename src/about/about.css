@@ -154,3 +154,8 @@ td.number {
     white-space: normal;
   }
 }
+
+.copyright {
+  font-size: 13px;
+  color: var(--text-dim);
+}
