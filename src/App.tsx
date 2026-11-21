@@ -11,7 +11,7 @@ import { MapCanvas } from "./ui/MapCanvas";
 import { HeatLegend } from "./ui/HeatLegend";
 import { SearchBox } from "./ui/SearchBox";
 import { SettingsPanel } from "./ui/SettingsPanel";
-import { isMobileNow } from "./ui/useMobile";
+import { isCompactNow } from "./ui/useMobile";
 import { readUrlState, writeUrlState } from "./urlState";
 
 // Selection rules (map and list view):
@@ -29,7 +29,7 @@ export function App() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [comparedId, setComparedId] = useState<string | null>(null);
   const [sort, setSort] = useState<Sort>(DEFAULT_SORT);
-  const [settingsOpen, setSettingsOpen] = useState(() => !isMobileNow()); // on phones settings cover the screen
+  const [settingsOpen, setSettingsOpen] = useState(() => !isCompactNow()); // on phones settings cover the screen
   const [picking, setPicking] = useState(false);
   const [focusRequest, setFocusRequest] = useState<{ id: string; seq: number } | null>(null);
   const summaries = useSummaries();

@@ -151,6 +151,8 @@ SECURITY: never write URLs containing the EIA key to files or logs. A leak happe
   the next left click / tap compares instead of selecting (ocean cancels).
   Touch: one finger pans, pinch zooms, tap = left click, long press (500 ms) = right click.
   Trackpad pinch arrives as wheel + ctrlKey and zooms immediately (no glide).
+- **Phones sideways (≤500px tall, >700px wide):** settings start closed and open full screen; the info panel is
+  a slim full-height side panel (320px, 360 comparing). isCompactNow() in useMobile.ts.
 - **Phones (≤700px wide):** settings start closed and open as a full-screen drawer; info panel is a bottom sheet
   (peek 172px = name + Power Level score, half, full); list view goes full width.
 - **Comparison mode:** (src/ui/info/Compare.tsx, FactRow.tsx). A sticky legend names both countries in their map

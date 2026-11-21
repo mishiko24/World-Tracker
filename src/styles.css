@@ -1267,3 +1267,58 @@ button {
   display: inline-flex;
   align-items: center;
 }
+
+/* ---------- phones sideways (short screens; keep in sync with src/ui/useMobile.ts) ----------
+   Wide enough for a side panel but too short for a bottom sheet: settings become a full-screen drawer
+   (closed at start), the info panel a slim full-height side panel, so most of the screen stays map. */
+
+@media (max-height: 500px) and (min-width: 701px) {
+  .panel-left {
+    inset: 0;
+    width: auto;
+    border-radius: 0;
+    border: none;
+    z-index: 20;
+  }
+
+  .panel-right {
+    top: 6px;
+    bottom: 6px;
+    right: 6px;
+    width: 320px;
+  }
+
+  .panel-right.comparing {
+    width: 360px;
+  }
+
+  .search-box {
+    left: 64px;
+    width: 280px;
+    transform: none;
+  }
+
+  .search-box input {
+    font-size: 16px; /* stops iOS zooming the page on focus */
+  }
+
+  .panel-header {
+    padding-top: 10px;
+    padding-bottom: 8px;
+  }
+
+  .country-list,
+  .country-list.left-panel-open {
+    top: 56px;
+    left: 6px;
+    bottom: 6px;
+  }
+
+  .country-list.right-panel-open {
+    right: 332px;
+  }
+
+  .app:has(.panel-right.comparing) .country-list.right-panel-open {
+    right: 372px;
+  }
+}

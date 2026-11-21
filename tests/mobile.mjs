@@ -148,6 +148,28 @@ await page.tap(".country-list tbody tr:nth-child(2) td");
 check("tapping a list row selects", (await title()) !== null, String(await title()));
 
 await page.screenshot({ path: "/tmp/mobile-list.png" });
+// ---------- phone sideways (844x390): compact layout ----------
+const landscape = await browser.newContext({ viewport: { width: 844, height: 390 }, hasTouch: true, isMobile: true, deviceScaleFactor: 2 });
+const side = await landscape.newPage();
+await side.route("https://static.cloudflareinsights.com/**", (route) => route.abort()); // test runs aren't visits
+await side.goto(`${URL}?c=BRA`);
+await side.waitForSelector("aside.panel-right .panel-title");
+check("sideways: settings start closed", (await side.$("aside.panel-left")) === null);
+await side.waitForTimeout(300); // slide-in animation
+const sidePanel = await side.$eval("aside.panel-right", (el) => {
+  const r = el.getBoundingClientRect();
+  return { width: Math.round(r.width), height: Math.round(r.height), right: Math.round(r.right), grip: getComputedStyle(el.querySelector(".sheet-grip")).display };
+});
+check(
+  "sideways: info panel is a slim full-height side panel, not a bottom sheet",
+  sidePanel.width === 320 && sidePanel.height === 378 && sidePanel.right === 838 && sidePanel.grip === "none",
+  JSON.stringify(sidePanel),
+);
+await side.tap(".panel-toggle");
+const sideDrawer = await side.$eval("aside.panel-left", (el) => [Math.round(el.getBoundingClientRect().width), Math.round(el.getBoundingClientRect().height)]);
+check("sideways: settings open full screen", sideDrawer[0] === 844 && sideDrawer[1] === 390, sideDrawer.join("x"));
+await landscape.close();
+
 await browser.close();
 server.kill();
 console.log(failures === 0 ? "\nALL PASS" : `\n${failures} FAILED`);
