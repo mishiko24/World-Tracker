@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-11-21T20:40:00.512Z",
+ "fetchedAt": "2026-11-21T20:42:15.620Z",
  "byCountry": {
   "AFG": {
    "population": {
@@ -48,6 +48,10 @@
    },
    "growth": {
     "value": 1.87319280045979,
+    "year": 2024
+   },
+   "inflation": {
+    "value": -6.60118564073725,
     "year": 2024
    },
    "politicalStability": {
@@ -6639,6 +6643,10 @@
     "value": 4.36733330217022,
     "year": 2025
    },
+   "inflation": {
+    "value": 219.883929014578,
+    "year": 2024
+   },
    "politicalStability": {
     "value": 68.4476407,
     "year": 2025
@@ -8600,6 +8608,10 @@
    "growth": {
     "value": 6.81077669324554,
     "year": 2024
+   },
+   "inflation": {
+    "value": 4.25746204335427,
+    "year": 2019
    },
    "politicalStability": {
     "value": 87.7750791,
@@ -35386,6 +35398,10 @@
     "value": 3.75641197192778,
     "year": 2024
    },
+   "inflation": {
+    "value": -0.62525835861814,
+    "year": 2016
+   },
    "politicalStability": {
     "value": 91.7054332,
     "year": 2025
@@ -42326,6 +42342,10 @@
     "value": 5.75924471639999,
     "year": 2025
    },
+   "inflation": {
+    "value": 2.88585107289988,
+    "year": 2016
+   },
    "debt": {
     "value": 14.9405246182608,
     "year": 2022
@@ -48146,6 +48166,10 @@
    "growth": {
     "value": 5.02690015475606,
     "year": 2024
+   },
+   "inflation": {
+    "value": 2.62220783425058,
+    "year": 2019
    },
    "gdpByYear": {
     "2011": 2930092234.63687,
@@ -58192,6 +58216,10 @@
     "value": -5.84678505700693,
     "year": 2025
    },
+   "inflation": {
+    "value": 2.92140227309103,
+    "year": 2024
+   },
    "politicalStability": {
     "value": 62.940025,
     "year": 2025
@@ -60892,6 +60920,10 @@
    "growth": {
     "value": 4.1939175580556,
     "year": 2025
+   },
+   "inflation": {
+    "value": 2.59801620311077,
+    "year": 2019
    },
    "debt": {
     "value": 35.7240338783132,
@@ -68600,6 +68632,10 @@
    "growth": {
     "value": 5.89309208233146,
     "year": 2025
+   },
+   "inflation": {
+    "value": 11.5610532897511,
+    "year": 2024
    },
    "politicalStability": {
     "value": 66.2269232,
@@ -123679,6 +123715,10 @@
     "value": 1.0626071425539,
     "year": 2025
    },
+   "inflation": {
+    "value": 5.40874375479066,
+    "year": 2022
+   },
    "debt": {
     "value": 27.7955651702173,
     "year": 2020
@@ -130539,6 +130579,10 @@
     "value": -2.01184475795665,
     "year": 2025
    },
+   "inflation": {
+    "value": 8.82506696804558,
+    "year": 2019
+   },
    "politicalStability": {
     "value": 28.5286756,
     "year": 2025
@@ -132540,6 +132584,10 @@
    "growth": {
     "value": 2.14285714285656,
     "year": 2025
+   },
+   "inflation": {
+    "value": -0.124750499001971,
+    "year": 2012
    },
    "politicalStability": {
     "value": 86.9465965,
@@ -135501,6 +135549,10 @@
    "growth": {
     "value": -13.4999999989747,
     "year": 2024
+   },
+   "inflation": {
+    "value": 0.578317435520754,
+    "year": 2016
    },
    "politicalStability": {
     "value": 70.7330431,
@@ -154215,6 +154267,10 @@
     "value": 2.90166036660493,
     "year": 2025
    },
+   "inflation": {
+    "value": 1.26734310292375,
+    "year": 2024
+   },
    "politicalStability": {
     "value": 83.8552895,
     "year": 2025
@@ -167396,6 +167452,10 @@
     "value": 3.40000000000001,
     "year": 2025
    },
+   "inflation": {
+    "value": 2.19201010962985,
+    "year": 2017
+   },
    "gdpByYear": {
     "2011": 936089385.47486,
     "2012": 985865921.787709,
@@ -173204,6 +173264,10 @@
     "value": -10.7933646271143,
     "year": 2015
    },
+   "inflation": {
+    "value": 91.4408220769045,
+    "year": 2024
+   },
    "politicalStability": {
     "value": 39.0588227,
     "year": 2025
@@ -175894,6 +175958,10 @@
    "growth": {
     "value": 2.68858456990016,
     "year": 2025
+   },
+   "inflation": {
+    "value": 3.55711230848243,
+    "year": 2023
    },
    "debt": {
     "value": 57.666394367293,
@@ -179483,6 +179551,10 @@
    "growth": {
     "value": 3.06427942935869,
     "year": 2025
+   },
+   "inflation": {
+    "value": 138.80846024176,
+    "year": 2022
    },
    "debt": {
     "value": 865.873242919908,
@@ -183543,6 +183615,10 @@
    "growth": {
     "value": -0.20247264200475,
     "year": 2022
+   },
+   "inflation": {
+    "value": 13.417565322857,
+    "year": 2019
    },
    "politicalStability": {
     "value": 24.963984,
@@ -195324,6 +195400,10 @@
     "value": 1.63934426229508,
     "year": 2025
    },
+   "inflation": {
+    "value": 0.5005807431527,
+    "year": 2011
+   },
    "politicalStability": {
     "value": 90.5308557,
     "year": 2025
@@ -200282,6 +200362,10 @@
     "value": 2.16138195623856,
     "year": 2025
    },
+   "inflation": {
+    "value": 2.94952520485207,
+    "year": 2024
+   },
    "debt": {
     "value": 115.788609964778,
     "year": 2024
@@ -204318,6 +204402,10 @@
     "value": 1.57068062827224,
     "year": 2025
    },
+   "inflation": {
+    "value": 254.948534781816,
+    "year": 2016
+   },
    "politicalStability": {
     "value": 39.1774281,
     "year": 2025
@@ -208065,6 +208153,10 @@
     "value": 0.752447592962554,
     "year": 2018
    },
+   "inflation": {
+    "value": 8.10472583623914,
+    "year": 2014
+   },
    "politicalStability": {
     "value": 21.6901419,
     "year": 2025
@@ -209919,6 +210011,10 @@
    "growth": {
     "value": 8.10671343048909,
     "year": 2025
+   },
+   "inflation": {
+    "value": 104.705170628667,
+    "year": 2022
    },
    "politicalStability": {
     "value": 50.3316037,
