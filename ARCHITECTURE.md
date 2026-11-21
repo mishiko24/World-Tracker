@@ -102,6 +102,10 @@ scripts/data/             Data pipeline (TypeScript run directly by Node 22, no 
   lib/io.ts, lib/csv.ts   fetch helpers (errors use labels, never URLs: API keys), cache read/write, CSV parsing
   fetch/<source>.ts       One per source -> data-cache/<source>.json, already keyed by our country id
   nearby.ts               Each country's land neighbours + 5 nearest countries -> public/data/nearby.json
+  audit.ts                Compares fresh data with a git ref: stale data, coverage drops, lost values,
+                          implausible values, big jumps, Power Level rank moves. Runs in data.yml (report in the
+                          run's summary); a monthly Claude scheduled task (3rd of the month) checks the flags against
+                          the sources and reports to Mishiko. Never fails the build
   powerLevel.ts           Power Level index (our own metric). Runs inside build.ts after all countries are built
   build.ts                Caches -> public/data/countries/<id>.json + summary.json (list view) + meta.json (build date,
                           Power Level version) + coverage report. No network.

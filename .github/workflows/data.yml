@@ -35,6 +35,11 @@ jobs:
         run: node scripts/data/run.ts ${{ inputs.steps }}
         env:
           EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+      # What looks odd vs the last committed data (HEAD = before this refresh is committed). Never fails the run;
+      # the report is on the run's summary page and is read by the monthly audit scheduled task.
+      - name: Audit data
+        if: always()
+        run: node scripts/data/audit.ts HEAD | tee -a "$GITHUB_STEP_SUMMARY"
       # Commit whatever succeeded, even if a step failed, so the results can be inspected.
       - name: Commit data
         if: always()
