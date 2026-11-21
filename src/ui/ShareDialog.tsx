@@ -10,7 +10,7 @@ import { createPortal } from "react-dom";
 import { comparePagePath, countryPagePath, hasComparePage, type Nearby } from "../data/sitePages";
 import { SITE_URL } from "../links";
 import { embedCode, type EmbedTheme } from "../share/embed";
-import { drawShareCard, loadCardFlags, shareFileName, type CardSide } from "../share/shareCard";
+import { drawShareCard, loadCardAssets, shareFileName, type CardSide } from "../share/shareCard";
 
 interface ShareDialogProps {
   a: CardSide;
@@ -57,7 +57,7 @@ export function ShareDialog({ a, b, onClose }: ShareDialogProps) {
   useEffect(() => {
     let url: string | null = null;
     let closed = false;
-    loadCardFlags(a, b).then((flags) => {
+    loadCardAssets(a, b).then((flags) => {
       if (closed) {
         return;
       }

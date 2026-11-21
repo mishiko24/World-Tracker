@@ -7,7 +7,7 @@
 import type { CountryData, CountrySummary } from "../data/countryData";
 import { loadCountries } from "../map/geo";
 import { DEFAULT_SETTINGS } from "../settings";
-import { drawHomeCard, drawShareCard, loadCardFlags, type CardSide } from "./shareCard";
+import { drawHomeCard, drawShareCard, loadCardAssets, loadCardFonts, type CardSide } from "./shareCard";
 
 declare global {
   interface Window {
@@ -41,7 +41,7 @@ window.renderShareCard = async (a, b, siteLabel) => {
   const canvas = document.createElement("canvas");
   const sideA = await side(a, COLORS.a);
   const sideB = b === null ? null : await side(b, COLORS.b);
-  drawShareCard(canvas, sideA, sideB, await loadCardFlags(sideA, sideB), siteLabel);
+  drawShareCard(canvas, sideA, sideB, await loadCardAssets(sideA, sideB), siteLabel);
   return canvas.toDataURL("image/jpeg", JPEG_QUALITY);
 };
 // Power Level of every scored country, normalized to 0..1 like the map's heat-map mode (App.tsx).
@@ -51,6 +51,7 @@ window.renderHomeCard = async (siteLabel) => {
   const max = Math.max(...scored.map((s) => s.powerLevel!));
   const levels = new Map(scored.map((s) => [s.id, (s.powerLevel! - min) / (max - min)]));
   const canvas = document.createElement("canvas");
+  await loadCardFonts();
   drawHomeCard(canvas, countryList, levels, siteLabel);
   return canvas.toDataURL("image/jpeg", JPEG_QUALITY);
 };

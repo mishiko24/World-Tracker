@@ -57,6 +57,15 @@ Share cards, link previews and embeds are how the site spreads, so they get the 
   at 1200×630.
 - The comparison rules of §1 apply in full: pairs adjacent, difference written, winner marked.
 - Always branded (WORLD TRACKER + address) and always true to the data on the site.
+- The comparison card is the "fight poster" (src/share/comparisonCard.ts, chosen by Mishiko after many rounds):
+  - Header: both flags whole and darkened (they are backgrounds), each fading slowly into a deep red or navy
+    tint through a blurred copy of itself; split by a diagonal; nothing else on the split line.
+  - Names, score and rank meet at the VS badge (pink-to-blue ring), A right-aligned on the left, B left-aligned on
+    the right, a red/blue key line under each name. Winner's score teal.
+  - Scoreboard: "categories won" tally, then rows of bar · value · category · value · bar. The winner's value is
+    a teal pill, its bar solid with the gap at its end; the loser's bar is solid but dimmer (never hollow).
+  - Card palette is fixed (A #ff5c8a, B #4cc9ff, better #5eead4, Outfit font), independent of map styles.
+- Check every card change by rendering real pairs (long names, unscored countries, tiny values) and looking at them.
 
 ## 7. Layout and interaction
 

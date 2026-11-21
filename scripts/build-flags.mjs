@@ -1,4 +1,5 @@
-// Builds public/flags/<ID>.png: one small flag per country on the map, named by our country id (ADM0_A3, "USA").
+// Builds public/flags/<ID>.png: one small flag per country on the map, named by our country id (ADM0_A3, "USA"),
+// and public/flags/large/<ID>.png (480x360) for share cards, where the flag fills the card's header.
 // Every id gets a file; places without a flag (Northern Cyprus, Somaliland, Siachen Glacier) get a plain placeholder,
 // so the UI never has to check whether a flag exists.
 //
@@ -14,8 +15,10 @@
 import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { chromium } from "playwright";
 
-const WIDTH = 96;
-const HEIGHT = 72;
+const SIZES = [
+  { width: 96, height: 72, folder: "public/flags" },
+  { width: 480, height: 360, folder: "public/flags/large" },
+];
 const OUTPUT = "public/flags";
 const PLACEHOLDER_COLOR = "#3a3a40";
 
@@ -31,7 +34,7 @@ const countries = JSON.parse(readFileSync("public/data/countries.topo.json", "ut
 const browser = await chromium.launch({ executablePath: process.env.CHROME ?? "/usr/bin/google-chrome" });
 const page = await browser.newPage();
 
-async function render(svgDataUrl) {
+async function render(svgDataUrl, width, height) {
   return page.evaluate(
     async ([src, width, height, placeholder]) => {
       const canvas = document.createElement("canvas");
@@ -49,11 +52,13 @@ async function render(svgDataUrl) {
       }
       return canvas.toDataURL("image/png");
     },
-    [svgDataUrl, WIDTH, HEIGHT, PLACEHOLDER_COLOR],
+    [svgDataUrl, width, height, PLACEHOLDER_COLOR],
   );
 }
 
-mkdirSync(OUTPUT, { recursive: true });
+for (const size of SIZES) {
+  mkdirSync(size.folder, { recursive: true });
+}
 const missing = [];
 for (const country of countries) {
   const svgPath = country.iso2 === null ? null : `${checkout}/flags/4x3/${country.iso2.toLowerCase()}.svg`;
@@ -61,8 +66,11 @@ for (const country of countries) {
   if (!hasFlag) {
     missing.push(country.name);
   }
-  const dataUrl = await render(hasFlag ? `data:image/svg+xml;base64,${readFileSync(svgPath).toString("base64")}` : null);
-  writeFileSync(`${OUTPUT}/${country.id}.png`, Buffer.from(dataUrl.slice(dataUrl.indexOf(",") + 1), "base64"));
+  const svg = hasFlag ? `data:image/svg+xml;base64,${readFileSync(svgPath).toString("base64")}` : null;
+  for (const size of SIZES) {
+    const dataUrl = await render(svg, size.width, size.height);
+    writeFileSync(`${size.folder}/${country.id}.png`, Buffer.from(dataUrl.slice(dataUrl.indexOf(",") + 1), "base64"));
+  }
 }
 copyFileSync(`${checkout}/LICENSE`, `${OUTPUT}/LICENSE-flag-icons.txt`);
 await browser.close();

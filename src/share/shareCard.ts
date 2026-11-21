@@ -1,29 +1,27 @@
 // Share card: a 1200x630 image (the standard link-preview size) of one country or of a comparison, drawn on a canvas.
 //
 //   one country   silhouette | name, Power Level score and rank, pillar bars, key facts
-//   comparison    A's silhouette, name, score   VS   B's score, name, silhouette; then a butterfly chart of the
-//                 pillars (A's bars grow left, B's grow right) with the higher value of each pair in green
+//   comparison    the "fight poster": comparisonCard.ts
 //
-// Each country is drawn in its map color, with its flag next to its name (flags must be loaded first: loadCardFlags).
-// Text uses the system UI font (the site loads no web font).
+// One country is drawn in its map color, with its flag next to its name. Flags and the Outfit font must be loaded
+// first: loadCardAssets.
 // Canvas units are card pixels; the canvas is created at exactly CARD_WIDTH x CARD_HEIGHT.
 
 import { geoMercator, geoPath } from "d3-geo";
 import { PILLAR_LABELS, PILLAR_ORDER, type CountryData } from "../data/countryData";
 import type { Country } from "../map/geo";
 import { heatColor } from "../map/heatColors";
-import { flagUrl } from "../ui/Flag";
+import { drawComparison } from "./comparisonCard";
+import { fitFont, measure, text, withAlpha } from "./draw";
 import { drawSilhouette } from "./silhouette";
 import { dollars, shortNumber } from "../ui/info/formatData";
 
 export const CARD_WIDTH = 1200;
 export const CARD_HEIGHT = 630;
 
-const FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif';
 const BACKGROUND = "#0f1419";
 const TEXT = "#e8e6e3";
 const DIM = "#9a968f";
-const WIN = "#3fb950";
 const TRACK = "rgba(255, 255, 255, 0.08)";
 
 export interface CardSide {
@@ -32,20 +30,35 @@ export interface CardSide {
   color: string; // the country's map color (selected = A, compared = B)
 }
 
-// Flag images of the card's countries, loaded before drawing (canvas drawing is synchronous).
+// Flag images of the card's countries (public/flags/large, 480x360), loaded before drawing (canvas drawing is
+// synchronous).
 export interface CardFlags {
   a: HTMLImageElement;
   b: HTMLImageElement | null;
 }
 
-export async function loadCardFlags(a: CardSide, b: CardSide | null): Promise<CardFlags> {
+const FONT_WEIGHTS = [600, 700, 800, 900];
+
+// The card's font (public/fonts) and flags. Canvas text silently falls back to another font if Outfit isn't
+// loaded yet, so this must finish before drawing.
+export async function loadCardAssets(a: CardSide, b: CardSide | null): Promise<CardFlags> {
+  await loadCardFonts();
   async function load(id: string): Promise<HTMLImageElement> {
     const image = new Image();
-    image.src = flagUrl(id);
+    image.src = `${import.meta.env.BASE_URL}flags/large/${id}.png`;
     await image.decode();
     return image;
   }
   return { a: await load(a.data.id), b: b === null ? null : await load(b.data.id) };
+}
+
+export async function loadCardFonts(): Promise<void> {
+  await Promise.all(
+    FONT_WEIGHTS.map(async (weight) => {
+      const face = new FontFace("Outfit", `url(${import.meta.env.BASE_URL}fonts/outfit-${weight}.woff2)`, { weight: String(weight) });
+      document.fonts.add(await face.load());
+    }),
+  );
 }
 
 export function drawShareCard(canvas: HTMLCanvasElement, a: CardSide, b: CardSide | null, flags: CardFlags, siteLabel: string): void {
@@ -163,73 +176,6 @@ function drawSingle(ctx: CanvasRenderingContext2D, side: CardSide, flag: HTMLIma
   text(ctx, siteLabel, 60, 594, 18, 400, DIM);
 }
 
-function drawComparison(ctx: CanvasRenderingContext2D, a: CardSide, b: CardSide, flags: CardFlags, siteLabel: string): void {
-  const la = a.data.powerLevel;
-  const lb = b.data.powerLevel;
-
-  // Color strips on top: left half belongs to A, right half to B.
-  ctx.fillStyle = a.color;
-  ctx.fillRect(0, 0, CARD_WIDTH / 2, 8);
-  ctx.fillStyle = b.color;
-  ctx.fillRect(CARD_WIDTH / 2, 0, CARD_WIDTH / 2, 8);
-  glow(ctx, 150, 150, a.color);
-  glow(ctx, 1050, 150, b.color);
-
-  drawSilhouette(ctx, a.country, a.color, 40, 46, 200, 200);
-  drawSilhouette(ctx, b.country, b.color, 960, 46, 200, 200);
-
-  const scoreA = la?.score ?? null;
-  const scoreB = lb?.score ?? null;
-  headline(ctx, a, flags.a, 264, "left", scoreA !== null && scoreB !== null && scoreA > scoreB);
-  headline(ctx, b, flags.b!, 936, "right", scoreA !== null && scoreB !== null && scoreB > scoreA);
-
-  ctx.beginPath();
-  ctx.arc(600, 150, 34, 0, Math.PI * 2);
-  ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
-  ctx.lineWidth = 2;
-  ctx.stroke();
-  text(ctx, "VS", 600, 162, 30, 800, DIM, "center");
-
-  // Butterfly chart of the pillars.
-  const barLength = 340;
-  PILLAR_ORDER.forEach((pillar, i) => {
-    const y = 300 + i * 42;
-    const va = la?.pillars[pillar] ?? null;
-    const vb = lb?.pillars[pillar] ?? null;
-    text(ctx, PILLAR_LABELS[pillar], 600, y + 8, 20, 500, DIM, "center");
-    bar(ctx, 520 - barLength, y - 7, barLength, 16, va ?? 0, a.color, "left");
-    bar(ctx, 680, y - 7, barLength, 16, vb ?? 0, b.color, "right");
-    const aWins = va !== null && vb !== null && va > vb;
-    const bWins = va !== null && vb !== null && vb > va;
-    text(ctx, va === null ? "—" : va.toFixed(0), 520 - barLength - 18, y + 9, 22, aWins ? 800 : 500, aWins ? WIN : TEXT, "right");
-    text(ctx, vb === null ? "—" : vb.toFixed(0), 680 + barLength + 18, y + 9, 22, bWins ? 800 : 500, bWins ? WIN : TEXT, "left");
-  });
-
-  text(ctx, "WORLD TRACKER", 40, 600, 18, 700, DIM, "left", 0.12);
-  text(ctx, siteLabel, 1160, 600, 18, 400, DIM, "right");
-}
-
-// Flag and name, Power Level score and rank of one side of a comparison. x is the outer edge (left side: left
-// edge; right side: right edge), so the flag sits on the outside next to the silhouette.
-function headline(
-  ctx: CanvasRenderingContext2D,
-  side: CardSide,
-  flag: HTMLImageElement,
-  x: number,
-  align: "left" | "right",
-  wins: boolean,
-): void {
-  const level = side.data.powerLevel;
-  const flagW = 40;
-  drawFlag(ctx, flag, align === "left" ? x : x - flagW, 64, flagW, 30);
-  const nameX = align === "left" ? x + flagW + 12 : x - flagW - 12;
-  const nameSize = fitFont(ctx, side.country.name, 290 - flagW - 12, 40, 700);
-  text(ctx, side.country.name, nameX, 92, nameSize, 700, TEXT, align);
-  text(ctx, "POWER LEVEL", x, 128, 15, 600, DIM, align, 0.1);
-  text(ctx, level === null ? "—" : level.score.toFixed(1), x, 206, 76, 800, wins ? WIN : TEXT, align);
-  text(ctx, level === null ? "Not scored" : `#${level.rank} of ${level.of}`, x, 240, 20, 400, DIM, align);
-}
-
 // ---------- drawing helpers ----------
 
 // Flag with rounded corners and a hairline edge (white flags would vanish into a light glow otherwise).
@@ -270,49 +216,4 @@ function bar(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: 
   ctx.beginPath();
   ctx.roundRect(grow === "right" ? x : x + w - filled, y, filled, h, h / 2);
   ctx.fill();
-}
-
-function font(size: number, weight: number): string {
-  return `${weight} ${size}px ${FONT}`;
-}
-
-function measure(ctx: CanvasRenderingContext2D, value: string, size: number, weight: number): number {
-  ctx.font = font(size, weight);
-  return ctx.measureText(value).width;
-}
-
-// Largest font size (stepping down from `size`, not below 20) at which the text fits in maxWidth.
-function fitFont(ctx: CanvasRenderingContext2D, value: string, maxWidth: number, size: number, weight: number): number {
-  while (size > 20 && measure(ctx, value, size, weight) > maxWidth) {
-    size -= 2;
-  }
-  return size;
-}
-
-function text(
-  ctx: CanvasRenderingContext2D,
-  value: string,
-  x: number,
-  y: number,
-  size: number,
-  weight: number,
-  color: string,
-  align: CanvasTextAlign = "left",
-  letterSpacingEm = 0,
-): void {
-  ctx.font = font(size, weight);
-  ctx.fillStyle = color;
-  ctx.textAlign = align;
-  ctx.textBaseline = "alphabetic";
-  ctx.letterSpacing = `${letterSpacingEm * size}px`;
-  ctx.fillText(value, x, y);
-  ctx.letterSpacing = "0px";
-}
-
-// "#rrggbb" + alpha -> rgba().
-function withAlpha(hex: string, alpha: number): string {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }

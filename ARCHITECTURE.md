@@ -57,7 +57,10 @@ src/ui/useMobile.ts       Phone layout switch (max-width 700px, same as the @med
 src/ui/info/useBottomSheet.ts  Phone: info panel as bottom sheet, peek/half/full snaps, header drag + tap
 src/ui/info/PowerLevelCard.tsx  Power Level score, rank and pillar bars at the top of the info panel
 src/map/heatColors.ts     Heat colours for "Color countries by: Power Level" (App builds a fill map, MapView.setFillOverrides)
-src/share/shareCard.ts    1200x630 share image (one country / comparison) drawn on a canvas; silhouettes re-projected per
+src/share/comparisonCard.ts  Comparison share image: the "fight poster" (DESIGN.md §6)
+src/share/draw.ts         Canvas helpers for the cards (text, fit, masks, color mix); Outfit font (public/fonts, OFL)
+src/share/shareCard.ts    1200x630 share image entry (one country / comparison), loadCardAssets (Outfit + large flags
+                          public/flags/large/<ID>.png 480x360) must run before drawing; silhouettes re-projected per
                           country (rotated to its longitude, parts >40° from the label point dropped: no French Guiana)
 src/ui/ShareDialog.tsx    Share button's dialog: preview, Copy link, Download image, native Share… on phones. The link is the
                           country/comparison static page (its preview shows the card); pairs without a page: map URL
@@ -75,7 +78,7 @@ src/ui/ModeSwitch.tsx     Map | Play switch, pinned to the same spot on both pag
                           dot until today's daily is done; going to Play saves the map's ?query (sessionStorage) so
                           Map returns to the same view
 src/ui/Flag.tsx           Flag chip before country names (info header, list, search, comparison rows, Power Level card).
-                          public/flags/<ID>.png, 96x72, built by scripts/build-flags.mjs from flag-icons (MIT);
+                          public/flags/<ID>.png, 96x72 (+ large/ 480x360 for cards), built by scripts/build-flags.mjs from flag-icons (MIT);
                           every id has a file (grey placeholder for Northern Cyprus, Somaliland, Siachen).
                           Comparison: header names underlined in map colors = the color key; spans .flag-a/.flag-b
                           get the images from CSS vars --flag-a/--flag-b on the info panel (absolute URLs)
