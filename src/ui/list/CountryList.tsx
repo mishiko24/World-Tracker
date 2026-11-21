@@ -3,6 +3,7 @@
 // Countries without a value always sit at the bottom. Left-click a row to select it (info panel),
 // right-click a row to compare it with the selected one.
 
+import { Flag } from "../Flag";
 import type { CountrySummary } from "../../data/countryData";
 import { COLUMNS } from "./columns";
 import { nextSort, sortRows, type Sort, type SortKey } from "./sort";
@@ -81,7 +82,12 @@ export function CountryList(props: CountryListProps) {
                   onCompare(row.id);
                 }}
               >
-                <td className="name-column">{row.name}</td>
+                <td className="name-column">
+                  <span className="name-with-flag">
+                    <Flag id={row.id} />
+                    {row.name}
+                  </span>
+                </td>
                 {COLUMNS.map((c) => {
                   const value = row[c.key];
                   return <td key={c.key}>{value === null ? <span className="no-data">—</span> : c.format(value)}</td>;

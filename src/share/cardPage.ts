@@ -6,7 +6,7 @@
 import type { CountryData } from "../data/countryData";
 import { loadCountries } from "../map/geo";
 import { DEFAULT_SETTINGS } from "../settings";
-import { drawShareCard, type CardSide } from "./shareCard";
+import { drawShareCard, loadCardFlags, type CardSide } from "./shareCard";
 
 declare global {
   interface Window {
@@ -32,7 +32,9 @@ async function side(id: string, color: string): Promise<CardSide> {
 
 window.renderShareCard = async (a, b, siteLabel) => {
   const canvas = document.createElement("canvas");
-  drawShareCard(canvas, await side(a, COLORS.a), b === null ? null : await side(b, COLORS.b), siteLabel);
+  const sideA = await side(a, COLORS.a);
+  const sideB = b === null ? null : await side(b, COLORS.b);
+  drawShareCard(canvas, sideA, sideB, await loadCardFlags(sideA, sideB), siteLabel);
   return canvas.toDataURL("image/jpeg", JPEG_QUALITY);
 };
 window.shareCardReady = true;

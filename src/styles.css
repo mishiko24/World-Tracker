@@ -94,6 +94,8 @@ button {
 }
 
 .panel-header h2 {
+  display: flex;
+  align-items: center;
   margin: 0;
   font-size: 18px;
   font-weight: 600;
@@ -595,25 +597,19 @@ button {
   margin-top: 3px;
 }
 
-/* Sticky key at the top of the panel: which color is which country. */
-.compare-legend {
-  position: sticky;
-  top: -6px; /* panel-scroll's top padding */
-  z-index: 2;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 18px;
-  padding: 8px 16px;
-  margin-top: -6px;
-  background: #1a1a1f;
-  border-bottom: 1px solid var(--panel-border);
-  font-size: 12px;
-  font-weight: 600;
+/* Comparison mode: the header names are the color key (underlined in the countries' map colors). */
+.keyed {
+  text-decoration: underline 3px;
+  text-underline-offset: 5px;
+  text-decoration-skip-ink: none;
 }
 
-.compare-legend > span {
-  display: flex;
-  align-items: center;
+.keyed.a {
+  text-decoration-color: var(--color-a);
+}
+
+.keyed.b {
+  text-decoration-color: var(--color-b);
 }
 
 .country-swatch {
@@ -674,6 +670,8 @@ button {
 }
 
 .power-side-rank {
+  display: flex;
+  align-items: center;
   font-size: 12px;
   color: var(--text-dim);
 }
@@ -757,6 +755,8 @@ button {
 }
 
 .search-results li {
+  display: flex;
+  align-items: center;
   padding: 7px 10px;
   border-radius: 5px;
   cursor: pointer;
@@ -1217,4 +1217,53 @@ button {
   font-size: 12px;
   color: var(--text-dim);
   overflow-wrap: anywhere;
+}
+
+/* ---------- flags (src/ui/Flag.tsx; spans with flag-a / flag-b take the image from the info panel's CSS vars) ---------- */
+
+.flag {
+  display: inline-block;
+  flex-shrink: 0;
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14);
+  vertical-align: middle;
+}
+
+.flag-small {
+  width: 20px;
+  height: 15px;
+  margin-right: 8px;
+}
+
+.flag-large {
+  width: 28px;
+  height: 21px;
+  margin-right: 10px;
+}
+
+.flag-a {
+  background-image: var(--flag-a);
+}
+
+.flag-b {
+  background-image: var(--flag-b);
+}
+
+.compare-header .flag {
+  margin: 0 2px;
+}
+
+.compare-header .keyed {
+  color: var(--text);
+  font-weight: 600;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.name-with-flag {
+  display: inline-flex;
+  align-items: center;
 }

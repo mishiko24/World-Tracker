@@ -1,6 +1,6 @@
 // Comparison mode: country A (selected) vs country B (compared), drawn in their map colors (--color-a / --color-b,
-// red and blue on the dark map). A sticky legend (CompareLegend) names both countries; every value row is a
-// FactRow with a `compare` spec, drawn as two bars like the Power Level card:
+// red and blue on the dark map). The info panel header is the key: both names with flags, underlined in their
+// colors. Every value row is a FactRow with a `compare` spec, drawn as two bars like the Power Level card:
 //
 //   Population   [red bar ··················] 341.8 M      bars scaled to the larger of the two values
 //                [blue bar ··]                 41.3 M
@@ -14,6 +14,7 @@
 // Red is deliberately not used for "worse": the selected country is red on the map.
 
 import type { CSSProperties } from "react";
+import { flagUrl } from "../Flag";
 
 export type Better = "higher" | "lower" | "none";
 export type DiffMode = "relative" | "points" | "score" | "years";
@@ -34,8 +35,19 @@ export interface CompareColors {
 
 const RATIO_FROM = 2; // "8.3× more" from twice as much; below that "22% more" reads better than "1.2× more"
 
-export function colorVariables(colors: CompareColors): CSSProperties {
-  return { "--color-a": colors.a, "--color-b": colors.b } as CSSProperties;
+// CSS variables on the info panel: --color-a/b (bars, underlines) and --flag-a/b (flag chips in text rows).
+export function compareVariables(colors: CompareColors, a: string, b: string | null): CSSProperties {
+  return {
+    "--color-a": colors.a,
+    "--color-b": colors.b,
+    "--flag-a": cssImage(a),
+    "--flag-b": b === null ? "none" : cssImage(b),
+  } as CSSProperties;
+}
+
+// Absolute URL: a relative url() inside a CSS variable resolves against the stylesheet (assets/), not the page.
+function cssImage(id: string): string {
+  return `url(${new URL(flagUrl(id), document.baseURI).href})`;
 }
 
 export function winner({ a, b, better = "higher" }: Comparison): "a" | "b" | null {
@@ -84,20 +96,4 @@ export function barWidths({ a, b }: Comparison): [number, number] {
     return [0, 0];
   }
   return [(Math.max(a ?? 0, 0) / max) * 100, (Math.max(b ?? 0, 0) / max) * 100];
-}
-
-// Sticky key at the top of the panel in comparison mode: which color is which country.
-export function CompareLegend({ a, b }: { a: string; b: string }) {
-  return (
-    <div className="compare-legend">
-      <span>
-        <span className="country-swatch a" />
-        {a}
-      </span>
-      <span>
-        <span className="country-swatch b" />
-        {b}
-      </span>
-    </div>
-  );
 }

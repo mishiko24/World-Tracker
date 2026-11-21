@@ -230,8 +230,9 @@ const compareRow = async (label) =>
     const bars = [...row.querySelectorAll(".compare-bar span")].map((el) => parseFloat(el.style.width));
     return { aWins: a.classList.contains("win"), bWins: b.classList.contains("win"), diff: row.querySelector(".compared-diff")?.textContent, bars };
   }, label);
-const legend = await page.textContent(".compare-legend");
-check("legend names both countries", legend.includes("Spain") && legend.includes("France"), legend);
+const keyA = await page.textContent(".panel-title .keyed.a");
+const keyB = await page.textContent(".panel-title .keyed.b");
+check("header is the color key: Spain (A) and France (B) underlined", keyA === "Spain" && keyB === "France", `${keyA} / ${keyB}`);
 const popRow = await compareRow("Population");
 check("France has more people: France's value is the winner", popRow?.bWins === true && popRow.aWins === false, JSON.stringify(popRow));
 check("larger value fills its bar, smaller is shorter", popRow?.bars[1] === 100 && popRow.bars[0] < 100, JSON.stringify(popRow?.bars));
@@ -253,6 +254,14 @@ check("big differences read as ×", /^\d|same/.test(gdpRow?.diff ?? "") , JSON.s
 await page.click("aside.panel-right .collapsible-header >> text=Government");
 const govLines = await page.$$eval("aside.panel-right .fact.compared-text", (rows) => rows[0].querySelectorAll(".compared-line").length);
 check("government rows show both countries", govLines === 2);
+const flagCheck = await page.evaluate(() => {
+  const loaded = (img) => img.complete && img.naturalWidth > 0;
+  const headerFlags = [...document.querySelectorAll("aside.panel-right .panel-title img.flag")];
+  const govFlag = getComputedStyle(document.querySelector(".compared-text .flag-b")).backgroundImage;
+  return { header: headerFlags.length, headerLoaded: headerFlags.every(loaded), gov: govFlag };
+});
+check("header shows both flags", flagCheck.header === 2 && flagCheck.headerLoaded, JSON.stringify(flagCheck));
+check("comparison rows use B's flag", flagCheck.gov.endsWith("/flags/FRA.png\")"), flagCheck.gov);
 const metaTexts = await page.$$eval("aside.panel-right .fact-meta", (els) => els.map((e) => e.textContent));
 check("meta lines carry no sources", metaTexts.every((t) => !/World Bank|IMF|UN|EIA|USGS|FAO|Ember/.test(t)), metaTexts.join(" | "));
 const tooltip = await page.$eval("aside.panel-right .compared-value", (el) => el.title);

@@ -7,7 +7,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { comparePagePath, countryPagePath, hasComparePage, type Nearby } from "../data/sitePages";
-import { drawShareCard, shareFileName, type CardSide } from "../share/shareCard";
+import { drawShareCard, loadCardFlags, shareFileName, type CardSide } from "../share/shareCard";
 
 interface ShareDialogProps {
   a: CardSide;
@@ -53,16 +53,23 @@ export function ShareDialog({ a, b, onClose }: ShareDialogProps) {
   const title = b === null ? `${a.country.name} on World Tracker` : `${a.country.name} vs ${b.country.name} on World Tracker`;
 
   useEffect(() => {
-    const canvas = document.createElement("canvas");
-    drawShareCard(canvas, a, b, siteLabel());
     let url: string | null = null;
-    canvas.toBlob((blob) => {
-      const png = new File([blob!], shareFileName(a.country, b?.country ?? null), { type: "image/png" });
-      url = URL.createObjectURL(png);
-      setFile(png);
-      setImageUrl(url);
-    }, "image/png");
+    let closed = false;
+    loadCardFlags(a, b).then((flags) => {
+      if (closed) {
+        return;
+      }
+      const canvas = document.createElement("canvas");
+      drawShareCard(canvas, a, b, flags, siteLabel());
+      canvas.toBlob((blob) => {
+        const png = new File([blob!], shareFileName(a.country, b?.country ?? null), { type: "image/png" });
+        url = URL.createObjectURL(png);
+        setFile(png);
+        setImageUrl(url);
+      }, "image/png");
+    });
     return () => {
+      closed = true;
       if (url !== null) {
         URL.revokeObjectURL(url);
       }

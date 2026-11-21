@@ -4,13 +4,15 @@
 //   comparison    A's silhouette, name, score   VS   B's score, name, silhouette; then a butterfly chart of the
 //                 pillars (A's bars grow left, B's grow right) with the higher value of each pair in green
 //
-// Each country is drawn in its map color. Text uses the system UI font (the site loads no web font).
+// Each country is drawn in its map color, with its flag next to its name (flags must be loaded first: loadCardFlags).
+// Text uses the system UI font (the site loads no web font).
 // Canvas units are card pixels; the canvas is created at exactly CARD_WIDTH x CARD_HEIGHT.
 
 import { geoDistance, geoMercator, geoPath } from "d3-geo";
 import type { Feature, MultiPolygon, Polygon, Position } from "geojson";
 import { PILLAR_LABELS, PILLAR_ORDER, type CountryData } from "../data/countryData";
 import type { Country } from "../map/geo";
+import { flagUrl } from "../ui/Flag";
 import { dollars, shortNumber } from "../ui/info/formatData";
 
 export const CARD_WIDTH = 1200;
@@ -33,16 +35,32 @@ export interface CardSide {
   color: string; // the country's map color (selected = A, compared = B)
 }
 
-export function drawShareCard(canvas: HTMLCanvasElement, a: CardSide, b: CardSide | null, siteLabel: string): void {
+// Flag images of the card's countries, loaded before drawing (canvas drawing is synchronous).
+export interface CardFlags {
+  a: HTMLImageElement;
+  b: HTMLImageElement | null;
+}
+
+export async function loadCardFlags(a: CardSide, b: CardSide | null): Promise<CardFlags> {
+  async function load(id: string): Promise<HTMLImageElement> {
+    const image = new Image();
+    image.src = flagUrl(id);
+    await image.decode();
+    return image;
+  }
+  return { a: await load(a.data.id), b: b === null ? null : await load(b.data.id) };
+}
+
+export function drawShareCard(canvas: HTMLCanvasElement, a: CardSide, b: CardSide | null, flags: CardFlags, siteLabel: string): void {
   canvas.width = CARD_WIDTH;
   canvas.height = CARD_HEIGHT;
   const ctx = canvas.getContext("2d")!;
   ctx.fillStyle = BACKGROUND;
   ctx.fillRect(0, 0, CARD_WIDTH, CARD_HEIGHT);
   if (b === null) {
-    drawSingle(ctx, a, siteLabel);
+    drawSingle(ctx, a, flags.a, siteLabel);
   } else {
-    drawComparison(ctx, a, b, siteLabel);
+    drawComparison(ctx, a, b, flags, siteLabel);
   }
 }
 
@@ -52,7 +70,7 @@ export function shareFileName(a: Country, b: Country | null): string {
 
 // ---------- layouts ----------
 
-function drawSingle(ctx: CanvasRenderingContext2D, side: CardSide, siteLabel: string): void {
+function drawSingle(ctx: CanvasRenderingContext2D, side: CardSide, flag: HTMLImageElement, siteLabel: string): void {
   const level = side.data.powerLevel;
   glow(ctx, 300, 300, side.color);
   drawSilhouette(ctx, side, 60, 70, 460, 450);
@@ -60,8 +78,10 @@ function drawSingle(ctx: CanvasRenderingContext2D, side: CardSide, siteLabel: st
   const x = 580;
   const right = 1140;
   text(ctx, "WORLD TRACKER", x, 72, 18, 700, DIM, "left", 0.12);
-  const nameSize = fitFont(ctx, side.country.name, right - x, 64, 700);
-  text(ctx, side.country.name, x, 140, nameSize, 700, TEXT);
+  drawFlag(ctx, flag, x, 98, 60, 45);
+  const nameX = x + 60 + 18;
+  const nameSize = fitFont(ctx, side.country.name, right - nameX, 64, 700);
+  text(ctx, side.country.name, nameX, 140, nameSize, 700, TEXT);
 
   text(ctx, "POWER LEVEL", x, 196, 18, 600, DIM, "left", 0.1);
   if (level === null) {
@@ -94,7 +114,7 @@ function drawSingle(ctx: CanvasRenderingContext2D, side: CardSide, siteLabel: st
   text(ctx, siteLabel, 60, 594, 18, 400, DIM);
 }
 
-function drawComparison(ctx: CanvasRenderingContext2D, a: CardSide, b: CardSide, siteLabel: string): void {
+function drawComparison(ctx: CanvasRenderingContext2D, a: CardSide, b: CardSide, flags: CardFlags, siteLabel: string): void {
   const la = a.data.powerLevel;
   const lb = b.data.powerLevel;
 
@@ -111,8 +131,8 @@ function drawComparison(ctx: CanvasRenderingContext2D, a: CardSide, b: CardSide,
 
   const scoreA = la?.score ?? null;
   const scoreB = lb?.score ?? null;
-  headline(ctx, a, 264, "left", scoreA !== null && scoreB !== null && scoreA > scoreB);
-  headline(ctx, b, 936, "right", scoreA !== null && scoreB !== null && scoreB > scoreA);
+  headline(ctx, a, flags.a, 264, "left", scoreA !== null && scoreB !== null && scoreA > scoreB);
+  headline(ctx, b, flags.b!, 936, "right", scoreA !== null && scoreB !== null && scoreB > scoreA);
 
   ctx.beginPath();
   ctx.arc(600, 150, 34, 0, Math.PI * 2);
@@ -140,11 +160,22 @@ function drawComparison(ctx: CanvasRenderingContext2D, a: CardSide, b: CardSide,
   text(ctx, siteLabel, 1160, 600, 18, 400, DIM, "right");
 }
 
-// Name, Power Level score and rank of one side of a comparison.
-function headline(ctx: CanvasRenderingContext2D, side: CardSide, x: number, align: "left" | "right", wins: boolean): void {
+// Flag and name, Power Level score and rank of one side of a comparison. x is the outer edge (left side: left
+// edge; right side: right edge), so the flag sits on the outside next to the silhouette.
+function headline(
+  ctx: CanvasRenderingContext2D,
+  side: CardSide,
+  flag: HTMLImageElement,
+  x: number,
+  align: "left" | "right",
+  wins: boolean,
+): void {
   const level = side.data.powerLevel;
-  const nameSize = fitFont(ctx, side.country.name, 290, 40, 700);
-  text(ctx, side.country.name, x, 92, nameSize, 700, TEXT, align);
+  const flagW = 40;
+  drawFlag(ctx, flag, align === "left" ? x : x - flagW, 64, flagW, 30);
+  const nameX = align === "left" ? x + flagW + 12 : x - flagW - 12;
+  const nameSize = fitFont(ctx, side.country.name, 290 - flagW - 12, 40, 700);
+  text(ctx, side.country.name, nameX, 92, nameSize, 700, TEXT, align);
   text(ctx, "POWER LEVEL", x, 128, 15, 600, DIM, align, 0.1);
   text(ctx, level === null ? "—" : level.score.toFixed(1), x, 206, 76, 800, wins ? WIN : TEXT, align);
   text(ctx, level === null ? "Not scored" : `#${level.rank} of ${level.of}`, x, 240, 20, 400, DIM, align);
@@ -179,6 +210,21 @@ function mainland(shape: Feature<Polygon | MultiPolygon>, label: [number, number
   const radians = (MAINLAND_RADIUS_DEGREES * Math.PI) / 180;
   const near = polygons.filter((polygon) => polygon[0].some((p: Position) => geoDistance(p as [number, number], label) <= radians));
   return { type: "Feature", properties: {}, geometry: { type: "MultiPolygon", coordinates: near.length > 0 ? near : polygons } };
+}
+
+// Flag with rounded corners and a hairline edge (white flags would vanish into a light glow otherwise).
+function drawFlag(ctx: CanvasRenderingContext2D, flag: HTMLImageElement, x: number, y: number, w: number, h: number): void {
+  ctx.save();
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, 4);
+  ctx.clip();
+  ctx.drawImage(flag, x, y, w, h);
+  ctx.restore();
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, 4);
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+  ctx.lineWidth = 1;
+  ctx.stroke();
 }
 
 // Soft circle of the country's color behind its silhouette.

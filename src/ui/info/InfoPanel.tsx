@@ -9,7 +9,8 @@ import type { CountryData } from "../../data/countryData";
 import type { Country } from "../../map/geo";
 import { Collapsible } from "../Collapsible";
 import { AgricultureSection } from "./AgricultureSection";
-import { colorVariables, CompareLegend, type CompareColors } from "./Compare";
+import { Flag } from "../Flag";
+import { compareVariables, type CompareColors } from "./Compare";
 import { EconomySection, GovernmentSection, PopulationSection } from "./BasicSections";
 import { PowerLevelCard } from "./PowerLevelCard";
 import { PowerSection } from "./PowerSection";
@@ -76,19 +77,20 @@ export function InfoPanel(props: InfoPanelProps) {
   return (
     <aside
       className={`panel panel-right ${sheet.className}${compared ? " comparing" : ""}`}
-      style={{ ...colorVariables(colors), ...sheet.style }}
+      style={{ ...compareVariables(colors, country.id, compared?.id ?? null), ...sheet.style }}
     >
       <header className="panel-header" {...sheet.handleProps}>
         <div className="sheet-grip" />
         <div className="panel-title">
+          {/* In comparison mode the names are underlined in their map colors: this header is the color key. */}
           <h2>
-            {compared && <span className="country-swatch a" />}
-            {country.name}
+            <Flag id={country.id} size="large" />
+            <span className={compared ? "keyed a" : undefined}>{country.name}</span>
           </h2>
           {compared && (
             <div className="compare-header">
-              vs <span className="country-swatch b" />
-              {compared.name}
+              vs <Flag id={compared.id} />
+              <span className="keyed b">{compared.name}</span>
               <button className="icon-button small" onClick={onEndComparison} title="End comparison">
                 ✕
               </button>
@@ -115,7 +117,6 @@ export function InfoPanel(props: InfoPanelProps) {
 
       {/* Sections are always rendered (even while loading) so their open/closed state survives country switches. */}
       <div className="panel-scroll">
-        {compared && <CompareLegend a={country.name} b={compared.name} />}
         {state.status === "loaded" && <PowerLevelCard powerLevel={state.data.powerLevel} other={other} />}
         <Collapsible title="Government">
           {loaded(state, (d) => <GovernmentSection government={d.government} other={other} />)}

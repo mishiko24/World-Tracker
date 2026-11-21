@@ -1,6 +1,6 @@
 // Power Level at the top of the info panel: score, world rank and one bar per pillar.
-// Comparison mode: both scores side by side, and two bars per pillar in the countries' map colors
-// (--color-a / --color-b, see Compare.tsx). The higher number of each pair is green.
+// Comparison mode: both scores side by side (with flags, --flag-a / --flag-b), and two bars per pillar in the
+// countries' map colors (--color-a / --color-b, see Compare.tsx). The higher number of each pair is green.
 
 import { PILLAR_LABELS, PILLAR_ORDER, type CountryData, type PowerLevel } from "../../data/countryData";
 import { POWER_LEVEL_METHOD_URL } from "../../links";
@@ -100,7 +100,10 @@ function ScoreBlock({ side, powerLevel, wins }: { side: "a" | "b"; powerLevel: P
   return (
     <div className={`power-side ${side}`}>
       <div className={wins ? "power-score win" : "power-score"}>{powerLevel === null ? "—" : powerLevel.score.toFixed(1)}</div>
-      <div className="power-side-rank">{powerLevel === null ? "Not scored" : `#${powerLevel.rank} of ${powerLevel.of}`}</div>
+      <div className="power-side-rank">
+        <span className={`flag flag-small flag-${side}`} />
+        {powerLevel === null ? "Not scored" : `#${powerLevel.rank} of ${powerLevel.of}`}
+      </div>
     </div>
   );
 }

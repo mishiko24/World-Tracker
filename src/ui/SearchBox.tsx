@@ -1,6 +1,7 @@
 // Country search (top center). Type to filter, arrows + Enter or click to pick.
 // Matches names and ISO codes ("usa", "deu"); names starting with the query rank first.
 
+import { Flag } from "./Flag";
 import { useState } from "react";
 import type { Country } from "../map/geo";
 
@@ -87,6 +88,7 @@ export function SearchBox({ countries, onPick }: SearchBoxProps) {
               }}
               onMouseEnter={() => setActive(i)}
             >
+              <Flag id={c.id} />
               {c.name}
             </li>
           ))}

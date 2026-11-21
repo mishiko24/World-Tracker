@@ -178,8 +178,13 @@ function kebab(key: string): string {
   return key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`);
 }
 
+// Flag image (public/flags, built by scripts/build-flags.mjs); decorative, the name is always next to it.
+function flag(root: string, id: string): string {
+  return `<img class="flag" src="${root}flags/${id}.png" alt="" width="20" height="15" loading="lazy">`;
+}
+
 function countryLink(site: Site, root: string, id: string): string {
-  return `<a href="${root}${countryPath(site, id)}">${escape(site.byId.get(id)!.name)}</a>`;
+  return `${flag(root, id)}<a href="${root}${countryPath(site, id)}">${escape(site.byId.get(id)!.name)}</a>`;
 }
 
 // ---------- building blocks ----------
@@ -309,7 +314,7 @@ function countryPage(site: Site, d: CountryData): string {
       `. Government, economy, resources, energy and food data, with comparisons.`,
     image: cardOf(d.id, null),
     builtAt: site.meta.builtAt,
-    body: `<h1>${escape(d.name)}</h1><p class="lead">${escape(lead)}</p><a class="cta" href="${root}?c=${d.id}">Open ${escape(d.name)} on the interactive map</a>${sections.join("")}`,
+    body: `<h1>${flag(root, d.id)}${escape(d.name)}</h1><p class="lead">${escape(lead)}</p><a class="cta" href="${root}?c=${d.id}">Open ${escape(d.name)} on the interactive map</a>${sections.join("")}`,
   });
 }
 
@@ -372,7 +377,7 @@ function comparePage(site: Site, a: CountryData, b: CountryData, path: string, i
     image,
     builtAt: site.meta.builtAt,
     body:
-      `<h1>${escape(a.name)} vs ${escape(b.name)}</h1>` +
+      `<h1>${flag(root, a.id)}${escape(a.name)} vs ${flag(root, b.id)}${escape(b.name)}</h1>` +
       `<p class="lead">${escape(`${a.name} and ${b.name} compared on population, economy, government, energy and World Tracker’s Power Level.${verdict}`)}</p>` +
       `<a class="cta" href="${root}?c=${a.id}&amp;vs=${b.id}">Open this comparison on the interactive map</a>` +
       `<table class="compare"><thead><tr><th></th><th>${countryLink(site, root, a.id)}</th><th>${countryLink(site, root, b.id)}</th></tr></thead><tbody>${rows}</tbody></table>` +

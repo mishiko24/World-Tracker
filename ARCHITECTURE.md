@@ -63,6 +63,11 @@ src/data/sitePages.ts     Which static pages exist + their addresses (G20 list, 
 about.html + src/about/   Sources & method page (second Vite entry, see vite.config.ts): data date (public/data/meta.json),
                           Power Level method, source + license table. Weights/licenses come from countryData.ts;
                           the method text and the datasets table are kept in sync with the pipeline by hand
+src/ui/Flag.tsx           Flag chip before country names (info header, list, search, comparison rows, Power Level card).
+                          public/flags/<ID>.png, 96x72, built by scripts/build-flags.mjs from flag-icons (MIT);
+                          every id has a file (grey placeholder for Northern Cyprus, Somaliland, Siachen).
+                          Comparison: header names underlined in map colors = the color key; spans .flag-a/.flag-b
+                          get the images from CSS vars --flag-a/--flag-b on the info panel (absolute URLs)
 src/links.ts              URLs of the about page, the countries hub, the issue tracker, SITE_URL (absolute address),
                           and the Cloudflare Web Analytics snippet (injected by vite.config.ts + scripts/site/html.ts;
                           tests block it so test runs aren't counted)

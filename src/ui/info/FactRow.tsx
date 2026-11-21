@@ -2,7 +2,7 @@
 // Year and source are not printed (too much clutter); they appear as a tooltip on the value.
 // Comparison mode, see Compare.tsx:
 //   numbers (`compare` set)  two bars in the countries' colors, both values, and how much more/less B has
-//   text (`compareText` set) both texts, each marked with its country's color
+//   text (`compareText` set) both texts, each with its country's flag
 
 import type { ReactNode } from "react";
 import { SOURCES, type SourceId } from "../../data/countryData";
@@ -38,11 +38,11 @@ export function FactRow({ label, value, year, source, meta, compare, compareText
         <span className="fact-label">{label}</span>
         <span className="fact-value" title={tooltip}>
           <span className="compared-line">
-            <span className="country-swatch a" />
+            <span className="flag flag-small flag-a" />
             {value === null ? NO_DATA : value}
           </span>
           <span className="compared-line">
-            <span className="country-swatch b" />
+            <span className="flag flag-small flag-b" />
             {compareText === null ? NO_DATA : compareText}
           </span>
         </span>

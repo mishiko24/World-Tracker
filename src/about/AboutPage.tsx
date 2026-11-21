@@ -173,6 +173,13 @@ export function AboutPage() {
           statement about disputed claims.
         </li>
         <li>
+          Flags:{" "}
+          <a href="https://github.com/lipis/flag-icons" target="_blank" rel="noreferrer">
+            flag-icons
+          </a>{" "}
+          (MIT license).
+        </li>
+        <li>
           Satellite map: NASA Blue Marble imagery via{" "}
           <a href="https://www.earthdata.nasa.gov/engage/open-data-services-software/earthdata-developer-portal/gibs-api" target="_blank" rel="noreferrer">
             NASA GIBS
