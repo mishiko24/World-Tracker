@@ -1,6 +1,7 @@
 // World Bank Indicators API (no key, CC BY 4.0, commercial use allowed with attribution).
 // Population, economy, access to electricity and political stability (Worldwide Governance Indicators).
 // `mrnev=1` returns each country's most recent non-empty value, so years can differ per country.
+// For the TREND_FIELDS the latest value is taken from the full history instead (mrnev=1 has dropped values).
 //
 // Economy used to come from the IMF, whose terms forbid systematic downloading and commercial reuse
 // without written permission. Debt here is *central* government debt (IMF GFS via the World Bank),
@@ -119,7 +120,15 @@ export async function fetchWorldBank(): Promise<void> {
       points.push([Number(row.date), row.value]);
     }
     for (const entry of Object.values(byCountry)) {
-      entry.trends?.[field]?.sort((p, q) => p[0] - q[0]); // the API lists newest first
+      const points = entry.trends?.[field];
+      if (points === undefined) {
+        continue;
+      }
+      points.sort((p, q) => p[0] - q[0]); // the API lists newest first
+      // The latest value comes from the history too: `mrnev=1` silently dropped inflation for 16 countries
+      // (US, Argentina, Qatar...) in Nov 2026 while their history had 2024.
+      const [year, value] = points[points.length - 1];
+      entry[field] = { value, year };
     }
     console.log(`  ${code} history: ${series} countries`);
   }
