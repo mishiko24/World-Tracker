@@ -121,13 +121,13 @@ function fit(ctx: CanvasRenderingContext2D, value: string, maxWidth: number, siz
   return `${cut.trimEnd()}…`;
 }
 
-// Small flags (public/flags) of the top 5.
+// Flags (public/flags, vector) of the top 5.
 export async function loadTopFlags(scale: ColorScale): Promise<Map<string, HTMLImageElement>> {
   const ids = scale.ranked.slice(0, 5).map((r) => r.id);
   const images = await Promise.all(
     ids.map(async (id) => {
       const image = new Image();
-      image.src = `${import.meta.env.BASE_URL}flags/${id}.png`;
+      image.src = `${import.meta.env.BASE_URL}flags/${id}.svg`;
       await image.decode();
       return [id, image] as const;
     }),

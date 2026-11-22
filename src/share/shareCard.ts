@@ -26,7 +26,7 @@ export interface CardSide {
   data: CountryData;
 }
 
-// Flag images of the card's countries (public/flags/large, 480x360), loaded before drawing (canvas drawing is
+// Flag images of the card's countries (public/flags, vector: drawn sharp at any size), loaded before drawing (canvas drawing is
 // synchronous).
 export interface CardFlags {
   a: HTMLImageElement;
@@ -41,7 +41,7 @@ export async function loadCardAssets(a: CardSide, b: CardSide | null): Promise<C
   await loadCardFonts();
   async function load(id: string): Promise<HTMLImageElement> {
     const image = new Image();
-    image.src = `${import.meta.env.BASE_URL}flags/large/${id}.png`;
+    image.src = `${import.meta.env.BASE_URL}flags/${id}.svg`;
     await image.decode();
     return image;
   }

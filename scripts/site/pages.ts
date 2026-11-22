@@ -194,7 +194,7 @@ function cardOf(a: string, b: string | null): string {
 
 // Flag image (public/flags, built by scripts/build-flags.mjs); decorative, the name is always next to it.
 function flag(root: string, id: string): string {
-  return `<img class="flag" src="${root}flags/${id}.png" alt="" width="20" height="15" loading="lazy">`;
+  return `<img class="flag" src="${root}flags/${id}.svg" alt="" width="20" height="15" loading="lazy">`;
 }
 
 function countryLink(site: Site, root: string, id: string): string {

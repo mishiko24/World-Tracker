@@ -1,8 +1,8 @@
-// Country flag chip before a country's name (public/flags/<ID>.png, built by scripts/build-flags.mjs).
+// Country flag chip before a country's name (public/flags/<ID>.svg, vector, built by scripts/build-flags.mjs).
 // Decorative: the name is always next to it, so alt is empty. Lazy, because list view shows all 241 at once.
 
 export function flagUrl(id: string): string {
-  return `${import.meta.env.BASE_URL}flags/${id}.png`;
+  return `${import.meta.env.BASE_URL}flags/${id}.svg`;
 }
 
 export function Flag({ id, size = "small" }: { id: string; size?: "small" | "large" }) {

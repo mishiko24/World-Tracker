@@ -72,8 +72,8 @@ src/share/rankingsCard.ts "World rankings" card: best world places (src/data/ran
 src/share/thenNowCard.ts  "Then and now" card: 2000 vs latest from CountryData.trends
 src/share/mapCard.ts      "Share map" image: the world colored by one number; drawWorld also draws the home card's map
 src/share/draw.ts         Canvas helpers for the cards (text, fit, masks, color mix); Outfit font (public/fonts, OFL)
-src/share/shareCard.ts    1200x630 share image entry (one country / comparison), loadCardAssets (Outfit + large flags
-                          public/flags/large/<ID>.png 480x360) must run before drawing; silhouettes re-projected per
+src/share/shareCard.ts    1200x630 share image entry (one country / comparison), loadCardAssets (Outfit + the vector
+                          flags) must run before drawing; silhouettes re-projected per
                           country (rotated to its longitude, parts >40° from the label point dropped: no French Guiana)
 src/ui/ShareParts.tsx     Dialog frame, card-as-PNG hook, preview + Share… / Copy link / Download (both share dialogs)
 src/ui/ShareDialog.tsx    Share button's dialog. Tabs: one country = Overview / World rankings / Then and now; two
@@ -93,7 +93,7 @@ src/ui/ModeSwitch.tsx     Map | Play switch, pinned to the same spot on both pag
                           dot until today's daily is done; going to Play saves the map's ?query (sessionStorage) so
                           Map returns to the same view
 src/ui/Flag.tsx           Flag chip before country names (info header, list, search, comparison rows, Power Level card).
-                          public/flags/<ID>.png, 96x72 (+ large/ 480x360 for cards), built by scripts/build-flags.mjs from flag-icons (MIT);
+                          public/flags/<ID>.svg, vector (sharp at any size, also on cards), built by scripts/build-flags.mjs from flag-icons (MIT, svgo-optimized);
                           every id has a file (grey placeholder for Northern Cyprus, Somaliland, Siachen).
                           Comparison: header names underlined in map colors = the color key; spans .flag-a/.flag-b
                           get the images from CSS vars --flag-a/--flag-b on the info panel (absolute URLs)

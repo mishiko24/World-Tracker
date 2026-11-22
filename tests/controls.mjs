@@ -293,7 +293,7 @@ const flagCheck = await page.evaluate(() => {
   return { header: headerFlags.length, headerLoaded: headerFlags.every(loaded), gov: govFlag };
 });
 check("header shows both flags", flagCheck.header === 2 && flagCheck.headerLoaded, JSON.stringify(flagCheck));
-check("comparison rows use B's flag", flagCheck.gov.endsWith("/flags/FRA.png\")"), flagCheck.gov);
+check("comparison rows use B's flag", flagCheck.gov.endsWith("/flags/FRA.svg\")"), flagCheck.gov);
 const metaTexts = await page.$$eval("aside.panel-right .fact-meta", (els) => els.map((e) => e.textContent));
 check("meta lines carry no sources", metaTexts.every((t) => !/World Bank|IMF|UN|EIA|USGS|FAO|Ember/.test(t)), metaTexts.join(" | "));
 const tooltip = await page.$eval("aside.panel-right .compared-value", (el) => el.title);

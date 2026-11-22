@@ -1,26 +1,21 @@
-// Builds public/flags/<ID>.png: one small flag per country on the map, named by our country id (ADM0_A3, "USA"),
-// and public/flags/large/<ID>.png (480x360) for share cards, where the flag fills the card's header.
+// Builds public/flags/<ID>.svg: one vector flag per country on the map, named by our country id (ADM0_A3, "USA").
+// Vector, so flags are sharp at every size: 16px chips, game cards, share cards (drawn on canvas at card size).
 // Every id gets a file; places without a flag (Northern Cyprus, Somaliland, Siachen Glacier) get a plain placeholder,
 // so the UI never has to check whether a flag exists.
 //
-// Source: flag-icons (MIT, https://github.com/lipis/flag-icons), its flags/4x3/<iso2>.svg files.
-// The SVGs are rendered once to 96x72 PNGs (2x the largest chip): the full SVGs are 2.7 MB because of detailed coats
-// of arms that are invisible at chip size, and PNGs also draw straight onto share-card canvases.
-// They're loaded as <img> data URLs in headless Chrome, so nothing in them can run.
+// Source: flag-icons (MIT, https://github.com/lipis/flag-icons), its flags/4x3/<iso2>.svg files (4:3, 640x480).
+// Optimized with svgo (about half the size; the detailed coats of arms are the big ones). Browsers only load the
+// flags on screen, and an SVG shown through <img> or drawn on a canvas can't run anything.
 //
 // Run (rarely, e.g. when a country's flag changes):
 //   git clone --depth 1 https://github.com/lipis/flag-icons.git /tmp/vendor/flag-icons
 //   node scripts/build-flags.mjs /tmp/vendor/flag-icons
 
-import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { chromium } from "playwright";
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { optimize } from "svgo";
 
-const SIZES = [
-  { width: 96, height: 72, folder: "public/flags" },
-  { width: 480, height: 360, folder: "public/flags/large" },
-];
 const OUTPUT = "public/flags";
-const PLACEHOLDER_COLOR = "#3a3a40";
+const PLACEHOLDER = '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480"><path fill="#3d4489" d="M0 0h640v480H0z"/></svg>';
 
 const checkout = process.argv[2];
 if (checkout === undefined) {
@@ -31,48 +26,30 @@ const countries = JSON.parse(readFileSync("public/data/countries.topo.json", "ut
   (g) => g.properties,
 );
 
-const browser = await chromium.launch({ executablePath: process.env.CHROME ?? "/usr/bin/google-chrome" });
-const page = await browser.newPage();
+// Start clean, so no flag of a country that left the map stays behind.
+rmSync(OUTPUT, { recursive: true, force: true });
+mkdirSync(OUTPUT, { recursive: true });
 
-async function render(svgDataUrl, width, height) {
-  return page.evaluate(
-    async ([src, width, height, placeholder]) => {
-      const canvas = document.createElement("canvas");
-      canvas.width = width;
-      canvas.height = height;
-      const ctx = canvas.getContext("2d");
-      if (src === null) {
-        ctx.fillStyle = placeholder;
-        ctx.fillRect(0, 0, width, height);
-      } else {
-        const img = new Image();
-        img.src = src;
-        await img.decode();
-        ctx.drawImage(img, 0, 0, width, height);
-      }
-      return canvas.toDataURL("image/png");
-    },
-    [svgDataUrl, width, height, PLACEHOLDER_COLOR],
-  );
-}
-
-for (const size of SIZES) {
-  mkdirSync(size.folder, { recursive: true });
-}
 const missing = [];
 for (const country of countries) {
   const svgPath = country.iso2 === null ? null : `${checkout}/flags/4x3/${country.iso2.toLowerCase()}.svg`;
-  const hasFlag = svgPath !== null && existsSync(svgPath);
-  if (!hasFlag) {
+  if (svgPath === null || !existsSync(svgPath)) {
     missing.push(country.name);
+    writeFileSync(`${OUTPUT}/${country.id}.svg`, PLACEHOLDER);
+    continue;
   }
-  const svg = hasFlag ? `data:image/svg+xml;base64,${readFileSync(svgPath).toString("base64")}` : null;
-  for (const size of SIZES) {
-    const dataUrl = await render(svg, size.width, size.height);
-    writeFileSync(`${size.folder}/${country.id}.png`, Buffer.from(dataUrl.slice(dataUrl.indexOf(",") + 1), "base64"));
+  // The sources have only a viewBox; canvases need an intrinsic size to draw the image, so 640x480 is added.
+  const { data } = optimize(readFileSync(svgPath, "utf8"), {
+    multipass: true,
+    floatPrecision: 1, // 0.1 of a 640px-wide flag: invisible even on a full-screen card
+    plugins: ["preset-default", { name: "addAttributesToSVGElement", params: { attributes: [{ width: "640" }, { height: "480" }] } }],
+  });
+  if (!data.includes('width="640"') || !data.includes('height="480"')) {
+    throw new Error(`${country.id}: optimized flag lost its 640x480 size`);
   }
+  writeFileSync(`${OUTPUT}/${country.id}.svg`, data);
 }
 copyFileSync(`${checkout}/LICENSE`, `${OUTPUT}/LICENSE-flag-icons.txt`);
-await browser.close();
 
-console.log(`${countries.length} flags written to ${OUTPUT}/; placeholder for: ${missing.join(", ")}`);
+const bytes = readdirSync(OUTPUT).reduce((sum, f) => sum + readFileSync(`${OUTPUT}/${f}`).length, 0);
+console.log(`${countries.length} flags written to ${OUTPUT}/ (${(bytes / 1e6).toFixed(1)} MB); placeholder for: ${missing.join(", ")}`);
