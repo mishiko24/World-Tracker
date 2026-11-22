@@ -1,7 +1,7 @@
 // Share card: a 1200x630 image (the standard link-preview size) of one country or of a comparison, drawn on a canvas.
 //
 //   one country   singleCard.ts; also "World rankings" (rankingsCard.ts) and "Then and now" (thenNowCard.ts)
-//   comparison    the "fight poster": comparisonCard.ts
+//   comparison    the "fight poster": comparisonCard.ts, one card per section (comparisonSections.ts)
 //
 // Flags and the Outfit font must be loaded first: loadCardAssets.
 // Canvas units are card pixels; the canvas is created at exactly CARD_WIDTH x CARD_HEIGHT.
@@ -11,6 +11,7 @@ import type { Country } from "../map/geo";
 import { background, DIM, drawComparison, TEXT } from "./comparisonCard";
 import { text } from "./draw";
 import type { WorldRank } from "../data/rankings";
+import { comparisonSection, type ComparisonSection } from "./comparisonSections";
 import { drawScaleBar, drawWorld } from "./mapCard";
 import { drawRankings } from "./rankingsCard";
 import { drawSingle } from "./singleCard";
@@ -56,15 +57,22 @@ export async function loadCardFonts(): Promise<void> {
   );
 }
 
+// One country: the overview card. Two countries: the Power Level comparison (link previews use this one).
 export function drawShareCard(canvas: HTMLCanvasElement, a: CardSide, b: CardSide | null, flags: CardFlags, siteLabel: string): void {
+  if (b === null) {
+    canvas.width = CARD_WIDTH;
+    canvas.height = CARD_HEIGHT;
+    drawSingle(canvas.getContext("2d")!, a, flags.a, siteLabel);
+  } else {
+    drawComparisonCard(canvas, a, b, flags, comparisonSection("powerLevel", a.data, b.data, new Map()), siteLabel);
+  }
+}
+
+// A comparison card for any section (comparisonSections.ts).
+export function drawComparisonCard(canvas: HTMLCanvasElement, a: CardSide, b: CardSide, flags: CardFlags, section: ComparisonSection, siteLabel: string): void {
   canvas.width = CARD_WIDTH;
   canvas.height = CARD_HEIGHT;
-  const ctx = canvas.getContext("2d")!;
-  if (b === null) {
-    drawSingle(ctx, a, flags.a, siteLabel);
-  } else {
-    drawComparison(ctx, a, b, flags, siteLabel);
-  }
+  drawComparison(canvas.getContext("2d")!, a, b, flags, section, siteLabel);
 }
 
 // One-country cards besides the overview: the country's best world rankings, and then and now (since 2000).

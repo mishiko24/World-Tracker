@@ -495,6 +495,14 @@ check("share card is 1200x630", card[0] === 1200 && card[1] === 630, card.join("
 check("share card file named after both countries", (await page.getAttribute(".share-actions a[download]", "download")) === "world-tracker-jpn-vs-kor.png");
 await page.waitForFunction(() => !document.querySelector(".share-link").textContent.includes("…"));
 check("share link is the comparison page", (await page.textContent(".share-link")).endsWith("/compare/japan-vs-south-korea/"), await page.textContent(".share-link"));
+// One card per info panel section when comparing.
+const sectionTabs = await page.$$eval(".card-tabs button", (els) => els.map((e) => e.textContent).join("|"));
+check("comparison card per section", sectionTabs === "Power Level|Government|Population|Economy|Resources|Agriculture|Power generation", sectionTabs);
+await page.click(".card-tabs button >> text=Economy");
+await page.waitForFunction(() => document.querySelector(".share-actions a[download]")?.getAttribute("download") === "world-tracker-jpn-vs-kor-economy.png");
+check("economy comparison card", true);
+await page.click(".card-tabs button >> text=Power Level");
+await page.waitForFunction(() => document.querySelector(".share-actions a[download]")?.getAttribute("download") === "world-tracker-jpn-vs-kor.png");
 await page.click(".embed-toggle");
 const embed = await page.inputValue(".embed-code");
 check(

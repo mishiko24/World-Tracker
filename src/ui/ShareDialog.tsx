@@ -2,7 +2,8 @@
 // shown only where the browser can share files: mostly phones).
 // The link is the country's or the comparison's static page (src/data/sitePages.ts), because chat apps show those
 // with the share card as preview; a pair without a page gets the map's own URL (?c=A&vs=B, urlState.ts).
-// One country: tabs pick the card (Overview, World rankings, Then and now); the link is the same.
+// Tabs pick the card: one country = Overview, World rankings, Then and now; two countries = one card per info panel
+// section (Power Level first: the card the comparison page's link preview shows). The link is the same.
 // "Embed on a website": iframe code for embed.html (src/share/embed.ts), dark or light.
 // Frame, preview and buttons: ShareParts.tsx.
 
@@ -13,19 +14,43 @@ import { useDataMeta } from "../data/useDataMeta";
 import { useSummaries } from "../data/useSummaries";
 import { SITE_URL } from "../links";
 import { embedCode, type EmbedTheme } from "../share/embed";
-import { drawRankingsCard, drawShareCard, drawThenNowCard, loadCardAssets, shareFileName, type CardSide } from "../share/shareCard";
+import type { CountrySummary } from "../data/countryData";
+import { comparisonSection, hasData, SECTION_IDS, SECTION_TITLES, type ResourceTotals, type SectionId } from "../share/comparisonSections";
+import { drawComparisonCard, drawRankingsCard, drawShareCard, drawThenNowCard, loadCardAssets, shareFileName, type CardSide } from "../share/shareCard";
 import { thenNowRows } from "../share/thenNowCard";
 import { columnGroups, numberColumns } from "./list/columns";
 import { DialogFrame, SharePreviewActions, siteLabel, siteUrl, useCardImage } from "./ShareParts";
 
-type CardKind = "overview" | "rankings" | "thenNow";
+// One country: overview, world rankings, then and now. Two countries: one card per info panel section.
+type CardKind = "overview" | "rankings" | "thenNow" | SectionId;
 
-const KIND_LABELS: Record<CardKind, string> = { overview: "Overview", rankings: "World rankings", thenNow: "Then and now" };
-const KIND_FILE_SUFFIX: Record<CardKind, string | undefined> = { overview: undefined, rankings: "rankings", thenNow: "then-and-now" };
+const KIND_LABELS: Record<CardKind, string> = { overview: "Overview", rankings: "World rankings", thenNow: "Then and now", ...SECTION_TITLES };
+const KIND_FILE_SUFFIX: Record<CardKind, string | undefined> = {
+  overview: undefined,
+  rankings: "rankings",
+  thenNow: "then-and-now",
+  powerLevel: undefined,
+  government: "government",
+  population: "population",
+  economy: "economy",
+  resources: "resources",
+  agriculture: "agriculture",
+  power: "power",
+};
+
+// World production per resource id: which resources matter most for a pair (comparisonSections.ts).
+function resourceTotals(rows: CountrySummary[]): ResourceTotals {
+  const totals: ResourceTotals = new Map();
+  for (const row of rows) {
+    for (const [id, value] of Object.entries(row.production)) {
+      totals.set(id, (totals.get(id) ?? 0) + value);
+    }
+  }
+  return totals;
+}
 
 // The country's world rankings, once summary.json and meta.json have loaded.
-function useWorldRanks(id: string): WorldRank[] | null {
-  const rows = useSummaries();
+function useWorldRanks(id: string, rows: CountrySummary[] | null): WorldRank[] | null {
   const meta = useDataMeta();
   return useMemo(
     () => (rows === null || meta === null ? null : worldRanks(id, rows, numberColumns(columnGroups(meta.resources)))),
@@ -64,27 +89,38 @@ function useSharePath(a: CardSide, b: CardSide | null): string | null {
 
 export function ShareDialog({ a, b, onClose }: ShareDialogProps) {
   const sharePath = useSharePath(a, b);
-  const [kind, setKind] = useState<CardKind>("overview");
-  const ranks = useWorldRanks(a.data.id);
+  const [kind, setKind] = useState<CardKind>(b === null ? "overview" : "powerLevel");
+  const rows = useSummaries();
+  const ranks = useWorldRanks(a.data.id, rows);
+  const totals = useMemo(() => (rows === null ? null : resourceTotals(rows)), [rows]);
   const thenNow = useMemo(() => thenNowRows(a.data), [a]);
+  const section = useMemo(
+    () => (b === null || kind === "overview" || kind === "rankings" || kind === "thenNow" || totals === null ? null : comparisonSection(kind, a.data, b.data, totals)),
+    [a, b, kind, totals],
+  );
   const title = b === null ? `${a.country.name} on World Tracker` : `${a.country.name} vs ${b.country.name} on World Tracker`;
-  // Tabs for one country; a tab without data (no rankings, too little history) isn't offered.
-  const kinds: CardKind[] = b !== null ? [] : ["overview", ...(ranks === null || ranks.length > 0 ? (["rankings"] as const) : []), ...(thenNow.length > 0 ? (["thenNow"] as const) : [])];
+  // Tabs; a card without data (no rankings, too little history, a section neither country has) isn't offered.
+  const kinds: CardKind[] =
+    b === null
+      ? ["overview", ...(ranks === null || ranks.length > 0 ? (["rankings"] as const) : []), ...(thenNow.length > 0 ? (["thenNow"] as const) : [])]
+      : SECTION_IDS.filter((id) => totals === null || hasData(comparisonSection(id, a.data, b.data, totals)));
 
-  const draw =
-    kind === "rankings" && ranks === null
-      ? null // drawn once the rankings have loaded
-      : async (canvas: HTMLCanvasElement) => {
-          const flags = await loadCardAssets(a, b);
-          if (kind === "rankings") {
-            drawRankingsCard(canvas, a, flags.a, ranks!, siteLabel());
-          } else if (kind === "thenNow") {
-            drawThenNowCard(canvas, a, flags.a, thenNow, siteLabel());
-          } else {
-            drawShareCard(canvas, a, b, flags, siteLabel());
-          }
-        };
-  const image = useCardImage(draw, shareFileName(a.country, b?.country ?? null, KIND_FILE_SUFFIX[kind]), [a, b, kind, ranks, thenNow]);
+  const waiting = (kind === "rankings" && ranks === null) || (b !== null && section === null); // drawn once the data has loaded
+  const draw = waiting
+    ? null
+    : async (canvas: HTMLCanvasElement) => {
+        const flags = await loadCardAssets(a, b);
+        if (kind === "rankings") {
+          drawRankingsCard(canvas, a, flags.a, ranks!, siteLabel());
+        } else if (kind === "thenNow") {
+          drawThenNowCard(canvas, a, flags.a, thenNow, siteLabel());
+        } else if (section !== null) {
+          drawComparisonCard(canvas, a, b!, flags, section, siteLabel());
+        } else {
+          drawShareCard(canvas, a, null, flags, siteLabel());
+        }
+      };
+  const image = useCardImage(draw, shareFileName(a.country, b?.country ?? null, KIND_FILE_SUFFIX[kind]), [a, b, kind, ranks, thenNow, section]);
 
   return (
     <DialogFrame title="Share" onClose={onClose}>

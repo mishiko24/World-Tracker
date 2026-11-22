@@ -61,7 +61,10 @@ src/map/colorBy.ts        "Color countries by" any list number (settings.colorBy
                           percentile (numbers are too skewed for a linear scale); mappableGroups = numbers with 15+
                           countries (= ranking pages = map pages). App -> MapView.setFillOverrides; MapKey.tsx (key,
                           top 10, Share map), MapTooltip.tsx (hovered country's value), MapShareDialog.tsx + mapCard.ts
-src/share/comparisonCard.ts  Comparison share image: the "fight poster" (DESIGN.md §6)
+src/share/comparisonCard.ts  Comparison share image: the "fight poster" (DESIGN.md §6), for any section:
+src/share/comparisonSections.ts  What each comparison card shows (Power Level, Government, Population, Economy,
+                          Resources, Agriculture, Power generation): headline number + up to 6 rows; resources and
+                          crops pick well-known items first (KEY_RESOURCES, STAPLES)
 src/theme.css             The look (DESIGN.md §0): fonts, gradient, glass, A/B/teal colors. Imported by every page;
                           scripts/site/pages.ts prepends it to dist/site.css for the static pages
 src/share/singleCard.ts   One-country share image (same style as the comparison card); drawCountryFrame + tile shared with:
@@ -73,7 +76,8 @@ src/share/shareCard.ts    1200x630 share image entry (one country / comparison),
                           public/flags/large/<ID>.png 480x360) must run before drawing; silhouettes re-projected per
                           country (rotated to its longitude, parts >40° from the label point dropped: no French Guiana)
 src/ui/ShareParts.tsx     Dialog frame, card-as-PNG hook, preview + Share… / Copy link / Download (both share dialogs)
-src/ui/ShareDialog.tsx    Share button's dialog (one country: tabs Overview / World rankings / Then and now). The link is the
+src/ui/ShareDialog.tsx    Share button's dialog. Tabs: one country = Overview / World rankings / Then and now; two
+                          countries = one card per section (Power Level first). The link is the
                           country/comparison static page (its preview shows the card); pairs without a page: map URL
 src/data/sitePages.ts     Which static pages exist + their addresses (G20 list, slugs). No imports: Node loads it too
 about.html + src/about/   Sources & method page (second Vite entry, see vite.config.ts): data date (public/data/meta.json),

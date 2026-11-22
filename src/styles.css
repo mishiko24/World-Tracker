@@ -1430,6 +1430,7 @@ button {
 /* Which one-country card to share. */
 .card-tabs {
   display: flex;
+  flex-wrap: wrap; /* seven section tabs when comparing */
   gap: 6px;
   margin: 0 18px 10px;
 }
