@@ -3,6 +3,7 @@
 //   countries/              hub: every country A-Z and every ranking
 //   country/<slug>/         one page per country: its data as plain HTML
 //   rank/<slug>/            one page per list-view number column with enough countries: every country ranked
+//   map/<slug>/             the same columns as a world map (image cards/map-<slug>.jpg) and the top 20
 //   compare/<a>-vs-<b>/     which pairs, and the addresses: src/data/sitePages.ts (neighbours: data/nearby.json)
 //   sitemap.xml             all of the above plus the map and the Sources & method page
 //   404.html                forwards guessed addresses (compare/usa-vs-russia) to the real page (notFound.ts)
@@ -22,20 +23,28 @@ import {
 } from "../../src/data/countryData";
 import { ABOUT_URL, GAME_URL, SITE_URL } from "../../src/links";
 import type { CountryProperties } from "../../src/map/geo";
-import { winner, type Better } from "../../src/ui/info/Compare";
+import { barWidths, gap, winner, type Better, type DiffMode } from "../../src/ui/info/Compare";
 import { amount, dollars, fullNumber, percent, share, tonnes } from "../../src/ui/info/formatData";
 import { POWER_SOURCE_STYLE } from "../../src/ui/info/PowerSection";
-import { columnGroups, type ColumnGroup, type NumberColumn } from "../../src/ui/list/columns";
+import { columnGroups, numberColumns, type NumberColumn } from "../../src/ui/list/columns";
+import { colorScale, mappableGroups, type ColorScale, type MappableGroup } from "../../src/map/colorBy";
+import { valueWithUnit, worldRanks } from "../../src/data/rankings";
+import { changeText, thenNowRows } from "../../src/share/thenNowCard";
 import { comparePagePath, countryPagePath, G20, isNearby, slugOf, type Nearby } from "../../src/data/sitePages";
 import { escape, inWords, page, rootFrom } from "./html";
 import { notFoundPage } from "./notFound";
 
 // Comparison pages exist for every pair that includes one of these (the pairs people search for).
-export interface CardJob {
-  file: string; // path under dist/, e.g. "cards/fra.jpg"
-  a: string; // country id
-  b: string | null; // compared country id, null for a single-country card
-}
+export type CardJob =
+  | {
+      file: string; // path under dist/, e.g. "cards/fra.jpg"
+      a: string; // country id
+      b: string | null; // compared country id, null for a single-country card
+    }
+  | {
+      file: string; // "cards/map-<slug>.jpg"
+      map: string; // list column id: the world colored by it
+    };
 
 function readJson<T>(path: string): T {
   return JSON.parse(readFileSync(path, "utf8")) as T;
@@ -47,7 +56,7 @@ function write(dist: string, path: string, html: string): void {
 }
 
 // Folders this script owns in dist/; emptied first so a rerun leaves no pages from the previous run.
-const OUTPUT_FOLDERS = ["countries", "country", "rank", "compare", "cards"];
+const OUTPUT_FOLDERS = ["countries", "country", "rank", "map", "compare", "cards"];
 
 export function buildPages(dist: string): { cards: CardJob[]; pages: number } {
   for (const folder of OUTPUT_FOLDERS) {
@@ -84,11 +93,16 @@ export function buildPages(dist: string): { cards: CardJob[]; pages: number } {
     write(dist, path, countryPage(site, d));
     paths.push(path);
   }
-  for (const group of rankingGroups(site)) {
-    for (const column of group.columns) {
+  for (const { group, columns } of rankingGroups(site)) {
+    for (const column of columns) {
       const path = `rank/${column.slug}/`;
       write(dist, path, rankPage(site, column, path));
       paths.push(path);
+      const mapPath = `map/${column.slug}/`;
+      const mapCard = `cards/map-${column.slug}.jpg`;
+      cards.push({ file: mapCard, map: column.id });
+      write(dist, mapPath, mapPage(site, colorScale(column, group, summaries), mapPath, mapCard));
+      paths.push(mapPath);
     }
   }
   for (const [a, b] of comparePairs(site)) {
@@ -238,6 +252,32 @@ function countryPage(site: Site, d: CountryData): string {
         table(PILLAR_ORDER.map((pillar) => [PILLAR_LABELS[pillar], level.pillars[pillar] === null ? null : level.pillars[pillar]!.toFixed(0)]))
   }<p class="note">World Tracker’s own index. <a href="${root}${ABOUT_URL}#power-level">How it’s calculated</a></p></section>`);
 
+  // Best world rankings (same as the "World rankings" share card), each linking to its ranking page.
+  const ranks = worldRanks(d.id, [...site.summaries.values()], numberColumns(columnGroups(site.meta.resources))).slice(0, 10);
+  if (ranks.length > 0) {
+    sections.push(
+      `<section><h2>World rankings</h2><table class="list ranks"><tbody>${ranks
+        .map(
+          (r) =>
+            `<tr><td class="rank${r.rank <= 3 ? ` medal-${r.rank}` : ""}">#${r.rank}</td><td><a href="${root}rank/${r.column.slug}/">${escape(r.column.fullLabel)}</a> <span class="year">of ${r.of}</span></td><td>${escape(valueWithUnit(r.column, r.value))}</td></tr>`,
+        )
+        .join("")}</tbody></table><p class="note">${escape(d.name)}’s highest places in the world (ties of more than three countries left out).</p></section>`,
+    );
+  }
+
+  // Then and now (same as the share card).
+  const thenNow = thenNowRows(d);
+  if (thenNow.length > 0) {
+    sections.push(
+      `<section><h2>Then and now</h2><table class="list"><thead><tr><th></th><th>Then</th><th>Now</th><th>Change</th></tr></thead><tbody>${thenNow
+        .map(
+          (r) =>
+            `<tr><td>${escape(r.label)}</td><td>${escape(r.format(r.then))} <span class="year">${r.thenYear}</span></td><td>${escape(r.format(r.now))} <span class="year">${r.nowYear}</span></td><td class="${r.now > r.then ? "up" : r.now < r.then ? "down" : ""}">${escape(changeText(r))}</td></tr>`,
+        )
+        .join("")}</tbody></table></section>`,
+    );
+  }
+
   sections.push(`<section><h2>Government</h2>${table([
     ["Government type", g.type === null ? null : escape(g.type.value)],
     ["Head of state", g.headOfState === null ? null : escape(g.headOfState.value)],
@@ -323,42 +363,86 @@ interface Metric {
   get: (d: CountryData) => number | null;
   format: (v: number) => string;
   better?: Better;
+  mode?: DiffMode; // how the gap is said, see Compare.tsx
 }
 
-const METRICS: Metric[] = [
-  { label: "Power Level", get: (d) => d.powerLevel?.score ?? null, format: (v) => v.toFixed(1) },
-  ...PILLAR_ORDER.map((pillar) => ({
-    label: `– ${PILLAR_LABELS[pillar]}`,
-    get: (d: CountryData) => d.powerLevel?.pillars[pillar] ?? null,
-    format: (v: number) => v.toFixed(0),
-  })),
-  { label: "Population", get: (d) => d.population.total?.value ?? null, format: fullNumber },
-  { label: "Density (per km²)", get: (d) => d.population.density?.value ?? null, format: fullNumber, better: "none" },
-  { label: "Children per woman", get: (d) => d.population.fertility?.value ?? null, format: (v) => v.toFixed(2) },
-  { label: "Life expectancy", get: (d) => d.population.lifeExpectancy?.value ?? null, format: (v) => `${v.toFixed(1)} years` },
-  { label: "Median age", get: (d) => d.population.medianAge?.value ?? null, format: (v) => `${v.toFixed(1)} years`, better: "none" },
-  { label: "GDP", get: (d) => d.economy.gdp?.value ?? null, format: dollars },
-  { label: "GDP per person", get: (d) => d.economy.gdpPerCapita?.value ?? null, format: dollars },
-  { label: "GDP per person (PPP)", get: (d) => d.economy.gdpPerCapitaPpp?.value ?? null, format: dollars },
-  { label: "Real growth", get: (d) => d.economy.growth?.value ?? null, format: (v) => percent(v) },
-  { label: "Inflation", get: (d) => d.economy.inflation?.value ?? null, format: (v) => percent(v), better: "lower" },
-  { label: "Gov. debt (% of GDP)", get: (d) => d.economy.debt?.value ?? null, format: (v) => percent(v, 0), better: "lower" },
-  { label: "Political stability", get: (d) => d.government.politicalStability?.value ?? null, format: (v) => `${v.toFixed(0)} / 100` },
-  { label: "Electricity generated", get: (d) => d.power.generation?.totalTwh ?? null, format: (v) => `${fullNumber(v)} TWh` },
-  { label: "Access to electricity", get: (d) => d.power.electricityAccess?.value ?? null, format: (v) => percent(v) },
+// Comparison page rows, by section, same rules as the app's comparison panel (src/ui/info/Compare.tsx).
+const METRIC_GROUPS: { title: string; metrics: Metric[] }[] = [
+  {
+    title: "Power Level",
+    metrics: [
+      { label: "Power Level", get: (d) => d.powerLevel?.score ?? null, format: (v) => v.toFixed(1), mode: "score" },
+      ...PILLAR_ORDER.map(
+        (pillar): Metric => ({
+          label: PILLAR_LABELS[pillar],
+          get: (d) => d.powerLevel?.pillars[pillar] ?? null,
+          format: (v) => v.toFixed(0),
+          mode: "score",
+        }),
+      ),
+    ],
+  },
+  {
+    title: "Population",
+    metrics: [
+      { label: "Population", get: (d) => d.population.total?.value ?? null, format: fullNumber },
+      { label: "Density (per km²)", get: (d) => d.population.density?.value ?? null, format: fullNumber, better: "none" },
+      { label: "Children per woman", get: (d) => d.population.fertility?.value ?? null, format: (v) => v.toFixed(2) },
+      { label: "Life expectancy", get: (d) => d.population.lifeExpectancy?.value ?? null, format: (v) => `${v.toFixed(1)} years`, mode: "years" },
+      { label: "Median age", get: (d) => d.population.medianAge?.value ?? null, format: (v) => `${v.toFixed(1)} years`, better: "none", mode: "years" },
+    ],
+  },
+  {
+    title: "Economy",
+    metrics: [
+      { label: "GDP", get: (d) => d.economy.gdp?.value ?? null, format: dollars },
+      { label: "GDP per person", get: (d) => d.economy.gdpPerCapita?.value ?? null, format: dollars },
+      { label: "GDP per person (PPP)", get: (d) => d.economy.gdpPerCapitaPpp?.value ?? null, format: dollars },
+      { label: "Real growth", get: (d) => d.economy.growth?.value ?? null, format: (v) => percent(v), mode: "points" },
+      { label: "Inflation", get: (d) => d.economy.inflation?.value ?? null, format: (v) => percent(v), better: "lower", mode: "points" },
+      { label: "Gov. debt (% of GDP)", get: (d) => d.economy.debt?.value ?? null, format: (v) => percent(v, 0), better: "lower", mode: "points" },
+    ],
+  },
+  {
+    title: "Government and energy",
+    metrics: [
+      { label: "Political stability", get: (d) => d.government.politicalStability?.value ?? null, format: (v) => `${v.toFixed(0)} / 100`, mode: "score" },
+      { label: "Electricity generated", get: (d) => d.power.generation?.totalTwh ?? null, format: (v) => `${fullNumber(v)} TWh` },
+      { label: "Access to electricity", get: (d) => d.power.electricityAccess?.value ?? null, format: (v) => percent(v), mode: "points" },
+    ],
+  },
 ];
+
+// One row like the app's comparison panel: label | A's bar + value / B's bar + value / the gap from the winner's
+// side. Bars share one scale; the winner's value is a teal pill, the loser's bar dimmer.
+function pairRow(m: Metric, va: number | null, vb: number | null): string {
+  const compare = { a: va, b: vb, format: m.format, better: m.better, mode: m.mode };
+  const win = winner(compare);
+  const [wa, wb] = barWidths(compare);
+  const g = gap(compare);
+  const bar = (side: "a" | "b", width: number) =>
+    `<span class="pair-bar ${side}${win !== null && win !== side ? " lose" : ""}"><span style="width:${width.toFixed(1)}%"></span></span>`;
+  const value = (v: number | null, wins: boolean) => `<span class="pair-value${wins ? " win" : ""}">${v === null ? "No data" : escape(m.format(v))}</span>`;
+  return (
+    `<div class="pair"><div class="pair-label">${escape(m.label)}</div><div class="pair-bars">` +
+    bar("a", wa) +
+    value(va, win === "a") +
+    bar("b", wb) +
+    value(vb, win === "b") +
+    (g === null ? "" : `<span class="pair-gap"><i class="swatch ${g.side}"></i>${escape(g.text)}</span>`) +
+    `</div></div>`
+  );
+}
 
 function comparePage(site: Site, a: CountryData, b: CountryData, path: string, image: string): string {
   const root = rootFrom(path);
-  const rows = METRICS.map((m) => {
-    const va = m.get(a);
-    const vb = m.get(b);
-    if (va === null && vb === null) {
-      return "";
-    }
-    const win = winner({ a: va, b: vb, format: m.format, better: m.better });
-    const cell = (v: number | null, wins: boolean) => `<td${wins ? ` class="win"` : ""}>${v === null ? "—" : escape(m.format(v))}</td>`;
-    return `<tr><th>${escape(m.label)}</th>${cell(va, win === "a")}${cell(vb, win === "b")}</tr>`;
+  const sections = METRIC_GROUPS.map((group) => {
+    const rows = group.metrics
+      .map((m) => ({ m, va: m.get(a), vb: m.get(b) }))
+      .filter((r) => r.va !== null || r.vb !== null)
+      .map((r) => pairRow(r.m, r.va, r.vb))
+      .join("");
+    return rows === "" ? "" : `<section class="pairs"><h2>${escape(group.title)}</h2>${rows}</section>`;
   }).join("");
 
   const la = a.powerLevel;
@@ -368,6 +452,9 @@ function comparePage(site: Site, a: CountryData, b: CountryData, path: string, i
       ? ` ${la.score > lb.score ? a.name : b.name} has the higher Power Level (${Math.max(la.score, lb.score).toFixed(1)} vs ${Math.min(la.score, lb.score).toFixed(1)}).`
       : "";
   const title = `${a.name} vs ${b.name}: population, GDP and Power Level compared | World Tracker`;
+  // Pairs with their own share card show it: the same poster people see when the link is shared.
+  const hero = image.includes("-vs-") ? `<img class="hero-card" src="${root}${image}" alt="${escape(`${a.name} vs ${b.name} Power Level comparison`)}" width="1200" height="630">` : "";
+  const key = `<div class="pair-key"><span class="key a">${countryLink(site, root, a.id)}</span><span class="key b">${countryLink(site, root, b.id)}</span></div>`;
 
   return page({
     path,
@@ -380,23 +467,17 @@ function comparePage(site: Site, a: CountryData, b: CountryData, path: string, i
       `<h1>${flag(root, a.id)}${escape(a.name)} vs ${flag(root, b.id)}${escape(b.name)}</h1>` +
       `<p class="lead">${escape(`${a.name} and ${b.name} compared on population, economy, government, energy and World Tracker’s Power Level.${verdict}`)}</p>` +
       `<a class="cta" href="${root}?c=${a.id}&amp;vs=${b.id}">Open this comparison on the interactive map</a>` +
-      `<table class="compare"><thead><tr><th></th><th>${countryLink(site, root, a.id)}</th><th>${countryLink(site, root, b.id)}</th></tr></thead><tbody>${rows}</tbody></table>` +
-      `<p class="note">Green = better (lower for inflation and debt; none for density and median age). Years differ by country; see each country’s page.</p>`,
+      hero +
+      key +
+      sections +
+      `<p class="note">Teal = better (lower for inflation and debt; none for density and median age). Years differ by country; see each country’s page.</p>`,
   });
 }
 
-// A ranking of fewer countries than this is too thin to be worth a page.
-const MIN_RANKED = 15;
-
-// The list view's number columns, by section, that have enough countries for a ranking page.
-function rankingGroups(site: Site): { label: string; columns: NumberColumn[] }[] {
-  const ranked = (c: NumberColumn) => site.countries.filter((d) => c.value(site.summaries.get(d.id)!) !== null).length;
-  return columnGroups(site.meta.resources)
-    .map((g: ColumnGroup) => ({
-      label: g.label,
-      columns: g.columns.filter((c): c is NumberColumn => c.kind === "number" && ranked(c) >= MIN_RANKED),
-    }))
-    .filter((g) => g.columns.length > 0);
+// The list view's number columns, by section, that have enough countries for a ranking page and a map page
+// (the same ones the map's "Color countries by" offers).
+function rankingGroups(site: Site): MappableGroup[] {
+  return mappableGroups(columnGroups(site.meta.resources), [...site.summaries.values()]);
 }
 
 function rankPage(site: Site, column: NumberColumn, path: string): string {
@@ -416,10 +497,36 @@ function rankPage(site: Site, column: NumberColumn, path: string): string {
     builtAt: site.meta.builtAt,
     body:
       `<h1>Countries by ${escape(label)}</h1><p class="lead">${ranked.length} countries, highest first. Latest available year for each country.</p>` +
-      `<a class="cta" href="${root}?view=list&amp;sort=${column.id}.desc">Open this ranking in the interactive list</a>` +
+      `<a class="cta" href="${root}?view=list&amp;sort=${column.id}.desc">Open this ranking in the interactive list</a> ` +
+      `<a class="cta secondary" href="${root}map/${column.slug}/">See it on a world map</a>` +
       `<table class="list ranking"><thead><tr><th>#</th><th>Country</th><th>${escape(label)}</th></tr></thead><tbody>${ranked
         .map((r, i) => `<tr><td>${i + 1}</td><td>${countryLink(site, root, r.d.id)}</td><td>${escape(column.format(r.value))}</td></tr>`)
         .join("")}</tbody></table>`,
+  });
+}
+
+// The world colored by one number (the map's "Color countries by", map/colorBy.ts), its image, and the top 20.
+function mapPage(site: Site, scale: ColorScale, path: string, image: string): string {
+  const root = rootFrom(path);
+  const label = scale.column.fullLabel;
+  const value = (v: number) => valueWithUnit(scale.column, v);
+  const top = scale.ranked[0];
+  return page({
+    path,
+    title: `World map of ${label} | World Tracker`,
+    previewTitle: `World map: ${label}`,
+    description: `${label} in ${scale.ranked.length} countries on one map, lowest to highest. Highest: ${top.name} (${value(top.value)}). Median: ${value(scale.median)}. Source: ${scale.group.sources}.`,
+    image,
+    builtAt: site.meta.builtAt,
+    body:
+      `<h1>World map: ${escape(label)}</h1>` +
+      `<p class="lead">${scale.ranked.length} countries, colored from lowest (${escape(value(scale.min))}) to highest (${escape(value(scale.max))}). Median ${escape(value(scale.median))}. Countries in plain blue have no data.</p>` +
+      `<a class="cta" href="${root}?map=${scale.column.id}">Open this map on the interactive site</a>` +
+      `<img class="hero-card" src="${root}${image}" alt="${escape(`World map of ${label}`)}" width="1200" height="630">` +
+      `<section><h2>Top 20</h2><table class="list ranking"><tbody>${scale.ranked
+        .slice(0, 20)
+        .map((r, i) => `<tr><td>${i + 1}</td><td>${countryLink(site, root, r.id)}</td><td>${escape(value(r.value))}</td></tr>`)
+        .join("")}</tbody></table><p class="note"><a href="${root}rank/${scale.column.slug}/">All ${scale.ranked.length} countries ranked</a> · Sources: ${escape(scale.group.sources)}. Colors by rank, so each color holds about as many countries.</p></section>`,
   });
 }
 
@@ -441,8 +548,8 @@ function hubPage(site: Site): string {
       `<section><h2>Rankings</h2>${rankingGroups(site)
         .map(
           (g) =>
-            `<h3>${escape(g.label)}</h3><ul class="link-grid">${g.columns
-              .map((c) => `<li><a href="${root}rank/${c.slug}/">Countries by ${escape(c.fullLabel)}</a></li>`)
+            `<h3>${escape(g.group.label)}</h3><ul class="link-grid">${g.columns
+              .map((c) => `<li><a href="${root}rank/${c.slug}/">Countries by ${escape(c.fullLabel)}</a> · <a href="${root}map/${c.slug}/">map</a></li>`)
               .join("")}</ul>`,
         )
         .join("")}</section>` +

@@ -458,7 +458,24 @@ await page.click('button[title="Hide settings"]');
 await page.waitForTimeout(300);
 const afterHeat = await pixel(...chinaPoint);
 check("heat map recolors countries", !near(beforeHeat, afterHeat), `${beforeHeat} -> ${afterHeat}`);
-check("heat map legend shown", (await page.$(".heat-legend")) !== null);
+check("map key shown", (await page.textContent(".map-key-title")) === "Power Level");
+check("map color in the link", page.url().includes("map=powerLevel"), page.url());
+// Any list column: wheat production, from a link; hover shows the value; the key closes back to map colors.
+await page.goto(`${URL}?map=crop.wheat`);
+await page.waitForSelector(".map-key");
+check("link colors by wheat production", (await page.textContent(".map-key-title")) === "Wheat production");
+await page.waitForTimeout(300);
+for (const step of [0, 4, 8]) await page.mouse.move(chinaPoint[0] + step, chinaPoint[1] + step);
+await page.waitForSelector(".map-tooltip");
+check("hover shows the country's value", /China.*Mt/.test(await page.textContent(".map-tooltip")), await page.textContent(".map-tooltip"));
+await page.click(".map-key .link-button");
+check("top 10 listed", (await page.$$(".map-key-top li")).length === 10);
+await page.click(".map-key button:has-text('Share map')");
+await page.waitForSelector(".share-preview img");
+check("share map links to its map page", (await page.textContent(".share-link")).endsWith("map/wheat-production/"), await page.textContent(".share-link"));
+await page.keyboard.press("Escape");
+await page.click('.map-key button[title="Back to map colors"]');
+check("closing the key restores map colors", (await page.$(".map-key")) === null && near(await pixel(...chinaPoint), beforeHeat));
 await page.evaluate(() => localStorage.clear());
 
 // ---------- shareable links + search ----------
@@ -489,6 +506,24 @@ await page.click(".embed-themes button >> text=Light");
 check("embed code: light theme", (await page.inputValue(".embed-code")).includes("&theme=light"));
 await page.keyboard.press("Escape");
 check("Esc closes the share dialog but keeps the selection", (await page.$(".share-dialog")) === null && (await panelTitle()) === "Japan");
+// Comparison panel, as on the share card: the better value is a teal pill, the loser's bar dimmer.
+const pill = await page.$eval("aside.panel-right .pillar-value.win", (el) => getComputedStyle(el).backgroundColor);
+check("better value is a teal pill", pill === "rgb(94, 234, 212)", pill);
+check("loser's bar is dimmer", (await page.$("aside.panel-right .pillar-bar.lose")) !== null);
+check("categories won tally", /categories won/i.test(await page.textContent("aside.panel-right .power-tally")));
+
+// One country: three cards to pick from.
+await page.goto(`${URL}?c=JPN`);
+await page.waitForSelector(".share-button");
+await page.click(".share-button");
+await page.waitForSelector(".card-tabs button >> text=World rankings");
+await page.click(".card-tabs button >> text=World rankings");
+await page.waitForFunction(() => document.querySelector(".share-actions a[download]")?.getAttribute("download") === "world-tracker-jpn-rankings.png");
+check("world rankings card", true);
+await page.click(".card-tabs button >> text=Then and now");
+await page.waitForFunction(() => document.querySelector(".share-actions a[download]")?.getAttribute("download") === "world-tracker-jpn-then-and-now.png");
+check("then and now card", true);
+await page.keyboard.press("Escape");
 await page.goto(URL);
 await page.waitForSelector(".search-box input");
 await page.fill(".search-box input", "germ");
@@ -510,6 +545,10 @@ await page.goto(`${URL}?view=list&sort=gdp.asc`);
 await page.waitForSelector(".country-list tbody tr");
 const gdpArrow = await page.textContent(".country-list th >> text=GDP ▲");
 check("link restores list view and sort", gdpArrow !== null);
+// Column ids with a dot (ranking pages link these).
+await page.goto(`${URL}?view=list&sort=production.oil.desc`);
+await page.waitForSelector(".country-list tbody tr");
+check("dotted sort id from a link", (await page.textContent(".country-list tbody tr td:first-child")) === "United States", await page.textContent(".country-list tbody tr td:first-child"));
 await page.evaluate(() => localStorage.clear());
 
 // Frame cost while panning.

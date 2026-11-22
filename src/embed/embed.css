@@ -194,14 +194,56 @@ h1 {
   font-variant-numeric: tabular-nums;
 }
 
+/* As on the share card: the better value is a teal pill, the loser's bar dimmer, the gap from the winner's side. */
 .bar-value.win {
-  color: var(--win);
+  justify-self: end;
+  padding: 0 6px;
+  border-radius: 99px;
+  background: var(--win);
+  color: var(--better-text);
   font-weight: 700;
 }
 
+.bar.a.lose span {
+  background: color-mix(in srgb, var(--color-a) 52%, #241c5c);
+}
+
+.bar.b.lose span {
+  background: color-mix(in srgb, var(--color-b) 52%, #241c5c);
+}
+
+:root[data-theme="light"] .bar.a.lose span {
+  background: color-mix(in srgb, var(--color-a) 45%, #ffffff);
+}
+
+:root[data-theme="light"] .bar.b.lose span {
+  background: color-mix(in srgb, var(--color-b) 45%, #ffffff);
+}
+
+:root[data-theme="light"] .bar-value.win {
+  color: #ffffff;
+}
+
 .diff {
+  display: flex;
+  align-items: center;
   font-size: 10.5px;
   color: var(--dim);
+}
+
+.diff .swatch {
+  width: 7px;
+  height: 7px;
+  margin-right: 5px;
+  border-radius: 2px;
+}
+
+.diff .swatch.a {
+  background: var(--color-a);
+}
+
+.diff .swatch.b {
+  background: var(--color-b);
 }
 
 footer {

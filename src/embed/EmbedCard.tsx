@@ -10,7 +10,7 @@ import type { CountryData } from "../data/countryData";
 import { comparePagePath, countryPagePath, hasComparePage, type Nearby } from "../data/sitePages";
 import { SITE_URL } from "../links";
 import { flagUrl } from "../ui/Flag";
-import { barWidths, difference, winner, type Comparison, type DiffMode } from "../ui/info/Compare";
+import { barWidths, gap, winner, type Comparison, type DiffMode } from "../ui/info/Compare";
 import { dollars, shortNumber } from "../ui/info/formatData";
 
 interface Fact {
@@ -28,7 +28,7 @@ const FACTS: Fact[] = [
 ];
 
 // Relative difference: the "score" mode compares whole points, which reads "same" for 27.9 vs 27.5.
-const POWER_LEVEL: Fact = { label: "Power Level", get: (d) => d.powerLevel?.score ?? null, format: (v) => v.toFixed(1) };
+const POWER_LEVEL: Fact = { label: "Power Level", get: (d) => d.powerLevel?.score ?? null, format: (v) => v.toFixed(1), mode: "score" };
 
 async function fetchJson<T>(path: string): Promise<T> {
   const response = await fetch(`${import.meta.env.BASE_URL}${path}`);
@@ -143,22 +143,29 @@ function Compared({ a, b }: { a: CountryData; b: CountryData }) {
 function BarRow({ fact, compare }: { fact: Fact; compare: Comparison }) {
   const win = winner(compare);
   const [widthA, widthB] = barWidths(compare);
-  const diff = difference(compare);
+  const diff = gap(compare);
   const value = (v: number | null) => (v === null ? "—" : compare.format(v));
   return (
     <div className="bar-row">
       <span className="fact-label">{fact.label}</span>
       <span className="bars">
-        <span className="bar a">
+        <span className={win === "b" ? "bar a lose" : "bar a"}>
           <span style={{ width: `${widthA}%` }} />
         </span>
         <span className={win === "a" ? "bar-value win" : "bar-value"}>{value(compare.a)}</span>
-        <span className="bar b">
+        <span className={win === "a" ? "bar b lose" : "bar b"}>
           <span style={{ width: `${widthB}%` }} />
         </span>
         <span className={win === "b" ? "bar-value win" : "bar-value"}>{value(compare.b)}</span>
       </span>
-      <span className="diff">{diff ?? ""}</span>
+      <span className="diff">
+        {diff !== null && (
+          <>
+            <span className={`swatch ${diff.side}`} />
+            {diff.text}
+          </>
+        )}
+      </span>
     </div>
   );
 }

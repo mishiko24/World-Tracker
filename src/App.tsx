@@ -1,14 +1,17 @@
 import { useEffect, useMemo, useState } from "react";
+import { useDataMeta } from "./data/useDataMeta";
 import { useSummaries } from "./data/useSummaries";
+import { colorScale, findColumn, mappableGroups, scaleFills } from "./map/colorBy";
 import { loadCountries, type Country } from "./map/geo";
-import { heatColor } from "./map/heatColors";
 import { getMapType } from "./map/mapTypes";
 import { loadSettings, saveSettings, type Settings } from "./settings";
 import { InfoPanel } from "./ui/info/InfoPanel";
 import { CountryList } from "./ui/list/CountryList";
 import { DEFAULT_SORT, type Sort } from "./ui/list/sort";
 import { MapCanvas } from "./ui/MapCanvas";
-import { HeatLegend } from "./ui/HeatLegend";
+import { columnGroups } from "./ui/list/columns";
+import { MapKey } from "./ui/MapKey";
+import { MapTooltip } from "./ui/MapTooltip";
 import { ModeSwitch } from "./ui/ModeSwitch";
 import { SearchBox } from "./ui/SearchBox";
 import { SettingsPanel } from "./ui/SettingsPanel";
@@ -33,18 +36,18 @@ export function App() {
   const [settingsOpen, setSettingsOpen] = useState(() => !isCompactNow()); // on phones settings cover the screen
   const [picking, setPicking] = useState(false);
   const [focusRequest, setFocusRequest] = useState<{ id: string; seq: number } | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const summaries = useSummaries();
+  const meta = useDataMeta();
 
-  // Power Level heat map: countries colored from the lowest to the highest score on the map.
-  const fillOverrides = useMemo(() => {
-    if (settings.colorBy !== "powerLevel" || summaries === null) {
-      return null;
-    }
-    const scored = summaries.filter((s) => s.powerLevel !== null);
-    const min = Math.min(...scored.map((s) => s.powerLevel!));
-    const max = Math.max(...scored.map((s) => s.powerLevel!));
-    return new Map(scored.map((s) => [s.id, heatColor(settings.mapType, (s.powerLevel! - min) / (max - min))]));
-  }, [settings.colorBy, settings.mapType, summaries]);
+  // "Color countries by" a list column: countries colored lowest to highest (map/colorBy.ts).
+  const groups = useMemo(() => (meta === null ? null : columnGroups(meta.resources)), [meta]);
+  const scale = useMemo(() => {
+    const found = groups === null || settings.colorBy === "style" ? null : findColumn(groups, settings.colorBy);
+    return found === null || summaries === null ? null : colorScale(found.column, found.group, summaries);
+  }, [groups, settings.colorBy, summaries]);
+  const fillOverrides = useMemo(() => (scale === null ? null : scaleFills(scale, settings.mapType)), [scale, settings.mapType]);
+  const mapGroups = useMemo(() => (groups === null || summaries === null ? null : mappableGroups(groups, summaries)), [groups, summaries]);
 
   // Load countries, then apply the state from a shared link.
   useEffect(() => {
@@ -57,6 +60,9 @@ export function App() {
       if (url.listView !== null) {
         setSettings((s) => ({ ...s, listView: url.listView! })); // not saved: a link shouldn't change your defaults
       }
+      if (url.colorBy !== null) {
+        setSettings((s) => ({ ...s, colorBy: url.colorBy! }));
+      }
       if (url.selectedId !== null) {
         setFocusRequest({ id: url.selectedId, seq: 0 });
       }
@@ -65,9 +71,9 @@ export function App() {
 
   useEffect(() => {
     if (countries !== null) {
-      writeUrlState({ selectedId, comparedId, listView: settings.listView, sort });
+      writeUrlState({ selectedId, comparedId, listView: settings.listView, sort, colorBy: settings.colorBy });
     }
-  }, [countries, selectedId, comparedId, settings.listView, sort]);
+  }, [countries, selectedId, comparedId, settings.listView, sort, settings.colorBy]);
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
@@ -138,6 +144,7 @@ export function App() {
         hidden={settings.listView}
         focusRequest={focusRequest}
         fillOverrides={fillOverrides}
+        onHover={setHoveredId}
       />
       {settings.listView && (
         <CountryList
@@ -158,7 +165,7 @@ export function App() {
         <ModeSwitch active="map" />
         {!settings.listView && <SearchBox countries={countries} onPick={pickFromSearch} />}
       </div>
-      <SettingsPanel settings={settings} onChange={changeSettings} open={settingsOpen} onOpenChange={setSettingsOpen} />
+      <SettingsPanel settings={settings} onChange={changeSettings} open={settingsOpen} onOpenChange={setSettingsOpen} mapGroups={mapGroups} />
       {selectedCountry && (
         <InfoPanel
           country={selectedCountry}
@@ -182,7 +189,12 @@ export function App() {
         </div>
       )}
       {tiles && !settings.listView && <div className="attribution">{tiles.attribution}</div>}
-      {fillOverrides && !settings.listView && <HeatLegend mapType={settings.mapType} label="Power Level" />}
+      {scale && countries && !settings.listView && (
+        <>
+          <MapKey scale={scale} mapType={settings.mapType} countries={countries} onSelect={select} onClose={() => changeSettings({ ...settings, colorBy: "style" })} />
+          <MapTooltip scale={scale} hoveredId={hoveredId} countries={countries} />
+        </>
+      )}
     </div>
   );
 }

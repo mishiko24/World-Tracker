@@ -2,25 +2,41 @@
 // shown only where the browser can share files: mostly phones).
 // The link is the country's or the comparison's static page (src/data/sitePages.ts), because chat apps show those
 // with the share card as preview; a pair without a page gets the map's own URL (?c=A&vs=B, urlState.ts).
+// One country: tabs pick the card (Overview, World rankings, Then and now); the link is the same.
 // "Embed on a website": iframe code for embed.html (src/share/embed.ts), dark or light.
-// Rendered into <body> because the info panel's backdrop-filter would trap a position:fixed child.
+// Frame, preview and buttons: ShareParts.tsx.
 
-import { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
+import { useEffect, useMemo, useState } from "react";
+import { worldRanks, type WorldRank } from "../data/rankings";
 import { comparePagePath, countryPagePath, hasComparePage, type Nearby } from "../data/sitePages";
+import { useDataMeta } from "../data/useDataMeta";
+import { useSummaries } from "../data/useSummaries";
 import { SITE_URL } from "../links";
 import { embedCode, type EmbedTheme } from "../share/embed";
-import { drawShareCard, loadCardAssets, shareFileName, type CardSide } from "../share/shareCard";
+import { drawRankingsCard, drawShareCard, drawThenNowCard, loadCardAssets, shareFileName, type CardSide } from "../share/shareCard";
+import { thenNowRows } from "../share/thenNowCard";
+import { columnGroups, numberColumns } from "./list/columns";
+import { DialogFrame, SharePreviewActions, siteLabel, siteUrl, useCardImage } from "./ShareParts";
+
+type CardKind = "overview" | "rankings" | "thenNow";
+
+const KIND_LABELS: Record<CardKind, string> = { overview: "Overview", rankings: "World rankings", thenNow: "Then and now" };
+const KIND_FILE_SUFFIX: Record<CardKind, string | undefined> = { overview: undefined, rankings: "rankings", thenNow: "then-and-now" };
+
+// The country's world rankings, once summary.json and meta.json have loaded.
+function useWorldRanks(id: string): WorldRank[] | null {
+  const rows = useSummaries();
+  const meta = useDataMeta();
+  return useMemo(
+    () => (rows === null || meta === null ? null : worldRanks(id, rows, numberColumns(columnGroups(meta.resources)))),
+    [id, rows, meta],
+  );
+}
 
 interface ShareDialogProps {
   a: CardSide;
   b: CardSide | null;
   onClose: () => void;
-}
-
-// "mishiko24.github.io/World-Tracker" — what the card prints as the address.
-function siteLabel(): string {
-  return (window.location.host + window.location.pathname).replace(/\/$/, "");
 }
 
 // Address of the page to share relative to the site root ("compare/france-vs-germany/", or "?c=TUV&vs=ISL" for a
@@ -48,96 +64,42 @@ function useSharePath(a: CardSide, b: CardSide | null): string | null {
 
 export function ShareDialog({ a, b, onClose }: ShareDialogProps) {
   const sharePath = useSharePath(a, b);
-  const shareUrl = sharePath === null ? null : new URL(sharePath, new URL(".", window.location.href)).href; // map page's folder = site root
-  const [file, setFile] = useState<File | null>(null);
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
+  const [kind, setKind] = useState<CardKind>("overview");
+  const ranks = useWorldRanks(a.data.id);
+  const thenNow = useMemo(() => thenNowRows(a.data), [a]);
   const title = b === null ? `${a.country.name} on World Tracker` : `${a.country.name} vs ${b.country.name} on World Tracker`;
+  // Tabs for one country; a tab without data (no rankings, too little history) isn't offered.
+  const kinds: CardKind[] = b !== null ? [] : ["overview", ...(ranks === null || ranks.length > 0 ? (["rankings"] as const) : []), ...(thenNow.length > 0 ? (["thenNow"] as const) : [])];
 
-  useEffect(() => {
-    let url: string | null = null;
-    let closed = false;
-    loadCardAssets(a, b).then((flags) => {
-      if (closed) {
-        return;
-      }
-      const canvas = document.createElement("canvas");
-      drawShareCard(canvas, a, b, flags, siteLabel());
-      canvas.toBlob((blob) => {
-        const png = new File([blob!], shareFileName(a.country, b?.country ?? null), { type: "image/png" });
-        url = URL.createObjectURL(png);
-        setFile(png);
-        setImageUrl(url);
-      }, "image/png");
-    });
-    return () => {
-      closed = true;
-      if (url !== null) {
-        URL.revokeObjectURL(url);
-      }
-    };
-  }, [a, b]);
+  const draw =
+    kind === "rankings" && ranks === null
+      ? null // drawn once the rankings have loaded
+      : async (canvas: HTMLCanvasElement) => {
+          const flags = await loadCardAssets(a, b);
+          if (kind === "rankings") {
+            drawRankingsCard(canvas, a, flags.a, ranks!, siteLabel());
+          } else if (kind === "thenNow") {
+            drawThenNowCard(canvas, a, flags.a, thenNow, siteLabel());
+          } else {
+            drawShareCard(canvas, a, b, flags, siteLabel());
+          }
+        };
+  const image = useCardImage(draw, shareFileName(a.country, b?.country ?? null, KIND_FILE_SUFFIX[kind]), [a, b, kind, ranks, thenNow]);
 
-  // Esc closes the dialog only (App's Esc handler would also clear the selection).
-  useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") {
-        e.stopImmediatePropagation();
-        onClose();
-      }
-    }
-    window.addEventListener("keydown", handleKeyDown, { capture: true });
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown, { capture: true });
-    };
-  }, [onClose]);
-
-  function copyLink() {
-    navigator.clipboard.writeText(shareUrl!).then(() => {
-      setCopied(true);
-    });
-  }
-
-  function shareNative() {
-    navigator.share({ title, text: title, url: shareUrl!, files: [file!] }).catch((e: DOMException) => {
-      if (e.name !== "AbortError") {
-        throw e; // AbortError = the user closed the share sheet
-      }
-    });
-  }
-
-  const canShareFiles = file !== null && shareUrl !== null && "canShare" in navigator && navigator.canShare({ files: [file] });
-
-  return createPortal(
-    <div className="dialog-backdrop" onClick={onClose}>
-      <div className="dialog share-dialog" role="dialog" aria-label="Share" onClick={(e) => e.stopPropagation()}>
-        <header className="dialog-header">
-          <h2>Share</h2>
-          <button className="icon-button" onClick={onClose} title="Close">
-            ✕
-          </button>
-        </header>
-        <div className="share-preview">{imageUrl === null ? <span className="no-data">Drawing…</span> : <img src={imageUrl} alt={title} />}</div>
-        <p className="share-link">{shareUrl ?? "…"}</p>
-        <div className="share-actions">
-          {canShareFiles && (
-            <button className="primary-button" onClick={shareNative}>
-              Share…
+  return (
+    <DialogFrame title="Share" onClose={onClose}>
+      {kinds.length > 1 && (
+        <div className="card-tabs" role="tablist">
+          {kinds.map((k) => (
+            <button key={k} role="tab" aria-selected={k === kind} className={k === kind ? "active" : undefined} onClick={() => setKind(k)}>
+              {KIND_LABELS[k]}
             </button>
-          )}
-          <button className="secondary-button" onClick={copyLink} disabled={shareUrl === null}>
-            {copied ? "Link copied" : "Copy link"}
-          </button>
-          {imageUrl !== null && (
-            <a className="secondary-button" href={imageUrl} download={file!.name}>
-              Download image
-            </a>
-          )}
+          ))}
         </div>
-        {sharePath !== null && <EmbedSection a={a} b={b} pageUrl={SITE_URL + sharePath} />}
-      </div>
-    </div>,
-    document.body,
+      )}
+      <SharePreviewActions title={title} image={image} shareUrl={sharePath === null ? null : siteUrl(sharePath)} />
+      {sharePath !== null && <EmbedSection a={a} b={b} pageUrl={SITE_URL + sharePath} />}
+    </DialogFrame>
   );
 }
 

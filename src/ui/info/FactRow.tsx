@@ -6,7 +6,7 @@
 
 import type { ReactNode } from "react";
 import { SOURCES, type SourceId } from "../../data/countryData";
-import { barWidths, difference, winner, type Comparison } from "./Compare";
+import { barWidths, gap, winner, type Comparison } from "./Compare";
 
 interface FactRowProps {
   label: ReactNode;
@@ -71,18 +71,18 @@ interface ComparedNumberProps {
 function ComparedNumber({ label, value, tooltip, compare }: ComparedNumberProps) {
   const win = winner(compare);
   const [widthA, widthB] = barWidths(compare);
-  const diff = difference(compare);
+  const diff = gap(compare);
   return (
     <div className="fact compared-number">
       <span className="fact-label">{label}</span>
       <span className="compared-bars">
-        <span className="compare-bar a">
+        <span className={win === "b" ? "compare-bar a lose" : "compare-bar a"}>
           <span style={{ width: `${widthA}%` }} />
         </span>
         <span className={win === "a" ? "compared-value win" : "compared-value"} title={tooltip}>
           {compare.a === null ? NO_DATA : value}
         </span>
-        <span className="compare-bar b">
+        <span className={win === "a" ? "compare-bar b lose" : "compare-bar b"}>
           <span style={{ width: `${widthB}%` }} />
         </span>
         <span className={win === "b" ? "compared-value win" : "compared-value"}>
@@ -90,8 +90,8 @@ function ComparedNumber({ label, value, tooltip, compare }: ComparedNumberProps)
         </span>
         {diff !== null && (
           <span className="compared-diff">
-            <span className="country-swatch b" />
-            {diff}
+            <span className={`country-swatch ${diff.side}`} />
+            {diff.text}
           </span>
         )}
       </span>

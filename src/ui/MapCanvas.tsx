@@ -15,15 +15,16 @@ interface MapCanvasProps {
   hidden: boolean; // list view: kept alive (camera state survives) but invisible and not clickable
   focusRequest: { id: string; seq: number } | null; // move the camera to this country; seq re-triggers the same id
   fillOverrides: Map<string, string> | null; // heat-map colors, see MapView.setFillOverrides
+  onHover: (id: string | null) => void; // the country under the pointer changed
 }
 
 export function MapCanvas(props: MapCanvasProps) {
-  const { countries, settings, selectedId, comparedId, onSelect, onCompare, hidden, focusRequest, fillOverrides } = props;
+  const { countries, settings, selectedId, comparedId, onSelect, onCompare, hidden, focusRequest, fillOverrides, onHover } = props;
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const viewRef = useRef<MapView | null>(null);
   // MapView keeps its callbacks for its whole life; route them through a ref so it always calls the latest ones.
-  const callbacks = useRef({ onSelect, onCompare });
-  callbacks.current = { onSelect, onCompare };
+  const callbacks = useRef({ onSelect, onCompare, onHover });
+  callbacks.current = { onSelect, onCompare, onHover };
 
   // Create the view once per country list. Settings and selection are pushed in by the effects below,
   // so they are intentionally not dependencies here.
@@ -34,6 +35,7 @@ export function MapCanvas(props: MapCanvasProps) {
       settings,
       (id) => callbacks.current.onSelect(id),
       (id) => callbacks.current.onCompare(id),
+      (id) => callbacks.current.onHover(id),
     );
     viewRef.current = view;
     return () => {

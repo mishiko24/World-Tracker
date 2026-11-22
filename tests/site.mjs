@@ -45,6 +45,9 @@ for (const file of staticPages) {
   if (image !== undefined && !(image.startsWith(SITE_URL) && exists(join(DIST, image.slice(SITE_URL.length))))) {
     fail(`${where}: link-preview image ${image} missing`);
   }
+  for (const [, src] of html.matchAll(/<img[^>]* src="([^"]+)"/g)) {
+    if (!exists(join(dirname(file), src))) fail(`${where}: missing image ${src}`);
+  }
   for (const [, href] of html.matchAll(/href="([^"]+)"/g)) {
     if (/^(https?:|data:|mailto:)/.test(href)) continue;
     links++;
@@ -57,6 +60,22 @@ for (const file of ["index.html", "about.html"]) {
   const image = readFileSync(join(DIST, file), "utf8").match(/property="og:image" content="([^"]+)"/)?.[1];
   if (image === undefined || !exists(join(DIST, image.slice(SITE_URL.length)))) fail(`${file}: link-preview image missing (${image})`);
 }
+
+// Comparison pages: paired rows like the app (bars, values, gap from the winner's side), poster for card pairs.
+const chinaUs = readFileSync(join(DIST, "compare/china-vs-united-states/index.html"), "utf8");
+if (!chinaUs.includes('class="hero-card"')) fail("compare/china-vs-united-states: no share card shown");
+if ((chinaUs.match(/class="pair"/g) ?? []).length < 15) fail("compare/china-vs-united-states: too few paired rows");
+if (!chinaUs.includes('class="pair-value win"') || !chinaUs.includes('class="pair-gap"')) fail("compare/china-vs-united-states: no winner pill or gap");
+
+// World maps: one per ranking, with its image.
+const maps = readdirSync(join(DIST, "map"));
+if (maps.length !== readdirSync(join(DIST, "rank")).length) fail(`${maps.length} map pages for ${readdirSync(join(DIST, "rank")).length} rankings`);
+const wheatMap = readFileSync(join(DIST, "map/wheat-production/index.html"), "utf8");
+if (!wheatMap.includes('class="hero-card"') || !wheatMap.includes("cards/map-wheat-production.jpg")) fail("map/wheat-production: no map image");
+
+// Country pages: world rankings and then-and-now sections.
+const usPage = readFileSync(join(DIST, "country/united-states/index.html"), "utf8");
+if (!usPage.includes("<h2>World rankings</h2>") || !usPage.includes("<h2>Then and now</h2>")) fail("country/united-states: rankings or then-and-now missing");
 
 const sitemap = readFileSync(join(DIST, "sitemap.xml"), "utf8");
 const listed = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);

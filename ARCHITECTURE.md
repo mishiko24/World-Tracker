@@ -56,16 +56,24 @@ src/ui/info/              Right panel: InfoPanel (6 sections), useCountryData (f
 src/ui/useMobile.ts       Phone layout switch (max-width 700px, same as the @media block at the end of styles.css)
 src/ui/info/useBottomSheet.ts  Phone: info panel as bottom sheet, peek/half/full snaps, header drag + tap
 src/ui/info/PowerLevelCard.tsx  Power Level score, rank and pillar bars at the top of the info panel
-src/map/heatColors.ts     Heat colours for "Color countries by: Power Level" (App builds a fill map, MapView.setFillOverrides)
+src/map/heatColors.ts     Heat colours (low -> high) for "Color countries by"
+src/map/colorBy.ts        "Color countries by" any list number (settings.colorBy, URL ?map=<column id>): colors by rank
+                          percentile (numbers are too skewed for a linear scale); mappableGroups = numbers with 15+
+                          countries (= ranking pages = map pages). App -> MapView.setFillOverrides; MapKey.tsx (key,
+                          top 10, Share map), MapTooltip.tsx (hovered country's value), MapShareDialog.tsx + mapCard.ts
 src/share/comparisonCard.ts  Comparison share image: the "fight poster" (DESIGN.md §6)
 src/theme.css             The look (DESIGN.md §0): fonts, gradient, glass, A/B/teal colors. Imported by every page;
                           scripts/site/pages.ts prepends it to dist/site.css for the static pages
-src/share/singleCard.ts   One-country share image (same style as the comparison card)
+src/share/singleCard.ts   One-country share image (same style as the comparison card); drawCountryFrame + tile shared with:
+src/share/rankingsCard.ts "World rankings" card: best world places (src/data/rankings.ts, ties of 4+ left out)
+src/share/thenNowCard.ts  "Then and now" card: 2000 vs latest from CountryData.trends
+src/share/mapCard.ts      "Share map" image: the world colored by one number; drawWorld also draws the home card's map
 src/share/draw.ts         Canvas helpers for the cards (text, fit, masks, color mix); Outfit font (public/fonts, OFL)
 src/share/shareCard.ts    1200x630 share image entry (one country / comparison), loadCardAssets (Outfit + large flags
                           public/flags/large/<ID>.png 480x360) must run before drawing; silhouettes re-projected per
                           country (rotated to its longitude, parts >40° from the label point dropped: no French Guiana)
-src/ui/ShareDialog.tsx    Share button's dialog: preview, Copy link, Download image, native Share… on phones. The link is the
+src/ui/ShareParts.tsx     Dialog frame, card-as-PNG hook, preview + Share… / Copy link / Download (both share dialogs)
+src/ui/ShareDialog.tsx    Share button's dialog (one country: tabs Overview / World rankings / Then and now). The link is the
                           country/comparison static page (its preview shows the card); pairs without a page: map URL
 src/data/sitePages.ts     Which static pages exist + their addresses (G20 list, slugs). No imports: Node loads it too
 about.html + src/about/   Sources & method page (second Vite entry, see vite.config.ts): data date (public/data/meta.json),
@@ -101,7 +109,9 @@ share-card.html + src/share/cardPage.ts  Headless page that draws link-preview c
 
 scripts/site/             Static pages for search engines + link previews, added to dist/ by `npm run build:site`
   build-site.mjs          Entry. Loads the TS modules through Vite (they import the app's formatters/columns/labels)
-  pages.ts                countries/ hub, country/<slug>/, rank/<key>/, compare/<a>-vs-<b>/, sitemap.xml.
+  pages.ts                countries/ hub, country/<slug>/ (incl. world rankings, then and now), rank/<slug>/,
+                          map/<slug>/ (world map image + top 20), compare/<a>-vs-<b>/ (paired rows like the app, the
+                          poster for card pairs), sitemap.xml.
                           Which pairs get a page and the addresses: src/data/sitePages.ts (shared with the app's
                           Share button). Pairs people search for: each G20 country vs every country, plus each
                           country vs its neighbours/nearest countries (data/nearby.json). Not every pair: ~29k pages of

@@ -1,5 +1,6 @@
 // Draws the link-preview image of every static page (CardJob list from pages.ts) into dist/cards/.
-// Serves dist/ with `vite preview`, opens share-card.html in headless Chrome and calls its renderShareCard(),
+// Serves dist/ with `vite preview`, opens share-card.html in headless Chrome and calls its renderShareCard() /
+// renderMapCard(),
 // so the images come from the same code as the site's Share button.
 
 import { mkdirSync, writeFileSync } from "node:fs";
@@ -23,7 +24,10 @@ export async function renderCards(dist: string, jobs: CardJob[], siteLabel: stri
 
   mkdirSync(`${dist}/cards`, { recursive: true });
   for (const job of jobs) {
-    const dataUrl = await page.evaluate(([a, b, label]) => window.renderShareCard(a!, b, label!), [job.a, job.b, siteLabel] as const);
+    const dataUrl =
+      "map" in job
+        ? await page.evaluate(([column, label]) => window.renderMapCard(column, label), [job.map, siteLabel] as const)
+        : await page.evaluate(([a, b, label]) => window.renderShareCard(a!, b, label!), [job.a, job.b, siteLabel] as const);
     writeFileSync(`${dist}/${job.file}`, Buffer.from(dataUrl.slice(dataUrl.indexOf(",") + 1), "base64"));
   }
 

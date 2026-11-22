@@ -97,6 +97,10 @@ h2 {
   background: var(--primary-hover);
 }
 
+.cta.secondary:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
 .score {
   font-size: 18px;
   margin: 0 0 8px;
@@ -134,25 +138,162 @@ thead th {
   font-weight: 600;
 }
 
-table.compare {
-  margin-top: 24px;
+/* Comparison pages: rows like the app's comparison panel (src/styles.css .compared-number). */
+.cta.secondary {
+  background: var(--glass-strong);
+  border: 1px solid var(--glass-border);
 }
 
-table.compare thead th {
-  font-size: 15px;
-  text-transform: none;
-  letter-spacing: 0;
+.hero-card {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 28px;
+  border-radius: 14px;
+  box-shadow: 0 16px 50px rgba(6, 4, 30, 0.5);
 }
 
-table.compare tbody th {
-  font-weight: 500;
+/* The color key: pinned while the rows scroll. */
+.pair-key {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  gap: 24px;
+  margin-top: 28px;
+  padding: 12px 0;
+  background: #161a55;
+  border-bottom: 1px solid var(--border);
+  font-weight: 700;
+}
+
+.pair-key .key {
+  display: inline-flex;
+  align-items: center;
+  padding-bottom: 3px;
+  border-bottom: 3px solid;
+}
+
+.pair-key .key.a {
+  border-color: var(--a);
+}
+
+.pair-key .key.b {
+  border-color: var(--b);
+}
+
+.pair-key a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.pairs h2 {
+  margin: 28px 0 6px;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.pair-label {
   color: var(--dim);
+  font-weight: 500;
+}
+
+.pair-bars {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 14px;
+  row-gap: 4px;
+  align-items: center;
+}
+
+.pair-bar {
+  display: block;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pair-bar span {
+  display: block;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.pair-bar.a span {
+  background: var(--a);
+}
+
+.pair-bar.b span {
+  background: var(--b);
+}
+
+/* The losing side's bar: solid but dimmer, as on the share card. */
+.pair-bar.a.lose span {
+  background: color-mix(in srgb, var(--a) 52%, #241c5c);
+}
+
+.pair-bar.b.lose span {
+  background: color-mix(in srgb, var(--b) 52%, #241c5c);
+}
+
+.pair-value {
+  justify-self: end;
+  min-width: 110px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.pair-value.win {
+  min-width: 0;
+  padding: 1px 10px;
+  border-radius: 99px;
+  background: var(--better);
+  color: var(--better-text);
+  font-weight: 700;
+}
+
+.pair-gap {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: var(--dim);
+}
+
+.pair-gap .swatch {
+  width: 9px;
+  height: 9px;
+  margin-right: 6px;
+  border-radius: 2px;
+}
+
+.pair-gap .swatch.a {
+  background: var(--a);
+}
+
+.pair-gap .swatch.b {
+  background: var(--b);
+}
+
+@media (max-width: 700px) {
+  .pair {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
 }
 
 td.win {
   color: var(--win);
   font-weight: 600;
 }
+
 
 table.ranking td:first-child {
   width: 48px;
@@ -218,4 +359,32 @@ h1 .flag {
   margin-right: 12px;
   vertical-align: -3px;
   border-radius: 3px;
+}
+
+/* Country pages: world rankings and then-and-now. */
+td.rank {
+  width: 56px;
+  font-weight: 800;
+}
+
+td.rank.medal-1 {
+  color: #f0b84a;
+}
+
+td.rank.medal-2 {
+  color: #cbd5e1;
+}
+
+td.rank.medal-3 {
+  color: #d6a06b;
+}
+
+td.up {
+  color: var(--better);
+  font-weight: 600;
+}
+
+td.down {
+  color: var(--down);
+  font-weight: 600;
 }

@@ -2,7 +2,7 @@
 // Comparison mode: both scores side by side (with flags, --flag-a / --flag-b), and two bars per pillar in the
 // countries' map colors (--color-a / --color-b, see Compare.tsx). The higher number of each pair is teal.
 
-import { PILLAR_LABELS, PILLAR_ORDER, type CountryData, type PowerLevel } from "../../data/countryData";
+import { PILLAR_LABELS, PILLAR_ORDER, type CountryData, type PillarId, type PowerLevel } from "../../data/countryData";
 import { POWER_LEVEL_METHOD_URL } from "../../links";
 import { winner } from "./Compare";
 
@@ -60,8 +60,22 @@ export function PowerLevelCard({ powerLevel, other }: PowerLevelCardProps) {
   );
 }
 
+interface PillarPair {
+  pillar: PillarId;
+  a: number | null; // rounded, as shown: a "win" is never between two equal-looking numbers
+  b: number | null;
+  win: "a" | "b" | null;
+}
+
 function ComparedCard({ a, b }: { a: PowerLevel | null; b: PowerLevel | null }) {
   const scoreWinner = winner({ a: a?.score ?? null, b: b?.score ?? null, format: String });
+  const pairs: PillarPair[] = PILLAR_ORDER.map((pillar) => {
+    const va = a?.pillars[pillar] ?? null;
+    const vb = b?.pillars[pillar] ?? null;
+    const ra = va === null ? null : Math.round(va);
+    const rb = vb === null ? null : Math.round(vb);
+    return { pillar, a: ra, b: rb, win: winner({ a: ra, b: rb, format: String }) };
+  });
   return (
     <div className="power-card comparing" title={tooltip(a ?? b)}>
       <div className="power-card-title">Power Level</div>
@@ -69,29 +83,40 @@ function ComparedCard({ a, b }: { a: PowerLevel | null; b: PowerLevel | null }) 
         <ScoreBlock side="a" powerLevel={a} wins={scoreWinner === "a"} />
         <ScoreBlock side="b" powerLevel={b} wins={scoreWinner === "b"} />
       </div>
+      <Tally pairs={pairs} />
       <div className="pillars">
-        {PILLAR_ORDER.map((pillar) => {
-          const va = a?.pillars[pillar] ?? null;
-          const vb = b?.pillars[pillar] ?? null;
-          const win = winner({ a: va, b: vb, format: String });
-          return (
-            <div className="pillar comparing" key={pillar}>
-              <span className="pillar-label">{PILLAR_LABELS[pillar]}</span>
-              <span className="pillar-bar a">
-                <span style={{ width: `${va ?? 0}%` }} />
-              </span>
-              <span className={win === "a" ? "pillar-value win" : "pillar-value"}>{va === null ? "—" : va.toFixed(0)}</span>
-              <span className="pillar-bar b">
-                <span style={{ width: `${vb ?? 0}%` }} />
-              </span>
-              <span className={win === "b" ? "pillar-value win" : "pillar-value"}>{vb === null ? "—" : vb.toFixed(0)}</span>
-            </div>
-          );
-        })}
+        {pairs.map(({ pillar, a: va, b: vb, win }) => (
+          <div className="pillar comparing" key={pillar}>
+            <span className="pillar-label">{PILLAR_LABELS[pillar]}</span>
+            <span className={win === "b" ? "pillar-bar a lose" : "pillar-bar a"}>
+              <span style={{ width: `${va ?? 0}%` }} />
+            </span>
+            <span className={win === "a" ? "pillar-value win" : "pillar-value"}>{va ?? "—"}</span>
+            <span className={win === "a" ? "pillar-bar b lose" : "pillar-bar b"}>
+              <span style={{ width: `${vb ?? 0}%` }} />
+            </span>
+            <span className={win === "b" ? "pillar-value win" : "pillar-value"}>{vb ?? "—"}</span>
+          </div>
+        ))}
       </div>
       <a className="power-method-link" href={POWER_LEVEL_METHOD_URL}>
         How is this calculated?
       </a>
+    </div>
+  );
+}
+
+// "1 · categories won · 5", as on the share card. Only over pillars both countries have.
+function Tally({ pairs }: { pairs: PillarPair[] }) {
+  const both = pairs.filter((p) => p.a !== null && p.b !== null);
+  if (both.length === 0) {
+    return null;
+  }
+  return (
+    <div className="power-tally">
+      <span className="tally-a">{both.filter((p) => p.win === "a").length}</span>
+      categories won
+      <span className="tally-b">{both.filter((p) => p.win === "b").length}</span>
     </div>
   );
 }

@@ -2,10 +2,11 @@
 // red and blue on the dark map). The info panel header is the key: both names with flags, underlined in their
 // colors. Every value row is a FactRow with a `compare` spec, drawn as two bars like the Power Level card:
 //
-//   Population   [red bar ··················] 341.8 M      bars scaled to the larger of the two values
-//                [blue bar ··]                 41.3 M
-//                ■ 8.3× less                               how B compares to A (blue swatch = B)
+//   Population   [red bar ··················] (341.8 M)    bars scaled to the larger of the two values
+//                [dim blue bar ··]              41.3 M
+//                ■ 8.3× more                               the gap, from the winner's side (red swatch = A)
 //
+//   as on the share card: the better value is a teal pill, the loser's bar is dimmer
 //   the better value is teal            (better = higher, unless better="lower": inflation, government debt;
 //                                        better="none" where neither is better: median age, density, age groups)
 //   how much more/less, by mode         relative: "8.3× more" from 2× up, else "22% more"
@@ -58,7 +59,7 @@ export function winner({ a, b, better = "higher" }: Comparison): "a" | "b" | nul
 }
 
 // How B compares to A in words ("8.3× more", "0.5 pp lower"), or null when there's nothing to say.
-export function difference({ a, b, mode = "relative" }: Comparison): string | null {
+export function difference({ a, b, format, mode = "relative" }: Comparison): string | null {
   if (a === null || b === null) {
     return null;
   }
@@ -71,9 +72,13 @@ export function difference({ a, b, mode = "relative" }: Comparison): string | nu
     return `${points.toFixed(1)} pp ${higher ? "higher" : "lower"}`;
   }
   if (mode === "score") {
-    // From the rounded scores as displayed, so 60 vs 80 reads "20 points", not "19" (60.4 vs 79.6).
-    const shown = Math.abs(Math.round(b) - Math.round(a));
-    return shown === 0 ? "same" : `${shown} points ${higher ? "higher" : "lower"}`;
+    // From the scores as displayed, so 60 vs 80 reads "20 points", not "19" (60.4 vs 79.6), and 27.9 vs 27.5
+    // reads "0.4 points" (one decimal shown).
+    const shown = Number(Math.abs(parseFloat(format(b)) - parseFloat(format(a))).toFixed(1));
+    if (shown === 0) {
+      return "same";
+    }
+    return `${shown} ${shown === 1 ? "point" : "points"} ${higher ? "higher" : "lower"}`;
   }
   if (mode === "years") {
     return `${points.toFixed(1)} years ${higher ? "more" : "less"}`;
@@ -87,6 +92,18 @@ export function difference({ a, b, mode = "relative" }: Comparison): string | nu
   }
   const percent = (points / a) * 100;
   return `${percent.toLocaleString("en-US", { maximumFractionDigits: percent < 10 ? 1 : 0 })}% ${higher ? "more" : "less"}`;
+}
+
+// The gap as the share card shows it: from the winner's side ("58% more" next to the winner's swatch), or, where
+// neither is better (median age, density), how B compares to A. null when there's nothing to say.
+export function gap(compare: Comparison): { side: "a" | "b"; text: string } | null {
+  const win = winner(compare);
+  if (win === "a") {
+    const text = difference({ ...compare, a: compare.b, b: compare.a });
+    return text === null ? null : { side: "a", text };
+  }
+  const text = difference(compare);
+  return text === null ? null : { side: "b", text };
 }
 
 // Bar lengths in % of the row width: the larger value fills the row. Negative values get no bar.

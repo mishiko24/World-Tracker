@@ -1,17 +1,21 @@
 // Headless page (share-card.html) that scripts/site/cards.ts drives at build time to draw the link-preview image
 // of every static page, with the same code as the Share button. Not linked from the site.
-// Exposes window.renderShareCard(a, b, siteLabel) and window.renderHomeCard(siteLabel) -> JPEG data URL,
-// and sets window.shareCardReady when loaded.
+// Exposes window.renderShareCard(a, b, siteLabel), window.renderMapCard(columnId, siteLabel) and
+// window.renderHomeCard(siteLabel) -> JPEG data URL, and sets window.shareCardReady when loaded.
 // JPEG, not PNG: the gradients and flag blur make PNGs ~300 KB; link previews don't need lossless.
 
-import type { CountryData, CountrySummary } from "../data/countryData";
+import type { CountryData, CountrySummary, DataMeta } from "../data/countryData";
+import { colorScale, findColumn, type ColorScale } from "../map/colorBy";
 import { loadCountries } from "../map/geo";
+import { columnGroups } from "../ui/list/columns";
+import { drawMapCard, loadTopFlags } from "./mapCard";
 import { drawHomeCard, drawShareCard, loadCardAssets, loadCardFonts, type CardSide } from "./shareCard";
 
 declare global {
   interface Window {
     renderShareCard: (a: string, b: string | null, siteLabel: string) => Promise<string>;
     renderHomeCard: (siteLabel: string) => Promise<string>;
+    renderMapCard: (columnId: string, siteLabel: string) => Promise<string>;
     shareCardReady: boolean;
   }
 }
@@ -40,15 +44,26 @@ window.renderShareCard = async (a, b, siteLabel) => {
   drawShareCard(canvas, sideA, sideB, await loadCardAssets(sideA, sideB), siteLabel);
   return canvas.toDataURL("image/jpeg", JPEG_QUALITY);
 };
-// Power Level of every scored country, normalized to 0..1 like the map's heat-map mode (App.tsx).
-window.renderHomeCard = async (siteLabel) => {
-  const scored = (await fetchJson<CountrySummary[]>("data/summary.json")).filter((s) => s.powerLevel !== null);
-  const min = Math.min(...scored.map((s) => s.powerLevel!));
-  const max = Math.max(...scored.map((s) => s.powerLevel!));
-  const levels = new Map(scored.map((s) => [s.id, (s.powerLevel! - min) / (max - min)]));
+// The world colored by one list column, exactly as the map's "Color countries by" (map/colorBy.ts).
+const summaries = await fetchJson<CountrySummary[]>("data/summary.json");
+const groups = columnGroups((await fetchJson<DataMeta>("data/meta.json")).resources);
+function scaleOf(columnId: string): ColorScale {
+  const found = findColumn(groups, columnId)!;
+  return colorScale(found.column, found.group, summaries);
+}
+
+window.renderMapCard = async (columnId, siteLabel) => {
+  const scale = scaleOf(columnId);
   const canvas = document.createElement("canvas");
   await loadCardFonts();
-  drawHomeCard(canvas, countryList, levels, siteLabel);
+  drawMapCard(canvas, countryList, scale, await loadTopFlags(scale), siteLabel);
+  return canvas.toDataURL("image/jpeg", JPEG_QUALITY);
+};
+
+window.renderHomeCard = async (siteLabel) => {
+  const canvas = document.createElement("canvas");
+  await loadCardFonts();
+  drawHomeCard(canvas, countryList, scaleOf("powerLevel").positions, siteLabel);
   return canvas.toDataURL("image/jpeg", JPEG_QUALITY);
 };
 window.shareCardReady = true;

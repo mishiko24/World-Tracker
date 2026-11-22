@@ -1,5 +1,6 @@
 // Left sidebar: map look and camera feel.
 
+import type { MappableGroup } from "../map/colorBy";
 import { MAP_TYPES, getMapType, type MapType } from "../map/mapTypes";
 import { DEFAULT_SETTINGS, type CountryState, type MapStyle, type Settings, type StateStyle } from "../settings";
 import { ABOUT_URL, COPYRIGHT, COUNTRIES_URL, GAME_URL, REPORT_ISSUE_URL } from "../links";
@@ -12,6 +13,7 @@ interface SettingsPanelProps {
   onChange: (settings: Settings) => void;
   open: boolean; // owned by App, because the list view makes room for the panel
   onOpenChange: (open: boolean) => void;
+  mapGroups: MappableGroup[] | null; // what "Color countries by" offers; null while the data loads
 }
 
 const STATE_TITLES: Record<CountryState, string> = {
@@ -21,7 +23,7 @@ const STATE_TITLES: Record<CountryState, string> = {
   selected: "Selected country",
 };
 
-export function SettingsPanel({ settings, onChange, open, onOpenChange }: SettingsPanelProps) {
+export function SettingsPanel({ settings, onChange, open, onOpenChange, mapGroups }: SettingsPanelProps) {
   // Style edits always go to the map type currently shown.
   const mapStyle = settings.styles[settings.mapType];
   function updateMapStyle(next: MapStyle) {
@@ -67,10 +69,18 @@ export function SettingsPanel({ settings, onChange, open, onOpenChange }: Settin
         <select
           className="color-by-select"
           value={settings.colorBy}
-          onChange={(e) => onChange({ ...settings, colorBy: e.target.value as Settings["colorBy"] })}
+          onChange={(e) => onChange({ ...settings, colorBy: e.target.value })}
         >
           <option value="style">Map colors</option>
-          <option value="powerLevel">Power Level</option>
+          {mapGroups?.map(({ group, columns }) => (
+            <optgroup key={group.id} label={group.label}>
+              {columns.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.fullLabel}
+                </option>
+              ))}
+            </optgroup>
+          ))}
         </select>
       </label>
 

@@ -1,7 +1,7 @@
 // The map: draws countries on a canvas and handles mouse, trackpad and touch input.
 //
 // Mouse:
-//   hover            -> highlight country
+//   hover            -> highlight country, onHover(country or null)
 //   left click       -> onSelect(country or null for ocean)
 //   right click      -> onCompare(country or null for ocean)
 //   middle drag      -> pan (horizontal wraps forever, vertical is clamped)
@@ -49,6 +49,7 @@ export class MapView {
   private readonly camera = new Camera();
   private readonly countries: Country[];
   private readonly onSelect: (id: string | null) => void;
+  private readonly onHover: (id: string | null) => void; // called when the hovered country changes
   private readonly onCompare: (id: string | null) => void;
   private readonly resizeObserver: ResizeObserver;
   private readonly touch: TouchGestures;
@@ -83,6 +84,7 @@ export class MapView {
     settings: Settings,
     onSelect: (id: string | null) => void,
     onCompare: (id: string | null) => void,
+    onHover: (id: string | null) => void,
   ) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d")!;
@@ -92,6 +94,7 @@ export class MapView {
     this.tileLayer = this.createTileLayer();
     this.onSelect = onSelect;
     this.onCompare = onCompare;
+    this.onHover = onHover;
     this.touch = new TouchGestures({
       pan: (dx, dy) => {
         this.camera.panByScreen(dx, dy);
@@ -408,6 +411,7 @@ export class MapView {
     if (id !== this.hoveredId) {
       this.hoveredId = id;
       this.dirty = true;
+      this.onHover(id);
     }
     this.updateCursor();
   }

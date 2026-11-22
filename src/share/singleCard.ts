@@ -12,28 +12,27 @@ import { fitFont, layer, measure, text } from "./draw";
 import type { CardSide } from "./shareCard";
 
 const WIDTH = 1200;
-const TEXT_X = 470; // the text block starts where the flag has faded into the tint
+export const TEXT_X = 470; // the text block starts where the flag has faded into the tint
 const TRACK = "rgba(255, 255, 255, 0.1)";
 const GLASS = "rgba(255, 255, 255, 0.06)";
 const GLASS_BORDER = "rgba(255, 255, 255, 0.12)";
 
 export function drawSingle(ctx: CanvasRenderingContext2D, side: CardSide, flag: HTMLImageElement, siteLabel: string): void {
+  drawCountryFrame(ctx, side, flag, siteLabel);
+  headline(ctx, side);
+  pillars(ctx, side);
+  facts(ctx, side);
+}
+
+// Everything one-country cards share (this one, rankingsCard.ts, thenNowCard.ts): background, the flag backdrop,
+// the name with its key line, and the footer. Each card adds its headline (from y 152) and the lower half.
+export function drawCountryFrame(ctx: CanvasRenderingContext2D, side: CardSide, flag: HTMLImageElement, siteLabel: string): void {
   background(ctx);
   const [header, h] = layer(WIDTH, HEADER);
   flagBackdrop(h, flag, DEEP_A, "left");
   fadeHeaderDown(h);
   ctx.drawImage(header, 0, 0);
 
-  headline(ctx, side);
-  pillars(ctx, side);
-  facts(ctx, side);
-
-  text(ctx, "WORLD TRACKER", PADDING, 603, 14, 800, TEXT, "left", 0.14);
-  text(ctx, siteLabel, WIDTH - PADDING, 603, 14, 500, "rgba(255, 255, 255, 0.55)", "right");
-}
-
-function headline(ctx: CanvasRenderingContext2D, side: CardSide): void {
-  const level = side.data.powerLevel;
   ctx.save();
   ctx.shadowColor = "rgba(0, 0, 0, 0.55)";
   ctx.shadowBlur = 16;
@@ -41,11 +40,28 @@ function headline(ctx: CanvasRenderingContext2D, side: CardSide): void {
   const nameSize = fitFont(ctx, side.country.name, WIDTH - PADDING - TEXT_X, 54, 800);
   text(ctx, side.country.name, TEXT_X, 96, nameSize, 800, TEXT);
   ctx.restore();
-
   ctx.fillStyle = A;
   ctx.beginPath();
   ctx.roundRect(TEXT_X, 112, 64, 5, 2.5);
   ctx.fill();
+
+  text(ctx, "WORLD TRACKER", PADDING, 603, 14, 800, TEXT, "left", 0.14);
+  text(ctx, siteLabel, WIDTH - PADDING, 603, 14, 500, "rgba(255, 255, 255, 0.55)", "right");
+}
+
+// A glass tile, as on the site.
+export function tile(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number): void {
+  ctx.fillStyle = GLASS;
+  ctx.strokeStyle = GLASS_BORDER;
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.roundRect(x + 0.5, y + 0.5, w - 1, h - 1, 16);
+  ctx.fill();
+  ctx.stroke();
+}
+
+function headline(ctx: CanvasRenderingContext2D, side: CardSide): void {
+  const level = side.data.powerLevel;
   text(ctx, "POWER LEVEL", TEXT_X, 152, 14, 600, DIM, "left", 0.14);
 
   if (level === null) {
@@ -105,13 +121,7 @@ function facts(ctx: CanvasRenderingContext2D, side: CardSide): void {
   const h = 64;
   items.forEach(([label, value], i) => {
     const y = 306 + i * (h + 12);
-    ctx.fillStyle = GLASS;
-    ctx.strokeStyle = GLASS_BORDER;
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.roundRect(x + 0.5, y + 0.5, w - 1, h - 1, 16);
-    ctx.fill();
-    ctx.stroke();
+    tile(ctx, x, y, w, h);
     text(ctx, label, x + 22, y + h / 2 + 6, 17, 600, "rgba(255, 255, 255, 0.7)");
     text(ctx, value, x + w - 22, y + h / 2 + 10, 28, 800, TEXT, "right");
   });

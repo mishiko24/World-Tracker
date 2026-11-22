@@ -41,6 +41,7 @@ export type Column = NumberColumn | TextColumn;
 export interface ColumnGroup {
   id: string; // remembered in settings when collapsed
   label: string;
+  sources: string; // where its numbers come from (all sources the group uses), for map images
   columns: Column[];
 }
 
@@ -108,6 +109,7 @@ export function columnGroups(resources: ResourceInfo[]): ColumnGroup[] {
   return [
     {
       id: "powerLevel",
+      sources: "World Tracker’s Power Level",
       label: "Power Level",
       columns: [
         field("powerLevel", "Power Level", (v) => v.toFixed(1)),
@@ -127,6 +129,7 @@ export function columnGroups(resources: ResourceInfo[]): ColumnGroup[] {
     },
     {
       id: "government",
+      sources: "Wikidata, World Bank (WGI)",
       label: "Government",
       columns: [
         text("governmentType", "Government type", (row) => row.governmentType),
@@ -138,6 +141,7 @@ export function columnGroups(resources: ResourceInfo[]): ColumnGroup[] {
     },
     {
       id: "population",
+      sources: "World Bank, UN WPP",
       label: "Population",
       columns: [
         field("population", "Population", fullNumber),
@@ -152,6 +156,7 @@ export function columnGroups(resources: ResourceInfo[]): ColumnGroup[] {
     },
     {
       id: "economy",
+      sources: "World Bank",
       label: "Economy",
       columns: [
         field("gdp", "GDP", dollars),
@@ -165,16 +170,19 @@ export function columnGroups(resources: ResourceInfo[]): ColumnGroup[] {
     },
     {
       id: "production",
+      sources: "USGS, EIA",
       label: "Resources: production",
       columns: resources.flatMap((r) => (r.production === null ? [] : [resourceColumn(r, "production", r.production)])),
     },
     {
       id: "reserves",
+      sources: "USGS, EIA",
       label: "Resources: reserves",
       columns: resources.flatMap((r) => (r.reserves === null ? [] : [resourceColumn(r, "reserves", r.reserves)])),
     },
     {
       id: "agriculture",
+      sources: "FAOSTAT",
       label: "Agriculture",
       columns: STAPLES.map(
         (s): NumberColumn => ({
@@ -191,6 +199,7 @@ export function columnGroups(resources: ResourceInfo[]): ColumnGroup[] {
     },
     {
       id: "power",
+      sources: "Ember, EIA, World Bank",
       label: "Power generation",
       columns: [
         field("electricityTwh", "Electricity generated", fullNumber, "TWh/year"),
@@ -214,4 +223,8 @@ export function columnGroups(resources: ResourceInfo[]): ColumnGroup[] {
 
 export function allColumns(groups: ColumnGroup[]): Column[] {
   return groups.flatMap((g) => g.columns);
+}
+
+export function numberColumns(groups: ColumnGroup[]): NumberColumn[] {
+  return allColumns(groups).filter((c): c is NumberColumn => c.kind === "number");
 }

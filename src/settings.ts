@@ -27,7 +27,8 @@ export interface Settings {
   mapType: MapType;
   listView: boolean; // show the sortable country table instead of the map
   listCollapsed: string[]; // list column groups shown as a "+" strip (ColumnGroup ids, src/ui/list/columns.ts)
-  colorBy: "style" | "powerLevel"; // country fill: the map style's colors, or a heat map of Power Level
+  colorBy: string; // country fill: "style" = the map style's colors, or a list column id (src/ui/list/columns.ts)
+  // to color countries by that number, lowest to highest (an id with no column falls back to the style)
   styles: Record<MapType, MapStyle>;
   zoomAmount: number; // zoom change per scroll notch: 0.3 = 30%
   zoomSmoothness: number; // 0 = instant, 1 = slowest glide
