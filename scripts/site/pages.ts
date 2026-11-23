@@ -14,17 +14,20 @@
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import type { GeometryCollection, Topology } from "topojson-specification";
 import {
+  BUDGET_FUNCTIONS,
   PILLAR_LABELS,
   PILLAR_ORDER,
   type CountryData,
   type CountrySummary,
   type DataMeta,
   type NumberFact,
+  SOURCES,
 } from "../../src/data/countryData";
+import { budgetColor, budgetShare } from "../../src/data/budget";
 import { ABOUT_URL, GAME_URL, SITE_URL } from "../../src/links";
 import type { CountryProperties } from "../../src/map/geo";
 import { barWidths, gap, winner, type Better, type DiffMode } from "../../src/ui/info/Compare";
-import { amount, dollars, fullNumber, percent, share, tonnes } from "../../src/ui/info/formatData";
+import { amount, dollars, fullNumber, percent, roundDollars, share, tonnes } from "../../src/ui/info/formatData";
 import { POWER_SOURCE_STYLE } from "../../src/ui/info/PowerSection";
 import { columnGroups, numberColumns, type NumberColumn } from "../../src/ui/list/columns";
 import { colorScale, mappableGroups, type ColorScale, type MappableGroup } from "../../src/map/colorBy";
@@ -307,6 +310,21 @@ function countryPage(site: Site, d: CountryData): string {
     ["Central government debt", e.debt === null ? null : withYear(`${percent(e.debt.value, 0)} of GDP${e.debtUsd === null ? "" : ` (${dollars(e.debtUsd.value)})`}`, e.debt)],
   ])}</section>`);
 
+  const budget = e.budget;
+  if (budget !== null) {
+    const rows = BUDGET_FUNCTIONS.map((f) => {
+      const shareOfBudget = budgetShare(budget, f.id);
+      const usd = budget.totalUsd === null ? "" : roundDollars((shareOfBudget / 100) * budget.totalUsd);
+      return `<tr><td><span class="swatch" style="background:${budgetColor(f.id)}"></span>${escape(f.label)}</td><td>${percent(shareOfBudget)}</td><td>${usd}</td></tr>`;
+    });
+    const total = `${budget.totalUsd === null ? "" : `${roundDollars(budget.totalUsd)}, `}${percent(budget.percentOfGdp, 0)} of GDP`;
+    sections.push(
+      `<section><h2>Government budget</h2><p>What the government spends its money on (all levels of government, ${budget.year}): ${escape(total)}.</p>` +
+        `<table class="list"><thead><tr><th>Function</th><th>Share</th><th>Amount</th></tr></thead><tbody>${rows.join("")}</tbody></table>` +
+        `<p class="note">${escape(SOURCES[budget.source].name)}.</p></section>`,
+    );
+  }
+
   const m = d.military;
   sections.push(`<section><h2>Military</h2>${table([
     ["Military spending", m.spendingUsd === null ? null : withYear(dollars(m.spendingUsd.value), m.spendingUsd)],
@@ -409,6 +427,19 @@ const METRIC_GROUPS: { title: string; metrics: Metric[] }[] = [
       { label: "Real growth", get: (d) => d.economy.growth?.value ?? null, format: (v) => percent(v), mode: "points" },
       { label: "Inflation", get: (d) => d.economy.inflation?.value ?? null, format: (v) => percent(v), better: "lower", mode: "points" },
       { label: "Gov. debt (% of GDP)", get: (d) => d.economy.debt?.value ?? null, format: (v) => percent(v, 0), better: "lower", mode: "points" },
+    ],
+  },
+  {
+    title: "Government budget",
+    metrics: [
+      { label: "Government spending (% of GDP)", get: (d) => d.economy.budget?.percentOfGdp ?? null, format: (v) => percent(v), better: "none", mode: "points" },
+      ...BUDGET_FUNCTIONS.slice(0, 6).map((f) => ({
+        label: `${f.label} (% of budget)`,
+        get: (d: CountryData) => (d.economy.budget === null ? null : budgetShare(d.economy.budget, f.id)),
+        format: (v: number) => percent(v),
+        better: "none" as const,
+        mode: "points" as const,
+      })),
     ],
   },
   {

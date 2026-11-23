@@ -3,8 +3,10 @@
 
 import type { CountryData, Economy, Government, Military, NumberFact, Population, Trends } from "../../data/countryData";
 import type { Better, DiffMode } from "./Compare";
+import { BudgetChart } from "./BudgetChart";
 import { FactRow } from "./FactRow";
 import { dollars, percent, shortNumber } from "./formatData";
+import { METRIC_HINTS } from "./hints";
 import { TrendRow, trendOf, type TrendInput } from "./TrendChart";
 
 interface NumberRowProps {
@@ -25,6 +27,7 @@ function NumberRow({ label, fact, other, format, mode, better, trend }: NumberRo
       row={(shownLabel) => (
         <FactRow
           label={shownLabel}
+          hint={METRIC_HINTS[label]}
           value={fact === null ? null : format(fact.value)}
           year={fact?.year}
           source={fact?.source}
@@ -164,6 +167,7 @@ export function EconomySection({ economy, trends, other }: SectionProps & { econ
         row={(shownLabel) => (
           <FactRow
             label={shownLabel}
+            hint={METRIC_HINTS.GDP}
             value={economy.gdp === null ? null : dollars(economy.gdp.value)}
             year={economy.gdp?.year}
             source={economy.gdp?.source}
@@ -212,6 +216,10 @@ export function EconomySection({ economy, trends, other }: SectionProps & { econ
         mode="points"
         better="lower"
       />
+      <div className="data-group">
+        <div className="data-group-title">Government budget</div>
+        <BudgetChart budget={economy.budget} other={other === null ? undefined : other.economy.budget} />
+      </div>
     </>
   );
 }

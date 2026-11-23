@@ -388,3 +388,13 @@ td.down {
   color: var(--down);
   font-weight: 600;
 }
+
+/* Government budget table: color key matching the app's donut */
+table.list td .swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 8px;
+  border-radius: 3px;
+  vertical-align: -1px;
+}

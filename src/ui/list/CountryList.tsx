@@ -11,6 +11,7 @@ import { Flag } from "../Flag";
 import type { CountrySummary } from "../../data/countryData";
 import { useDataMeta } from "../../data/useDataMeta";
 import { allColumns, columnGroups, type Column, type ColumnGroup } from "./columns";
+import { METRIC_HINTS } from "../info/hints";
 import { DEFAULT_SORT, nextSort, sortRows, type Sort } from "./sort";
 
 interface CountryListProps {
@@ -84,11 +85,19 @@ export function CountryList(props: CountryListProps) {
     onCollapsedChange(isOpen(g) ? [...collapsed, g.id] : collapsed.filter((id) => id !== g.id));
   }
 
-  // The sort arrow follows the label; the unit (if any) is a small line below.
-  function header(key: string, isText: boolean, label: string, unit?: string, className?: string, rowSpan?: number) {
+  // The sort arrow follows the label; the unit (if any) is a small line below. `hint` (what the metric means)
+  // is the header's tooltip.
+  function header(key: string, isText: boolean, label: string, unit?: string, className?: string, rowSpan?: number, hint?: string) {
     const arrow = key === activeSort.key ? (activeSort.descending ? " ▼" : " ▲") : "";
     return (
-      <th key={key} className={className} rowSpan={rowSpan} data-column={key} onClick={() => onSortChange(nextSort(activeSort, key, isText))}>
+      <th
+        key={key}
+        className={className}
+        rowSpan={rowSpan}
+        data-column={key}
+        title={hint}
+        onClick={() => onSortChange(nextSort(activeSort, key, isText))}
+      >
         {label}
         {arrow}
         {unit !== undefined && <span className="column-unit">{unit}</span>}
@@ -126,6 +135,8 @@ export function CountryList(props: CountryListProps) {
                   c.label,
                   c.kind === "number" ? c.unit : undefined,
                   [i === 0 ? "group-start" : "", c.kind === "text" ? "text-cell" : ""].join(" ").trim() || undefined,
+                  undefined,
+                  c.kind === "number" ? c.hint : METRIC_HINTS[c.label],
                 ),
               ),
             )}

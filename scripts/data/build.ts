@@ -11,6 +11,8 @@ import type {
   CountryData,
   DataMeta,
   Economy,
+  Budget,
+  BudgetFunctionId,
   Government,
   Military,
   NumberFact,
@@ -28,6 +30,7 @@ import { loadCountries } from "./lib/countries.ts";
 import { lastFullYear, readCache } from "./lib/io.ts";
 import { computeNearby } from "./nearby.ts";
 import { computePowerLevels, POWER_LEVEL_VERSION } from "./powerLevel.ts";
+import type { BudgetEntry } from "./fetch/budget.ts";
 import type { EiaEntry } from "./fetch/eia.ts";
 import type { FossilReservesEntry } from "./fetch/fossilReserves.ts";
 import type { EnergyEntry } from "./fetch/energy.ts";
@@ -55,6 +58,7 @@ const fossilReserves = readCache<FossilReservesEntry>("reserves").byCountry;
 const usgs = readCache<UsgsEntry>("usgs").byCountry;
 const faostat = readCache<FaoEntry>("faostat").byCountry;
 const energy = readCache<EnergyEntry>("energy").byCountry;
+const budgets = readCache<BudgetEntry>("budget").byCountry;
 
 // World Bank keeps a country's last value forever (Germany's central government debt is from 1990).
 // Values older than this are hidden rather than shown as if current.
@@ -144,6 +148,23 @@ function buildEconomy(id: string): Economy {
     inflation: fact(fresh(wb.inflation), "worldbank"),
     debt: fact(fresh(wb.debt), "worldbank"),
     debtUsd: debtUsd(wb),
+    budget: buildBudget(id),
+  };
+}
+
+function buildBudget(id: string): Budget | null {
+  const b = budgets[id];
+  if (b === undefined) {
+    return null;
+  }
+  const percentOfGdp = Object.values(b.percentOfGdp).reduce((sum, v) => sum + v, 0);
+  const gdp = worldbank[id]?.gdpByYear?.[String(b.year)];
+  return {
+    year: b.year,
+    source: b.source,
+    percentOfGdp,
+    totalUsd: gdp === undefined ? null : (percentOfGdp / 100) * gdp,
+    functions: b.percentOfGdp,
   };
 }
 
@@ -320,6 +341,8 @@ function summaryOf(d: CountryData): CountrySummary {
     debtUsd: d.economy.debtUsd?.value ?? null,
     debtPercent: d.economy.debt?.value ?? null,
     politicalStability: d.government.politicalStability?.value ?? null,
+    govSpending: d.economy.budget === null ? null : Number(d.economy.budget.percentOfGdp.toPrecision(4)),
+    budget: budgetShares(d.economy.budget),
     militarySpending: d.military.spending?.value ?? null,
     militarySpendingUsd: d.military.spendingUsd === null ? null : Number(d.military.spendingUsd.value.toPrecision(6)),
     militaryPerPerson: d.military.spendingPerPerson === null ? null : Number(d.military.spendingPerPerson.value.toPrecision(4)),
@@ -399,6 +422,7 @@ const coverage: [string, (d: CountryData) => unknown][] = [
   ["economy.gdp", (d) => d.economy.gdp],
   ["economy.gdpPerCapitaPpp", (d) => d.economy.gdpPerCapitaPpp],
   ["economy.growth", (d) => d.economy.growth],
+  ["economy.budget", (d) => d.economy.budget],
   ["economy.inflation", (d) => d.economy.inflation],
   ["economy.debt", (d) => d.economy.debt],
   ["economy.debtUsd", (d) => d.economy.debtUsd],
@@ -425,4 +449,14 @@ for (const d of [...all].filter((d) => d.powerLevel).sort((a, b) => b.powerLevel
   const p = d.powerLevel!.pillars;
   const cells = [p.economy, p.resources, p.population, p.energy, p.food, p.stability].map((v) => (v === null ? "  —" : v.toFixed(0).padStart(3)));
   console.log(`  ${String(d.powerLevel!.rank).padStart(3)}. ${d.name.padEnd(24)} ${d.powerLevel!.score.toFixed(1).padStart(5)} | ${cells.join(" ")}`);
+}
+
+// Each function's share of all government spending, percent (what the list and maps rank).
+function budgetShares(budget: Budget | null): Partial<Record<BudgetFunctionId, number>> {
+  if (budget === null) {
+    return {};
+  }
+  return Object.fromEntries(
+    Object.entries(budget.functions).map(([fn, v]) => [fn, Number(((v / budget.percentOfGdp) * 100).toPrecision(4))]),
+  );
 }

@@ -1,5 +1,6 @@
 // One labeled value. A null value shows "No data".
 // Year and source are not printed (too much clutter); they appear as a tooltip on the value.
+// The label explains the metric on hover/focus (`hint`, else METRIC_HINTS by label; see hints.ts).
 // Comparison mode, see Compare.tsx:
 //   numbers (`compare` set)  two bars in the countries' colors, both values, and how much more/less B has
 //   text (`compareText` set) both texts, each with its country's flag
@@ -7,6 +8,7 @@
 import type { ReactNode } from "react";
 import { SOURCES, type SourceId } from "../../data/countryData";
 import { barWidths, gap, winner, type Comparison } from "./Compare";
+import { METRIC_HINTS } from "./hints";
 
 interface FactRowProps {
   label: ReactNode;
@@ -16,6 +18,18 @@ interface FactRowProps {
   meta?: ReactNode; // small line under the value, e.g. world rank (not shown when comparing)
   compare?: Comparison; // number row in comparison mode; undefined = not comparing
   compareText?: string | null; // text row in comparison mode: B's text; undefined = not comparing
+  hint?: string; // what the metric means; defaults to METRIC_HINTS[label]
+}
+
+function Label({ label, hint }: { label: ReactNode; hint: string | undefined }) {
+  if (hint === undefined) {
+    return <span className="fact-label">{label}</span>;
+  }
+  return (
+    <span className="fact-label has-hint" tabIndex={0} data-hint={hint}>
+      {label}
+    </span>
+  );
 }
 
 export function sourceTooltip(year: number | undefined, source: SourceId | undefined): string | undefined {
@@ -27,15 +41,16 @@ export function sourceTooltip(year: number | undefined, source: SourceId | undef
 
 const NO_DATA = <span className="no-data">No data</span>;
 
-export function FactRow({ label, value, year, source, meta, compare, compareText }: FactRowProps) {
+export function FactRow({ label, value, year, source, meta, compare, compareText, hint }: FactRowProps) {
   const tooltip = sourceTooltip(year, source);
+  const labelElement = <Label label={label} hint={hint ?? (typeof label === "string" ? METRIC_HINTS[label] : undefined)} />;
   if (compare !== undefined) {
-    return <ComparedNumber label={label} value={value} tooltip={tooltip} compare={compare} />;
+    return <ComparedNumber label={labelElement} value={value} tooltip={tooltip} compare={compare} />;
   }
   if (compareText !== undefined) {
     return (
       <div className="fact compared-text">
-        <span className="fact-label">{label}</span>
+        {labelElement}
         <span className="fact-value" title={tooltip}>
           <span className="compared-line">
             <span className="flag flag-small flag-a" />
@@ -51,7 +66,7 @@ export function FactRow({ label, value, year, source, meta, compare, compareText
   }
   return (
     <div className="fact">
-      <span className="fact-label">{label}</span>
+      {labelElement}
       <span className="fact-value" title={tooltip}>
         <span className="fact-main">{value === null ? NO_DATA : value}</span>
         {value !== null && meta && <span className="fact-meta">{meta}</span>}
@@ -74,7 +89,7 @@ function ComparedNumber({ label, value, tooltip, compare }: ComparedNumberProps)
   const diff = gap(compare);
   return (
     <div className="fact compared-number">
-      <span className="fact-label">{label}</span>
+      {label}
       <span className="compared-bars">
         <span className={win === "b" ? "compare-bar a lose" : "compare-bar a"}>
           <span style={{ width: `${widthA}%` }} />

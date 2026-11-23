@@ -137,6 +137,7 @@ export interface Economy {
   inflation: NumberFact | null; // consumer prices, annual percent
   debt: NumberFact | null; // central government debt, percent of GDP
   debtUsd: NumberFact | null; // the same debt in current US dollars (debt % × GDP of the debt's year)
+  budget: Budget | null; // what the government spends its money on (~40 countries: Europe and OECD)
 }
 
 // The 10 divisions of the UN Classification of the Functions of Government (COFOG), in the order a typical
@@ -354,6 +355,8 @@ export interface CountrySummary {
   debtUsd: number | null;
   debtPercent: number | null;
   politicalStability: number | null; // 0-100
+  govSpending: number | null; // all government spending, % of GDP
+  budget: Partial<Record<BudgetFunctionId, number>>; // share of government spending, %
   militarySpending: number | null; // % of GDP
   militarySpendingUsd: number | null;
   militaryPerPerson: number | null; // spending per person, US dollars

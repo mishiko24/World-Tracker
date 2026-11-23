@@ -5,6 +5,7 @@ import type { CountryData, Power, PowerSource, Trends } from "../../data/country
 import type { Comparison } from "./Compare";
 import { FactRow } from "./FactRow";
 import { percent, shortNumber } from "./formatData";
+import { METRIC_HINTS, powerSourceHint } from "./hints";
 import { TrendRow, trendOf } from "./TrendChart";
 
 export const POWER_SOURCE_STYLE: Record<PowerSource, { label: string; color: string }> = {
@@ -64,6 +65,7 @@ export function PowerSection({ power, trends, other }: { power: Power; trends: T
                   {POWER_SOURCE_STYLE[m.source].label}
                 </>
               }
+              hint={powerSourceHint(POWER_SOURCE_STYLE[m.source].label)}
               value={twh(m.twh)}
               meta={percent((m.twh / generation.totalTwh) * 100)}
               compare={compareTwh(m.twh, otherTwh(m.source))}
@@ -86,6 +88,7 @@ export function PowerSection({ power, trends, other }: { power: Power; trends: T
         row={(shownLabel) => (
           <FactRow
             label={shownLabel}
+            hint={METRIC_HINTS["Access to electricity"]}
             value={access === null ? null : percent(access.value)}
             year={access?.year}
             source={access?.source}

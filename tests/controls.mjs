@@ -287,6 +287,8 @@ await page.click("aside.panel-right .collapsible-header >> text=Military");
 const troopsRow = await compareRow("Active personnel");
 const troopsExpected = franceData.military.personnel.value > spainData.military.personnel.value;
 check("military: personnel compared, more troops wins", troopsRow !== null && troopsRow.bWins === troopsExpected, JSON.stringify(troopsRow));
+const budgetRow = await compareRow("Health");
+check("budget: Spain vs France health share compared, no winner", budgetRow !== null && !budgetRow.aWins && !budgetRow.bWins && budgetRow.diff.includes("pp"), JSON.stringify(budgetRow));
 const shareRow = await compareRow("Share of GDP");
 check("military: share of GDP has no winner", shareRow !== null && !shareRow.aWins && !shareRow.bWins && shareRow.diff.includes("pp"), JSON.stringify(shareRow));
 await page.click("aside.panel-right .collapsible-header >> text=Government");
@@ -386,7 +388,7 @@ const groupNames = await page.$$eval(".country-list tr.group-row th:not(.name-co
 );
 check(
   "list view column groups",
-  groupNames.join("|") === "Power Level|Government|Population|Economy|Military|Resources: production|Resources: reserves|Agriculture|Power generation",
+  groupNames.join("|") === "Power Level|Government|Population|Economy|Government budget|Military|Resources: production|Resources: reserves|Agriculture|Power generation",
   groupNames.join("|"),
 );
 const columnIds = await page.$$eval(".country-list tr.column-row th", (els) => els.map((e) => e.dataset.column));
@@ -563,6 +565,22 @@ check("link restores list view and sort", gdpArrow !== null);
 await page.goto(`${URL}?view=list&sort=production.oil.desc`);
 await page.waitForSelector(".country-list tbody tr");
 check("dotted sort id from a link", (await page.textContent(".country-list tbody tr td:first-child")) === "United States", await page.textContent(".country-list tbody tr td:first-child"));
+const gdpHint = await page.getAttribute('.country-list th[data-column="gdp"]', "title");
+check("list header explains the metric", gdpHint?.startsWith("Gross domestic product") === true, String(gdpHint));
+const milkHint = await page.getAttribute('.country-list th[data-column="crop.milk"]', "title");
+check("crop header spells out Mt", milkHint?.includes("Mt = million tonnes") === true, String(milkHint));
+
+// Government budget: donut + a row per function; hovering a row names it in the middle of the donut.
+await page.goto(`${URL}?c=USA`);
+await page.waitForSelector("aside.panel-right .collapsible-header");
+await page.click("aside.panel-right .collapsible-header >> text=Economy");
+await page.waitForSelector(".budget-donut");
+check("budget donut: 7 functions + Other", (await page.$$(".budget-donut circle")).length === 8);
+check("budget rows: 10 functions", (await page.$$(".budget-rows li")).length === 10);
+await page.hover(".budget-rows li:nth-child(6) .budget-share");
+check("hovering Defence names it in the donut", (await page.textContent(".budget-center span")) === "Defence", await page.textContent(".budget-center span"));
+const gdpLabelHint = await page.getAttribute("aside.panel-right .fact-label.has-hint >> nth=0", "data-hint");
+check("panel labels carry an explanation", gdpLabelHint?.length > 20, String(gdpLabelHint));
 await page.evaluate(() => localStorage.clear());
 
 // Frame cost while panning.

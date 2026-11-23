@@ -8,6 +8,7 @@
 import {
   PILLAR_LABELS,
   PILLAR_ORDER,
+  BUDGET_FUNCTIONS,
   STAPLES,
   type AmountUnit,
   type CountrySummary,
@@ -16,6 +17,7 @@ import {
   type SummaryNumberKey,
 } from "../../data/countryData";
 import { dollars, fullNumber, percent, shortNumber, tonnes } from "../info/formatData";
+import { cropHint, METRIC_HINTS, powerSourceHint, resourceHint } from "../info/hints";
 import { POWER_SOURCE_STYLE } from "../info/PowerSection";
 
 export interface NumberColumn {
@@ -27,6 +29,7 @@ export interface NumberColumn {
   slug: string; // ranking page: rank/<slug>/
   value: (row: CountrySummary) => number | null;
   format: (value: number) => string;
+  hint?: string; // what the metric means (header tooltip); plain fields use METRIC_HINTS by label
 }
 
 export interface TextColumn {
@@ -53,7 +56,7 @@ function kebab(key: string): string {
 // fullLabel defaults to "Label (unit)".
 function field(key: SummaryNumberKey, label: string, format: (v: number) => string, unit?: string, fullLabel?: string): NumberColumn {
   fullLabel ??= unit === undefined ? label : `${label} (${unit})`;
-  return { kind: "number", id: key, label, unit, fullLabel, slug: kebab(key), value: (row) => row[key], format };
+  return { kind: "number", id: key, label, unit, fullLabel, slug: kebab(key), value: (row) => row[key], format, hint: METRIC_HINTS[label] };
 }
 
 function text(id: string, label: string, value: (row: CountrySummary) => string | null): TextColumn {
@@ -99,6 +102,7 @@ function resourceColumn(r: ResourceInfo, kind: "production" | "reserves", unit: 
     slug: `${r.id}-${kind}`,
     value: (row) => row[kind][r.id] ?? null,
     format: amountCell(unit),
+    hint: resourceHint(r.name, kind, unit),
   };
 }
 
@@ -169,6 +173,27 @@ export function columnGroups(resources: ResourceInfo[]): ColumnGroup[] {
       ],
     },
     {
+      id: "budget",
+      sources: "Eurostat, OECD (via Our World in Data)",
+      label: "Government budget",
+      columns: [
+        field("govSpending", "Gov. spending", (v) => percent(v), "% of GDP", "Government spending (% of GDP)"),
+        ...BUDGET_FUNCTIONS.map(
+          (f): NumberColumn => ({
+            kind: "number",
+            id: `budget.${f.id}`,
+            label: f.label,
+            unit: "% of budget",
+            fullLabel: `% of budget spent on ${f.label.toLowerCase()}`,
+            slug: `${kebab(f.id)}-budget-share`,
+            value: (row) => row.budget[f.id] ?? null,
+            format: (v) => percent(v),
+            hint: `${f.about}. Share of all government spending (central, state and local).`,
+          }),
+        ),
+      ],
+    },
+    {
       id: "military",
       sources: "CIA World Factbook (final edition), World Bank",
       label: "Military",
@@ -206,6 +231,7 @@ export function columnGroups(resources: ResourceInfo[]): ColumnGroup[] {
           slug: `${s.id}-production`,
           value: (row) => row.crops[s.id] ?? null,
           format: tonnes,
+          hint: cropHint(s.label),
         }),
       ),
     },
@@ -226,6 +252,7 @@ export function columnGroups(resources: ResourceInfo[]): ColumnGroup[] {
             slug: `${source}-electricity`,
             value: (row) => row.generation[source] ?? null,
             format: (v) => shortNumber(v),
+            hint: powerSourceHint(POWER_SOURCE_STYLE[source].label),
           }),
         ),
       ],

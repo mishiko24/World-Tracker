@@ -51,8 +51,13 @@ src/ui/                   React panels
   controls.tsx, format.ts Slider / color inputs and value formatting
 
 src/data/countryData.ts   THE CONTRACT: per-country JSON shape + source list. Imported by both the pipeline and the UI.
-src/ui/info/              Right panel: InfoPanel (6 sections), useCountryData (fetch), FactRow, one file per section type,
+src/ui/info/              Right panel: InfoPanel (7 sections), useCountryData (fetch), FactRow, one file per section type,
                           formatData (number/unit formatting)
+src/ui/info/hints.ts      What each metric means: METRIC_HINTS by panel label (+ list-label aliases), cropHint,
+                          resourceHint, powerSourceHint. Panel labels show it on hover/focus (.has-hint CSS tooltip),
+                          list headers as their title, the map key title as .has-hint
+src/ui/info/BudgetChart.tsx  Government budget in Economy: donut (7 functions + Other) with total in the middle, a row
+                          per function (share, $); comparing = paired share rows. Colors/shares: src/data/budget.ts
 src/ui/useMobile.ts       Phone layout switch (max-width 700px, same as the @media block at the end of styles.css)
 src/ui/info/useBottomSheet.ts  Phone: info panel as bottom sheet, peek/half/full snaps, header drag + tap
 src/ui/info/PowerLevelCard.tsx  Power Level score, rank and pillar bars at the top of the info panel
@@ -171,6 +176,7 @@ the logs (`gh api repos/mishiko24/World-Tracker/actions/jobs/<id>/logs`), then p
 | | median age | UN WPP via OWID grapher (unwpp) | Estimates only, no projections |
 | Economy | GDP (+rank), per capita, PPP, growth, inflation, central gov. debt | World Bank (worldbank) | Was IMF until Nov 2026: IMF terms forbid systematic download / commercial reuse without permission. WB = CC BY 4.0. No Taiwan. Debt is central gov (fewer countries, lags); debt $ = % × GDP of the debt's year (gdpByYear) |
 | Military | spending % of GDP (+ history 2017–2025), $ (= % × World Bank GDP of the newest year with both), $ per person; active personnel (+ per 1,000 people) | Factbook final edition (factbook) | Public domain. Spending older than newest Factbook year − 3 is dropped (Ukraine: last 2021). Personnel parsed from prose by parsePersonnel(): first number or range ("10-15,000" = 10,000–15,000), compared by the range's middle; the sentence is shown under the value. "prior to ..." (Sudan, Gaza) = no number. No equipment counts (prose only). SIPRI needs a paid commercial licence |
+| Economy: budget | government spending by function (10 COFOG divisions, % of GDP → share of budget and $ with World Bank GDP of the same year) | Eurostat gov_10a_exp (eurostat) for EU+EFTA; OECD Government at a Glance via OWID grapher CSV `government-spending-by-function-as-share-of-gdp-across-countries` (oecd) for other OECD members | fetch/budget.ts. 39 countries (no Canada, Mexico, NZ, Türkiye in OWID). Newest year with all 10 functions. OECD's own SDMX API returns HTTP 500 on every filtered query (Nov 2026), hence OWID. General government (all levels). Budget shares get no "world rank" (rankings.ts) |
 | Resources | oil/gas/coal production, coal reserves | EIA API (eia), key in secret EIA_API_KEY | EIA dropped oil/gas reserves from its API |
 | | oil/gas reserves | EIA via OWID grapher CSVs (reserves) | Ends 2021. EI stopped 2020; OPEC has newer but blocks bots (403) |
 | | minerals production + reserves | USGS MCS data release (usgs) | Update SCIENCEBASE_ITEM each new edition (Jan/Feb). One variant per mineral |

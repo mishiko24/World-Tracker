@@ -25,7 +25,13 @@ export function MapKey({ scale, mapType, countries, onSelect, onClose }: MapKeyP
   return (
     <div className="map-key">
       <div className="map-key-head">
-        <span className="map-key-title">{scale.column.fullLabel}</span>
+        {scale.column.hint === undefined ? (
+          <span className="map-key-title">{scale.column.fullLabel}</span>
+        ) : (
+          <span className="map-key-title has-hint" tabIndex={0} data-hint={scale.column.hint}>
+            {scale.column.fullLabel}
+          </span>
+        )}
         <button className="icon-button small" onClick={onClose} title="Back to map colors">
           ✕
         </button>

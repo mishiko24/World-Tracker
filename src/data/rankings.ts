@@ -25,7 +25,8 @@ export function worldRanks(id: string, rows: CountrySummary[], columns: NumberCo
   const row = rows.find((r) => r.id === id)!;
   const ranks: WorldRank[] = [];
   for (const column of columns) {
-    if (NOT_A_BOAST.has(column.id)) {
+    // Budget shares are priorities, not achievements, and cover ~40 countries: no "world" rank.
+    if (NOT_A_BOAST.has(column.id) || column.id === "govSpending" || column.id.startsWith("budget.")) {
       continue;
     }
     const value = column.value(row);

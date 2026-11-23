@@ -4,6 +4,7 @@
 import type { Agriculture, CountryData, Crop } from "../../data/countryData";
 import { FactRow, sourceTooltip } from "./FactRow";
 import { share, tonnes } from "./formatData";
+import { cropHint } from "./hints";
 
 interface AgricultureSectionProps {
   agriculture: Agriculture | null;
@@ -42,6 +43,7 @@ function CropRow({ crop, otherCrops }: { crop: Crop; otherCrops: Crop[] | undefi
   return (
     <FactRow
       label={crop.name}
+      hint={cropHint(crop.name)}
       value={tonnes(crop.tonnes)}
       meta={`#${crop.worldRank} world · ${share(crop.worldShare)}`}
       compare={otherCrops === undefined ? undefined : { a: crop.tonnes, b: other?.tonnes ?? null, format: tonnes }}

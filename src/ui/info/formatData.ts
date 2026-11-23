@@ -32,6 +32,13 @@ export function dollars(value: number): string {
   return `$${shortNumber(value)}`;
 }
 
+// Three significant figures, for columns of amounts: $897 bn, $66.2 bn, $2.19 tn.
+export function roundDollars(value: number): string {
+  const abs = Math.abs(value);
+  const [scale, unit] = abs >= 1e12 ? [1e12, " tn"] : abs >= 1e9 ? [1e9, " bn"] : abs >= 1e6 ? [1e6, " M"] : [1, ""];
+  return `$${Number((value / scale).toPrecision(3)).toLocaleString("en-US")}${unit}`;
+}
+
 export function percent(value: number, decimals = 1): string {
   return `${trimmed(value, decimals)}%`;
 }

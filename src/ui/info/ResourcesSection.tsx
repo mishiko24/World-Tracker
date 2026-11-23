@@ -5,6 +5,7 @@ import { useState } from "react";
 import type { Amount, CountryData, Resource } from "../../data/countryData";
 import { FactRow } from "./FactRow";
 import { amount, share } from "./formatData";
+import { resourceHint } from "./hints";
 
 type Tab = "production" | "reserves";
 
@@ -53,7 +54,7 @@ function ResourceGroup({ title, resources, tab, other }: ResourceGroupProps) {
       {resources.map((r) => {
         const value = r[tab];
         const otherValue = other === null ? undefined : (other.resources.find((o) => o.id === r.id)?.[tab] ?? null);
-        return <AmountRow key={r.id} name={r.name} value={value} other={otherValue} />;
+        return <AmountRow key={r.id} name={r.name} kind={tab} value={value} other={otherValue} />;
       })}
     </div>
   );
@@ -71,12 +72,13 @@ function rankLine(value: Amount): string {
 }
 
 // Same resource id = same unit, so values can be compared directly.
-function AmountRow({ name, value, other }: { name: string; value: Amount | null; other: Amount | null | undefined }) {
+function AmountRow({ name, kind, value, other }: { name: string; kind: Tab; value: Amount | null; other: Amount | null | undefined }) {
   const unit = value ?? other;
   const format = (v: number) => amount({ ...unit!, value: v });
   return (
     <FactRow
       label={name}
+      hint={unit ? resourceHint(name, kind, unit.unit) : undefined}
       value={value === null ? null : amount(value)}
       year={value?.year}
       source={value?.source}
