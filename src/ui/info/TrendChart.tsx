@@ -57,7 +57,7 @@ export function useTrend(label: string, input: TrendInput | undefined): { label:
   }
   return {
     label: (
-      <button className={open ? "trend-toggle open" : "trend-toggle"} onClick={() => setOpen(!open)} title={open ? "Hide trend" : "Show trend"}>
+      <button className={open ? "trend-toggle open" : "trend-toggle"} onClick={() => setOpen(!open)} aria-label={open ? "Hide trend" : "Show trend"}>
         {label}
         <TrendIcon />
       </button>

@@ -1,6 +1,7 @@
 // One labeled value. A null value shows "No data".
-// Year and source are not printed (too much clutter); they appear as a tooltip on the value.
-// The label explains the metric on hover/focus (`hint`, else METRIC_HINTS by label; see hints.ts).
+// Year and source are not printed (too much clutter). One tooltip per row, shown when hovering the row (or
+// focusing / tapping the label): what the metric means (`hint`, else METRIC_HINTS by label; see hints.ts),
+// then the year and source. No native title tooltips: they would open on top of it.
 // Comparison mode, see Compare.tsx:
 //   numbers (`compare` set)  two bars in the countries' colors, both values, and how much more/less B has
 //   text (`compareText` set) both texts, each with its country's flag
@@ -39,19 +40,25 @@ export function sourceTooltip(year: number | undefined, source: SourceId | undef
   return year === undefined ? SOURCES[source].name : `${year} · ${SOURCES[source].name}`;
 }
 
+// The explanation and the source line, as one tooltip text (a blank line between; CSS keeps line breaks).
+export function tooltipText(hint: string | undefined, year?: number, source?: SourceId): string | undefined {
+  const parts = [hint, sourceTooltip(year, source)].filter((p) => p !== undefined);
+  return parts.length === 0 ? undefined : parts.join("\n\n");
+}
+
 const NO_DATA = <span className="no-data">No data</span>;
 
 export function FactRow({ label, value, year, source, meta, compare, compareText, hint }: FactRowProps) {
-  const tooltip = sourceTooltip(year, source);
-  const labelElement = <Label label={label} hint={hint ?? (typeof label === "string" ? METRIC_HINTS[label] : undefined)} />;
+  const explanation = hint ?? (typeof label === "string" ? METRIC_HINTS[label] : undefined);
+  const labelElement = <Label label={label} hint={tooltipText(explanation, year, source)} />;
   if (compare !== undefined) {
-    return <ComparedNumber label={labelElement} value={value} tooltip={tooltip} compare={compare} />;
+    return <ComparedNumber label={labelElement} value={value} compare={compare} />;
   }
   if (compareText !== undefined) {
     return (
       <div className="fact compared-text">
         {labelElement}
-        <span className="fact-value" title={tooltip}>
+        <span className="fact-value">
           <span className="compared-line">
             <span className="flag flag-small flag-a" />
             {value === null ? NO_DATA : value}
@@ -67,7 +74,7 @@ export function FactRow({ label, value, year, source, meta, compare, compareText
   return (
     <div className="fact">
       {labelElement}
-      <span className="fact-value" title={tooltip}>
+      <span className="fact-value">
         <span className="fact-main">{value === null ? NO_DATA : value}</span>
         {value !== null && meta && <span className="fact-meta">{meta}</span>}
       </span>
@@ -78,12 +85,11 @@ export function FactRow({ label, value, year, source, meta, compare, compareText
 interface ComparedNumberProps {
   label: ReactNode;
   value: ReactNode | null;
-  tooltip: string | undefined;
   compare: Comparison;
 }
 
 // Label | A's bar and value / B's bar and value / how much more or less B has.
-function ComparedNumber({ label, value, tooltip, compare }: ComparedNumberProps) {
+function ComparedNumber({ label, value, compare }: ComparedNumberProps) {
   const win = winner(compare);
   const [widthA, widthB] = barWidths(compare);
   const diff = gap(compare);
@@ -94,7 +100,7 @@ function ComparedNumber({ label, value, tooltip, compare }: ComparedNumberProps)
         <span className={win === "b" ? "compare-bar a lose" : "compare-bar a"}>
           <span style={{ width: `${widthA}%` }} />
         </span>
-        <span className={win === "a" ? "compared-value win" : "compared-value"} title={tooltip}>
+        <span className={win === "a" ? "compared-value win" : "compared-value"}>
           {compare.a === null ? NO_DATA : value}
         </span>
         <span className={win === "a" ? "compare-bar b lose" : "compare-bar b"}>

@@ -5,7 +5,7 @@
 import { useState } from "react";
 import { budgetColor, budgetShare, OTHER_COLOR, OTHER_FUNCTIONS } from "../../data/budget";
 import { BUDGET_FUNCTIONS, type Budget, type BudgetFunctionId, type NumberFact } from "../../data/countryData";
-import { FactRow } from "./FactRow";
+import { FactRow, tooltipText } from "./FactRow";
 import { dollars, percent, roundDollars } from "./formatData";
 
 export function BudgetChart({ budget, other }: { budget: Budget | null; other: Budget | null | undefined }) {
@@ -105,7 +105,7 @@ function BudgetDonut({ budget }: { budget: Budget }) {
               onMouseLeave={() => setActive(null)}
             >
               <span className="budget-swatch" style={{ background: budgetColor(f.id) }} />
-              <span className="budget-label has-hint" tabIndex={0} data-hint={`${f.about}.`}>
+              <span className="budget-label has-hint" tabIndex={0} data-hint={tooltipText(`${f.about}.`, budget.year, budget.source)}>
                 {f.label}
               </span>
               <span className="budget-share">{percent(share)}</span>

@@ -335,9 +335,12 @@ button {
   outline: none;
 }
 
+/* One tooltip per row: hovering anywhere on the row opens its label's tooltip. */
 .has-hint:hover::after,
 .has-hint:focus-visible::after,
-.has-hint:focus::after {
+.has-hint:focus::after,
+.fact:hover .has-hint::after,
+.budget-rows li:hover .has-hint::after {
   content: attr(data-hint);
   position: absolute;
   z-index: 20;
@@ -355,7 +358,7 @@ button {
   line-height: 1.45;
   letter-spacing: normal;
   text-transform: none;
-  white-space: normal;
+  white-space: pre-line; /* the source line goes under the explanation */
   pointer-events: none;
 }
 

@@ -54,8 +54,10 @@ src/data/countryData.ts   THE CONTRACT: per-country JSON shape + source list. Im
 src/ui/info/              Right panel: InfoPanel (7 sections), useCountryData (fetch), FactRow, one file per section type,
                           formatData (number/unit formatting)
 src/ui/info/hints.ts      What each metric means: METRIC_HINTS by panel label (+ list-label aliases), cropHint,
-                          resourceHint, powerSourceHint. Panel labels show it on hover/focus (.has-hint CSS tooltip),
-                          list headers as their title, the map key title as .has-hint
+                          resourceHint, powerSourceHint. One tooltip per panel row (FactRow tooltipText: explanation, blank
+                          line, year · source) on the label's data-hint, opened by hovering the row or focusing/tapping
+                          the label (.has-hint CSS). No native title tooltips in the panel (they'd open on top).
+                          List headers use it as their title; the map key title and Power Level title as .has-hint
 src/ui/info/BudgetChart.tsx  Government budget in Economy: donut (7 functions + Other) with total in the middle, a row
                           per function (share, $); comparing = paired share rows. Colors/shares: src/data/budget.ts
 src/ui/useMobile.ts       Phone layout switch (max-width 700px, same as the @media block at the end of styles.css)

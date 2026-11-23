@@ -7,7 +7,22 @@ import { POWER_LEVEL_METHOD_URL } from "../../links";
 import { winner } from "./Compare";
 
 function tooltip(powerLevel: PowerLevel | null): string | undefined {
-  return powerLevel === null ? undefined : `Power Level v${powerLevel.version}: World Tracker's own index`;
+  return powerLevel === null
+    ? undefined
+    : `World Tracker's own index of national strength: six pillars (economy, resources, population, energy, food, stability), each scored 0–100 against all countries, weighted into one score.\n\nPower Level v${powerLevel.version}`;
+}
+
+function Title({ powerLevel }: { powerLevel: PowerLevel | null }) {
+  const hint = tooltip(powerLevel);
+  return hint === undefined ? (
+    <div className="power-card-title">Power Level</div>
+  ) : (
+    <div className="power-card-title">
+      <span className="has-hint" tabIndex={0} data-hint={hint}>
+        Power Level
+      </span>
+    </div>
+  );
 }
 
 interface PowerLevelCardProps {
@@ -28,10 +43,10 @@ export function PowerLevelCard({ powerLevel, other }: PowerLevelCardProps) {
     );
   }
   return (
-    <div className="power-card" title={tooltip(powerLevel)}>
+    <div className="power-card">
       <div className="power-card-head">
         <div>
-          <div className="power-card-title">Power Level</div>
+          <Title powerLevel={powerLevel} />
           <div className="power-score">{powerLevel.score.toFixed(1)}</div>
         </div>
         <div className="power-rank">
@@ -77,8 +92,8 @@ function ComparedCard({ a, b }: { a: PowerLevel | null; b: PowerLevel | null }) 
     return { pillar, a: ra, b: rb, win: winner({ a: ra, b: rb, format: String }) };
   });
   return (
-    <div className="power-card comparing" title={tooltip(a ?? b)}>
-      <div className="power-card-title">Power Level</div>
+    <div className="power-card comparing">
+      <Title powerLevel={a ?? b} />
       <div className="power-versus">
         <ScoreBlock side="a" powerLevel={a} wins={scoreWinner === "a"} />
         <ScoreBlock side="b" powerLevel={b} wins={scoreWinner === "b"} />

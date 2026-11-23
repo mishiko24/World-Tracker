@@ -304,8 +304,11 @@ check("header shows both flags", flagCheck.header === 2 && flagCheck.headerLoade
 check("comparison rows use B's flag", flagCheck.gov.endsWith("/flags/FRA.svg\")"), flagCheck.gov);
 const metaTexts = await page.$$eval("aside.panel-right .fact-meta", (els) => els.map((e) => e.textContent));
 check("meta lines carry no sources", metaTexts.every((t) => !/World Bank|IMF|UN|EIA|USGS|FAO|Ember/.test(t)), metaTexts.join(" | "));
-const tooltip = await page.$eval("aside.panel-right .compared-value", (el) => el.title);
-check("year and source available as tooltip", /20\d\d · /.test(tooltip), tooltip);
+// One tooltip per row: the explanation, then year and source (no native title on the value to overlap it).
+const tooltip = await page.$eval("aside.panel-right .compared-number .fact-label.has-hint", (el) => el.dataset.hint);
+check("year and source are in the row's tooltip", /\n\n20\d\d · /.test(tooltip), tooltip);
+const nativeTitles = await page.$$eval("aside.panel-right .fact [title]", (els) => els.length);
+check("no native title tooltips in panel rows", nativeTitles === 0, String(nativeTitles));
 
 await page.mouse.click(oceanX, oceanY, { button: "right" });
 await page.waitForTimeout(100);
