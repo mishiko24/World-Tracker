@@ -307,6 +307,14 @@ function countryPage(site: Site, d: CountryData): string {
     ["Central government debt", e.debt === null ? null : withYear(`${percent(e.debt.value, 0)} of GDP${e.debtUsd === null ? "" : ` (${dollars(e.debtUsd.value)})`}`, e.debt)],
   ])}</section>`);
 
+  const m = d.military;
+  sections.push(`<section><h2>Military</h2>${table([
+    ["Military spending", m.spendingUsd === null ? null : withYear(dollars(m.spendingUsd.value), m.spendingUsd)],
+    ["Spending per person", num(m.spendingPerPerson, (v) => `$${fullNumber(v)}`)],
+    ["Spending, % of GDP", num(m.spending, (v) => percent(v))],
+    ["Active personnel", m.personnel === null ? null : withYear(m.personnel.low === m.personnel.high ? fullNumber(m.personnel.value) : `${fullNumber(m.personnel.low)}–${fullNumber(m.personnel.high)}`, m.personnel)],
+  ])}${m.personnel === null ? "" : `<p class="note">${escape(m.personnel.note)}. CIA World Factbook estimates.</p>`}</section>`);
+
   const resources = d.resources.filter((r) => r.production !== null || r.reserves !== null);
   if (resources.length > 0) {
     const cell = (a: (typeof resources)[number]["production"]) =>
@@ -404,6 +412,15 @@ const METRIC_GROUPS: { title: string; metrics: Metric[] }[] = [
     ],
   },
   {
+    title: "Military",
+    metrics: [
+      { label: "Military spending", get: (d) => d.military.spendingUsd?.value ?? null, format: dollars },
+      { label: "Spending per person", get: (d) => d.military.spendingPerPerson?.value ?? null, format: (v) => `$${fullNumber(v)}` },
+      { label: "Spending (% of GDP)", get: (d) => d.military.spending?.value ?? null, format: (v) => percent(v), better: "none", mode: "points" },
+      { label: "Active personnel", get: (d) => d.military.personnel?.value ?? null, format: fullNumber },
+    ],
+  },
+  {
     title: "Government and energy",
     metrics: [
       { label: "Political stability", get: (d) => d.government.politicalStability?.value ?? null, format: (v) => `${v.toFixed(0)} / 100`, mode: "score" },
@@ -460,12 +477,12 @@ function comparePage(site: Site, a: CountryData, b: CountryData, path: string, i
     path,
     title,
     previewTitle: `${a.name} vs ${b.name}`,
-    description: `${a.name} vs ${b.name} side by side: Power Level, population, GDP, growth, inflation, debt, stability and electricity.${verdict}`,
+    description: `${a.name} vs ${b.name} side by side: Power Level, population, GDP, growth, inflation, debt, military, stability and electricity.${verdict}`,
     image,
     builtAt: site.meta.builtAt,
     body:
       `<h1>${flag(root, a.id)}${escape(a.name)} vs ${flag(root, b.id)}${escape(b.name)}</h1>` +
-      `<p class="lead">${escape(`${a.name} and ${b.name} compared on population, economy, government, energy and World Tracker’s Power Level.${verdict}`)}</p>` +
+      `<p class="lead">${escape(`${a.name} and ${b.name} compared on population, economy, military, government, energy and World Tracker’s Power Level.${verdict}`)}</p>` +
       `<a class="cta" href="${root}?c=${a.id}&amp;vs=${b.id}">Open this comparison on the interactive map</a>` +
       hero +
       key +

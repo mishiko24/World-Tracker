@@ -11,7 +11,7 @@ import { Collapsible } from "../Collapsible";
 import { AgricultureSection } from "./AgricultureSection";
 import { Flag } from "../Flag";
 import { compareVariables, type CompareColors } from "./Compare";
-import { EconomySection, GovernmentSection, PopulationSection } from "./BasicSections";
+import { EconomySection, GovernmentSection, MilitarySection, PopulationSection } from "./BasicSections";
 import { PowerLevelCard } from "./PowerLevelCard";
 import { PowerSection } from "./PowerSection";
 import { ResourcesSection } from "./ResourcesSection";
@@ -126,6 +126,9 @@ export function InfoPanel(props: InfoPanelProps) {
         </Collapsible>
         <Collapsible title="Economy">
           {loaded(state, (d) => <EconomySection economy={d.economy} trends={d.trends} other={other} />)}
+        </Collapsible>
+        <Collapsible title="Military">
+          {loaded(state, (d) => <MilitarySection military={d.military} trends={d.trends} other={other} />)}
         </Collapsible>
         <Collapsible title="Resources">
           {loaded(state, (d) => <ResourcesSection resources={d.resources} other={other} />)}

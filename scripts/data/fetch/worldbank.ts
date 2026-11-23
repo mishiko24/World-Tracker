@@ -33,7 +33,7 @@ const GDP_HISTORY_YEARS = 15; // debt is often years older than GDP; dollars = d
 
 // History for the trend charts: these indicators, every year from TRENDS_FROM_YEAR.
 const TRENDS_FROM_YEAR = 2000;
-const TREND_FIELDS: TrendKey[] = [
+const TREND_FIELDS: (TrendKey & WorldBankField)[] = [
   "population",
   "lifeExpectancy",
   "fertility",

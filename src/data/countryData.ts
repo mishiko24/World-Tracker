@@ -125,6 +125,25 @@ export interface Economy {
   debtUsd: NumberFact | null; // the same debt in current US dollars (debt % × GDP of the debt's year)
 }
 
+// CIA World Factbook estimates (final edition, 2025). Spending older than the Factbook's newest years is left out
+// (Ukraine's last figure is from before the 2022 invasion).
+export interface Military {
+  spending: NumberFact | null; // percent of GDP
+  spendingUsd: NumberFact | null; // spending % × World Bank GDP of the same year
+  spendingPerPerson: NumberFact | null; // spendingUsd / population, US dollars
+  personnel: Personnel | null;
+  personnelPer1000: NumberFact | null; // active personnel per 1,000 people
+}
+
+export interface Personnel {
+  value: number; // middle of the range, for ranking and comparing
+  low: number;
+  high: number; // = low when the Factbook gives one number
+  year: number;
+  source: SourceId;
+  note: string; // the Factbook's sentence ("estimated 1.1-1.2 million active Armed Forces; ...")
+}
+
 // Units are canonical so the UI can format them: production per year (oil per day, as quoted worldwide).
 export type AmountUnit = "bbl/day" | "bbl" | "m³" | "m³/year" | "t" | "t/year" | "kg" | "kg/year" | "carats" | "carats/year";
 
@@ -253,13 +272,14 @@ export interface CountryData {
   government: Government;
   population: Population;
   economy: Economy;
+  military: Military;
   resources: Resource[]; // same list feeds both the Production and Reserves tabs
   agriculture: Agriculture | null;
   power: Power;
   trends: Trends; // yearly history of some numbers, for the trend charts
 }
 
-// Yearly values since TRENDS_FROM_YEAR (World Bank), oldest first. A missing key = no history for that number.
+// Yearly values since TRENDS_FROM_YEAR (World Bank; military spending: Factbook), oldest first. A missing key = no history for that number.
 export type TrendKey =
   | "population"
   | "lifeExpectancy"
@@ -269,7 +289,8 @@ export type TrendKey =
   | "gdpPerCapitaPpp"
   | "growth"
   | "inflation"
-  | "electricityAccess";
+  | "electricityAccess"
+  | "militarySpending"; // % of GDP, Factbook (from 2017 at most)
 export type TrendPoint = [year: number, value: number];
 export type Trends = Partial<Record<TrendKey, TrendPoint[]>>;
 
@@ -293,6 +314,11 @@ export interface CountrySummary {
   debtUsd: number | null;
   debtPercent: number | null;
   politicalStability: number | null; // 0-100
+  militarySpending: number | null; // % of GDP
+  militarySpendingUsd: number | null;
+  militaryPerPerson: number | null; // spending per person, US dollars
+  militaryPersonnel: number | null; // active, middle of the Factbook's range
+  militaryPerThousand: number | null; // active personnel per 1,000 people
   electricityTwh: number | null; // electricity generated per year
   electricityAccess: number | null; // % of population
   pillars: Record<PillarId, number | null> | null; // Power Level pillar scores; null = no Power Level

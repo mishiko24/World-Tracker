@@ -169,6 +169,18 @@ export function columnGroups(resources: ResourceInfo[]): ColumnGroup[] {
       ],
     },
     {
+      id: "military",
+      sources: "CIA World Factbook (final edition), World Bank",
+      label: "Military",
+      columns: [
+        field("militarySpendingUsd", "Military spending", dollars),
+        field("militaryPerPerson", "Spending per person", (v) => `$${fullNumber(v)}`, undefined, "Military spending per person"),
+        field("militarySpending", "Military spending (% GDP)", (v) => percent(v)),
+        field("militaryPersonnel", "Active personnel", fullNumber, undefined, "Active military personnel"),
+        field("militaryPerThousand", "Personnel per 1,000", (v) => v.toFixed(1), undefined, "Military personnel per 1,000 people"),
+      ],
+    },
+    {
       id: "production",
       sources: "USGS, EIA",
       label: "Resources: production",

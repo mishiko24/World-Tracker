@@ -1,7 +1,7 @@
-// Government, Population and Economy: plain lists of facts.
+// Government, Population, Economy and Military: plain lists of facts.
 // `other` is the compared country's data (comparison mode) or null. Rows with history get a trend chart (TrendChart.tsx).
 
-import type { CountryData, Economy, Government, NumberFact, Population, Trends } from "../../data/countryData";
+import type { CountryData, Economy, Government, Military, NumberFact, Population, Trends } from "../../data/countryData";
 import type { Better, DiffMode } from "./Compare";
 import { FactRow } from "./FactRow";
 import { dollars, percent, shortNumber } from "./formatData";
@@ -211,6 +211,51 @@ export function EconomySection({ economy, trends, other }: SectionProps & { econ
         format={wholePercent}
         mode="points"
         better="lower"
+      />
+    </>
+  );
+}
+
+// Factbook personnel can be a range ("1.1-1.2 million"): shown as the range, compared by its middle.
+function personnelText(p: Military["personnel"]): string | null {
+  if (p === null) {
+    return null;
+  }
+  return p.low === p.high ? shortNumber(p.value) : `${shortNumber(p.low)}–${shortNumber(p.high)}`;
+}
+
+// More spending and more troops count as "stronger" (teal), like the rest of the panel; shares of GDP and of
+// the population have no better.
+export function MilitarySection({ military, trends, other }: SectionProps & { military: Military }) {
+  const b = other?.military;
+  const personnel = military.personnel;
+  return (
+    <>
+      <NumberRow label="Military spending" fact={military.spendingUsd} other={b?.spendingUsd} format={dollars} />
+      <NumberRow label="Per person" fact={military.spendingPerPerson} other={b?.spendingPerPerson} format={dollars} />
+      <NumberRow
+        label="Share of GDP"
+        fact={military.spending}
+        other={b?.spending}
+        format={(v) => percent(v)}
+        mode="points"
+        better="none"
+        trend={trendOf("militarySpending", trends, other, (v) => percent(v))}
+      />
+      <FactRow
+        label="Active personnel"
+        value={other === null ? personnelText(personnel) : personnel === null ? null : shortNumber(personnel.value)}
+        year={personnel?.year}
+        source={personnel?.source}
+        compare={other === null ? undefined : { a: personnel?.value ?? null, b: b?.personnel?.value ?? null, format: shortNumber }}
+      />
+      {other === null && personnel !== null && <p className="fact-note">{personnel.note}</p>}
+      <NumberRow
+        label="Per 1,000 people"
+        fact={military.personnelPer1000}
+        other={b?.personnelPer1000}
+        format={(v) => v.toFixed(1)}
+        better="none"
       />
     </>
   );

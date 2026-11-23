@@ -63,7 +63,7 @@ src/map/colorBy.ts        "Color countries by" any list number (settings.colorBy
                           top 10, Share map), MapTooltip.tsx (hovered country's value), MapShareDialog.tsx + mapCard.ts
 src/share/comparisonCard.ts  Comparison share image: the "fight poster" (DESIGN.md §6), for any section:
 src/share/comparisonSections.ts  What each comparison card shows (Power Level, Government, Population, Economy,
-                          Resources, Agriculture, Power generation): headline number + up to 6 rows; resources and
+                          Military, Resources, Agriculture, Power generation): headline number + up to 6 rows; resources and
                           crops pick well-known items first (KEY_RESOURCES, STAPLES)
 src/theme.css             The look (DESIGN.md §0): fonts, gradient, glass, A/B/teal colors. Imported by every page;
                           scripts/site/pages.ts prepends it to dist/site.css for the static pages
@@ -170,6 +170,7 @@ the logs (`gh api repos/mishiko24/World-Tracker/actions/jobs/<id>/logs`), then p
 | Population | total, density, fertility, life expectancy, age structure | World Bank (worldbank) | `mrnev=1` = latest non-empty per country. UN WPP fallback (Taiwan etc.) |
 | | median age | UN WPP via OWID grapher (unwpp) | Estimates only, no projections |
 | Economy | GDP (+rank), per capita, PPP, growth, inflation, central gov. debt | World Bank (worldbank) | Was IMF until Nov 2026: IMF terms forbid systematic download / commercial reuse without permission. WB = CC BY 4.0. No Taiwan. Debt is central gov (fewer countries, lags); debt $ = % × GDP of the debt's year (gdpByYear) |
+| Military | spending % of GDP (+ history 2017–2025), $ (= % × World Bank GDP of the newest year with both), $ per person; active personnel (+ per 1,000 people) | Factbook final edition (factbook) | Public domain. Spending older than newest Factbook year − 3 is dropped (Ukraine: last 2021). Personnel parsed from prose by parsePersonnel(): first number or range ("10-15,000" = 10,000–15,000), compared by the range's middle; the sentence is shown under the value. "prior to ..." (Sudan, Gaza) = no number. No equipment counts (prose only). SIPRI needs a paid commercial licence |
 | Resources | oil/gas/coal production, coal reserves | EIA API (eia), key in secret EIA_API_KEY | EIA dropped oil/gas reserves from its API |
 | | oil/gas reserves | EIA via OWID grapher CSVs (reserves) | Ends 2021. EI stopped 2020; OPEC has newer but blocks bots (403) |
 | | minerals production + reserves | USGS MCS data release (usgs) | Update SCIENCEBASE_ITEM each new edition (Jan/Feb). One variant per mineral |
@@ -212,7 +213,7 @@ SECURITY: never write URLs containing the EIA key to files or logs. A leak happe
 - **List view:** toggle in the left panel. The map stays mounted but hidden (camera survives). Sorting: first click
   highest first (name and text A→Z), second click reverses, missing values always last. Row click = select (opens info panel).
   Columns are grouped like the info panel's sections (Power Level + pillars, Government incl. text columns, Population
-  incl. age groups, Economy, Resources: production, Resources: reserves, Agriculture = 15 staples (STAPLES in
+  incl. age groups, Economy, Military, Resources: production, Resources: reserves, Agriculture = 15 staples (STAPLES in
   countryData.ts), Power generation by source). A group header collapses it to a narrow "+" strip; collapsed groups
   are saved in settings.listCollapsed (resources start collapsed: dozens of columns). Resource columns come from
   meta.json `resources` (resources with 3+ countries, energy first then A-Z, unit per resource). Cells carry

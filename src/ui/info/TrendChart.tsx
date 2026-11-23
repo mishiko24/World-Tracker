@@ -29,6 +29,7 @@ const CHANGE_MODE: Partial<Record<TrendKey, TrendInput["change"]>> = {
   growth: "points",
   inflation: "points",
   electricityAccess: "points",
+  militarySpending: "points",
   lifeExpectancy: "years",
 };
 
@@ -56,7 +57,7 @@ export function useTrend(label: string, input: TrendInput | undefined): { label:
   }
   return {
     label: (
-      <button className={open ? "trend-toggle open" : "trend-toggle"} onClick={() => setOpen(!open)} title={open ? "Hide trend" : "Show trend since 2000"}>
+      <button className={open ? "trend-toggle open" : "trend-toggle"} onClick={() => setOpen(!open)} title={open ? "Hide trend" : "Show trend"}>
         {label}
         <TrendIcon />
       </button>

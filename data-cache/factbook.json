@@ -1,716 +1,5572 @@
 {
- "fetchedAt": "2026-11-19T14:39:02.957Z",
+ "fetchedAt": "2026-11-23T16:02:29.599Z",
  "byCountry": {
   "ZWE": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1
+    ],
+    [
+     2021,
+     1.4
+    ],
+    [
+     2022,
+     0.9
+    ],
+    [
+     2023,
+     0.3
+    ],
+    [
+     2024,
+     0.4
+    ]
+   ],
+   "personnel": {
+    "low": 30000,
+    "high": 30000,
+    "year": 2025,
+    "text": "approximately 30,000 active Zimbabwe Defense Forces"
+   }
   },
   "ZMB": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.2
+    ],
+    [
+     2021,
+     1.1
+    ],
+    [
+     2022,
+     1.1
+    ],
+    [
+     2023,
+     1.3
+    ],
+    [
+     2024,
+     1.3
+    ]
+   ],
+   "personnel": {
+    "low": 16000,
+    "high": 16000,
+    "year": 2025,
+    "text": "approximately 16,000 active Defense Forces"
+   }
   },
   "YEM": {
-   "governmentType": "in transition"
+   "governmentType": "in transition",
+   "militarySpending": [],
+   "personnel": null
   },
   "VNM": {
-   "governmentType": "communist party-led state"
+   "governmentType": "communist party-led state",
+   "militarySpending": [
+    [
+     2019,
+     2.3
+    ],
+    [
+     2020,
+     2.4
+    ],
+    [
+     2021,
+     2.3
+    ],
+    [
+     2022,
+     2.3
+    ],
+    [
+     2023,
+     1.8
+    ]
+   ],
+   "personnel": {
+    "low": 450000,
+    "high": 450000,
+    "year": 2025,
+    "text": "approximately 450,000 active-duty People's Army of Vietnam"
+   }
   },
   "VEN": {
-   "governmentType": "federal presidential republic"
+   "governmentType": "federal presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.6
+    ],
+    [
+     2021,
+     0.3
+    ],
+    [
+     2022,
+     0.6
+    ],
+    [
+     2023,
+     0.5
+    ],
+    [
+     2024,
+     0.6
+    ]
+   ],
+   "personnel": {
+    "low": 125000,
+    "high": 150000,
+    "year": 2025,
+    "text": "information varies; approximately 125-150,000 active Armed Forces; estimated 200,000 Bolivarian Militia"
+   }
   },
   "VAT": {
-   "governmentType": "ecclesiastical elective monarchy; self-described as an \"absolute monarchy\""
+   "governmentType": "ecclesiastical elective monarchy; self-described as an \"absolute monarchy\"",
+   "militarySpending": [],
+   "personnel": null
   },
   "VUT": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [],
+   "personnel": null
   },
   "UZB": {
-   "governmentType": "presidential republic; highly authoritarian"
+   "governmentType": "presidential republic; highly authoritarian",
+   "militarySpending": [
+    [
+     2015,
+     2.5
+    ],
+    [
+     2016,
+     2.5
+    ],
+    [
+     2017,
+     2.7
+    ],
+    [
+     2018,
+     2.9
+    ],
+    [
+     2019,
+     2.8
+    ]
+   ],
+   "personnel": {
+    "low": 50000,
+    "high": 50000,
+    "year": 2025,
+    "text": "limited available information; estimated 50,000 active Armed Forces"
+   }
   },
   "URY": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     2
+    ],
+    [
+     2021,
+     2.3
+    ],
+    [
+     2022,
+     2
+    ],
+    [
+     2023,
+     2
+    ],
+    [
+     2024,
+     2.1
+    ]
+   ],
+   "personnel": {
+    "low": 23000,
+    "high": 23000,
+    "year": 2025,
+    "text": "approximately 23,000 active-duty Armed Forces (15,000 Army; 5,000 Navy; 3,000 Air Force)"
+   }
   },
   "FSM": {
-   "governmentType": "federal republic in free association with the US"
+   "governmentType": "federal republic in free association with the US",
+   "militarySpending": [],
+   "personnel": null
   },
   "MHL": {
-   "governmentType": "mixed presidential-parliamentary system in free association with the US"
+   "governmentType": "mixed presidential-parliamentary system in free association with the US",
+   "militarySpending": [],
+   "personnel": null
   },
   "MNP": {
-   "governmentType": "a commonwealth in political union with and under the sovereignty of the US; republican form of government with separate executive, legislative, and judicial branches"
+   "governmentType": "a commonwealth in political union with and under the sovereignty of the US; republican form of government with separate executive, legislative, and judicial branches",
+   "militarySpending": [],
+   "personnel": null
   },
   "VIR": {
-   "governmentType": "unincorporated organized territory of the US with local self-government; republican form of territorial government with separate executive, legislative, and judicial branches"
+   "governmentType": "unincorporated organized territory of the US with local self-government; republican form of territorial government with separate executive, legislative, and judicial branches",
+   "militarySpending": [],
+   "personnel": null
   },
   "GUM": {
-   "governmentType": "unincorporated organized territory of the US with local self-government; republican form of territorial government with separate executive, legislative, and judicial branches"
+   "governmentType": "unincorporated organized territory of the US with local self-government; republican form of territorial government with separate executive, legislative, and judicial branches",
+   "militarySpending": [],
+   "personnel": null
   },
   "ASM": {
-   "governmentType": "unincorporated, unorganized Territory of the US with local self-government; republican form of territorial government with separate executive, legislative, and judicial branches"
+   "governmentType": "unincorporated, unorganized Territory of the US with local self-government; republican form of territorial government with separate executive, legislative, and judicial branches",
+   "militarySpending": [],
+   "personnel": null
   },
   "PRI": {
-   "governmentType": "unincorporated organized territory of the US with local self-government; republican form of territorial government with separate executive, legislative, and judicial branches; note - reference Puerto Rican Federal Relations Act, 2 March 1917, as amended by Public Law 600, 3 July 1950"
+   "governmentType": "unincorporated organized territory of the US with local self-government; republican form of territorial government with separate executive, legislative, and judicial branches; note - reference Puerto Rican Federal Relations Act, 2 March 1917, as amended by Public Law 600, 3 July 1950",
+   "militarySpending": [],
+   "personnel": null
   },
   "USA": {
-   "governmentType": "constitutional federal republic"
+   "governmentType": "constitutional federal republic",
+   "militarySpending": [
+    [
+     2021,
+     3.5
+    ],
+    [
+     2022,
+     3.2
+    ],
+    [
+     2023,
+     3.1
+    ],
+    [
+     2024,
+     3.2
+    ],
+    [
+     2025,
+     3.2
+    ]
+   ],
+   "personnel": {
+    "low": 1280000,
+    "high": 1280000,
+    "year": 2025,
+    "text": "approximately 1.28 million active duty Armed Forces (450,000 Army; 334,000 Navy; 317,000 Air Force; 10,000 Space Force; 168,000 Marine Corps); 42,000 Coast Guard)"
+   }
   },
   "SGS": {
-   "governmentType": null
+   "governmentType": null,
+   "militarySpending": [],
+   "personnel": null
   },
   "IOT": {
-   "governmentType": null
+   "governmentType": null,
+   "militarySpending": [],
+   "personnel": null
   },
   "SHN": {
-   "governmentType": "parliamentary democracy"
+   "governmentType": "parliamentary democracy",
+   "militarySpending": [],
+   "personnel": null
   },
   "PCN": {
-   "governmentType": "parliamentary democracy"
+   "governmentType": "parliamentary democracy",
+   "militarySpending": [],
+   "personnel": null
   },
   "AIA": {
-   "governmentType": "parliamentary democracy (House of Assembly); self-governing overseas territory of the UK"
+   "governmentType": "parliamentary democracy (House of Assembly); self-governing overseas territory of the UK",
+   "militarySpending": [],
+   "personnel": null
   },
   "FLK": {
-   "governmentType": "parliamentary democracy (Legislative Assembly); self-governing overseas territory of the UK"
+   "governmentType": "parliamentary democracy (Legislative Assembly); self-governing overseas territory of the UK",
+   "militarySpending": [],
+   "personnel": null
   },
   "CYM": {
-   "governmentType": "parliamentary democracy; self-governing overseas territory of the UK"
+   "governmentType": "parliamentary democracy; self-governing overseas territory of the UK",
+   "militarySpending": [],
+   "personnel": null
   },
   "BMU": {
-   "governmentType": "Overseas Territory of the UK with limited self-government; parliamentary democracy"
+   "governmentType": "Overseas Territory of the UK with limited self-government; parliamentary democracy",
+   "militarySpending": [],
+   "personnel": {
+    "low": 350,
+    "high": 350,
+    "year": 2025,
+    "text": "the Royal Bermuda Regiment has about 350 troops"
+   }
   },
   "VGB": {
-   "governmentType": "Overseas Territory of the UK with limited self-government; parliamentary democracy"
+   "governmentType": "Overseas Territory of the UK with limited self-government; parliamentary democracy",
+   "militarySpending": [],
+   "personnel": null
   },
   "TCA": {
-   "governmentType": "parliamentary democracy"
+   "governmentType": "parliamentary democracy",
+   "militarySpending": [],
+   "personnel": null
   },
   "MSR": {
-   "governmentType": "parliamentary democracy; self-governing overseas territory of the UK"
+   "governmentType": "parliamentary democracy; self-governing overseas territory of the UK",
+   "militarySpending": [],
+   "personnel": null
   },
   "JEY": {
-   "governmentType": "parliamentary democracy (Assembly of the States of Jersey)"
+   "governmentType": "parliamentary democracy (Assembly of the States of Jersey)",
+   "militarySpending": [],
+   "personnel": null
   },
   "GGY": {
-   "governmentType": "parliamentary democracy (States of Deliberation)"
+   "governmentType": "parliamentary democracy (States of Deliberation)",
+   "militarySpending": [],
+   "personnel": null
   },
   "IMN": {
-   "governmentType": "parliamentary democracy (Tynwald)"
+   "governmentType": "parliamentary democracy (Tynwald)",
+   "militarySpending": [],
+   "personnel": null
   },
   "GBR": {
-   "governmentType": "parliamentary constitutional monarchy; a Commonwealth realm"
+   "governmentType": "parliamentary constitutional monarchy; a Commonwealth realm",
+   "militarySpending": [
+    [
+     2021,
+     2.3
+    ],
+    [
+     2022,
+     2.3
+    ],
+    [
+     2023,
+     2.3
+    ],
+    [
+     2024,
+     2.3
+    ],
+    [
+     2025,
+     2.4
+    ]
+   ],
+   "personnel": {
+    "low": 138000,
+    "high": 138000,
+    "year": 2025,
+    "text": "approximately 138,000 Regular Forces (75,000 Army including the Gurkhas; 32,000 Navy including the Royal Marines; 31,000 Air Force)"
+   }
   },
   "ARE": {
-   "governmentType": "federation of monarchies"
+   "governmentType": "federation of monarchies",
+   "militarySpending": [
+    [
+     2020,
+     6.1
+    ],
+    [
+     2021,
+     4.5
+    ],
+    [
+     2022,
+     4
+    ],
+    [
+     2023,
+     4.3
+    ],
+    [
+     2024,
+     4
+    ]
+   ],
+   "personnel": {
+    "low": 65000,
+    "high": 65000,
+    "year": 2025,
+    "text": "approximately 65,000 active Armed Forces (45,000 Land Forces; 3,000 Navy; 5,000 Air Force; 12,000 Presidential Guard)"
+   }
   },
   "UKR": {
-   "governmentType": "semi-presidential republic"
+   "governmentType": "semi-presidential republic",
+   "militarySpending": [
+    [
+     2017,
+     3.1
+    ],
+    [
+     2018,
+     3.1
+    ],
+    [
+     2019,
+     3.4
+    ],
+    [
+     2020,
+     4.4
+    ],
+    [
+     2021,
+     4
+    ]
+   ],
+   "personnel": {
+    "low": 850000,
+    "high": 1000000,
+    "year": 2025,
+    "text": "estimated 850,000-1 million active Defense Forces"
+   }
   },
   "UGA": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2019,
+     1.7
+    ],
+    [
+     2020,
+     2.5
+    ],
+    [
+     2021,
+     2.5
+    ],
+    [
+     2022,
+     2.2
+    ],
+    [
+     2023,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 45000,
+    "high": 45000,
+    "year": 2025,
+    "text": "approximately 45,000 active Defense Forces"
+   }
   },
   "TKM": {
-   "governmentType": "presidential republic; authoritarian"
+   "governmentType": "presidential republic; authoritarian",
+   "militarySpending": [
+    [
+     2015,
+     1.5
+    ],
+    [
+     2016,
+     1.8
+    ],
+    [
+     2017,
+     1.8
+    ],
+    [
+     2018,
+     1.8
+    ],
+    [
+     2019,
+     1.9
+    ]
+   ],
+   "personnel": {
+    "low": 35000,
+    "high": 35000,
+    "year": 2025,
+    "text": "estimated 35,000 active Armed Forces"
+   }
   },
   "TUR": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2021,
+     1.6
+    ],
+    [
+     2022,
+     1.4
+    ],
+    [
+     2023,
+     1.5
+    ],
+    [
+     2024,
+     2.1
+    ],
+    [
+     2025,
+     2.3
+    ]
+   ],
+   "personnel": {
+    "low": 495000,
+    "high": 495000,
+    "year": 2025,
+    "text": "approximately 495,000 active military personnel; approximately 150,000 Gendarmerie"
+   }
   },
   "TUN": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     3
+    ],
+    [
+     2021,
+     3
+    ],
+    [
+     2022,
+     2.7
+    ],
+    [
+     2023,
+     2.5
+    ],
+    [
+     2024,
+     2.5
+    ]
+   ],
+   "personnel": {
+    "low": 35000,
+    "high": 35000,
+    "year": 2025,
+    "text": "approximately 35,000 active-duty Armed Forces"
+   }
   },
   "TTO": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     1
+    ],
+    [
+     2021,
+     1
+    ],
+    [
+     2022,
+     1
+    ],
+    [
+     2023,
+     1
+    ],
+    [
+     2024,
+     0.9
+    ]
+   ],
+   "personnel": {
+    "low": 5000,
+    "high": 5000,
+    "year": 2025,
+    "text": "approximately 5,000 Defense Forces"
+   }
   },
   "TON": {
-   "governmentType": "constitutional monarchy"
+   "governmentType": "constitutional monarchy",
+   "militarySpending": [
+    [
+     2020,
+     2.1
+    ],
+    [
+     2021,
+     1.5
+    ],
+    [
+     2022,
+     1.6
+    ],
+    [
+     2023,
+     1.6
+    ],
+    [
+     2024,
+     1.8
+    ]
+   ],
+   "personnel": {
+    "low": 600,
+    "high": 600,
+    "year": 2025,
+    "text": "approximately 600 active Armed Forces"
+   }
   },
   "TGO": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     2.8
+    ],
+    [
+     2021,
+     2.8
+    ],
+    [
+     2022,
+     4
+    ],
+    [
+     2023,
+     3
+    ],
+    [
+     2024,
+     2.2
+    ]
+   ],
+   "personnel": {
+    "low": 20000,
+    "high": 20000,
+    "year": 2025,
+    "text": "estimated 20,000 active Armed Forces, including Gendarmerie"
+   }
   },
   "TLS": {
-   "governmentType": "semi-presidential republic"
+   "governmentType": "semi-presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.8
+    ],
+    [
+     2021,
+     1.2
+    ],
+    [
+     2022,
+     1.4
+    ],
+    [
+     2023,
+     2.5
+    ],
+    [
+     2024,
+     2.5
+    ]
+   ],
+   "personnel": {
+    "low": 2000,
+    "high": 2000,
+    "year": 2025,
+    "text": "approximately 2,000 Defense Forces"
+   }
   },
   "THA": {
-   "governmentType": "constitutional monarchy"
+   "governmentType": "constitutional monarchy",
+   "militarySpending": [
+    [
+     2020,
+     1.4
+    ],
+    [
+     2021,
+     1.3
+    ],
+    [
+     2022,
+     1.3
+    ],
+    [
+     2023,
+     1.3
+    ],
+    [
+     2024,
+     1.1
+    ]
+   ],
+   "personnel": {
+    "low": 350000,
+    "high": 350000,
+    "year": 2025,
+    "text": "estimated 350,000 active-duty Armed Forces (250,000 Army; 70,000 Navy; 30,000 Air Force)"
+   }
   },
   "TZA": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.2
+    ],
+    [
+     2021,
+     1.1
+    ],
+    [
+     2022,
+     1.2
+    ],
+    [
+     2023,
+     1.2
+    ],
+    [
+     2024,
+     1.3
+    ]
+   ],
+   "personnel": {
+    "low": 25000,
+    "high": 25000,
+    "year": 2025,
+    "text": "approximately 25,000 active Defense Forces"
+   }
   },
   "TJK": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.1
+    ],
+    [
+     2021,
+     1.2
+    ],
+    [
+     2022,
+     1.9
+    ],
+    [
+     2023,
+     2
+    ],
+    [
+     2024,
+     1.8
+    ]
+   ],
+   "personnel": {
+    "low": 10000,
+    "high": 10000,
+    "year": 2025,
+    "text": "estimated 10,000 active Armed Forces; estimated 5-10,000 active paramilitary National Guard, Border Service, and Internal Troops personnel"
+   }
   },
   "TWN": {
-   "governmentType": "semi-presidential republic"
+   "governmentType": "semi-presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     2.1
+    ],
+    [
+     2021,
+     2.1
+    ],
+    [
+     2022,
+     2.1
+    ],
+    [
+     2023,
+     2.5
+    ],
+    [
+     2024,
+     2.4
+    ]
+   ],
+   "personnel": {
+    "low": 170000,
+    "high": 170000,
+    "year": 2025,
+    "text": "approximately 170,000 active duty Armed Forces"
+   }
   },
   "SYR": {
-   "governmentType": "transitional presidential republic"
+   "governmentType": "transitional presidential republic",
+   "militarySpending": [
+    [
+     2015,
+     7.2
+    ],
+    [
+     2016,
+     6.9
+    ],
+    [
+     2017,
+     6.8
+    ],
+    [
+     2018,
+     6.7
+    ],
+    [
+     2019,
+     6.5
+    ]
+   ],
+   "personnel": null
   },
   "CHE": {
-   "governmentType": "federal republic (formally a confederation)"
+   "governmentType": "federal republic (formally a confederation)",
+   "militarySpending": [
+    [
+     2020,
+     0.7
+    ],
+    [
+     2021,
+     0.7
+    ],
+    [
+     2022,
+     0.7
+    ],
+    [
+     2023,
+     0.7
+    ],
+    [
+     2024,
+     0.7
+    ]
+   ],
+   "personnel": {
+    "low": 145000,
+    "high": 145000,
+    "year": 2024,
+    "text": "approximately 145,000 Swiss Armed Forces"
+   }
   },
   "SWE": {
-   "governmentType": "parliamentary constitutional monarchy"
+   "governmentType": "parliamentary constitutional monarchy",
+   "militarySpending": [
+    [
+     2021,
+     1.4
+    ],
+    [
+     2022,
+     1.5
+    ],
+    [
+     2023,
+     1.7
+    ],
+    [
+     2024,
+     2.3
+    ],
+    [
+     2025,
+     2.5
+    ]
+   ],
+   "personnel": {
+    "low": 25000,
+    "high": 25000,
+    "year": 2025,
+    "text": "approximately 25,000 active military personnel; approximately 21,000 Home Guard"
+   }
   },
   "SWZ": {
-   "governmentType": "absolute monarchy"
+   "governmentType": "absolute monarchy",
+   "militarySpending": [
+    [
+     2020,
+     1.8
+    ],
+    [
+     2021,
+     1.7
+    ],
+    [
+     2022,
+     1.6
+    ],
+    [
+     2023,
+     1.4
+    ],
+    [
+     2024,
+     1.4
+    ]
+   ],
+   "personnel": {
+    "low": 3000,
+    "high": 3000,
+    "year": 2025,
+    "text": "estimated 3,000 active-duty Defense Force"
+   }
   },
   "SUR": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2015,
+     1.4
+    ],
+    [
+     2016,
+     1.2
+    ],
+    [
+     2017,
+     1.1
+    ],
+    [
+     2018,
+     1.1
+    ],
+    [
+     2019,
+     1.2
+    ]
+   ],
+   "personnel": {
+    "low": 2000,
+    "high": 2000,
+    "year": 2025,
+    "text": "approximately 2,000 National Army"
+   }
   },
   "SDS": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     2
+    ],
+    [
+     2021,
+     2
+    ],
+    [
+     2022,
+     2
+    ],
+    [
+     2023,
+     2
+    ],
+    [
+     2024,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 150000,
+    "high": 200000,
+    "year": 2025,
+    "text": "information varies; estimated 150-200,000 active Defense Forces"
+   }
   },
   "SDN": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2017,
+     3.6
+    ],
+    [
+     2018,
+     2
+    ],
+    [
+     2019,
+     2.4
+    ],
+    [
+     2020,
+     1
+    ],
+    [
+     2021,
+     1
+    ]
+   ],
+   "personnel": null
   },
   "LKA": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     2
+    ],
+    [
+     2021,
+     1.9
+    ],
+    [
+     2022,
+     1.7
+    ],
+    [
+     2023,
+     1.6
+    ],
+    [
+     2024,
+     1.5
+    ]
+   ],
+   "personnel": {
+    "low": 210000,
+    "high": 210000,
+    "year": 2025,
+    "text": "estimated 210,000 active Armed Forces (140,000 Army; 25,000 Air Force; 45,000 Navy)"
+   }
   },
   "ESP": {
-   "governmentType": "parliamentary constitutional monarchy"
+   "governmentType": "parliamentary constitutional monarchy",
+   "militarySpending": [
+    [
+     2021,
+     1
+    ],
+    [
+     2022,
+     1.1
+    ],
+    [
+     2023,
+     1.2
+    ],
+    [
+     2024,
+     1.4
+    ],
+    [
+     2025,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 120000,
+    "high": 120000,
+    "year": 2025,
+    "text": "approximately 120,000 active-duty military personnel; approximately 80,000 Guardia Civil"
+   }
   },
   "KOR": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2021,
+     2.4
+    ],
+    [
+     2022,
+     2.4
+    ],
+    [
+     2023,
+     2.4
+    ],
+    [
+     2024,
+     2.4
+    ],
+    [
+     2025,
+     2.3
+    ]
+   ],
+   "personnel": {
+    "low": 500000,
+    "high": 500000,
+    "year": 2025,
+    "text": "approximately 500,000 active Armed Forces (365,000 Army; 70,000 Navy, including about 30,000 Marines; 65,000 Air Force)"
+   }
   },
   "ZAF": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     1.1
+    ],
+    [
+     2021,
+     0.8
+    ],
+    [
+     2022,
+     0.8
+    ],
+    [
+     2023,
+     0.7
+    ],
+    [
+     2024,
+     0.7
+    ]
+   ],
+   "personnel": {
+    "low": 65000,
+    "high": 70000,
+    "year": 2025,
+    "text": "approximately 65-70,000 active-duty National Defense Forces"
+   }
   },
   "SOM": {
-   "governmentType": "federal parliamentary republic"
+   "governmentType": "federal parliamentary republic",
+   "militarySpending": [
+    [
+     2017,
+     5.9
+    ],
+    [
+     2018,
+     6
+    ],
+    [
+     2019,
+     5.6
+    ],
+    [
+     2020,
+     6
+    ],
+    [
+     2021,
+     6
+    ]
+   ],
+   "personnel": {
+    "low": 20000,
+    "high": 20000,
+    "year": 2025,
+    "text": "estimated 20,000 active Somali Armed Forces"
+   }
   },
   "SLB": {
-   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm",
+   "militarySpending": [],
+   "personnel": null
   },
   "SVK": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2021,
+     1.7
+    ],
+    [
+     2022,
+     1.8
+    ],
+    [
+     2023,
+     1.8
+    ],
+    [
+     2024,
+     2
+    ],
+    [
+     2025,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 17000,
+    "high": 17000,
+    "year": 2025,
+    "text": "approximately 17,000 active-duty military personnel"
+   }
   },
   "SVN": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2021,
+     1.2
+    ],
+    [
+     2022,
+     1.3
+    ],
+    [
+     2023,
+     1.3
+    ],
+    [
+     2024,
+     1.4
+    ],
+    [
+     2025,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 6000,
+    "high": 6000,
+    "year": 2025,
+    "text": "approximately 6,000 active military personnel"
+   }
   },
   "SGP": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     3
+    ],
+    [
+     2021,
+     3
+    ],
+    [
+     2022,
+     3
+    ],
+    [
+     2023,
+     3
+    ],
+    [
+     2024,
+     3
+    ]
+   ],
+   "personnel": {
+    "low": 55000,
+    "high": 55000,
+    "year": 2025,
+    "text": "information varies; approximately 55,000 active-duty Armed Forces (40,000 Army; 7,000 Navy; 8,000 Air Force)"
+   }
   },
   "SLE": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     0.3
+    ],
+    [
+     2021,
+     0.3
+    ],
+    [
+     2022,
+     0.6
+    ],
+    [
+     2023,
+     0.6
+    ],
+    [
+     2024,
+     0.5
+    ]
+   ],
+   "personnel": {
+    "low": 10000,
+    "high": 10000,
+    "year": 2025,
+    "text": "estimated 10,000 active Armed Forces"
+   }
   },
   "SYC": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.6
+    ],
+    [
+     2021,
+     1.5
+    ],
+    [
+     2022,
+     1.4
+    ],
+    [
+     2023,
+     1.6
+    ],
+    [
+     2024,
+     1.5
+    ]
+   ],
+   "personnel": {
+    "low": 500,
+    "high": 500,
+    "year": 2025,
+    "text": "approximately 500 active Defense Forces"
+   }
   },
   "SRB": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     2
+    ],
+    [
+     2021,
+     2.2
+    ],
+    [
+     2022,
+     2.2
+    ],
+    [
+     2023,
+     2.4
+    ],
+    [
+     2024,
+     2.5
+    ]
+   ],
+   "personnel": {
+    "low": 25000,
+    "high": 25000,
+    "year": 2025,
+    "text": "approximately 25,000 active-duty Armed Forces (15,000 Land Forces; 5,000 Air/Air Defense; 5,000 other, including Serbian Guard)"
+   }
   },
   "SEN": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.5
+    ],
+    [
+     2021,
+     1.7
+    ],
+    [
+     2022,
+     1.6
+    ],
+    [
+     2023,
+     1.5
+    ],
+    [
+     2024,
+     1.6
+    ]
+   ],
+   "personnel": {
+    "low": 25000,
+    "high": 25000,
+    "year": 2025,
+    "text": "approximately 25,000 active Armed Forces personnel, including the Gendarmerie"
+   }
   },
   "SAU": {
-   "governmentType": "absolute monarchy"
+   "governmentType": "absolute monarchy",
+   "militarySpending": [
+    [
+     2020,
+     8
+    ],
+    [
+     2021,
+     7
+    ],
+    [
+     2022,
+     6.5
+    ],
+    [
+     2023,
+     7
+    ],
+    [
+     2024,
+     7.1
+    ]
+   ],
+   "personnel": {
+    "low": 250000,
+    "high": 250000,
+    "year": 2025,
+    "text": "approximately 250,000 active Saudi Armed Forces, including 125,000 under the Ministry of Defense and 125,000 in the National Guard"
+   }
   },
   "STP": {
-   "governmentType": "semi-presidential republic"
+   "governmentType": "semi-presidential republic",
+   "militarySpending": [],
+   "personnel": {
+    "low": 500,
+    "high": 500,
+    "year": 2023,
+    "text": "approximately 500 active Armed Forces"
+   }
   },
   "SMR": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [],
+   "personnel": null
   },
   "WSM": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [],
+   "personnel": null
   },
   "VCT": {
-   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm",
+   "militarySpending": [],
+   "personnel": null
   },
   "LCA": {
-   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm",
+   "militarySpending": [],
+   "personnel": null
   },
   "KNA": {
-   "governmentType": "federal parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "federal parliamentary democracy under a constitutional monarchy; a Commonwealth realm",
+   "militarySpending": [],
+   "personnel": {
+    "low": 200,
+    "high": 200,
+    "year": 2024,
+    "text": "estimated 200 active Defense Forces"
+   }
   },
   "RWA": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.3
+    ],
+    [
+     2021,
+     1.4
+    ],
+    [
+     2022,
+     1.4
+    ],
+    [
+     2023,
+     1.3
+    ],
+    [
+     2024,
+     1.3
+    ]
+   ],
+   "personnel": {
+    "low": 30000,
+    "high": 35000,
+    "year": 2025,
+    "text": "approximately 30-35,000 active Rwanda Defense Forces"
+   }
   },
   "RUS": {
-   "governmentType": "semi-presidential federation"
+   "governmentType": "semi-presidential federation",
+   "militarySpending": [
+    [
+     2020,
+     4
+    ],
+    [
+     2021,
+     4
+    ],
+    [
+     2022,
+     4.5
+    ],
+    [
+     2023,
+     5
+    ],
+    [
+     2024,
+     7
+    ]
+   ],
+   "personnel": {
+    "low": 1100000,
+    "high": 1200000,
+    "year": 2025,
+    "text": "estimated 1.1-1.2 million active Armed Forces; estimated 350,000 Federal National Guard Troops"
+   }
   },
   "ROU": {
-   "governmentType": "semi-presidential republic"
+   "governmentType": "semi-presidential republic",
+   "militarySpending": [
+    [
+     2021,
+     1.9
+    ],
+    [
+     2022,
+     1.8
+    ],
+    [
+     2023,
+     1.6
+    ],
+    [
+     2024,
+     2.2
+    ],
+    [
+     2025,
+     2.3
+    ]
+   ],
+   "personnel": {
+    "low": 70000,
+    "high": 70000,
+    "year": 2025,
+    "text": "approximately 70,000 active Armed Forces"
+   }
   },
   "QAT": {
-   "governmentType": "absolute monarchy"
+   "governmentType": "absolute monarchy",
+   "militarySpending": [
+    [
+     2019,
+     3.4
+    ],
+    [
+     2020,
+     4
+    ],
+    [
+     2021,
+     4
+    ],
+    [
+     2022,
+     5
+    ],
+    [
+     2023,
+     5
+    ]
+   ],
+   "personnel": {
+    "low": 15000,
+    "high": 15000,
+    "year": 2025,
+    "text": "approximately 15,000 active-duty Qatar Armed Forces"
+   }
   },
   "PRT": {
-   "governmentType": "semi-presidential republic"
+   "governmentType": "semi-presidential republic",
+   "militarySpending": [
+    [
+     2021,
+     1.5
+    ],
+    [
+     2022,
+     1.4
+    ],
+    [
+     2023,
+     1.3
+    ],
+    [
+     2024,
+     1.6
+    ],
+    [
+     2025,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 25000,
+    "high": 25000,
+    "year": 2025,
+    "text": "approximately 25,000 active-duty military personnel"
+   }
   },
   "POL": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2021,
+     2.2
+    ],
+    [
+     2022,
+     2.2
+    ],
+    [
+     2023,
+     3.3
+    ],
+    [
+     2024,
+     3.8
+    ],
+    [
+     2025,
+     4.5
+    ]
+   ],
+   "personnel": {
+    "low": 235000,
+    "high": 235000,
+    "year": 2025,
+    "text": "approximately 235,000 active military personnel"
+   }
   },
   "PHL": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.1
+    ],
+    [
+     2021,
+     1.2
+    ],
+    [
+     2022,
+     1.4
+    ],
+    [
+     2023,
+     1.5
+    ],
+    [
+     2024,
+     1.7
+    ]
+   ],
+   "personnel": {
+    "low": 145000,
+    "high": 145000,
+    "year": 2025,
+    "text": "approximately 145,000 active Armed Forces (105,000 Army; 25,000 Navy, including about 8,000 Marine Corps; 15,000 Air Force)"
+   }
   },
   "PER": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.2
+    ],
+    [
+     2021,
+     1.1
+    ],
+    [
+     2022,
+     1.1
+    ],
+    [
+     2023,
+     1
+    ],
+    [
+     2024,
+     0.8
+    ]
+   ],
+   "personnel": {
+    "low": 85000,
+    "high": 85000,
+    "year": 2025,
+    "text": "information varies; approximately 85,000 active-duty Armed Forces (50,000 Army; 25,000 Navy; 10,000 Air Force); approximately 75,000 National Police"
+   }
   },
   "PRY": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1
+    ],
+    [
+     2021,
+     1
+    ],
+    [
+     2022,
+     0.8
+    ],
+    [
+     2023,
+     0.8
+    ],
+    [
+     2024,
+     0.8
+    ]
+   ],
+   "personnel": {
+    "low": 15000,
+    "high": 15000,
+    "year": 2025,
+    "text": "approximately 15,000 active duty Armed Forces"
+   }
   },
   "PNG": {
-   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm",
+   "militarySpending": [
+    [
+     2020,
+     0.4
+    ],
+    [
+     2021,
+     0.4
+    ],
+    [
+     2022,
+     0.3
+    ],
+    [
+     2023,
+     0.3
+    ],
+    [
+     2024,
+     0.3
+    ]
+   ],
+   "personnel": {
+    "low": 4000,
+    "high": 4000,
+    "year": 2025,
+    "text": "estimated 4,000 active PNGDF"
+   }
   },
   "PAN": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.4
+    ],
+    [
+     2021,
+     1.3
+    ],
+    [
+     2022,
+     1.2
+    ],
+    [
+     2023,
+     1.1
+    ],
+    [
+     2024,
+     1.1
+    ]
+   ],
+   "personnel": {
+    "low": 30000,
+    "high": 30000,
+    "year": 2025,
+    "text": "approximately 30,000 Ministry of Public Security personnel"
+   }
   },
   "PLW": {
-   "governmentType": "presidential republic in free association with the US"
+   "governmentType": "presidential republic in free association with the US",
+   "militarySpending": [],
+   "personnel": null
   },
   "PAK": {
-   "governmentType": "federal parliamentary republic"
+   "governmentType": "federal parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     4
+    ],
+    [
+     2021,
+     4
+    ],
+    [
+     2022,
+     4
+    ],
+    [
+     2023,
+     3
+    ],
+    [
+     2024,
+     2.5
+    ]
+   ],
+   "personnel": {
+    "low": 650000,
+    "high": 650000,
+    "year": 2025,
+    "text": "approximately 650,000 active Armed Forces"
+   }
   },
   "OMN": {
-   "governmentType": "absolute monarchy"
+   "governmentType": "absolute monarchy",
+   "militarySpending": [
+    [
+     2020,
+     11
+    ],
+    [
+     2021,
+     8
+    ],
+    [
+     2022,
+     5.5
+    ],
+    [
+     2023,
+     5.5
+    ],
+    [
+     2024,
+     6
+    ]
+   ],
+   "personnel": {
+    "low": 40000,
+    "high": 40000,
+    "year": 2025,
+    "text": "approximately 40,000 active Sultan's Armed Forces"
+   }
   },
   "NOR": {
-   "governmentType": "parliamentary constitutional monarchy"
+   "governmentType": "parliamentary constitutional monarchy",
+   "militarySpending": [
+    [
+     2021,
+     1.7
+    ],
+    [
+     2022,
+     1.5
+    ],
+    [
+     2023,
+     1.8
+    ],
+    [
+     2024,
+     2.3
+    ],
+    [
+     2025,
+     3.4
+    ]
+   ],
+   "personnel": {
+    "low": 27000,
+    "high": 27000,
+    "year": 2025,
+    "text": "approximately 27,000 active military personnel; approximately 40,000 Home Guard"
+   }
   },
   "PRK": {
-   "governmentType": "dictatorship, single-party communist state"
+   "governmentType": "dictatorship, single-party communist state",
+   "militarySpending": [],
+   "personnel": {
+    "low": 1300000,
+    "high": 1300000,
+    "year": 2025,
+    "text": "estimates vary; as many as 1.3 million active-duty Korean People's Army"
+   }
   },
   "NGA": {
-   "governmentType": "federal presidential republic"
+   "governmentType": "federal presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     0.6
+    ],
+    [
+     2021,
+     0.6
+    ],
+    [
+     2022,
+     0.6
+    ],
+    [
+     2023,
+     0.7
+    ],
+    [
+     2024,
+     0.6
+    ]
+   ],
+   "personnel": {
+    "low": 140000,
+    "high": 140000,
+    "year": 2025,
+    "text": "information varies; estimated 140,000 active Armed Forces"
+   }
   },
   "NER": {
-   "governmentType": "formerly, semi-presidential republic"
+   "governmentType": "formerly, semi-presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     2
+    ],
+    [
+     2021,
+     1.8
+    ],
+    [
+     2022,
+     1.7
+    ],
+    [
+     2023,
+     2
+    ],
+    [
+     2024,
+     2.2
+    ]
+   ],
+   "personnel": {
+    "low": 50000,
+    "high": 50000,
+    "year": 2025,
+    "text": "estimated 50,000 active Armed Forces, including Gendarmerie; estimated 15-20,000 National Guard"
+   }
   },
   "NIC": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     0.6
+    ],
+    [
+     2021,
+     0.6
+    ],
+    [
+     2022,
+     0.6
+    ],
+    [
+     2023,
+     0.6
+    ],
+    [
+     2024,
+     0.5
+    ]
+   ],
+   "personnel": {
+    "low": 12000,
+    "high": 12000,
+    "year": 2025,
+    "text": "approximately 12,000 active Armed Forces"
+   }
   },
   "NZL": {
-   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm",
+   "militarySpending": [
+    [
+     2020,
+     1.5
+    ],
+    [
+     2021,
+     1.3
+    ],
+    [
+     2022,
+     1.3
+    ],
+    [
+     2023,
+     1.3
+    ],
+    [
+     2024,
+     1.2
+    ]
+   ],
+   "personnel": {
+    "low": 8800,
+    "high": 8800,
+    "year": 2025,
+    "text": "approximately 8,800 active (Regular Force) New Zealand Defense Forces (4,300 Army; 2,100 Navy; 2,400 Air Force)"
+   }
   },
   "NIU": {
-   "governmentType": "parliamentary democracy"
+   "governmentType": "parliamentary democracy",
+   "militarySpending": [],
+   "personnel": null
   },
   "COK": {
-   "governmentType": "parliamentary democracy"
+   "governmentType": "parliamentary democracy",
+   "militarySpending": [],
+   "personnel": null
   },
   "NLD": {
-   "governmentType": "parliamentary constitutional monarchy; part of the Kingdom of the Netherlands"
+   "governmentType": "parliamentary constitutional monarchy; part of the Kingdom of the Netherlands",
+   "militarySpending": [
+    [
+     2021,
+     1.3
+    ],
+    [
+     2022,
+     1.4
+    ],
+    [
+     2023,
+     1.6
+    ],
+    [
+     2024,
+     2
+    ],
+    [
+     2025,
+     2.5
+    ]
+   ],
+   "personnel": {
+    "low": 43000,
+    "high": 43000,
+    "year": 2025,
+    "text": "approximately 43,000 active-duty professional military personnel"
+   }
   },
   "ABW": {
-   "governmentType": "parliamentary democracy; part of the Kingdom of the Netherlands"
+   "governmentType": "parliamentary democracy; part of the Kingdom of the Netherlands",
+   "militarySpending": [],
+   "personnel": null
   },
   "CUW": {
-   "governmentType": "parliamentary democracy"
+   "governmentType": "parliamentary democracy",
+   "militarySpending": [],
+   "personnel": null
   },
   "NPL": {
-   "governmentType": "federal parliamentary republic"
+   "governmentType": "federal parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     1.3
+    ],
+    [
+     2021,
+     1.3
+    ],
+    [
+     2022,
+     1.1
+    ],
+    [
+     2023,
+     1
+    ],
+    [
+     2024,
+     1
+    ]
+   ],
+   "personnel": {
+    "low": 95000,
+    "high": 95000,
+    "year": 2025,
+    "text": "approximately 95,000 active Armed Forces"
+   }
   },
   "NRU": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [],
+   "personnel": null
   },
   "NAM": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     3.4
+    ],
+    [
+     2021,
+     3
+    ],
+    [
+     2022,
+     3
+    ],
+    [
+     2023,
+     2.8
+    ],
+    [
+     2024,
+     2.8
+    ]
+   ],
+   "personnel": {
+    "low": 12000,
+    "high": 12000,
+    "year": 2025,
+    "text": "estimated 12,000 active Namibian Defense Forces"
+   }
   },
   "MOZ": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.5
+    ],
+    [
+     2021,
+     2
+    ],
+    [
+     2022,
+     2
+    ],
+    [
+     2023,
+     2
+    ],
+    [
+     2024,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 12000,
+    "high": 12000,
+    "year": 2025,
+    "text": "estimated 12,000 active FADM"
+   }
   },
   "MAR": {
-   "governmentType": "parliamentary constitutional monarchy"
+   "governmentType": "parliamentary constitutional monarchy",
+   "militarySpending": [
+    [
+     2020,
+     4.5
+    ],
+    [
+     2021,
+     4.5
+    ],
+    [
+     2022,
+     4.5
+    ],
+    [
+     2023,
+     4
+    ],
+    [
+     2024,
+     4
+    ]
+   ],
+   "personnel": {
+    "low": 220000,
+    "high": 220000,
+    "year": 2025,
+    "text": "estimated 220,000 active Armed Forces (175,000 Army; 10,000 Navy; 15,000 Air Force, 20,000 Gendarmerie)"
+   }
   },
   "SAH": {
-   "governmentType": "legal status of territory and issue of sovereignty unresolved; territory contested by Morocco and Polisario Front (Popular Front for the Liberation of the Saguia el Hamra and Rio de Oro), which in February 1976 formally proclaimed a government-in-exile of the Sahrawi Arab Democratic Republic (SADR), near Tindouf, Algeria, led by President Mohamed ABDELAZIZ until his death in May 2016; current President Brahim GHALI elected in July 2016; territory partitioned between Morocco and Mauritania in April 1976 when Spain withdrew, with Morocco acquiring northern two-thirds; Mauritania, under pressure from Polisario guerrillas, abandoned all claims to its portion in August 1979; Morocco moved to occupy that sector shortly thereafter and has since asserted administrative control; the Polisario's government-in-exile was seated as an Organization of African Unity (OAU) member in 1984; Morocco between 1980 and 1987 built a fortified sand berm delineating the roughly 75% of Western Sahara west of the barrier that currently is controlled by Morocco; guerrilla activities continued sporadically until a UN-monitored cease-fire was implemented on 6 September 1991 (Security Council Resolution 690) by the United Nations Mission for the Referendum in Western Sahara (MINURSO)"
+   "governmentType": "legal status of territory and issue of sovereignty unresolved; territory contested by Morocco and Polisario Front (Popular Front for the Liberation of the Saguia el Hamra and Rio de Oro), which in February 1976 formally proclaimed a government-in-exile of the Sahrawi Arab Democratic Republic (SADR), near Tindouf, Algeria, led by President Mohamed ABDELAZIZ until his death in May 2016; current President Brahim GHALI elected in July 2016; territory partitioned between Morocco and Mauritania in April 1976 when Spain withdrew, with Morocco acquiring northern two-thirds; Mauritania, under pressure from Polisario guerrillas, abandoned all claims to its portion in August 1979; Morocco moved to occupy that sector shortly thereafter and has since asserted administrative control; the Polisario's government-in-exile was seated as an Organization of African Unity (OAU) member in 1984; Morocco between 1980 and 1987 built a fortified sand berm delineating the roughly 75% of Western Sahara west of the barrier that currently is controlled by Morocco; guerrilla activities continued sporadically until a UN-monitored cease-fire was implemented on 6 September 1991 (Security Council Resolution 690) by the United Nations Mission for the Referendum in Western Sahara (MINURSO)",
+   "militarySpending": [],
+   "personnel": null
   },
   "MNE": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2021,
+     1.6
+    ],
+    [
+     2022,
+     1.4
+    ],
+    [
+     2023,
+     1.5
+    ],
+    [
+     2024,
+     1.7
+    ],
+    [
+     2025,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 2000,
+    "high": 2000,
+    "year": 2025,
+    "text": "approximately 2,000 active-duty military personnel"
+   }
   },
   "MNG": {
-   "governmentType": "semi-presidential republic"
+   "governmentType": "semi-presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     0.8
+    ],
+    [
+     2021,
+     0.8
+    ],
+    [
+     2022,
+     0.6
+    ],
+    [
+     2023,
+     0.6
+    ],
+    [
+     2024,
+     0.7
+    ]
+   ],
+   "personnel": {
+    "low": 10000,
+    "high": 20000,
+    "year": 2025,
+    "text": "information varies; estimated 10-20,000 active Mongolian Armed Forces"
+   }
   },
   "MDA": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     0.4
+    ],
+    [
+     2021,
+     0.4
+    ],
+    [
+     2022,
+     0.4
+    ],
+    [
+     2023,
+     0.6
+    ],
+    [
+     2024,
+     0.6
+    ]
+   ],
+   "personnel": {
+    "low": 6500,
+    "high": 6500,
+    "year": 2025,
+    "text": "approximately 6,500 Moldovan Armed Forces"
+   }
   },
   "MCO": {
-   "governmentType": "constitutional monarchy"
+   "governmentType": "constitutional monarchy",
+   "militarySpending": [],
+   "personnel": null
   },
   "MEX": {
-   "governmentType": "federal presidential republic"
+   "governmentType": "federal presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     0.6
+    ],
+    [
+     2021,
+     0.7
+    ],
+    [
+     2022,
+     0.7
+    ],
+    [
+     2023,
+     0.7
+    ],
+    [
+     2024,
+     0.9
+    ]
+   ],
+   "personnel": {
+    "low": 260000,
+    "high": 260000,
+    "year": 2025,
+    "text": "information varies; approximately 260,000 active-duty Armed Forces; approximately 110,000 National Guard personnel"
+   }
   },
   "MUS": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [],
+   "personnel": null
   },
   "MRT": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     2.5
+    ],
+    [
+     2021,
+     2.4
+    ],
+    [
+     2022,
+     2.5
+    ],
+    [
+     2023,
+     2.5
+    ],
+    [
+     2024,
+     2.4
+    ]
+   ],
+   "personnel": {
+    "low": 17000,
+    "high": 17000,
+    "year": 2025,
+    "text": "estimated 17,000 active Mauritanian Armed Forces; estimated 3,000 Gendarmerie"
+   }
   },
   "MLT": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     0.6
+    ],
+    [
+     2021,
+     0.5
+    ],
+    [
+     2022,
+     0.7
+    ],
+    [
+     2023,
+     0.5
+    ],
+    [
+     2024,
+     0.5
+    ]
+   ],
+   "personnel": {
+    "low": 2000,
+    "high": 2000,
+    "year": 2025,
+    "text": "approximately 2,000 active Armed Forces of Malta"
+   }
   },
   "MLI": {
-   "governmentType": "semi-presidential republic"
+   "governmentType": "semi-presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     3.4
+    ],
+    [
+     2021,
+     3.4
+    ],
+    [
+     2022,
+     3.5
+    ],
+    [
+     2023,
+     4
+    ],
+    [
+     2024,
+     4.3
+    ]
+   ],
+   "personnel": {
+    "low": 35000,
+    "high": 40000,
+    "year": 2025,
+    "text": "information varies; estimated 35-40,000 active FAMa, Gendarmerie, and National Guard"
+   }
   },
   "MDV": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [],
+   "personnel": {
+    "low": 3000,
+    "high": 4000,
+    "year": 2025,
+    "text": "approximately 3-4,000 active Defense Forces"
+   }
   },
   "MYS": {
-   "governmentType": "federal parliamentary constitutional monarchy"
+   "governmentType": "federal parliamentary constitutional monarchy",
+   "militarySpending": [
+    [
+     2020,
+     1.1
+    ],
+    [
+     2021,
+     1
+    ],
+    [
+     2022,
+     1.1
+    ],
+    [
+     2023,
+     0.9
+    ],
+    [
+     2024,
+     1
+    ]
+   ],
+   "personnel": {
+    "low": 110000,
+    "high": 110000,
+    "year": 2025,
+    "text": "approximately 110,000 active Malaysian Armed Forces"
+   }
   },
   "MWI": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     0.9
+    ],
+    [
+     2021,
+     0.9
+    ],
+    [
+     2022,
+     0.8
+    ],
+    [
+     2023,
+     1
+    ],
+    [
+     2024,
+     0.8
+    ]
+   ],
+   "personnel": {
+    "low": 10000,
+    "high": 10000,
+    "year": 2025,
+    "text": "estimated 10,000 active Malawi Defense Forces"
+   }
   },
   "MDG": {
-   "governmentType": "semi-presidential republic"
+   "governmentType": "semi-presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     0.7
+    ],
+    [
+     2021,
+     0.7
+    ],
+    [
+     2022,
+     0.7
+    ],
+    [
+     2023,
+     0.7
+    ],
+    [
+     2024,
+     0.7
+    ]
+   ],
+   "personnel": {
+    "low": 13000,
+    "high": 13000,
+    "year": 2025,
+    "text": "estimated 13,000 Armed Forces; estimated 10,000 Gendarmerie"
+   }
   },
   "MKD": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2021,
+     1.5
+    ],
+    [
+     2022,
+     1.6
+    ],
+    [
+     2023,
+     1.7
+    ],
+    [
+     2024,
+     1.9
+    ],
+    [
+     2025,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 6000,
+    "high": 6000,
+    "year": 2025,
+    "text": "approximately 6,000 active military personnel"
+   }
   },
   "LUX": {
-   "governmentType": "constitutional monarchy"
+   "governmentType": "constitutional monarchy",
+   "militarySpending": [
+    [
+     2021,
+     0.5
+    ],
+    [
+     2022,
+     0.6
+    ],
+    [
+     2023,
+     1.1
+    ],
+    [
+     2024,
+     1.2
+    ],
+    [
+     2025,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 900,
+    "high": 900,
+    "year": 2025,
+    "text": "approximately 900 active military personnel"
+   }
   },
   "LTU": {
-   "governmentType": "semi-presidential republic"
+   "governmentType": "semi-presidential republic",
+   "militarySpending": [
+    [
+     2021,
+     2
+    ],
+    [
+     2022,
+     2.4
+    ],
+    [
+     2023,
+     2.7
+    ],
+    [
+     2024,
+     3.1
+    ],
+    [
+     2025,
+     4
+    ]
+   ],
+   "personnel": {
+    "low": 20000,
+    "high": 20000,
+    "year": 2025,
+    "text": "approximately 20,000 active-duty military personnel"
+   }
   },
   "LIE": {
-   "governmentType": "constitutional monarchy"
+   "governmentType": "constitutional monarchy",
+   "militarySpending": [],
+   "personnel": null
   },
   "LBY": {
-   "governmentType": "in transition"
+   "governmentType": "in transition",
+   "militarySpending": [],
+   "personnel": null
   },
   "LBR": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     0.5
+    ],
+    [
+     2021,
+     0.8
+    ],
+    [
+     2022,
+     1.3
+    ],
+    [
+     2023,
+     1.3
+    ],
+    [
+     2024,
+     0.7
+    ]
+   ],
+   "personnel": {
+    "low": 2000,
+    "high": 2000,
+    "year": 2025,
+    "text": "approximately 2,000 active Armed Forces"
+   }
   },
   "LSO": {
-   "governmentType": "parliamentary constitutional monarchy"
+   "governmentType": "parliamentary constitutional monarchy",
+   "militarySpending": [
+    [
+     2020,
+     1.6
+    ],
+    [
+     2021,
+     1.5
+    ],
+    [
+     2022,
+     1.6
+    ],
+    [
+     2023,
+     1.6
+    ],
+    [
+     2024,
+     1.5
+    ]
+   ],
+   "personnel": {
+    "low": 2000,
+    "high": 2000,
+    "year": 2025,
+    "text": "approximately 2,000 active Defense Forces"
+   }
   },
   "LBN": {
-   "governmentType": "parliamentary democratic republic"
+   "governmentType": "parliamentary democratic republic",
+   "militarySpending": [
+    [
+     2018,
+     5.1
+    ],
+    [
+     2019,
+     4.7
+    ],
+    [
+     2020,
+     3
+    ],
+    [
+     2021,
+     3.2
+    ],
+    [
+     2022,
+     2.9
+    ]
+   ],
+   "personnel": {
+    "low": 70000,
+    "high": 70000,
+    "year": 2025,
+    "text": "approximately 70,000 active Lebanese Armed Forces"
+   }
   },
   "LVA": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2021,
+     2.2
+    ],
+    [
+     2022,
+     2.3
+    ],
+    [
+     2023,
+     3
+    ],
+    [
+     2024,
+     3.4
+    ],
+    [
+     2025,
+     3.7
+    ]
+   ],
+   "personnel": {
+    "low": 9000,
+    "high": 9000,
+    "year": 2025,
+    "text": "approximately 9,000 active-duty military personnel"
+   }
   },
   "LAO": {
-   "governmentType": "communist party-led state"
+   "governmentType": "communist party-led state",
+   "militarySpending": [
+    [
+     2015,
+     0.2
+    ],
+    [
+     2016,
+     0.2
+    ],
+    [
+     2017,
+     0.2
+    ],
+    [
+     2018,
+     0.2
+    ],
+    [
+     2019,
+     0.2
+    ]
+   ],
+   "personnel": {
+    "low": 30000,
+    "high": 30000,
+    "year": 2025,
+    "text": "information limited and varied; estimated 30,000 active Armed Forces; estimated 100,000 Self-Defense Militia Forces"
+   }
   },
   "KGZ": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     3
+    ],
+    [
+     2021,
+     2.8
+    ],
+    [
+     2022,
+     3
+    ],
+    [
+     2023,
+     3.5
+    ],
+    [
+     2024,
+     3
+    ]
+   ],
+   "personnel": {
+    "low": 10000,
+    "high": 15000,
+    "year": 2025,
+    "text": "limited available information; estimated 10-15,000 active Armed Forces, including the National Guard"
+   }
   },
   "KWT": {
-   "governmentType": "constitutional monarchy (emirate)"
+   "governmentType": "constitutional monarchy (emirate)",
+   "militarySpending": [
+    [
+     2020,
+     6.3
+    ],
+    [
+     2021,
+     6.5
+    ],
+    [
+     2022,
+     4.5
+    ],
+    [
+     2023,
+     4.8
+    ],
+    [
+     2024,
+     4.9
+    ]
+   ],
+   "personnel": {
+    "low": 17000,
+    "high": 17000,
+    "year": 2025,
+    "text": "approximately 17,000 active Kuwait Armed Forces; approximately 7,000 National Guard"
+   }
   },
   "KOS": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     1
+    ],
+    [
+     2021,
+     1.1
+    ],
+    [
+     2022,
+     1.1
+    ],
+    [
+     2023,
+     1.3
+    ],
+    [
+     2024,
+     1.5
+    ]
+   ],
+   "personnel": {
+    "low": 3300,
+    "high": 3300,
+    "year": 2024,
+    "text": "approximately 3,300 Kosovo Security Forces, including about 800 reserves"
+   }
   },
   "KIR": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [],
+   "personnel": null
   },
   "KEN": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.2
+    ],
+    [
+     2021,
+     1.2
+    ],
+    [
+     2022,
+     1.1
+    ],
+    [
+     2023,
+     1.1
+    ],
+    [
+     2024,
+     1.1
+    ]
+   ],
+   "personnel": {
+    "low": 25000,
+    "high": 25000,
+    "year": 2025,
+    "text": "approximately 25,000 active Kenya Defense Forces"
+   }
   },
   "KAZ": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.1
+    ],
+    [
+     2021,
+     1
+    ],
+    [
+     2022,
+     0.9
+    ],
+    [
+     2023,
+     1
+    ],
+    [
+     2024,
+     0.9
+    ]
+   ],
+   "personnel": {
+    "low": 50000,
+    "high": 50000,
+    "year": 2025,
+    "text": "available information varies widely; estimated 50,000 active Armed Forces; estimated 30,000 National Guard"
+   }
   },
   "JOR": {
-   "governmentType": "parliamentary constitutional monarchy"
+   "governmentType": "parliamentary constitutional monarchy",
+   "militarySpending": [
+    [
+     2020,
+     5
+    ],
+    [
+     2021,
+     5
+    ],
+    [
+     2022,
+     4.8
+    ],
+    [
+     2023,
+     4.5
+    ],
+    [
+     2024,
+     4.5
+    ]
+   ],
+   "personnel": {
+    "low": 100000,
+    "high": 100000,
+    "year": 2025,
+    "text": "approximately 100,000 active duty Armed Forces"
+   }
   },
   "JPN": {
-   "governmentType": "parliamentary constitutional monarchy"
+   "governmentType": "parliamentary constitutional monarchy",
+   "militarySpending": [
+    [
+     2020,
+     1
+    ],
+    [
+     2021,
+     1
+    ],
+    [
+     2022,
+     1.1
+    ],
+    [
+     2023,
+     1.2
+    ],
+    [
+     2024,
+     1.4
+    ]
+   ],
+   "personnel": {
+    "low": 230000,
+    "high": 240000,
+    "year": 2025,
+    "text": "approximately 230-240,000 active Self Defense Forces"
+   }
   },
   "JAM": {
-   "governmentType": "parliamentary democracy (Parliament) under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "parliamentary democracy (Parliament) under a constitutional monarchy; a Commonwealth realm",
+   "militarySpending": [
+    [
+     2020,
+     1.7
+    ],
+    [
+     2021,
+     1.4
+    ],
+    [
+     2022,
+     1.3
+    ],
+    [
+     2023,
+     1.2
+    ],
+    [
+     2024,
+     1.4
+    ]
+   ],
+   "personnel": {
+    "low": 4000,
+    "high": 4000,
+    "year": 2025,
+    "text": "approximately 4,000 active Jamaica Defense Forces"
+   }
   },
   "ITA": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2021,
+     1.5
+    ],
+    [
+     2022,
+     1.5
+    ],
+    [
+     2023,
+     1.5
+    ],
+    [
+     2024,
+     1.5
+    ],
+    [
+     2025,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 170000,
+    "high": 170000,
+    "year": 2025,
+    "text": "approximately 170,000 active-duty military personnel; approximately 105,000 Carabinieri"
+   }
   },
   "ISR": {
-   "governmentType": "parliamentary democracy"
+   "governmentType": "parliamentary democracy",
+   "militarySpending": [
+    [
+     2020,
+     5
+    ],
+    [
+     2021,
+     5
+    ],
+    [
+     2022,
+     4.5
+    ],
+    [
+     2023,
+     5
+    ],
+    [
+     2024,
+     8
+    ]
+   ],
+   "personnel": {
+    "low": 170000,
+    "high": 170000,
+    "year": 2025,
+    "text": "approximately 170,000 active-duty Defense Forces (130,000 Ground Forces; 10,000 Naval; 30,000 Air Force); more than 400,000 reserves"
+   }
   },
   "PSX": {
-   "governmentType": null
+   "governmentType": null,
+   "militarySpending": [],
+   "personnel": {
+    "low": 28000,
+    "high": 28000,
+    "year": 2024,
+    "text": "the PA police and security forces have approximately 28,000 active personnel, including about 11,500 National Security Forces"
+   }
   },
   "IRL": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     0.3
+    ],
+    [
+     2021,
+     0.3
+    ],
+    [
+     2022,
+     0.3
+    ],
+    [
+     2023,
+     0.2
+    ],
+    [
+     2024,
+     0.2
+    ]
+   ],
+   "personnel": {
+    "low": 7500,
+    "high": 7500,
+    "year": 2025,
+    "text": "approximately 7,500 active-duty Defense Forces (authorized establishment of 9,500)"
+   }
   },
   "IRQ": {
-   "governmentType": "federal parliamentary republic"
+   "governmentType": "federal parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     3.2
+    ],
+    [
+     2021,
+     3
+    ],
+    [
+     2022,
+     1.8
+    ],
+    [
+     2023,
+     2.5
+    ],
+    [
+     2024,
+     2.5
+    ]
+   ],
+   "personnel": {
+    "low": 200000,
+    "high": 200000,
+    "year": 2025,
+    "text": "estimated 200,000 active armed forces personnel under the Ministry of Defense (Army, Aviation Command, Air/Air Defense, Navy, Special Forces); approximately 20-25,000 National-Level Security Forces Ministry of Peshmerga: estimated 150,000 active personnel Popular Mobilization Forces: estimated 200,000 militia"
+   }
   },
   "IRN": {
-   "governmentType": "theocratic republic"
+   "governmentType": "theocratic republic",
+   "militarySpending": [
+    [
+     2020,
+     2.1
+    ],
+    [
+     2021,
+     2.3
+    ],
+    [
+     2022,
+     2.5
+    ],
+    [
+     2023,
+     2.3
+    ],
+    [
+     2024,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 600000,
+    "high": 600000,
+    "year": 2025,
+    "text": "information varies; up to 600,000 total active armed forces personnel; estimated 400,000 Islamic Republic of Iran Regular Forces (350,000 Ground Forces; 18,000 Navy; 40,000 Air Force/Air Defense Forces); up to estimated 190,000 Islamic Revolutionary Guard Corps (100-150,000 Ground Forces; 20,000 Navy; 15,000 Aerospace Force; 5,000 Qods Force); estimated 90,000 active Basij Paramilitary Forces"
+   }
   },
   "IDN": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     0.8
+    ],
+    [
+     2021,
+     0.8
+    ],
+    [
+     2022,
+     0.8
+    ],
+    [
+     2023,
+     0.8
+    ],
+    [
+     2024,
+     0.8
+    ]
+   ],
+   "personnel": {
+    "low": 400000,
+    "high": 400000,
+    "year": 2025,
+    "text": "approximately 400,000 active Armed Forces, including about 300,000 Army"
+   }
   },
   "IND": {
-   "governmentType": "federal parliamentary republic"
+   "governmentType": "federal parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     2.5
+    ],
+    [
+     2021,
+     2.2
+    ],
+    [
+     2022,
+     2.1
+    ],
+    [
+     2023,
+     2.3
+    ],
+    [
+     2024,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 1500000,
+    "high": 1500000,
+    "year": 2025,
+    "text": "information varies; approximately 1.5 million active Indian Armed Forces, including about 1.25 million in the Army"
+   }
   },
   "ISL": {
-   "governmentType": "unitary parliamentary republic"
+   "governmentType": "unitary parliamentary republic",
+   "militarySpending": [],
+   "personnel": null
   },
   "HUN": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2021,
+     1.7
+    ],
+    [
+     2022,
+     1.8
+    ],
+    [
+     2023,
+     2.1
+    ],
+    [
+     2024,
+     2.1
+    ],
+    [
+     2025,
+     2.1
+    ]
+   ],
+   "personnel": {
+    "low": 30000,
+    "high": 30000,
+    "year": 2025,
+    "text": "approximately 30,000 active-duty military personnel"
+   }
   },
   "HND": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.6
+    ],
+    [
+     2021,
+     1.5
+    ],
+    [
+     2022,
+     1.4
+    ],
+    [
+     2023,
+     1.5
+    ],
+    [
+     2024,
+     1.5
+    ]
+   ],
+   "personnel": {
+    "low": 15000,
+    "high": 15000,
+    "year": 2025,
+    "text": "approximately 15,000 active Honduran Armed Forces"
+   }
   },
   "HTI": {
-   "governmentType": "semi-presidential republic"
+   "governmentType": "semi-presidential republic",
+   "militarySpending": [],
+   "personnel": {
+    "low": 2000,
+    "high": 2000,
+    "year": 2025,
+    "text": "estimates vary; up to 2,000 trained military personnel (the force is planned to eventually have around 5,000 personnel); estimates for the National Police range from a low of 9,000 to a high of about 13,000"
+   }
   },
   "GUY": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     1.2
+    ],
+    [
+     2021,
+     1
+    ],
+    [
+     2022,
+     0.6
+    ],
+    [
+     2023,
+     0.6
+    ],
+    [
+     2024,
+     0.9
+    ]
+   ],
+   "personnel": {
+    "low": 3500,
+    "high": 3500,
+    "year": 2025,
+    "text": "approximately 3,500 active-duty Guyana Defense Forces"
+   }
   },
   "GNB": {
-   "governmentType": "semi-presidential republic"
+   "governmentType": "semi-presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.5
+    ],
+    [
+     2021,
+     1.5
+    ],
+    [
+     2022,
+     1.4
+    ],
+    [
+     2023,
+     1.2
+    ],
+    [
+     2024,
+     1.2
+    ]
+   ],
+   "personnel": {
+    "low": 4000,
+    "high": 4000,
+    "year": 2025,
+    "text": "estimated 4,000 active FARP"
+   }
   },
   "GIN": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.4
+    ],
+    [
+     2021,
+     1.5
+    ],
+    [
+     2022,
+     1.8
+    ],
+    [
+     2023,
+     2.1
+    ],
+    [
+     2024,
+     2.1
+    ]
+   ],
+   "personnel": {
+    "low": 10000,
+    "high": 12000,
+    "year": 2025,
+    "text": "estimated 10-12,000 active Armed Forces"
+   }
   },
   "GTM": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     0.4
+    ],
+    [
+     2021,
+     0.4
+    ],
+    [
+     2022,
+     0.4
+    ],
+    [
+     2023,
+     0.4
+    ],
+    [
+     2024,
+     0.4
+    ]
+   ],
+   "personnel": {
+    "low": 20000,
+    "high": 20000,
+    "year": 2025,
+    "text": "approximately 20,000 active Armed Forces"
+   }
   },
   "GRD": {
-   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm",
+   "militarySpending": [],
+   "personnel": null
   },
   "GRC": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2021,
+     3.7
+    ],
+    [
+     2022,
+     3.9
+    ],
+    [
+     2023,
+     2.8
+    ],
+    [
+     2024,
+     2.7
+    ],
+    [
+     2025,
+     2.9
+    ]
+   ],
+   "personnel": {
+    "low": 112000,
+    "high": 112000,
+    "year": 2025,
+    "text": "approximately 112,000 active-duty military personnel"
+   }
   },
   "GHA": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     0.4
+    ],
+    [
+     2021,
+     0.5
+    ],
+    [
+     2022,
+     0.4
+    ],
+    [
+     2023,
+     0.4
+    ],
+    [
+     2024,
+     0.4
+    ]
+   ],
+   "personnel": {
+    "low": 15000,
+    "high": 20000,
+    "year": 2025,
+    "text": "estimated 15-20,000 active Armed Forces"
+   }
   },
   "DEU": {
-   "governmentType": "federal parliamentary republic"
+   "governmentType": "federal parliamentary republic",
+   "militarySpending": [
+    [
+     2021,
+     1.4
+    ],
+    [
+     2022,
+     1.5
+    ],
+    [
+     2023,
+     1.6
+    ],
+    [
+     2024,
+     2
+    ],
+    [
+     2025,
+     2.4
+    ]
+   ],
+   "personnel": {
+    "low": 185000,
+    "high": 185000,
+    "year": 2025,
+    "text": "approximately 185,000 active-duty military personnel"
+   }
   },
   "GEO": {
-   "governmentType": "semi-presidential republic"
+   "governmentType": "semi-presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.6
+    ],
+    [
+     2021,
+     1.5
+    ],
+    [
+     2022,
+     1.6
+    ],
+    [
+     2023,
+     1.7
+    ],
+    [
+     2024,
+     1.7
+    ]
+   ],
+   "personnel": {
+    "low": 37000,
+    "high": 37000,
+    "year": 2025,
+    "text": "the Georgia Defense Forces are authorized up to 37,000 personnel"
+   }
   },
   "GMB": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     0.8
+    ],
+    [
+     2021,
+     0.8
+    ],
+    [
+     2022,
+     0.7
+    ],
+    [
+     2023,
+     0.6
+    ],
+    [
+     2024,
+     0.6
+    ]
+   ],
+   "personnel": {
+    "low": 3000,
+    "high": 4000,
+    "year": 2025,
+    "text": "estimated 3,000-4,000 active Gambian Armed Forces"
+   }
   },
   "GAB": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.8
+    ],
+    [
+     2021,
+     1.7
+    ],
+    [
+     2022,
+     1.3
+    ],
+    [
+     2023,
+     1.3
+    ],
+    [
+     2024,
+     1.5
+    ]
+   ],
+   "personnel": {
+    "low": 7000,
+    "high": 7000,
+    "year": 2025,
+    "text": "approximately 7,000 active-duty Armed Forces including the Republican Guard and Gendarmerie"
+   }
   },
   "FRA": {
-   "governmentType": "semi-presidential republic"
+   "governmentType": "semi-presidential republic",
+   "militarySpending": [
+    [
+     2021,
+     1.9
+    ],
+    [
+     2022,
+     1.9
+    ],
+    [
+     2023,
+     1.9
+    ],
+    [
+     2024,
+     2
+    ],
+    [
+     2025,
+     2.1
+    ]
+   ],
+   "personnel": {
+    "low": 200000,
+    "high": 200000,
+    "year": 2025,
+    "text": "approximately 200,000 active duty Armed Forces; approximately 150,000 National Gendarmerie; approximately 80,000 National Guard"
+   }
   },
   "SPM": {
-   "governmentType": "parliamentary democracy (Territorial Council); overseas collectivity of France"
+   "governmentType": "parliamentary democracy (Territorial Council); overseas collectivity of France",
+   "militarySpending": [],
+   "personnel": null
   },
   "WLF": {
-   "governmentType": "parliamentary democracy (Territorial Assembly); overseas collectivity of France"
+   "governmentType": "parliamentary democracy (Territorial Assembly); overseas collectivity of France",
+   "militarySpending": [],
+   "personnel": null
   },
   "MAF": {
-   "governmentType": "parliamentary democracy (Territorial Council); overseas collectivity of France"
+   "governmentType": "parliamentary democracy (Territorial Council); overseas collectivity of France",
+   "militarySpending": [],
+   "personnel": null
   },
   "BLM": {
-   "governmentType": "parliamentary democracy (Territorial Council); overseas collectivity of France"
+   "governmentType": "parliamentary democracy (Territorial Council); overseas collectivity of France",
+   "militarySpending": [],
+   "personnel": null
   },
   "PYF": {
-   "governmentType": "parliamentary democracy (Assembly of French Polynesia); an overseas collectivity of France"
+   "governmentType": "parliamentary democracy (Assembly of French Polynesia); an overseas collectivity of France",
+   "militarySpending": [],
+   "personnel": null
   },
   "NCL": {
-   "governmentType": "parliamentary democracy (Territorial Congress); an overseas collectivity of France"
+   "governmentType": "parliamentary democracy (Territorial Congress); an overseas collectivity of France",
+   "militarySpending": [],
+   "personnel": null
   },
   "ATF": {
-   "governmentType": null
+   "governmentType": null,
+   "militarySpending": [],
+   "personnel": null
   },
   "FIN": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2021,
+     1.4
+    ],
+    [
+     2022,
+     1.7
+    ],
+    [
+     2023,
+     2.1
+    ],
+    [
+     2024,
+     2.4
+    ],
+    [
+     2025,
+     2.8
+    ]
+   ],
+   "personnel": {
+    "low": 31000,
+    "high": 31000,
+    "year": 2025,
+    "text": "approximately 31,000 active-duty military personnel"
+   }
   },
   "FJI": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     1.4
+    ],
+    [
+     2021,
+     1.5
+    ],
+    [
+     2022,
+     1.2
+    ],
+    [
+     2023,
+     1.1
+    ],
+    [
+     2024,
+     1.4
+    ]
+   ],
+   "personnel": {
+    "low": 4000,
+    "high": 4000,
+    "year": 2025,
+    "text": "approximately 4,000 active Republic of Fiji Military Forces"
+   }
   },
   "ETH": {
-   "governmentType": "federal parliamentary republic"
+   "governmentType": "federal parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     0.5
+    ],
+    [
+     2021,
+     0.5
+    ],
+    [
+     2022,
+     1.7
+    ],
+    [
+     2023,
+     1
+    ],
+    [
+     2024,
+     0.7
+    ]
+   ],
+   "personnel": {
+    "low": 150000,
+    "high": 300000,
+    "year": 2025,
+    "text": "available information varies widely; estimated 150-300,000 active-duty Defense Force"
+   }
   },
   "EST": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2021,
+     2
+    ],
+    [
+     2022,
+     2.2
+    ],
+    [
+     2023,
+     3
+    ],
+    [
+     2024,
+     3.4
+    ],
+    [
+     2025,
+     3.4
+    ]
+   ],
+   "personnel": {
+    "low": 7500,
+    "high": 7500,
+    "year": 2025,
+    "text": "approximately 7,500 active-duty military personnel"
+   }
   },
   "ERI": {
-   "governmentType": "authoritarian"
+   "governmentType": "authoritarian",
+   "militarySpending": [
+    [
+     2015,
+     10.6
+    ],
+    [
+     2016,
+     10.4
+    ],
+    [
+     2017,
+     10.3
+    ],
+    [
+     2018,
+     10.2
+    ],
+    [
+     2019,
+     10
+    ]
+   ],
+   "personnel": {
+    "low": 150000,
+    "high": 200000,
+    "year": 2025,
+    "text": "available information varies widely; estimated 150,000-200,000 active Defense Forces"
+   }
   },
   "GNQ": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.6
+    ],
+    [
+     2021,
+     1.3
+    ],
+    [
+     2022,
+     1.3
+    ],
+    [
+     2023,
+     1.6
+    ],
+    [
+     2024,
+     1
+    ]
+   ],
+   "personnel": {
+    "low": 2000,
+    "high": 2000,
+    "year": 2025,
+    "text": "estimated 2,000 active Armed Forces, including Gendarmerie"
+   }
   },
   "SLV": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.4
+    ],
+    [
+     2021,
+     1.2
+    ],
+    [
+     2022,
+     1.3
+    ],
+    [
+     2023,
+     1.2
+    ],
+    [
+     2024,
+     1.2
+    ]
+   ],
+   "personnel": {
+    "low": 25000,
+    "high": 25000,
+    "year": 2025,
+    "text": "approximately 25,000 active FAES"
+   }
   },
   "EGY": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.3
+    ],
+    [
+     2021,
+     1.3
+    ],
+    [
+     2022,
+     1.2
+    ],
+    [
+     2023,
+     1
+    ],
+    [
+     2024,
+     0.7
+    ]
+   ],
+   "personnel": {
+    "low": 450000,
+    "high": 450000,
+    "year": 2025,
+    "text": "estimated 450,000 active Armed Forces"
+   }
   },
   "ECU": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     2.3
+    ],
+    [
+     2021,
+     2.4
+    ],
+    [
+     2022,
+     2.2
+    ],
+    [
+     2023,
+     2.3
+    ],
+    [
+     2024,
+     2.2
+    ]
+   ],
+   "personnel": {
+    "low": 40000,
+    "high": 40000,
+    "year": 2025,
+    "text": "approximately 40,000 active Ecuadorian Armed Forces"
+   }
   },
   "DOM": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     0.8
+    ],
+    [
+     2021,
+     0.7
+    ],
+    [
+     2022,
+     0.7
+    ],
+    [
+     2023,
+     0.7
+    ],
+    [
+     2024,
+     0.8
+    ]
+   ],
+   "personnel": {
+    "low": 55000,
+    "high": 60000,
+    "year": 2025,
+    "text": "approximately 55-60,000 Armed Forces; up to 35,000 National Police"
+   }
   },
   "DMA": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [],
+   "personnel": null
   },
   "DJI": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2015,
+     2.5
+    ],
+    [
+     2016,
+     2.7
+    ],
+    [
+     2017,
+     3.3
+    ],
+    [
+     2018,
+     3.5
+    ],
+    [
+     2019,
+     3.5
+    ]
+   ],
+   "personnel": {
+    "low": 10000,
+    "high": 12000,
+    "year": 2025,
+    "text": "estimated 10-12,000 active Armed Forces, including Gendarmerie"
+   }
   },
   "GRL": {
-   "governmentType": "parliamentary democracy (Parliament of Greenland or Inatsisartut)"
+   "governmentType": "parliamentary democracy (Parliament of Greenland or Inatsisartut)",
+   "militarySpending": [],
+   "personnel": null
   },
   "FRO": {
-   "governmentType": "parliamentary democracy (Faroese Parliament); part of the Kingdom of Denmark"
+   "governmentType": "parliamentary democracy (Faroese Parliament); part of the Kingdom of Denmark",
+   "militarySpending": [],
+   "personnel": null
   },
   "DNK": {
-   "governmentType": "parliamentary constitutional monarchy"
+   "governmentType": "parliamentary constitutional monarchy",
+   "militarySpending": [
+    [
+     2021,
+     1.3
+    ],
+    [
+     2022,
+     1.4
+    ],
+    [
+     2023,
+     2
+    ],
+    [
+     2024,
+     2.3
+    ],
+    [
+     2025,
+     3.2
+    ]
+   ],
+   "personnel": {
+    "low": 17000,
+    "high": 17000,
+    "year": 2025,
+    "text": "approximately 17,000 active-duty military personnel"
+   }
   },
   "CZE": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2021,
+     1.4
+    ],
+    [
+     2022,
+     1.3
+    ],
+    [
+     2023,
+     1.5
+    ],
+    [
+     2024,
+     2.1
+    ],
+    [
+     2025,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 28000,
+    "high": 28000,
+    "year": 2025,
+    "text": "approximately 28,000 active-duty military personnel"
+   }
   },
   "CYP": {
-   "governmentType": "Republic of Cyprus - presidential republic; self-declared \"Turkish Republic of Northern Cyprus\" (TRNC) - parliamentary republic with enhanced presidency"
+   "governmentType": "Republic of Cyprus - presidential republic; self-declared \"Turkish Republic of Northern Cyprus\" (TRNC) - parliamentary republic with enhanced presidency",
+   "militarySpending": [
+    [
+     2020,
+     1.8
+    ],
+    [
+     2021,
+     1.8
+    ],
+    [
+     2022,
+     1.8
+    ],
+    [
+     2023,
+     1.8
+    ],
+    [
+     2024,
+     1.7
+    ]
+   ],
+   "personnel": {
+    "low": 12000,
+    "high": 15000,
+    "year": 2025,
+    "text": "approximately 12-15,000 active Cypriot National Guard"
+   }
   },
   "CUB": {
-   "governmentType": "communist state"
+   "governmentType": "communist state",
+   "militarySpending": [
+    [
+     2016,
+     3.1
+    ],
+    [
+     2017,
+     2.9
+    ],
+    [
+     2018,
+     2.9
+    ],
+    [
+     2019,
+     3.2
+    ],
+    [
+     2020,
+     4.2
+    ]
+   ],
+   "personnel": {
+    "low": 50000,
+    "high": 50000,
+    "year": 2025,
+    "text": "limited available information; estimated 50,000 active Armed Forces"
+   }
   },
   "HRV": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2021,
+     2
+    ],
+    [
+     2022,
+     1.8
+    ],
+    [
+     2023,
+     1.7
+    ],
+    [
+     2024,
+     1.9
+    ],
+    [
+     2025,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 15000,
+    "high": 15000,
+    "year": 2025,
+    "text": "approximately 15,000 active-duty military personnel"
+   }
   },
   "CIV": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.1
+    ],
+    [
+     2021,
+     1.1
+    ],
+    [
+     2022,
+     0.9
+    ],
+    [
+     2023,
+     0.9
+    ],
+    [
+     2024,
+     0.8
+    ]
+   ],
+   "personnel": {
+    "low": 25000,
+    "high": 30000,
+    "year": 2025,
+    "text": "approximately 25-30,000 active FACI, including Gendarmerie personnel"
+   }
   },
   "CRI": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     0.7
+    ],
+    [
+     2021,
+     0.7
+    ],
+    [
+     2022,
+     0.6
+    ],
+    [
+     2023,
+     0.6
+    ],
+    [
+     2024,
+     0.6
+    ]
+   ],
+   "personnel": {
+    "low": 10000,
+    "high": 15000,
+    "year": 2025,
+    "text": "approximately 10-15,000 Ministry of Public Security personnel"
+   }
   },
   "COD": {
-   "governmentType": "semi-presidential republic"
+   "governmentType": "semi-presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     0.7
+    ],
+    [
+     2021,
+     0.7
+    ],
+    [
+     2022,
+     0.7
+    ],
+    [
+     2023,
+     1.2
+    ],
+    [
+     2024,
+     1.2
+    ]
+   ],
+   "personnel": {
+    "low": 100000,
+    "high": 150000,
+    "year": 2025,
+    "text": "estimated 100-150,000 active FARDC"
+   }
   },
   "COG": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     2.8
+    ],
+    [
+     2021,
+     2.4
+    ],
+    [
+     2022,
+     1.8
+    ],
+    [
+     2023,
+     2
+    ],
+    [
+     2024,
+     1.2
+    ]
+   ],
+   "personnel": {
+    "low": 12000,
+    "high": 14000,
+    "year": 2025,
+    "text": "approximately 12-14,000 active FAC, including Gendarmerie"
+   }
   },
   "COM": {
-   "governmentType": "federal presidential republic"
+   "governmentType": "federal presidential republic",
+   "militarySpending": [],
+   "personnel": {
+    "low": 600,
+    "high": 600,
+    "year": 2023,
+    "text": "estimated 600 Defense Force; estimated 500 Federal Police"
+   }
   },
   "COL": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     3.4
+    ],
+    [
+     2021,
+     3.2
+    ],
+    [
+     2022,
+     3
+    ],
+    [
+     2023,
+     3
+    ],
+    [
+     2024,
+     3.4
+    ]
+   ],
+   "personnel": {
+    "low": 260000,
+    "high": 260000,
+    "year": 2025,
+    "text": "approximately 260,000 active Military Forces; approximately 150,000 National Police"
+   }
   },
   "CHN": {
-   "governmentType": "communist party-led state"
+   "governmentType": "communist party-led state",
+   "militarySpending": [
+    [
+     2020,
+     1.7
+    ],
+    [
+     2021,
+     1.5
+    ],
+    [
+     2022,
+     1.5
+    ],
+    [
+     2023,
+     1.5
+    ],
+    [
+     2024,
+     1.5
+    ]
+   ],
+   "personnel": {
+    "low": 2000000,
+    "high": 2000000,
+    "year": 2025,
+    "text": "approximately 2 million active-duty PLA (950,000-1 million Ground; 250,000 Navy, including about 50,000 Marines; 350-400,000 Air Force; 120,000 Rocket Forces; 150-175,000 other forces)"
+   }
   },
   "MAC": {
-   "governmentType": "executive-led limited democracy; a special administrative region of the People's Republic of China"
+   "governmentType": "executive-led limited democracy; a special administrative region of the People's Republic of China",
+   "militarySpending": [],
+   "personnel": null
   },
   "HKG": {
-   "governmentType": "presidential limited democracy; a special administrative region of the People's Republic of China"
+   "governmentType": "presidential limited democracy; a special administrative region of the People's Republic of China",
+   "militarySpending": [],
+   "personnel": null
   },
   "CHL": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     2
+    ],
+    [
+     2021,
+     2
+    ],
+    [
+     2022,
+     1.6
+    ],
+    [
+     2023,
+     1.5
+    ],
+    [
+     2024,
+     1.5
+    ]
+   ],
+   "personnel": {
+    "low": 70000,
+    "high": 70000,
+    "year": 2025,
+    "text": "approximately 70,000 active Armed Forces (40,000 Army; 20,000 Navy; 10,000 Air Force); approximately 50,000 Carabineros"
+   }
   },
   "TCD": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     2.9
+    ],
+    [
+     2021,
+     2.5
+    ],
+    [
+     2022,
+     2.6
+    ],
+    [
+     2023,
+     2.9
+    ],
+    [
+     2024,
+     3
+    ]
+   ],
+   "personnel": {
+    "low": 35000,
+    "high": 40000,
+    "year": 2025,
+    "text": "estimated 35-40,000 active Chadian National Army personnel"
+   }
   },
   "CAF": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.8
+    ],
+    [
+     2021,
+     1.8
+    ],
+    [
+     2022,
+     1.7
+    ],
+    [
+     2023,
+     1.8
+    ],
+    [
+     2024,
+     2.5
+    ]
+   ],
+   "personnel": {
+    "low": 10000,
+    "high": 15000,
+    "year": 2025,
+    "text": "estimated 10-15,000 active FACA"
+   }
   },
   "CPV": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     0.5
+    ],
+    [
+     2021,
+     0.5
+    ],
+    [
+     2022,
+     0.5
+    ],
+    [
+     2023,
+     0.6
+    ],
+    [
+     2024,
+     0.6
+    ]
+   ],
+   "personnel": {
+    "low": 1000,
+    "high": 1500,
+    "year": 2025,
+    "text": "the FACV has approximately 1,000-1,500 active personnel"
+   }
   },
   "CAN": {
-   "governmentType": "federal parliamentary democracy (Parliament of Canada) under a constitutional monarchy; a Commonwealth realm; federal and state authorities and responsibilities regulated in constitution"
+   "governmentType": "federal parliamentary democracy (Parliament of Canada) under a constitutional monarchy; a Commonwealth realm; federal and state authorities and responsibilities regulated in constitution",
+   "militarySpending": [
+    [
+     2021,
+     1.3
+    ],
+    [
+     2022,
+     1.2
+    ],
+    [
+     2023,
+     1.3
+    ],
+    [
+     2024,
+     1.5
+    ],
+    [
+     2025,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 75000,
+    "high": 75000,
+    "year": 2025,
+    "text": "approximately 75,000 active-duty military personnel"
+   }
   },
   "CMR": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1
+    ],
+    [
+     2021,
+     1
+    ],
+    [
+     2022,
+     1
+    ],
+    [
+     2023,
+     1
+    ],
+    [
+     2024,
+     1
+    ]
+   ],
+   "personnel": {
+    "low": 40000,
+    "high": 50000,
+    "year": 2025,
+    "text": "estimated 40-50,000 active FAC, including the Gendarmerie"
+   }
   },
   "KHM": {
-   "governmentType": "parliamentary constitutional monarchy"
+   "governmentType": "parliamentary constitutional monarchy",
+   "militarySpending": [
+    [
+     2020,
+     2.3
+    ],
+    [
+     2021,
+     2.3
+    ],
+    [
+     2022,
+     2.1
+    ],
+    [
+     2023,
+     1.5
+    ],
+    [
+     2024,
+     1.5
+    ]
+   ],
+   "personnel": {
+    "low": 200000,
+    "high": 200000,
+    "year": 2025,
+    "text": "information varies; estimated 200,000 Armed Forces, including Gendarmerie"
+   }
   },
   "MMR": {
-   "governmentType": "military regime"
+   "governmentType": "military regime",
+   "militarySpending": [
+    [
+     2019,
+     4.1
+    ],
+    [
+     2020,
+     3
+    ],
+    [
+     2021,
+     3.5
+    ],
+    [
+     2022,
+     3.6
+    ],
+    [
+     2023,
+     3.9
+    ]
+   ],
+   "personnel": {
+    "low": 150000,
+    "high": 150000,
+    "year": 2025,
+    "text": "information varies; estimated 150,000 active military personnel"
+   }
   },
   "BDI": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     2.1
+    ],
+    [
+     2021,
+     2
+    ],
+    [
+     2022,
+     2.6
+    ],
+    [
+     2023,
+     3
+    ],
+    [
+     2024,
+     3.5
+    ]
+   ],
+   "personnel": {
+    "low": 25000,
+    "high": 30000,
+    "year": 2025,
+    "text": "limited available information; estimated 25-30,000 active-duty Defense Force troops"
+   }
   },
   "BFA": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     2.4
+    ],
+    [
+     2021,
+     2.4
+    ],
+    [
+     2022,
+     2.9
+    ],
+    [
+     2023,
+     4
+    ],
+    [
+     2024,
+     4.5
+    ]
+   ],
+   "personnel": {
+    "low": 20000,
+    "high": 20000,
+    "year": 2025,
+    "text": "estimated 20,000 Armed Forces; estimated 50,000 Homeland Defense Volunteers"
+   }
   },
   "BGR": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2021,
+     1.6
+    ],
+    [
+     2022,
+     1.6
+    ],
+    [
+     2023,
+     1.9
+    ],
+    [
+     2024,
+     2
+    ],
+    [
+     2025,
+     2.1
+    ]
+   ],
+   "personnel": {
+    "low": 28000,
+    "high": 28000,
+    "year": 2025,
+    "text": "approximately 28,000 active duty Armed Forces"
+   }
   },
   "BRN": {
-   "governmentType": "absolute monarchy or sultanate"
+   "governmentType": "absolute monarchy or sultanate",
+   "militarySpending": [
+    [
+     2019,
+     3.1
+    ],
+    [
+     2020,
+     3.7
+    ],
+    [
+     2021,
+     3.1
+    ],
+    [
+     2022,
+     2.6
+    ],
+    [
+     2023,
+     3
+    ]
+   ],
+   "personnel": {
+    "low": 7000,
+    "high": 7000,
+    "year": 2025,
+    "text": "approximately 7,000 active Armed Forces"
+   }
   },
   "BRA": {
-   "governmentType": "federal presidential republic"
+   "governmentType": "federal presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.4
+    ],
+    [
+     2021,
+     1.3
+    ],
+    [
+     2022,
+     1.2
+    ],
+    [
+     2023,
+     1.1
+    ],
+    [
+     2024,
+     1.1
+    ]
+   ],
+   "personnel": {
+    "low": 360000,
+    "high": 360000,
+    "year": 2025,
+    "text": "approximately 360,000 active Armed Forces (220,000 Army; 70,000 Navy; 70,000 Air Force)"
+   }
   },
   "BWA": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     3
+    ],
+    [
+     2021,
+     3
+    ],
+    [
+     2022,
+     2.8
+    ],
+    [
+     2023,
+     2.6
+    ],
+    [
+     2024,
+     3
+    ]
+   ],
+   "personnel": {
+    "low": 10000,
+    "high": 10000,
+    "year": 2025,
+    "text": "estimated 10,000 active Botswana Defense Force"
+   }
   },
   "BIH": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     0.9
+    ],
+    [
+     2021,
+     0.9
+    ],
+    [
+     2022,
+     0.8
+    ],
+    [
+     2023,
+     0.8
+    ],
+    [
+     2024,
+     0.8
+    ]
+   ],
+   "personnel": {
+    "low": 10000,
+    "high": 10000,
+    "year": 2025,
+    "text": "approximately 10,000 active duty Armed Forces"
+   }
   },
   "BOL": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.4
+    ],
+    [
+     2021,
+     1.4
+    ],
+    [
+     2022,
+     1.3
+    ],
+    [
+     2023,
+     1.2
+    ],
+    [
+     2024,
+     1.2
+    ]
+   ],
+   "personnel": {
+    "low": 30000,
+    "high": 35000,
+    "year": 2025,
+    "text": "approximately 30-35,000 active-duty Armed Forces"
+   }
   },
   "BTN": {
-   "governmentType": "constitutional monarchy"
+   "governmentType": "constitutional monarchy",
+   "militarySpending": [],
+   "personnel": {
+    "low": 7000,
+    "high": 8000,
+    "year": 2025,
+    "text": "estimated 7-8,000 active Royal Bhutan Army"
+   }
   },
   "BEN": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     0.5
+    ],
+    [
+     2021,
+     0.7
+    ],
+    [
+     2022,
+     0.7
+    ],
+    [
+     2023,
+     0.5
+    ],
+    [
+     2024,
+     0.7
+    ]
+   ],
+   "personnel": {
+    "low": 10000,
+    "high": 12000,
+    "year": 2025,
+    "text": "estimated 10-12,000 active duty Armed Forces (including National Guard)"
+   }
   },
   "BLZ": {
-   "governmentType": "parliamentary democracy (National Assembly) under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "parliamentary democracy (National Assembly) under a constitutional monarchy; a Commonwealth realm",
+   "militarySpending": [
+    [
+     2020,
+     1.5
+    ],
+    [
+     2021,
+     1.3
+    ],
+    [
+     2022,
+     1.1
+    ],
+    [
+     2023,
+     0.9
+    ],
+    [
+     2024,
+     1
+    ]
+   ],
+   "personnel": {
+    "low": 1500,
+    "high": 1500,
+    "year": 2025,
+    "text": "approximately 1,500 BDF personnel"
+   }
   },
   "BEL": {
-   "governmentType": "federal parliamentary democracy under a constitutional monarchy"
+   "governmentType": "federal parliamentary democracy under a constitutional monarchy",
+   "militarySpending": [
+    [
+     2021,
+     1.1
+    ],
+    [
+     2022,
+     1.2
+    ],
+    [
+     2023,
+     1.2
+    ],
+    [
+     2024,
+     1.3
+    ],
+    [
+     2025,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 23000,
+    "high": 23000,
+    "year": 2025,
+    "text": "approximately 23,000 active-duty military personnel"
+   }
   },
   "BLR": {
-   "governmentType": "presidential republic in name, although in fact a dictatorship"
+   "governmentType": "presidential republic in name, although in fact a dictatorship",
+   "militarySpending": [
+    [
+     2020,
+     1.5
+    ],
+    [
+     2021,
+     1.4
+    ],
+    [
+     2022,
+     1.7
+    ],
+    [
+     2023,
+     1.8
+    ],
+    [
+     2024,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 50000,
+    "high": 60000,
+    "year": 2025,
+    "text": "approximately 50-60,000 active-duty military personnel"
+   }
   },
   "BRB": {
-   "governmentType": "parliamentary republic; a Commonwealth realm"
+   "governmentType": "parliamentary republic; a Commonwealth realm",
+   "militarySpending": [
+    [
+     2020,
+     0.9
+    ],
+    [
+     2021,
+     0.9
+    ],
+    [
+     2022,
+     0.8
+    ],
+    [
+     2023,
+     0.7
+    ],
+    [
+     2024,
+     0.7
+    ]
+   ],
+   "personnel": {
+    "low": 600,
+    "high": 600,
+    "year": 2025,
+    "text": "approximately 600 active BDF personnel"
+   }
   },
   "BGD": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     1.3
+    ],
+    [
+     2021,
+     1.2
+    ],
+    [
+     2022,
+     1.1
+    ],
+    [
+     2023,
+     1
+    ],
+    [
+     2024,
+     0.9
+    ]
+   ],
+   "personnel": {
+    "low": 170000,
+    "high": 170000,
+    "year": 2025,
+    "text": "information varies; approximately 170,000 active Armed Forces"
+   }
   },
   "BHR": {
-   "governmentType": "constitutional monarchy"
+   "governmentType": "constitutional monarchy",
+   "militarySpending": [
+    [
+     2020,
+     4.2
+    ],
+    [
+     2021,
+     3.6
+    ],
+    [
+     2022,
+     3.2
+    ],
+    [
+     2023,
+     3.2
+    ],
+    [
+     2024,
+     3
+    ]
+   ],
+   "personnel": {
+    "low": 10000,
+    "high": 10000,
+    "year": 2025,
+    "text": "information varies; approximately 10,000 active Bahrain Defense Force; approximately 3,000 National Guard"
+   }
   },
   "BHS": {
-   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm",
+   "militarySpending": [
+    [
+     2020,
+     0.9
+    ],
+    [
+     2021,
+     0.9
+    ],
+    [
+     2022,
+     0.8
+    ],
+    [
+     2023,
+     0.8
+    ],
+    [
+     2024,
+     0.7
+    ]
+   ],
+   "personnel": {
+    "low": 1500,
+    "high": 1800,
+    "year": 2025,
+    "text": "approximately 1,500-1,800 active RBDF"
+   }
   },
   "AZE": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     5
+    ],
+    [
+     2021,
+     5
+    ],
+    [
+     2022,
+     4.5
+    ],
+    [
+     2023,
+     4.5
+    ],
+    [
+     2024,
+     5.1
+    ]
+   ],
+   "personnel": {
+    "low": 100000,
+    "high": 100000,
+    "year": 2025,
+    "text": "information varies widely; estimated 100,000 active Armed Forces personnel"
+   }
   },
   "AUT": {
-   "governmentType": "federal parliamentary republic"
+   "governmentType": "federal parliamentary republic",
+   "militarySpending": [
+    [
+     2020,
+     0.7
+    ],
+    [
+     2021,
+     0.8
+    ],
+    [
+     2022,
+     0.7
+    ],
+    [
+     2023,
+     0.9
+    ],
+    [
+     2024,
+     1
+    ]
+   ],
+   "personnel": {
+    "low": 22000,
+    "high": 22000,
+    "year": 2025,
+    "text": "approximately 22,000 active Armed Forces (includes about 14,000 regular troops and around 8,000 reservists/militia undergoing refresher training)"
+   }
   },
   "AUS": {
-   "governmentType": "federal parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "federal parliamentary democracy under a constitutional monarchy; a Commonwealth realm",
+   "militarySpending": [
+    [
+     2020,
+     2
+    ],
+    [
+     2021,
+     2
+    ],
+    [
+     2022,
+     2
+    ],
+    [
+     2023,
+     2
+    ],
+    [
+     2024,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 60000,
+    "high": 60000,
+    "year": 2025,
+    "text": "approximately 60,000 active ADF personnel"
+   }
   },
   "IOA": {
-   "governmentType": "federal parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "federal parliamentary democracy under a constitutional monarchy; a Commonwealth realm",
+   "militarySpending": [
+    [
+     2020,
+     2
+    ],
+    [
+     2021,
+     2
+    ],
+    [
+     2022,
+     2
+    ],
+    [
+     2023,
+     2
+    ],
+    [
+     2024,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 60000,
+    "high": 60000,
+    "year": 2025,
+    "text": "approximately 60,000 active ADF personnel"
+   }
   },
   "HMD": {
-   "governmentType": null
+   "governmentType": null,
+   "militarySpending": [],
+   "personnel": null
   },
   "NFK": {
-   "governmentType": "administered as an overseas territory of Australia"
+   "governmentType": "administered as an overseas territory of Australia",
+   "militarySpending": [],
+   "personnel": null
   },
   "ATC": {
-   "governmentType": null
+   "governmentType": null,
+   "militarySpending": [],
+   "personnel": null
   },
   "ARM": {
-   "governmentType": "parliamentary democracy; note - constitutional changes adopted in December 2015 transformed the government to a parliamentary system"
+   "governmentType": "parliamentary democracy; note - constitutional changes adopted in December 2015 transformed the government to a parliamentary system",
+   "militarySpending": [
+    [
+     2020,
+     5
+    ],
+    [
+     2021,
+     4.4
+    ],
+    [
+     2022,
+     4.3
+    ],
+    [
+     2023,
+     5.5
+    ],
+    [
+     2024,
+     5.5
+    ]
+   ],
+   "personnel": {
+    "low": 40000,
+    "high": 50000,
+    "year": 2025,
+    "text": "approximately 40-50,000 active Armenian Armed Forces"
+   }
   },
   "ARG": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     0.8
+    ],
+    [
+     2021,
+     0.8
+    ],
+    [
+     2022,
+     0.6
+    ],
+    [
+     2023,
+     0.5
+    ],
+    [
+     2024,
+     0.6
+    ]
+   ],
+   "personnel": {
+    "low": 75000,
+    "high": 75000,
+    "year": 2025,
+    "text": "approximately 75,000 active-duty Armed Forces (45,000 Army; 15,000 Navy, including about 3,500 marines; 15,000 Air Force)"
+   }
   },
   "ATG": {
-   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm",
+   "militarySpending": [],
+   "personnel": {
+    "low": 300,
+    "high": 300,
+    "year": 2025,
+    "text": "approximately 300 active Defense Force personnel"
+   }
   },
   "AGO": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     1.5
+    ],
+    [
+     2021,
+     1.4
+    ],
+    [
+     2022,
+     1.2
+    ],
+    [
+     2023,
+     1.2
+    ],
+    [
+     2024,
+     1
+    ]
+   ],
+   "personnel": {
+    "low": 100000,
+    "high": 100000,
+    "year": 2025,
+    "text": "approximately 100,000 active duty Armed Forces"
+   }
   },
   "AND": {
-   "governmentType": "parliamentary democracy (since March 1993) that retains its chiefs of state in the form of a co-principality; the two princes are the President of France and Bishop of Seu d'Urgell, Spain"
+   "governmentType": "parliamentary democracy (since March 1993) that retains its chiefs of state in the form of a co-principality; the two princes are the President of France and Bishop of Seu d'Urgell, Spain",
+   "militarySpending": [],
+   "personnel": null
   },
   "DZA": {
-   "governmentType": "presidential republic"
+   "governmentType": "presidential republic",
+   "militarySpending": [
+    [
+     2020,
+     6.7
+    ],
+    [
+     2021,
+     5.6
+    ],
+    [
+     2022,
+     4.8
+    ],
+    [
+     2023,
+     8
+    ],
+    [
+     2024,
+     8
+    ]
+   ],
+   "personnel": {
+    "low": 200000,
+    "high": 200000,
+    "year": 2025,
+    "text": "information varies; estimated 200,000 active ANP, including the National Gendarmerie"
+   }
   },
   "ALB": {
-   "governmentType": "parliamentary republic"
+   "governmentType": "parliamentary republic",
+   "militarySpending": [
+    [
+     2021,
+     1.2
+    ],
+    [
+     2022,
+     1.2
+    ],
+    [
+     2023,
+     1.7
+    ],
+    [
+     2024,
+     1.7
+    ],
+    [
+     2025,
+     2
+    ]
+   ],
+   "personnel": {
+    "low": 7500,
+    "high": 7500,
+    "year": 2025,
+    "text": "approximately 7,500 active-duty military personnel"
+   }
   },
   "AFG": {
-   "governmentType": "theocratic; the United States does not recognize the Taliban Government"
+   "governmentType": "theocratic; the United States does not recognize the Taliban Government",
+   "militarySpending": [
+    [
+     2015,
+     2.9
+    ],
+    [
+     2016,
+     3.1
+    ],
+    [
+     2017,
+     3.3
+    ],
+    [
+     2018,
+     3.2
+    ],
+    [
+     2019,
+     3.3
+    ]
+   ],
+   "personnel": {
+    "low": 190000,
+    "high": 190000,
+    "year": 2025,
+    "text": "the Taliban claims to have 190,000 under the Ministry of Defense and 215,000 under the Ministry of Interior"
+   }
   },
   "SXM": {
-   "governmentType": "parliamentary democracy under a constitutional monarchy"
+   "governmentType": "parliamentary democracy under a constitutional monarchy",
+   "militarySpending": [],
+   "personnel": null
   },
   "TUV": {
-   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm"
+   "governmentType": "parliamentary democracy under a constitutional monarchy; a Commonwealth realm",
+   "militarySpending": [],
+   "personnel": null
   }
  }
 }

@@ -76,6 +76,8 @@ if (!wheatMap.includes('class="hero-card"') || !wheatMap.includes("cards/map-whe
 // Country pages: world rankings and then-and-now sections.
 const usPage = readFileSync(join(DIST, "country/united-states/index.html"), "utf8");
 if (!usPage.includes("<h2>World rankings</h2>") || !usPage.includes("<h2>Then and now</h2>")) fail("country/united-states: rankings or then-and-now missing");
+if (!/<h2>Military<\/h2>.*Active personnel/s.test(usPage)) fail("country/united-states: military section missing");
+if (!existsSync(join(DIST, "rank/military-spending-usd/index.html"))) fail("no military spending ranking page");
 
 const sitemap = readFileSync(join(DIST, "sitemap.xml"), "utf8");
 const listed = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);

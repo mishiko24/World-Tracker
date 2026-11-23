@@ -12,6 +12,7 @@ import type {
   DataMeta,
   Economy,
   Government,
+  Military,
   NumberFact,
   Population,
   Power,
@@ -146,6 +147,42 @@ function buildEconomy(id: string): Economy {
   };
 }
 
+// Factbook spending older than this many years before the newest Factbook year is not current any more.
+const MILITARY_MAX_AGE_YEARS = 3;
+const newestSpendingYear = Math.max(...Object.values(factbook).flatMap((f) => f.militarySpending.map(([year]) => year)));
+
+function buildMilitary(id: string, population: Population): Military {
+  const f = factbook[id];
+  const history = f?.militarySpending ?? [];
+  const latest = history.at(-1);
+  if (latest === undefined || latest[0] < newestSpendingYear - MILITARY_MAX_AGE_YEARS) {
+    return { spending: null, spendingUsd: null, spendingPerPerson: null, ...personnelFacts(f?.personnel ?? null, population) };
+  }
+  // In dollars: the newest year the World Bank also has a GDP for (2025 estimates come before 2025 GDP).
+  const gdpByYear = worldbank[id]?.gdpByYear ?? {};
+  const withGdp = history.findLast(([year]) => gdpByYear[String(year)] !== undefined);
+  const usd = withGdp && { value: (withGdp[1] / 100) * gdpByYear[String(withGdp[0])], year: withGdp[0], source: "factbook" as const };
+  const people = population.total?.value;
+  return {
+    spending: { value: latest[1], year: latest[0], source: "factbook" },
+    spendingUsd: usd ?? null,
+    spendingPerPerson: usd && people !== undefined ? { ...usd, value: usd.value / people } : null,
+    ...personnelFacts(f?.personnel ?? null, population),
+  };
+}
+
+function personnelFacts(p: FactbookEntry["personnel"], population: Population): Pick<Military, "personnel" | "personnelPer1000"> {
+  if (p === null) {
+    return { personnel: null, personnelPer1000: null };
+  }
+  const value = (p.low + p.high) / 2;
+  const people = population.total?.value;
+  return {
+    personnel: { value, low: p.low, high: p.high, year: p.year, source: "factbook", note: p.text },
+    personnelPer1000: people === undefined ? null : { value: (value / people) * 1000, year: p.year, source: "factbook" },
+  };
+}
+
 const ENERGY_RESOURCES = [
   { id: "oil", name: "Crude oil" },
   { id: "gas", name: "Natural gas" },
@@ -222,18 +259,27 @@ mkdirSync(OUTPUT_DIR, { recursive: true });
 const builtAt = new Date().toISOString().slice(0, 10);
 const all: CountryData[] = [];
 for (const c of countries) {
+  const population = buildPopulation(c.id);
+  const military = buildMilitary(c.id, population);
+  const spendingHistory = factbook[c.id]?.militarySpending ?? [];
   all.push({
     id: c.id,
     name: c.name,
     builtAt,
     powerLevel: null, // filled below, needs every country
     government: buildGovernment(c.id),
-    population: buildPopulation(c.id),
+    population,
     economy: buildEconomy(c.id),
+    military,
     resources: buildResources(c.id),
     agriculture: buildAgriculture(c.id),
     power: buildPower(c.id),
-    trends: worldbank[c.id]?.trends ?? {}, // no freshness rule: old years are the point of a trend
+    // No freshness rule for World Bank trends: old years are the point of a trend. Military spending history
+    // only when the latest figure is current (otherwise the chart would end years ago without saying why).
+    trends: {
+      ...(worldbank[c.id]?.trends ?? {}),
+      ...(military.spending !== null && spendingHistory.length > 1 ? { militarySpending: spendingHistory } : {}),
+    },
   });
 }
 const powerLevels = computePowerLevels(all);
@@ -274,6 +320,11 @@ function summaryOf(d: CountryData): CountrySummary {
     debtUsd: d.economy.debtUsd?.value ?? null,
     debtPercent: d.economy.debt?.value ?? null,
     politicalStability: d.government.politicalStability?.value ?? null,
+    militarySpending: d.military.spending?.value ?? null,
+    militarySpendingUsd: d.military.spendingUsd === null ? null : Number(d.military.spendingUsd.value.toPrecision(6)),
+    militaryPerPerson: d.military.spendingPerPerson === null ? null : Number(d.military.spendingPerPerson.value.toPrecision(4)),
+    militaryPersonnel: d.military.personnel?.value ?? null,
+    militaryPerThousand: d.military.personnelPer1000 === null ? null : Number(d.military.personnelPer1000.value.toPrecision(4)),
     electricityTwh: d.power.generation?.totalTwh ?? null,
     electricityAccess: d.power.electricityAccess?.value ?? null,
     pillars: d.powerLevel?.pillars ?? null,
@@ -351,6 +402,9 @@ const coverage: [string, (d: CountryData) => unknown][] = [
   ["economy.inflation", (d) => d.economy.inflation],
   ["economy.debt", (d) => d.economy.debt],
   ["economy.debtUsd", (d) => d.economy.debtUsd],
+  ["military.spending", (d) => d.military.spending],
+  ["military.spendingUsd", (d) => d.military.spendingUsd],
+  ["military.personnel", (d) => d.military.personnel],
   ["resources (any)", (d) => d.resources.length > 0 || null],
   ["resources oil production", (d) => d.resources.find((r) => r.id === "oil")?.production],
   ["agriculture", (d) => d.agriculture],

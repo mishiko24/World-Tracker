@@ -29,6 +29,7 @@ const DATASETS: { section: string; data: string; source: SourceId }[] = [
   { section: "Population", data: "Population, density, children per woman, life expectancy, age structure", source: "worldbank" },
   { section: "Population", data: "Median age (and fallbacks where the World Bank has no value)", source: "unwpp" },
   { section: "Economy", data: "GDP and rank, GDP per person (nominal and PPP), growth, inflation, central government debt", source: "worldbank" },
+  { section: "Military", data: "Military spending (% of GDP, in dollars with World Bank GDP), active personnel", source: "factbook" },
   { section: "Resources", data: "Oil, gas and coal production; coal reserves; oil and gas reserves", source: "eia" },
   { section: "Resources", data: "Mineral production and reserves", source: "usgs" },
   { section: "Agriculture", data: "Crop and livestock production, world ranks and shares", source: "faostat" },

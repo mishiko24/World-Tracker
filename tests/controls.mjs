@@ -100,8 +100,8 @@ await page.mouse.click(spainX, spainY);
 check("click selects Spain (panel)", (await panelTitle()) === "Spain", String(await panelTitle()));
 check("Spain drawn selected", near(await pixel(spainX, spainY), COLORS.selected));
 
-const headers = await page.$$eval("aside.panel-right .collapsible-header", (els) => els.map((e) => e.textContent));
-check("6 sections in info panel", headers.length === 6, headers.join(", "));
+const headers = await page.$$eval("aside.panel-right .collapsible-header", (els) => els.map((e) => e.textContent.replace("▸", "")));
+check("7 sections in info panel, Military after Economy", headers.length === 7 && headers.indexOf("Military") === headers.indexOf("Economy") + 1, headers.join(", "));
 check("sections collapsed by default", (await page.$$("aside.panel-right .collapsible-body")).length === 0);
 await page.click("aside.panel-right .collapsible-header >> text=Government");
 check("Government expands on click", (await page.$$("aside.panel-right .collapsible-body")).length === 1);
@@ -283,6 +283,12 @@ const medianRow = await compareRow("Median age");
 check("median age has no winner, difference in years", medianRow !== null && !medianRow.aWins && !medianRow.bWins && /years (more|less)$/.test(medianRow.diff), JSON.stringify(medianRow));
 const gdpRow = await compareRow("GDP");
 check("big differences read as ×", /^\d|same/.test(gdpRow?.diff ?? "") , JSON.stringify(gdpRow));
+await page.click("aside.panel-right .collapsible-header >> text=Military");
+const troopsRow = await compareRow("Active personnel");
+const troopsExpected = franceData.military.personnel.value > spainData.military.personnel.value;
+check("military: personnel compared, more troops wins", troopsRow !== null && troopsRow.bWins === troopsExpected, JSON.stringify(troopsRow));
+const shareRow = await compareRow("Share of GDP");
+check("military: share of GDP has no winner", shareRow !== null && !shareRow.aWins && !shareRow.bWins && shareRow.diff.includes("pp"), JSON.stringify(shareRow));
 await page.click("aside.panel-right .collapsible-header >> text=Government");
 const govLines = await page.$$eval("aside.panel-right .fact.compared-text", (rows) => rows[0].querySelectorAll(".compared-line").length);
 check("government rows show both countries", govLines === 2);
@@ -380,7 +386,7 @@ const groupNames = await page.$$eval(".country-list tr.group-row th:not(.name-co
 );
 check(
   "list view column groups",
-  groupNames.join("|") === "Power Level|Government|Population|Economy|Resources: production|Resources: reserves|Agriculture|Power generation",
+  groupNames.join("|") === "Power Level|Government|Population|Economy|Military|Resources: production|Resources: reserves|Agriculture|Power generation",
   groupNames.join("|"),
 );
 const columnIds = await page.$$eval(".country-list tr.column-row th", (els) => els.map((e) => e.dataset.column));
@@ -497,7 +503,7 @@ await page.waitForFunction(() => !document.querySelector(".share-link").textCont
 check("share link is the comparison page", (await page.textContent(".share-link")).endsWith("/compare/japan-vs-south-korea/"), await page.textContent(".share-link"));
 // One card per info panel section when comparing.
 const sectionTabs = await page.$$eval(".card-tabs button", (els) => els.map((e) => e.textContent).join("|"));
-check("comparison card per section", sectionTabs === "Power Level|Government|Population|Economy|Resources|Agriculture|Power generation", sectionTabs);
+check("comparison card per section", sectionTabs === "Power Level|Government|Population|Economy|Military|Resources|Agriculture|Power generation", sectionTabs);
 await page.click(".card-tabs button >> text=Economy");
 await page.waitForFunction(() => document.querySelector(".share-actions a[download]")?.getAttribute("download") === "world-tracker-jpn-vs-kor-economy.png");
 check("economy comparison card", true);

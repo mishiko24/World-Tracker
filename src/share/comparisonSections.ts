@@ -1,5 +1,5 @@
 // What each comparison card shows: one card per info panel section (Power Level, Government, Population, Economy,
-// Resources, Agriculture, Power generation). Drawn by comparisonCard.ts in the fight poster layout:
+// Military, Resources, Agriculture, Power generation). Drawn by comparisonCard.ts in the fight poster layout:
 //   headline  one number per country in the header (the Power Level score, GDP, population, ...)
 //   rows      up to six rows: two numbers with bars, or two texts (Government)
 // "Better" follows the info panel (src/ui/info/BasicSections.tsx etc.): inflation and debt lower is better;
@@ -10,15 +10,16 @@ import type { Better, DiffMode } from "../ui/info/Compare";
 import { dollars, fullNumber, percent, shortNumber, tonnes } from "../ui/info/formatData";
 import { POWER_SOURCE_STYLE } from "../ui/info/PowerSection";
 
-export type SectionId = "powerLevel" | "government" | "population" | "economy" | "resources" | "agriculture" | "power";
+export type SectionId = "powerLevel" | "government" | "population" | "economy" | "military" | "resources" | "agriculture" | "power";
 
-export const SECTION_IDS: SectionId[] = ["powerLevel", "government", "population", "economy", "resources", "agriculture", "power"];
+export const SECTION_IDS: SectionId[] = ["powerLevel", "government", "population", "economy", "military", "resources", "agriculture", "power"];
 
 export const SECTION_TITLES: Record<SectionId, string> = {
   powerLevel: "Power Level",
   government: "Government",
   population: "Population",
   economy: "Economy",
+  military: "Military",
   resources: "Resources",
   agriculture: "Agriculture",
   power: "Power generation",
@@ -140,6 +141,17 @@ export function comparisonSection(id: SectionId, a: CountryData, b: CountryData,
           num("Inflation", a.economy.inflation?.value, b.economy.inflation?.value, (v) => percent(v), { mode: "points", better: "lower" }),
           num("Gov. debt", a.economy.debtUsd?.value, b.economy.debtUsd?.value, dollars, { better: "lower" }),
           num("Debt, % of GDP", a.economy.debt?.value, b.economy.debt?.value, (v) => percent(v, 0), { mode: "points", better: "lower" }),
+        ],
+      };
+    case "military":
+      return {
+        ...base,
+        headline: { a: a.military.spendingUsd?.value ?? null, b: b.military.spendingUsd?.value ?? null, format: dollars, caption: caption("military spending") },
+        rows: [
+          num("Per person", a.military.spendingPerPerson?.value, b.military.spendingPerPerson?.value, (v) => `$${fullNumber(v)}`),
+          num("% of GDP", a.military.spending?.value, b.military.spending?.value, (v) => percent(v), { mode: "points", better: "none" }),
+          num("Active troops", a.military.personnel?.value, b.military.personnel?.value, shortNumber),
+          num("Per 1,000 people", a.military.personnelPer1000?.value, b.military.personnelPer1000?.value, (v) => v.toFixed(1), { better: "none" }),
         ],
       };
     case "resources":
