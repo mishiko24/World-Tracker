@@ -14,7 +14,9 @@ export type SourceId =
   | "eia"
   | "usgs"
   | "faostat"
-  | "ember";
+  | "ember"
+  | "eurostat"
+  | "oecd";
 
 export interface SourceInfo {
   short: string; // shown next to every value
@@ -66,6 +68,18 @@ export const SOURCES: Record<SourceId, SourceInfo> = {
     name: "Ember & Energy Institute, via Our World in Data",
     url: "https://github.com/owid/energy-data",
     license: "CC BY 4.0 (Ember, Our World in Data); Energy Institute Statistical Review, with attribution",
+  },
+  eurostat: {
+    short: "Eurostat",
+    name: "Eurostat, government expenditure by function (gov_10a_exp)",
+    url: "https://ec.europa.eu/eurostat/databrowser/view/gov_10a_exp/default/table",
+    license: "Reuse allowed with acknowledgement (Commission Decision 2011/833/EU)",
+  },
+  oecd: {
+    short: "OECD",
+    name: "OECD Government at a Glance, via Our World in Data",
+    url: "https://ourworldindata.org/government-spending",
+    license: "CC BY 4.0",
   },
 };
 
@@ -123,6 +137,32 @@ export interface Economy {
   inflation: NumberFact | null; // consumer prices, annual percent
   debt: NumberFact | null; // central government debt, percent of GDP
   debtUsd: NumberFact | null; // the same debt in current US dollars (debt % × GDP of the debt's year)
+}
+
+// The 10 divisions of the UN Classification of the Functions of Government (COFOG), in the order a typical
+// rich country's budget ranks them. `about` explains the category (tooltips).
+export const BUDGET_FUNCTIONS = [
+  { id: "social", cofog: "GF10", label: "Social protection", about: "Pensions, unemployment, family, sickness and disability benefits" },
+  { id: "health", cofog: "GF07", label: "Health", about: "Hospitals, doctors, medicines and public health" },
+  { id: "generalPublic", cofog: "GF01", label: "General public services", about: "Running the government and parliament, interest on public debt, foreign aid, basic research" },
+  { id: "education", cofog: "GF09", label: "Education", about: "Schools, universities and training" },
+  { id: "economic", cofog: "GF04", label: "Economic affairs", about: "Transport, energy, farming and industry support, job programs" },
+  { id: "defence", cofog: "GF02", label: "Defence", about: "Military and civil defence, military aid to other countries" },
+  { id: "publicOrder", cofog: "GF03", label: "Public order and safety", about: "Police, fire services, courts and prisons" },
+  { id: "housing", cofog: "GF06", label: "Housing and community", about: "Housing, community development, water supply, street lighting" },
+  { id: "recreation", cofog: "GF08", label: "Recreation and culture", about: "Sport, culture, broadcasting and religious services" },
+  { id: "environment", cofog: "GF05", label: "Environment", about: "Waste, waste water, pollution and nature protection" },
+] as const;
+export type BudgetFunctionId = (typeof BUDGET_FUNCTIONS)[number]["id"];
+
+// General government spending (central, state, local, social security) by function, one year. Eurostat for
+// EU and EFTA countries, OECD (via Our World in Data) for the other OECD members that report it.
+export interface Budget {
+  year: number;
+  source: SourceId;
+  percentOfGdp: number; // all spending; the sum of the functions
+  totalUsd: number | null; // percentOfGdp × World Bank GDP of the same year
+  functions: Record<BudgetFunctionId, number>; // percent of GDP each (can be slightly negative: asset sales)
 }
 
 // CIA World Factbook estimates (final edition, 2025). Spending older than the Factbook's newest years is left out

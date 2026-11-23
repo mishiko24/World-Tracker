@@ -5,6 +5,7 @@
 //
 // Fetchers write data-cache/<source>.json; build turns the caches into public/data/countries/*.json.
 
+import { fetchBudget } from "./fetch/budget.ts";
 import { fetchEia } from "./fetch/eia.ts";
 import { fetchFossilReserves } from "./fetch/fossilReserves.ts";
 import { fetchEnergy } from "./fetch/energy.ts";
@@ -26,6 +27,7 @@ const STEPS: Record<string, () => Promise<void>> = {
   reserves: fetchFossilReserves,
   usgs: fetchUsgs,
   faostat: fetchFaostat,
+  budget: fetchBudget,
   build: async () => {
     await import("./build.ts");
   },
