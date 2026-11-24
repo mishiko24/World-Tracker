@@ -11,7 +11,7 @@ import { createInterface } from "node:readline";
 import { TRADE_GROUPS, tradeGroupOf, type TradeGroupId } from "../../../src/data/trade.ts";
 import { loadCountries } from "../lib/countries.ts";
 import { parseCsv } from "../lib/csv.ts";
-import { fetchBytes, fetchText, writeCache } from "../lib/io.ts";
+import { fetchBytes, writeCache } from "../lib/io.ts";
 
 const BASE = "https://www.cepii.fr/DATA_DOWNLOAD/baci/data/";
 const TOP_PRODUCTS = 8;
@@ -70,12 +70,15 @@ function add(side: Side, country: string, partner: string | undefined, product: 
 }
 
 export async function fetchTrade(): Promise<void> {
-  // Newest HS 2022 release, e.g. BACI_HS22_V202601.zip
-  const listing = await fetchText(BASE, "BACI file list");
-  const versions = [...listing.matchAll(/BACI_HS22_V(\d{6})\.zip/g)].map((m) => m[1]).sort();
-  const version = versions.at(-1);
-  if (version === undefined) {
-    throw new Error(`BACI: no BACI_HS22_V*.zip in ${BASE}`);
+  // Newest HS 2022 release. CEPII publishes once a year in January (BACI_HS22_V202601.zip) and its folder has no
+  // file list, so try this year's name, then last year's.
+  const year0 = new Date().getUTCFullYear();
+  const candidates = [`${year0}01`, `${year0 - 1}01`];
+  const version = (await Promise.all(candidates.map(async (v) => ((await fetch(`${BASE}BACI_HS22_V${v}.zip`, { method: "HEAD" })).ok ? v : null)))).find(
+    (v) => v !== null,
+  );
+  if (version === undefined || version === null) {
+    throw new Error(`BACI: none of ${candidates.map((v) => `BACI_HS22_V${v}.zip`).join(", ")} exists in ${BASE}`);
   }
   const zipPath = join(mkdtempSync(join(tmpdir(), "baci-")), "baci.zip");
   writeFileSync(zipPath, await fetchBytes(`${BASE}BACI_HS22_V${version}.zip`, `BACI HS22 ${version}`));
