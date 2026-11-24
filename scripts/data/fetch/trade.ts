@@ -9,7 +9,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { createInterface } from "node:readline";
 import { TRADE_GROUPS, tradeGroupOf, type TradeGroupId } from "../../../src/data/trade.ts";
-import { loadCountries } from "../lib/countries.ts";
+import { codeMatcher } from "../lib/countries.ts";
 import { parseCsv } from "../lib/csv.ts";
 import { fetchBytes, writeCache } from "../lib/io.ts";
 
@@ -19,7 +19,7 @@ const TOP_PARTNERS = 6;
 
 export interface TradeProduct {
   code: string; // HS 2022, 6 digits
-  description: string; // HS description (shortened for display by shortProductName)
+  description: string; // official HS description (display name: productName() in src/data/tradeNames.ts)
   usd: number;
   worldRank: number; // among all exporters of this product (importers, for imports)
   worldShare: number; // percent of world trade in this product
@@ -86,7 +86,7 @@ export async function fetchTrade(): Promise<void> {
 
   // BACI country codes (numeric) -> our ids, by ISO3. "S19" = "Other Asia, not elsewhere specified", which is how
   // UN trade statistics report Taiwan.
-  const ourId = new Map(loadCountries().flatMap((c) => (c.iso3 === null ? [] : [[c.iso3, c.id] as const])));
+  const ourId = codeMatcher("baci");
   ourId.set("S19", "TWN");
   const countryOf = new Map<string, string>();
   for (const row of parseCsv(await unzipText(["-p", zipPath, entry(entries, /^country_codes/)]))) {

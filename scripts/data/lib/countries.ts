@@ -17,7 +17,7 @@ export interface Country {
   wikidata: string;
 }
 
-export type CodeSystem = "worldbank" | "owid" | "eia";
+export type CodeSystem = "worldbank" | "owid" | "eia" | "baci";
 
 // Where a source's code differs from our id/iso3. Key = our id.
 const CODE_OVERRIDES: Record<string, Partial<Record<CodeSystem, string>>> = {
