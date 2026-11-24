@@ -11,6 +11,7 @@ import { fetchFossilReserves } from "./fetch/fossilReserves.ts";
 import { fetchEnergy } from "./fetch/energy.ts";
 import { fetchFactbook } from "./fetch/factbook.ts";
 import { fetchFaostat } from "./fetch/faostat.ts";
+import { fetchTrade } from "./fetch/trade.ts";
 import { fetchUnWpp } from "./fetch/unwpp.ts";
 import { fetchUsgs } from "./fetch/usgs.ts";
 import { fetchWikidata } from "./fetch/wikidata.ts";
@@ -28,6 +29,7 @@ const STEPS: Record<string, () => Promise<void>> = {
   usgs: fetchUsgs,
   faostat: fetchFaostat,
   budget: fetchBudget,
+  trade: fetchTrade,
   build: async () => {
     await import("./build.ts");
   },
