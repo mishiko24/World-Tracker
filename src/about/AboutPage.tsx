@@ -31,6 +31,7 @@ const DATASETS: { section: string; data: string; source: SourceId }[] = [
   { section: "Economy", data: "GDP and rank, GDP per person (nominal and PPP), growth, inflation, central government debt", source: "worldbank" },
   { section: "Economy", data: "Government budget by function, EU and EFTA countries (% of GDP; dollars with World Bank GDP)", source: "eurostat" },
   { section: "Economy", data: "Government budget by function, other OECD members", source: "oecd" },
+  { section: "Trade", data: "Goods exports and imports by category, product and partner country (HS 2022)", source: "baci" },
   { section: "Military", data: "Military spending (% of GDP, in dollars with World Bank GDP), active personnel", source: "factbook" },
   { section: "Resources", data: "Oil, gas and coal production; coal reserves; oil and gas reserves", source: "eia" },
   { section: "Resources", data: "Mineral production and reserves", source: "usgs" },

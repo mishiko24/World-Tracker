@@ -24,6 +24,7 @@ import {
   SOURCES,
 } from "../../src/data/countryData";
 import { budgetColor, budgetShare } from "../../src/data/budget";
+import { TRADE_GROUPS, tradeColor } from "../../src/data/trade";
 import { ABOUT_URL, GAME_URL, SITE_URL } from "../../src/links";
 import type { CountryProperties } from "../../src/map/geo";
 import { barWidths, gap, winner, type Better, type DiffMode } from "../../src/ui/info/Compare";
@@ -325,6 +326,29 @@ function countryPage(site: Site, d: CountryData): string {
     );
   }
 
+  const t = d.trade;
+  if (t !== null) {
+    const signed = (v: number) => (v < 0 ? `−${dollars(-v)}` : `+${dollars(v)}`);
+    const groups = TRADE_GROUPS.map(
+      (g) =>
+        `<tr><td><span class="swatch" style="background:${tradeColor(g.id)}"></span>${escape(g.label)}</td><td>${percent(t.exports === 0 ? 0 : (t.exportsByGroup[g.id] / t.exports) * 100)}</td><td>${roundDollars(t.exportsByGroup[g.id])}</td></tr>`,
+    );
+    const products = t.topExports.map(
+      (p) => `<tr><td>${escape(p.name)}</td><td>${roundDollars(p.usd)}</td><td>${p.worldRank <= 10 ? `#${p.worldRank} in the world (${percent(p.worldShare)})` : ""}</td></tr>`,
+    );
+    const partners = t.exportPartners.map((p) => `${escape(p.name)} (${percent((p.usd / t.exports) * 100)})`).join(", ");
+    sections.push(
+      `<section><h2>Trade</h2>${table([
+        ["Goods exports", withYear(dollars(t.exports), t)],
+        ["Goods imports", withYear(dollars(t.imports), t)],
+        ["Trade balance", withYear(signed(t.exports - t.imports), t)],
+      ])}` +
+        `<h3>What it exports</h3><table class="list"><thead><tr><th>Category</th><th>Share</th><th>Amount</th></tr></thead><tbody>${groups.join("")}</tbody></table>` +
+        `<h3>Top exports</h3><table class="list"><thead><tr><th>Product</th><th>Amount</th><th>World rank</th></tr></thead><tbody>${products.join("")}</tbody></table>` +
+        `<p>Main buyers: ${partners}.</p><p class="note">${escape(SOURCES[t.source].name)}. Goods only.</p></section>`,
+    );
+  }
+
   const m = d.military;
   sections.push(`<section><h2>Military</h2>${table([
     ["Military spending", m.spendingUsd === null ? null : withYear(dollars(m.spendingUsd.value), m.spendingUsd)],
@@ -440,6 +464,14 @@ const METRIC_GROUPS: { title: string; metrics: Metric[] }[] = [
         better: "none" as const,
         mode: "points" as const,
       })),
+    ],
+  },
+  {
+    title: "Trade",
+    metrics: [
+      { label: "Goods exports", get: (d) => d.trade?.exports ?? null, format: dollars },
+      { label: "Goods imports", get: (d) => d.trade?.imports ?? null, format: dollars, better: "none" },
+      { label: "Trade balance", get: (d) => (d.trade === null ? null : d.trade.exports - d.trade.imports), format: (v) => (v < 0 ? `−${dollars(-v)}` : `+${dollars(v)}`), better: "none" },
     ],
   },
   {

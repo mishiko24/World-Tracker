@@ -17,6 +17,7 @@ import {
   type SummaryNumberKey,
 } from "../../data/countryData";
 import { dollars, fullNumber, percent, shortNumber, tonnes } from "../info/formatData";
+import { TRADE_GROUPS } from "../../data/trade";
 import { cropHint, METRIC_HINTS, powerSourceHint, resourceHint } from "../info/hints";
 import { POWER_SOURCE_STYLE } from "../info/PowerSection";
 
@@ -203,6 +204,29 @@ export function columnGroups(resources: ResourceInfo[]): ColumnGroup[] {
         field("militarySpending", "Military spending (% GDP)", (v) => percent(v)),
         field("militaryPersonnel", "Active personnel", fullNumber, undefined, "Active military personnel"),
         field("militaryPerThousand", "Personnel per 1,000", (v) => v.toFixed(1), undefined, "Military personnel per 1,000 people"),
+      ],
+    },
+    {
+      id: "trade",
+      sources: "CEPII BACI (UN Comtrade)",
+      label: "Trade",
+      columns: [
+        field("exports", "Exports", dollars, "goods"),
+        field("imports", "Imports", dollars, "goods"),
+        field("tradeBalance", "Trade balance", (v) => (v < 0 ? `−${dollars(-v)}` : `+${dollars(v)}`), "goods"),
+        ...TRADE_GROUPS.map(
+          (g): NumberColumn => ({
+            kind: "number",
+            id: `exportGroup.${g.id}`,
+            label: g.label,
+            unit: "% of exports",
+            fullLabel: `${g.label}, % of exports`,
+            slug: `${kebab(g.id)}-export-share`,
+            value: (row) => row.exportGroups[g.id] ?? null,
+            format: (v) => percent(v),
+            hint: `${g.about}. Share of the country's goods exports.`,
+          }),
+        ),
       ],
     },
     {

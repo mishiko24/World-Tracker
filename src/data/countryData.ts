@@ -6,6 +6,8 @@
 // Every value carries its own year and source, because sources update at different times.
 // A missing value is null (never 0), so the UI can show "No data" instead of a misleading zero.
 
+import type { TradeGroupId } from "./trade.ts";
+
 export type SourceId =
   | "worldbank"
   | "wikidata"
@@ -16,7 +18,8 @@ export type SourceId =
   | "faostat"
   | "ember"
   | "eurostat"
-  | "oecd";
+  | "oecd"
+  | "baci";
 
 export interface SourceInfo {
   short: string; // shown next to every value
@@ -80,6 +83,12 @@ export const SOURCES: Record<SourceId, SourceInfo> = {
     name: "OECD Government at a Glance, via Our World in Data",
     url: "https://ourworldindata.org/government-spending",
     license: "CC BY 4.0",
+  },
+  baci: {
+    short: "CEPII BACI",
+    name: "CEPII BACI, international trade by product (UN Comtrade, reconciled)",
+    url: "https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37",
+    license: "Etalab Open Licence 2.0",
   },
 };
 
@@ -164,6 +173,36 @@ export interface Budget {
   percentOfGdp: number; // all spending; the sum of the functions
   totalUsd: number | null; // percentOfGdp × World Bank GDP of the same year
   functions: Record<BudgetFunctionId, number>; // percent of GDP each (can be slightly negative: asset sales)
+}
+
+// Goods trade in one year (CEPII BACI: UN Comtrade reconciled between exporters and importers). Services
+// (tourism, finance, software) are not included.
+export interface Trade {
+  year: number;
+  source: SourceId;
+  exports: number; // US dollars
+  imports: number;
+  exportsByGroup: Record<TradeGroupId, number>; // US dollars per category (src/data/trade.ts)
+  importsByGroup: Record<TradeGroupId, number>;
+  topExports: TradeProduct[]; // biggest first
+  topImports: TradeProduct[];
+  exportPartners: TradePartner[]; // biggest first
+  importPartners: TradePartner[];
+}
+
+export interface TradeProduct {
+  code: string; // HS 2022, 6 digits
+  name: string; // short display name
+  description: string; // official HS description (tooltip)
+  usd: number;
+  worldRank: number; // among all exporters of this product (importers, for imports)
+  worldShare: number; // percent of world trade in this product
+}
+
+export interface TradePartner {
+  id: string; // country id
+  name: string;
+  usd: number;
 }
 
 // CIA World Factbook estimates (final edition, 2025). Spending older than the Factbook's newest years is left out
@@ -314,6 +353,7 @@ export interface CountryData {
   population: Population;
   economy: Economy;
   military: Military;
+  trade: Trade | null;
   resources: Resource[]; // same list feeds both the Production and Reserves tabs
   agriculture: Agriculture | null;
   power: Power;
@@ -357,6 +397,10 @@ export interface CountrySummary {
   politicalStability: number | null; // 0-100
   govSpending: number | null; // all government spending, % of GDP
   budget: Partial<Record<BudgetFunctionId, number>>; // share of government spending, %
+  exports: number | null; // goods, US dollars
+  imports: number | null;
+  tradeBalance: number | null; // exports - imports
+  exportGroups: Partial<Record<TradeGroupId, number>>; // share of goods exports, %
   militarySpending: number | null; // % of GDP
   militarySpendingUsd: number | null;
   militaryPerPerson: number | null; // spending per person, US dollars

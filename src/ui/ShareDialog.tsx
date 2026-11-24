@@ -34,6 +34,7 @@ const KIND_FILE_SUFFIX: Record<CardKind, string | undefined> = {
   population: "population",
   economy: "economy",
   military: "military",
+  trade: "trade",
   resources: "resources",
   agriculture: "agriculture",
   power: "power",

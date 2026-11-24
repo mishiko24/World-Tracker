@@ -51,15 +51,20 @@ src/ui/                   React panels
   controls.tsx, format.ts Slider / color inputs and value formatting
 
 src/data/countryData.ts   THE CONTRACT: per-country JSON shape + source list. Imported by both the pipeline and the UI.
-src/ui/info/              Right panel: InfoPanel (7 sections), useCountryData (fetch), FactRow, one file per section type,
+src/ui/info/              Right panel: InfoPanel (8 sections), useCountryData (fetch), FactRow, one file per section type,
                           formatData (number/unit formatting)
 src/ui/info/hints.ts      What each metric means: METRIC_HINTS by panel label (+ list-label aliases), cropHint,
                           resourceHint, powerSourceHint. One tooltip per panel row (FactRow tooltipText: explanation, blank
                           line, year · source) on the label's data-hint, opened by hovering the row or focusing/tapping
                           the label (.has-hint CSS). No native title tooltips in the panel (they'd open on top).
                           List headers use it as their title; the map key title and Power Level title as .has-hint
-src/ui/info/BudgetChart.tsx  Government budget in Economy: donut (7 functions + Other) with total in the middle, a row
-                          per function (share, $); comparing = paired share rows. Colors/shares: src/data/budget.ts
+src/ui/info/Donut.tsx     Donut of shares + linked rows (hover one, highlight both). Colors: src/data/palette.ts
+                          (validated categorical set, fixed order; re-run the dataviz validator before reordering)
+src/ui/info/BudgetChart.tsx  Government budget in Economy: Donut (7 functions + Other), spending % of GDP in the
+                          middle; comparing = paired share rows. Colors/shares: src/data/budget.ts
+src/ui/info/TradeSection.tsx  Trade: exports/imports/balance; Exports|Imports tab with Donut by category
+                          (src/data/trade.ts: HS chapters -> 8 groups), top products (+ world rank), main partners.
+                          Product names: src/data/tradeNames.ts (curated short names, else a heuristic from the HS text)
 src/ui/useMobile.ts       Phone layout switch (max-width 700px, same as the @media block at the end of styles.css)
 src/ui/info/useBottomSheet.ts  Phone: info panel as bottom sheet, peek/half/full snaps, header drag + tap
 src/ui/info/PowerLevelCard.tsx  Power Level score, rank and pillar bars at the top of the info panel
@@ -70,7 +75,7 @@ src/map/colorBy.ts        "Color countries by" any list number (settings.colorBy
                           top 10, Share map), MapTooltip.tsx (hovered country's value), MapShareDialog.tsx + mapCard.ts
 src/share/comparisonCard.ts  Comparison share image: the "fight poster" (DESIGN.md §6), for any section:
 src/share/comparisonSections.ts  What each comparison card shows (Power Level, Government, Population, Economy,
-                          Military, Resources, Agriculture, Power generation): headline number + up to 6 rows; resources and
+                          Military, Trade, Resources, Agriculture, Power generation): headline number + up to 6 rows; resources and
                           crops pick well-known items first (KEY_RESOURCES, STAPLES)
 src/theme.css             The look (DESIGN.md §0): fonts, gradient, glass, A/B/teal colors. Imported by every page;
                           scripts/site/pages.ts prepends it to dist/site.css for the static pages
@@ -179,6 +184,7 @@ the logs (`gh api repos/mishiko24/World-Tracker/actions/jobs/<id>/logs`), then p
 | Economy | GDP (+rank), per capita, PPP, growth, inflation, central gov. debt | World Bank (worldbank) | Was IMF until Nov 2026: IMF terms forbid systematic download / commercial reuse without permission. WB = CC BY 4.0. No Taiwan. Debt is central gov (fewer countries, lags); debt $ = % × GDP of the debt's year (gdpByYear) |
 | Military | spending % of GDP (+ history 2017–2025), $ (= % × World Bank GDP of the newest year with both), $ per person; active personnel (+ per 1,000 people) | Factbook final edition (factbook) | Public domain. Spending older than newest Factbook year − 3 is dropped (Ukraine: last 2021). Personnel parsed from prose by parsePersonnel(): first number or range ("10-15,000" = 10,000–15,000), compared by the range's middle; the sentence is shown under the value. "prior to ..." (Sudan, Gaza) = no number. No equipment counts (prose only). SIPRI needs a paid commercial licence |
 | Economy: budget | government spending by function (10 COFOG divisions, % of GDP → share of budget and $ with World Bank GDP of the same year) | Eurostat gov_10a_exp (eurostat) for EU+EFTA; OECD Government at a Glance via OWID grapher CSV `government-spending-by-function-as-share-of-gdp-across-countries` (oecd) for other OECD members | fetch/budget.ts. 39 countries (no Canada, Mexico, NZ, Türkiye in OWID). Newest year with all 10 functions. OECD's own SDMX API returns HTTP 500 on every filtered query (Nov 2026), hence OWID. General government (all levels). Budget shares get no "world rank" (rankings.ts) |
+| Trade | goods exports/imports/balance, by category, top 8 export / 5 import products (world rank + share), top 6 partners each way | CEPII BACI HS22 (baci), newest year | fetch/trade.ts downloads the yearly zip (~300 MB, `BACI_HS22_V<YYYY>01.zip`, found by trying this year's then last year's name: the folder has no listing) and streams the newest year's CSV through `unzip -p` (11M rows). Etalab Open Licence 2.0. Taiwan = BACI "S19" (Other Asia, nes). Goods only, no services. Runs in Actions only (the sandbox can't reach cepii.fr) |
 | Resources | oil/gas/coal production, coal reserves | EIA API (eia), key in secret EIA_API_KEY | EIA dropped oil/gas reserves from its API |
 | | oil/gas reserves | EIA via OWID grapher CSVs (reserves) | Ends 2021. EI stopped 2020; OPEC has newer but blocks bots (403) |
 | | minerals production + reserves | USGS MCS data release (usgs) | Update SCIENCEBASE_ITEM each new edition (Jan/Feb). One variant per mineral |

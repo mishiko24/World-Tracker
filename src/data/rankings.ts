@@ -26,7 +26,8 @@ export function worldRanks(id: string, rows: CountrySummary[], columns: NumberCo
   const ranks: WorldRank[] = [];
   for (const column of columns) {
     // Budget shares are priorities, not achievements, and cover ~40 countries: no "world" rank.
-    if (NOT_A_BOAST.has(column.id) || column.id === "govSpending" || column.id.startsWith("budget.")) {
+    // Shares of exports describe an economy's mix, not an achievement; neither is a trade deficit.
+    if (NOT_A_BOAST.has(column.id) || column.id === "govSpending" || column.id.startsWith("budget.") || column.id.startsWith("exportGroup.") || column.id === "imports") {
       continue;
     }
     const value = column.value(row);

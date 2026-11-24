@@ -15,6 +15,7 @@ import { EconomySection, GovernmentSection, MilitarySection, PopulationSection }
 import { PowerLevelCard } from "./PowerLevelCard";
 import { PowerSection } from "./PowerSection";
 import { ResourcesSection } from "./ResourcesSection";
+import { TradeSection } from "./TradeSection";
 import type { CardSide } from "../../share/shareCard";
 import { ShareDialog } from "../ShareDialog";
 import { useMobile } from "../useMobile";
@@ -129,6 +130,9 @@ export function InfoPanel(props: InfoPanelProps) {
         </Collapsible>
         <Collapsible title="Military">
           {loaded(state, (d) => <MilitarySection military={d.military} trends={d.trends} other={other} />)}
+        </Collapsible>
+        <Collapsible title="Trade">
+          {loaded(state, (d) => <TradeSection trade={d.trade} other={other} />)}
         </Collapsible>
         <Collapsible title="Resources">
           {loaded(state, (d) => <ResourcesSection resources={d.resources} other={other} />)}

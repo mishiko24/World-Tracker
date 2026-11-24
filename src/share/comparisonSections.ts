@@ -9,10 +9,11 @@ import { PILLAR_LABELS, PILLAR_ORDER, STAPLES, type CountryData, type PowerSourc
 import type { Better, DiffMode } from "../ui/info/Compare";
 import { dollars, fullNumber, percent, shortNumber, tonnes } from "../ui/info/formatData";
 import { POWER_SOURCE_STYLE } from "../ui/info/PowerSection";
+import { TRADE_GROUPS, type TradeGroupId } from "../data/trade";
 
-export type SectionId = "powerLevel" | "government" | "population" | "economy" | "military" | "resources" | "agriculture" | "power";
+export type SectionId = "powerLevel" | "government" | "population" | "economy" | "military" | "trade" | "resources" | "agriculture" | "power";
 
-export const SECTION_IDS: SectionId[] = ["powerLevel", "government", "population", "economy", "military", "resources", "agriculture", "power"];
+export const SECTION_IDS: SectionId[] = ["powerLevel", "government", "population", "economy", "military", "trade", "resources", "agriculture", "power"];
 
 export const SECTION_TITLES: Record<SectionId, string> = {
   powerLevel: "Power Level",
@@ -20,6 +21,7 @@ export const SECTION_TITLES: Record<SectionId, string> = {
   population: "Population",
   economy: "Economy",
   military: "Military",
+  trade: "Trade",
   resources: "Resources",
   agriculture: "Agriculture",
   power: "Power generation",
@@ -75,6 +77,21 @@ const KEY_RESOURCES = [
 
 function num(label: string, a: number | null | undefined, b: number | null | undefined, format: (v: number) => string, rest: Partial<NumberRow> = {}): NumberRow {
   return { kind: "number", label, a: a ?? null, b: b ?? null, format, ...rest };
+}
+
+// Imports and balance, then the categories that make up most of the two countries' exports (largest first).
+function tradeRows(a: CountryData, b: CountryData): Row[] {
+  const share = (d: CountryData, id: TradeGroupId) => (d.trade === null || d.trade.exports === 0 ? null : (d.trade.exportsByGroup[id] / d.trade.exports) * 100);
+  const signed = (v: number) => (v < 0 ? `−${dollars(-v)}` : `+${dollars(v)}`);
+  const groups = TRADE_GROUPS.filter((g) => g.id !== "other")
+    .map((g) => ({ g, size: (share(a, g.id) ?? 0) + (share(b, g.id) ?? 0) }))
+    .sort((x, y) => y.size - x.size)
+    .slice(0, 3);
+  return [
+    num("Imports", a.trade?.imports, b.trade?.imports, dollars, { better: "none" }),
+    num("Trade balance", a.trade === null ? null : a.trade.exports - a.trade.imports, b.trade === null ? null : b.trade.exports - b.trade.imports, signed, { better: "none" }),
+    ...groups.map(({ g }) => num(`${g.short} share of exports`, share(a, g.id), share(b, g.id), (v) => percent(v), { mode: "points", better: "none" })),
+  ];
 }
 
 // A section without any value for either country isn't offered.
@@ -154,6 +171,8 @@ export function comparisonSection(id: SectionId, a: CountryData, b: CountryData,
           num("Per 1,000 people", a.military.personnelPer1000?.value, b.military.personnelPer1000?.value, (v) => v.toFixed(1), { better: "none" }),
         ],
       };
+    case "trade":
+      return { ...base, headline: { a: a.trade?.exports ?? null, b: b.trade?.exports ?? null, format: dollars, caption: caption("goods exports") }, rows: tradeRows(a, b) };
     case "resources":
       return { ...base, headline: countHeadline(a, b, (d) => d.resources.filter((r) => r.production !== null).length, "resources produced"), rows: resourceRows(a, b, totals) };
     case "agriculture":

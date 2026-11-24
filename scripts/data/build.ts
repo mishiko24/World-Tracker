@@ -15,6 +15,7 @@ import type {
   BudgetFunctionId,
   Government,
   Military,
+  Trade,
   NumberFact,
   Population,
   Power,
@@ -26,12 +27,15 @@ import type {
   TextFact,
 } from "../../src/data/countryData.ts";
 import { STAPLES } from "../../src/data/countryData.ts";
+import type { TradeGroupId } from "../../src/data/trade.ts";
+import { productName } from "../../src/data/tradeNames.ts";
 import { loadCountries } from "./lib/countries.ts";
 import { lastFullYear, readCache } from "./lib/io.ts";
 import { computeNearby } from "./nearby.ts";
 import { computePowerLevels, POWER_LEVEL_VERSION } from "./powerLevel.ts";
 import type { BudgetEntry } from "./fetch/budget.ts";
 import type { EiaEntry } from "./fetch/eia.ts";
+import type { TradeEntry } from "./fetch/trade.ts";
 import type { FossilReservesEntry } from "./fetch/fossilReserves.ts";
 import type { EnergyEntry } from "./fetch/energy.ts";
 import type { FactbookEntry } from "./fetch/factbook.ts";
@@ -59,6 +63,8 @@ const usgs = readCache<UsgsEntry>("usgs").byCountry;
 const faostat = readCache<FaoEntry>("faostat").byCountry;
 const energy = readCache<EnergyEntry>("energy").byCountry;
 const budgets = readCache<BudgetEntry>("budget").byCountry;
+const trades = readCache<TradeEntry>("trade").byCountry;
+const nameOf = new Map(loadCountries().map((c) => [c.id, c.name])); // trade partners
 
 // World Bank keeps a country's last value forever (Germany's central government debt is from 1990).
 // Values older than this are hidden rather than shown as if current.
@@ -204,6 +210,33 @@ function personnelFacts(p: FactbookEntry["personnel"], population: Population): 
   };
 }
 
+function buildTrade(id: string): Trade | null {
+  const t = trades[id];
+  if (t === undefined) {
+    return null;
+  }
+  const product = (p: TradeEntry["topExports"][number]) => ({ ...p, name: productName(p.code, p.description) });
+  const partner = (p: TradeEntry["exportPartners"][number]) => ({ ...p, name: nameOf.get(p.id)! });
+  return {
+    ...t,
+    source: "baci",
+    topExports: t.topExports.map(product),
+    topImports: t.topImports.map(product),
+    exportPartners: t.exportPartners.map(partner),
+    importPartners: t.importPartners.map(partner),
+  };
+}
+
+// Each category's share of goods exports, percent (what the list and maps rank).
+function exportShares(trade: Trade | null): Partial<Record<TradeGroupId, number>> {
+  if (trade === null || trade.exports === 0) {
+    return {};
+  }
+  return Object.fromEntries(
+    Object.entries(trade.exportsByGroup).map(([group, usd]) => [group, Number(((usd / trade.exports) * 100).toPrecision(4))]),
+  );
+}
+
 const ENERGY_RESOURCES = [
   { id: "oil", name: "Crude oil" },
   { id: "gas", name: "Natural gas" },
@@ -292,6 +325,7 @@ for (const c of countries) {
     population,
     economy: buildEconomy(c.id),
     military,
+    trade: buildTrade(c.id),
     resources: buildResources(c.id),
     agriculture: buildAgriculture(c.id),
     power: buildPower(c.id),
@@ -343,6 +377,10 @@ function summaryOf(d: CountryData): CountrySummary {
     politicalStability: d.government.politicalStability?.value ?? null,
     govSpending: d.economy.budget === null ? null : Number(d.economy.budget.percentOfGdp.toPrecision(4)),
     budget: budgetShares(d.economy.budget),
+    exports: d.trade === null ? null : Number(d.trade.exports.toPrecision(6)),
+    imports: d.trade === null ? null : Number(d.trade.imports.toPrecision(6)),
+    tradeBalance: d.trade === null ? null : Number((d.trade.exports - d.trade.imports).toPrecision(6)),
+    exportGroups: exportShares(d.trade),
     militarySpending: d.military.spending?.value ?? null,
     militarySpendingUsd: d.military.spendingUsd === null ? null : Number(d.military.spendingUsd.value.toPrecision(6)),
     militaryPerPerson: d.military.spendingPerPerson === null ? null : Number(d.military.spendingPerPerson.value.toPrecision(4)),
@@ -426,6 +464,7 @@ const coverage: [string, (d: CountryData) => unknown][] = [
   ["economy.inflation", (d) => d.economy.inflation],
   ["economy.debt", (d) => d.economy.debt],
   ["economy.debtUsd", (d) => d.economy.debtUsd],
+  ["trade", (d) => d.trade],
   ["military.spending", (d) => d.military.spending],
   ["military.spendingUsd", (d) => d.military.spendingUsd],
   ["military.personnel", (d) => d.military.personnel],

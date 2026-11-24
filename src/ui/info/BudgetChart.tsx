@@ -1,10 +1,11 @@
 // Government budget inside the Economy section: what the government spends its money on.
-// One country: a donut (share of all spending) with the total in the middle, and a row per function with its
-// share and dollar amount; hovering a row or a slice highlights both. Comparing: paired rows, no donuts.
+// One country: a donut (share of all spending) with spending as % of GDP in the middle, and a row per function
+// with its share and dollar amount (Donut.tsx). Comparing: paired rows, no donuts.
 
-import { useState } from "react";
-import { budgetColor, budgetShare, OTHER_COLOR, OTHER_FUNCTIONS } from "../../data/budget";
+import { budgetColor, budgetShare, OTHER_FUNCTIONS } from "../../data/budget";
 import { BUDGET_FUNCTIONS, type Budget, type BudgetFunctionId, type NumberFact } from "../../data/countryData";
+import { OTHER_COLOR } from "../../data/palette";
+import { Donut, type DonutRow, type DonutSlice } from "./Donut";
 import { FactRow, tooltipText } from "./FactRow";
 import { dollars, percent, roundDollars } from "./formatData";
 
@@ -27,30 +28,27 @@ function totalFacts(budget: Budget | null): { usd: NumberFact | null; gdp: Numbe
 }
 
 function BudgetDonut({ budget }: { budget: Budget }) {
-  const [active, setActive] = useState<BudgetFunctionId | "other" | null>(null);
   const total = totalFacts(budget);
-  const slices = [
+  const slices: DonutSlice[] = [
     ...BUDGET_FUNCTIONS.filter((f) => !OTHER_FUNCTIONS.includes(f.id)).map((f) => ({
-      key: f.id as BudgetFunctionId | "other",
+      key: f.id as string,
       label: f.label,
       share: budgetShare(budget, f.id),
       color: budgetColor(f.id),
     })),
-    {
-      key: "other" as const,
-      label: "Other",
-      share: OTHER_FUNCTIONS.reduce((sum, id) => sum + budgetShare(budget, id), 0),
-      color: OTHER_COLOR,
-    },
+    { key: "other", label: "Other", share: OTHER_FUNCTIONS.reduce((sum, id) => sum + budgetShare(budget, id), 0), color: OTHER_COLOR },
   ];
-  const groupOf = (id: BudgetFunctionId) => (OTHER_FUNCTIONS.includes(id) ? "other" : id);
-
-  // Ring of circles with dash offsets; a 2px gap (in the panel color) between slices.
-  const r = 46;
-  const circumference = 2 * Math.PI * r;
-  const shown = slices.map((s) => ({ ...s, share: Math.max(0, s.share) }));
-  const sum = shown.reduce((a, s) => a + s.share, 0);
-  let offset = 0;
+  const rows: DonutRow[] = BUDGET_FUNCTIONS.map((f) => {
+    const share = budgetShare(budget, f.id);
+    return {
+      key: f.id,
+      slice: OTHER_FUNCTIONS.includes(f.id) ? "other" : f.id,
+      label: f.label,
+      hint: tooltipText(`${f.about}.`, budget.year, budget.source)!,
+      share: percent(share),
+      amount: budget.totalUsd === null ? "" : roundDollars((share / 100) * budget.totalUsd),
+    };
+  });
   return (
     <div className="budget">
       <FactRow
@@ -60,60 +58,12 @@ function BudgetDonut({ budget }: { budget: Budget }) {
         source={budget.source}
         meta={total.usd === null ? undefined : `${percent(budget.percentOfGdp, 0)} of GDP`}
       />
-      <div className="budget-chart">
-        <svg viewBox="0 0 120 120" className="budget-donut" role="img" aria-label="Share of government spending by function">
-          {shown.map((s) => {
-            const length = (s.share / sum) * circumference;
-            const dash = Math.max(0, length - 2);
-            const circle = (
-              <circle
-                key={s.key}
-                cx="60"
-                cy="60"
-                r={r}
-                fill="none"
-                stroke={s.color}
-                strokeWidth={active === s.key ? 18 : 14}
-                strokeDasharray={`${dash} ${circumference - dash}`}
-                strokeDashoffset={-offset}
-                opacity={active === null || active === s.key ? 1 : 0.35}
-                onMouseEnter={() => setActive(s.key)}
-                onMouseLeave={() => setActive(null)}
-              >
-                <title>{`${s.label}: ${percent(s.share)}`}</title>
-              </circle>
-            );
-            offset += length;
-            return circle;
-          })}
-        </svg>
-        <div className="budget-center">
-          <strong>{active === null ? percent(budget.percentOfGdp, 0) : percent(slices.find((s) => s.key === active)!.share)}</strong>
-          <span>{active === null ? "of GDP" : slices.find((s) => s.key === active)!.label}</span>
-        </div>
-      </div>
-      <ul className="budget-rows">
-        {BUDGET_FUNCTIONS.map((f) => {
-          const share = budgetShare(budget, f.id);
-          const usd = budget.totalUsd === null ? null : (share / 100) * budget.totalUsd;
-          const group = groupOf(f.id);
-          return (
-            <li
-              key={f.id}
-              className={active === group ? "active" : active === null ? "" : "dim"}
-              onMouseEnter={() => setActive(group)}
-              onMouseLeave={() => setActive(null)}
-            >
-              <span className="budget-swatch" style={{ background: budgetColor(f.id) }} />
-              <span className="budget-label has-hint" tabIndex={0} data-hint={tooltipText(`${f.about}.`, budget.year, budget.source)}>
-                {f.label}
-              </span>
-              <span className="budget-share">{percent(share)}</span>
-              <span className="budget-usd">{usd === null ? "" : roundDollars(usd)}</span>
-            </li>
-          );
-        })}
-      </ul>
+      <Donut
+        slices={slices}
+        rows={rows}
+        center={{ value: percent(budget.percentOfGdp, 0), label: "of GDP" }}
+        ariaLabel="Share of government spending by function"
+      />
     </div>
   );
 }

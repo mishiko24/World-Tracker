@@ -101,7 +101,11 @@ check("click selects Spain (panel)", (await panelTitle()) === "Spain", String(aw
 check("Spain drawn selected", near(await pixel(spainX, spainY), COLORS.selected));
 
 const headers = await page.$$eval("aside.panel-right .collapsible-header", (els) => els.map((e) => e.textContent.replace("▸", "")));
-check("7 sections in info panel, Military after Economy", headers.length === 7 && headers.indexOf("Military") === headers.indexOf("Economy") + 1, headers.join(", "));
+check(
+  "8 sections in info panel: Economy, Military, Trade in that order",
+  headers.length === 8 && headers.indexOf("Military") === headers.indexOf("Economy") + 1 && headers.indexOf("Trade") === headers.indexOf("Military") + 1,
+  headers.join(", "),
+);
 check("sections collapsed by default", (await page.$$("aside.panel-right .collapsible-body")).length === 0);
 await page.click("aside.panel-right .collapsible-header >> text=Government");
 check("Government expands on click", (await page.$$("aside.panel-right .collapsible-body")).length === 1);
@@ -391,7 +395,7 @@ const groupNames = await page.$$eval(".country-list tr.group-row th:not(.name-co
 );
 check(
   "list view column groups",
-  groupNames.join("|") === "Power Level|Government|Population|Economy|Government budget|Military|Resources: production|Resources: reserves|Agriculture|Power generation",
+  groupNames.join("|") === "Power Level|Government|Population|Economy|Government budget|Military|Trade|Resources: production|Resources: reserves|Agriculture|Power generation",
   groupNames.join("|"),
 );
 const columnIds = await page.$$eval(".country-list tr.column-row th", (els) => els.map((e) => e.dataset.column));
@@ -508,7 +512,7 @@ await page.waitForFunction(() => !document.querySelector(".share-link").textCont
 check("share link is the comparison page", (await page.textContent(".share-link")).endsWith("/compare/japan-vs-south-korea/"), await page.textContent(".share-link"));
 // One card per info panel section when comparing.
 const sectionTabs = await page.$$eval(".card-tabs button", (els) => els.map((e) => e.textContent).join("|"));
-check("comparison card per section", sectionTabs === "Power Level|Government|Population|Economy|Military|Resources|Agriculture|Power generation", sectionTabs);
+check("comparison card per section", sectionTabs === "Power Level|Government|Population|Economy|Military|Trade|Resources|Agriculture|Power generation", sectionTabs);
 await page.click(".card-tabs button >> text=Economy");
 await page.waitForFunction(() => document.querySelector(".share-actions a[download]")?.getAttribute("download") === "world-tracker-jpn-vs-kor-economy.png");
 check("economy comparison card", true);
@@ -577,11 +581,33 @@ check("crop header spells out Mt", milkHint?.includes("Mt = million tonnes") ===
 await page.goto(`${URL}?c=USA`);
 await page.waitForSelector("aside.panel-right .collapsible-header");
 await page.click("aside.panel-right .collapsible-header >> text=Economy");
-await page.waitForSelector(".budget-donut");
-check("budget donut: 7 functions + Other", (await page.$$(".budget-donut circle")).length === 8);
-check("budget rows: 10 functions", (await page.$$(".budget-rows li")).length === 10);
-await page.hover(".budget-rows li:nth-child(6) .budget-share");
-check("hovering Defence names it in the donut", (await page.textContent(".budget-center span")) === "Defence", await page.textContent(".budget-center span"));
+await page.waitForSelector(".budget .donut");
+check("budget donut: 7 functions + Other", (await page.$$(".budget .donut circle")).length === 8);
+check("budget rows: 10 functions", (await page.$$(".budget .donut-rows li")).length === 10);
+await page.hover(".budget .donut-rows li:nth-child(6) .donut-share");
+check("hovering Defence names it in the donut", (await page.textContent(".budget .donut-center span")) === "Defence", await page.textContent(".budget .donut-center span"));
+// Trade: totals, a donut of 8 categories, top products with world rank, main buyers; Imports tab switches.
+await page.goto(`${URL}?c=CHL`);
+await page.waitForSelector("aside.panel-right .collapsible-header");
+await page.click("aside.panel-right .collapsible-header >> text=Trade");
+await page.waitForSelector(".donut");
+check("trade donut: 8 categories", (await page.$$("aside.panel-right .donut-rows li")).length === 8);
+const firstExport = await page.$$eval("aside.panel-right .data-group", (groups) =>
+  groups.find((g) => g.querySelector(".data-group-title")?.textContent === "Top exports")?.querySelector(".fact")?.textContent ?? "",
+);
+check("Chile's top export is copper ore, #1 in the world", /Copper ore.*#1 world/.test(firstExport), firstExport);
+check("main buyers have flags", (await page.$$("aside.panel-right .partner img.flag")).length >= 3);
+await page.click("aside.panel-right .tab >> text=Imports");
+check("imports tab shows what it buys", (await page.textContent("aside.panel-right .donut-center span")).startsWith("imported"));
+await page.goto(`${URL}?c=CHL&vs=PER`);
+await page.waitForSelector("aside.panel-right .collapsible-header");
+await page.click("aside.panel-right .collapsible-header >> text=Trade");
+const fuelsRow = await compareRow("Fuels & minerals");
+check("trade compare: category shares paired, no winner", fuelsRow !== null && !fuelsRow.aWins && !fuelsRow.bWins, JSON.stringify(fuelsRow));
+await page.goto(`${URL}?c=USA`);
+await page.waitForSelector("aside.panel-right .collapsible-header");
+await page.click("aside.panel-right .collapsible-header >> text=Economy");
+await page.waitForSelector(".budget .donut");
 const gdpLabelHint = await page.getAttribute("aside.panel-right .fact-label.has-hint >> nth=0", "data-hint");
 check("panel labels carry an explanation", gdpLabelHint?.length > 20, String(gdpLabelHint));
 await page.evaluate(() => localStorage.clear());

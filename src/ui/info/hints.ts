@@ -40,6 +40,10 @@ export const METRIC_HINTS: Record<string, string> = {
   "Active personnel":
     "Active-duty military personnel (CIA World Factbook estimate). Some countries are given as a range; comparisons use its middle.",
   "Per 1,000 people": "Active military personnel for every 1,000 people living in the country.",
+  // Trade
+  Exports: "Goods the country sold abroad in a year, in US dollars (CEPII BACI). Services such as tourism and software are not included.",
+  Imports: "Goods the country bought from abroad in a year, in US dollars. Services are not included.",
+  "Trade balance": "Goods exports minus goods imports: + is a surplus (sells more than it buys), − a deficit.",
   // Power
   "Total generation": "Electricity produced in a year. TWh = terawatt-hours (a billion kilowatt-hours).",
   Total: "Electricity produced in a year. TWh = terawatt-hours (a billion kilowatt-hours).",
