@@ -3,7 +3,8 @@
 //   left   WORLD MAP, the title (what's colored), the color scale with lowest / median / highest, top 5, source
 //   right  the whole world, each country in its color; no data = plain land
 //
-// drawWorld is also the home card's map (shareCard.ts).
+// drawExportMixCard: the same frame for a category map (each country's biggest export category), with a legend.
+// drawWorld is also the home card's map (shareCard.ts). pixelRatio 2 draws a 2400x1260 image (Reddit posts).
 
 import { geoMercator, geoPath } from "d3-geo";
 import { valueWithUnit } from "../data/rankings";
@@ -16,8 +17,8 @@ import { measure, text } from "./draw";
 const LAND = "#262b63"; // the dark map's land: no data
 const BORDER = "rgba(16, 18, 58, 0.9)";
 
-// The world fitted into [x0, y0, x1, y1]; positions: country id -> 0..1 on the heat scale.
-export function drawWorld(ctx: CanvasRenderingContext2D, countries: Country[], positions: Map<string, number>, box: [number, number, number, number]): void {
+// The world fitted into [x0, y0, x1, y1]; fillOf: a country's color, undefined = no data (plain land).
+export function drawWorld(ctx: CanvasRenderingContext2D, countries: Country[], fillOf: (id: string) => string | undefined, box: [number, number, number, number]): void {
   const features = { type: "FeatureCollection" as const, features: countries.map((c) => c.shape) };
   const projection = geoMercator().fitExtent(
     [
@@ -30,10 +31,9 @@ export function drawWorld(ctx: CanvasRenderingContext2D, countries: Country[], p
   ctx.lineWidth = 0.5;
   ctx.strokeStyle = BORDER;
   for (const country of countries) {
-    const t = positions.get(country.id);
     ctx.beginPath();
     path(country.shape);
-    ctx.fillStyle = t === undefined ? LAND : heatColor("dark", t);
+    ctx.fillStyle = fillOf(country.id) ?? LAND;
     ctx.fill();
     ctx.stroke();
   }
@@ -54,12 +54,26 @@ export function drawScaleBar(ctx: CanvasRenderingContext2D, x: number, y: number
 const LEFT = 56;
 const COLUMN = 380; // text column width
 
-export function drawMapCard(canvas: HTMLCanvasElement, countries: Country[], scale: ColorScale, flags: Map<string, HTMLImageElement>, siteLabel: string): void {
-  canvas.width = 1200;
-  canvas.height = 630;
+// Positions on the heat scale (0..1) as fill colors.
+export function heatFill(positions: Map<string, number>): (id: string) => string | undefined {
+  return (id) => {
+    const t = positions.get(id);
+    return t === undefined ? undefined : heatColor("dark", t);
+  };
+}
+
+function cardContext(canvas: HTMLCanvasElement, pixelRatio: number): CanvasRenderingContext2D {
+  canvas.width = 1200 * pixelRatio;
+  canvas.height = 630 * pixelRatio;
   const ctx = canvas.getContext("2d")!;
+  ctx.scale(pixelRatio, pixelRatio);
+  return ctx;
+}
+
+export function drawMapCard(canvas: HTMLCanvasElement, countries: Country[], scale: ColorScale, flags: Map<string, HTMLImageElement>, siteLabel: string, pixelRatio = 1): void {
+  const ctx = cardContext(canvas, pixelRatio);
   background(ctx);
-  drawWorld(ctx, countries, scale.positions, [470, 40, 1185, 600]);
+  drawWorld(ctx, countries, heatFill(scale.positions), [470, 40, 1185, 600]);
 
   text(ctx, "WORLD MAP", LEFT, 84, 16, 700, DIM, "left", 0.14);
   const lines = wrap(ctx, scale.column.fullLabel, COLUMN, 46, 800);
@@ -88,6 +102,36 @@ export function drawMapCard(canvas: HTMLCanvasElement, countries: Country[], sca
   });
 
   text(ctx, `${scale.ranked.length} countries · ${scale.group.sources}`, LEFT, 566, 15, 500, DIM);
+  text(ctx, "WORLD TRACKER", LEFT, 600, 14, 800, TEXT, "left", 0.14);
+  text(ctx, siteLabel, LEFT + measure(ctx, "WORLD TRACKER", 14, 800, 0.14) + 14, 600, 14, 500, "rgba(255, 255, 255, 0.55)");
+}
+
+export interface CategoryMap {
+  title: string;
+  fills: Map<string, string>; // country id -> its category's color
+  legend: { label: string; color: string; count: number }[]; // largest count first
+  source: string;
+}
+
+export function drawCategoryMapCard(canvas: HTMLCanvasElement, countries: Country[], map: CategoryMap, siteLabel: string, pixelRatio = 1): void {
+  const ctx = cardContext(canvas, pixelRatio);
+  background(ctx);
+  drawWorld(ctx, countries, (id) => map.fills.get(id), [470, 40, 1185, 600]);
+
+  text(ctx, "WORLD MAP", LEFT, 84, 16, 700, DIM, "left", 0.14);
+  const lines = wrap(ctx, map.title, COLUMN, 46, 800);
+  lines.forEach((line, i) => text(ctx, line, LEFT - 2, 136 + i * 50, 46, 800, TEXT));
+  const top = 136 + (lines.length - 1) * 50 + 52;
+  map.legend.forEach((item, i) => {
+    const y = top + i * 34;
+    ctx.fillStyle = item.color;
+    ctx.beginPath();
+    ctx.roundRect(LEFT, y - 15, 18, 18, 4);
+    ctx.fill();
+    text(ctx, item.label, LEFT + 30, y, 19, 600, TEXT);
+    text(ctx, `${item.count}`, LEFT + COLUMN - 40, y, 19, 700, DIM, "right");
+  });
+  text(ctx, `${map.fills.size} countries · ${map.source}`, LEFT, 566, 15, 500, DIM);
   text(ctx, "WORLD TRACKER", LEFT, 600, 14, 800, TEXT, "left", 0.14);
   text(ctx, siteLabel, LEFT + measure(ctx, "WORLD TRACKER", 14, 800, 0.14) + 14, 600, 14, 500, "rgba(255, 255, 255, 0.55)");
 }

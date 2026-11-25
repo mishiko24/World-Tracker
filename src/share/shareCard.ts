@@ -12,7 +12,7 @@ import { background, DIM, drawComparison, TEXT } from "./comparisonCard";
 import { text } from "./draw";
 import type { WorldRank } from "../data/rankings";
 import { comparisonSection, type ComparisonSection } from "./comparisonSections";
-import { drawScaleBar, drawWorld } from "./mapCard";
+import { drawScaleBar, drawWorld, heatFill } from "./mapCard";
 import { drawRankings } from "./rankingsCard";
 import { drawSingle } from "./singleCard";
 import { drawThenNow, type ThenNow } from "./thenNowCard";
@@ -109,7 +109,7 @@ export function drawHomeCard(canvas: HTMLCanvasElement, countries: Country[], po
   background(ctx);
 
   // The whole map on the right; the text on the left, so no country (the Americas!) sits under the text.
-  drawWorld(ctx, countries, powerLevels, [475, 50, 1185, 600]);
+  drawWorld(ctx, countries, heatFill(powerLevels), [475, 50, 1185, 600]);
 
   text(ctx, "WORLD TRACKER", 56, 150, 20, 700, DIM, "left", 0.14);
   text(ctx, "Compare any", 52, 228, 58, 800, TEXT);
