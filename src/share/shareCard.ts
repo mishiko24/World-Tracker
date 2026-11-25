@@ -16,6 +16,7 @@ import { drawScaleBar, drawWorld } from "./mapCard";
 import { drawRankings } from "./rankingsCard";
 import { drawSingle } from "./singleCard";
 import { drawThenNow, type ThenNow } from "./thenNowCard";
+import { drawDonutCard, type DonutCard } from "./donutCard";
 
 export const CARD_WIDTH = 1200;
 export const CARD_HEIGHT = 630;
@@ -86,6 +87,12 @@ export function drawThenNowCard(canvas: HTMLCanvasElement, side: CardSide, flag:
   canvas.width = CARD_WIDTH;
   canvas.height = CARD_HEIGHT;
   drawThenNow(canvas.getContext("2d")!, side, flag, rows, siteLabel);
+}
+
+export function drawDonutShareCard(canvas: HTMLCanvasElement, side: CardSide, flag: HTMLImageElement, card: DonutCard, siteLabel: string): void {
+  canvas.width = CARD_WIDTH;
+  canvas.height = CARD_HEIGHT;
+  drawDonutCard(canvas.getContext("2d")!, side, flag, card, siteLabel);
 }
 
 // suffix: "rankings" or "then-and-now" for those cards.

@@ -74,6 +74,8 @@ src/map/colorBy.ts        "Color countries by" any list number (settings.colorBy
                           countries (= ranking pages = map pages). App -> MapView.setFillOverrides; MapKey.tsx (key,
                           top 10, Share map), MapTooltip.tsx (hovered country's value), MapShareDialog.tsx + mapCard.ts
 src/share/comparisonCard.ts  Comparison share image: the "fight poster" (DESIGN.md §6), for any section:
+src/share/donutCard.ts    One-country donut cards: "Where the money goes" (budget) and "What it sells" (exports by
+                          category); share dialog tabs Budget / Exports when the country has the data
 src/share/comparisonSections.ts  What each comparison card shows (Power Level, Government, Population, Economy,
                           Military, Trade, Resources, Agriculture, Power generation): headline number + up to 6 rows; resources and
                           crops pick well-known items first (KEY_RESOURCES, STAPLES)

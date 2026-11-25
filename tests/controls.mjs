@@ -535,7 +535,7 @@ check("better value is a teal pill", pill === "rgb(94, 234, 212)", pill);
 check("loser's bar is dimmer", (await page.$("aside.panel-right .pillar-bar.lose")) !== null);
 check("categories won tally", /categories won/i.test(await page.textContent("aside.panel-right .power-tally")));
 
-// One country: three cards to pick from.
+// One country: overview, rankings, then and now, and the budget and exports donut cards (Japan has both).
 await page.goto(`${URL}?c=JPN`);
 await page.waitForSelector(".share-button");
 await page.click(".share-button");
@@ -546,6 +546,12 @@ check("world rankings card", true);
 await page.click(".card-tabs button >> text=Then and now");
 await page.waitForFunction(() => document.querySelector(".share-actions a[download]")?.getAttribute("download") === "world-tracker-jpn-then-and-now.png");
 check("then and now card", true);
+await page.click(".card-tabs button >> text=Budget");
+await page.waitForFunction(() => document.querySelector(".share-actions a[download]")?.getAttribute("download") === "world-tracker-jpn-budget.png");
+check("budget card", true);
+await page.click(".card-tabs button >> text=Exports");
+await page.waitForFunction(() => document.querySelector(".share-actions a[download]")?.getAttribute("download") === "world-tracker-jpn-exports.png");
+check("exports card", true);
 await page.keyboard.press("Escape");
 await page.goto(URL);
 await page.waitForSelector(".search-box input");
